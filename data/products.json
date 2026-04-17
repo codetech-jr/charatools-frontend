@@ -1,0 +1,68 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Esmeril Angular INGCO 115mm",
+      "shortDescription": "Potente esmeril profesional para corte y desbaste de materiales",
+      "category": "Herramientas INGCO",
+      "image": "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400&q=80",
+      "status": "available"
+    },
+    {
+      "id": "2",
+      "name": "Taladro Percutor INGCO 20V",
+      "shortDescription": "Taladro profesional con batería recargable incluida",
+      "category": "Herramientas INGCO",
+      "image": "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=400&q=80",
+      "status": "high-demand"
+    },
+    {
+      "id": "3",
+      "name": "Sierra Circular INGCO 1400W",
+      "shortDescription": "Sierra de precisión para cortes limpios en madera y plástico",
+      "category": "Herramientas INGCO",
+      "image": "https://images.unsplash.com/photo-1500595046891-e23b5c929e41?w=400&q=80",
+      "status": "available"
+    },
+    {
+      "id": "4",
+      "name": "Juego de Brocas INGCO 100 piezas",
+      "shortDescription": "Set completo con brocas para metal, madera y concreto",
+      "category": "Herramientas INGCO",
+      "image": "https://images.unsplash.com/photo-1599752376143-48d6d66cd18e?w=400&q=80",
+      "status": "new-batch"
+    },
+    {
+      "id": "5",
+      "name": "Bombilla LED 9W Cálida",
+      "shortDescription": "Bombilla LED de bajo consumo con luz cálida y larga duración",
+      "category": "Iluminación",
+      "image": "https://images.unsplash.com/photo-1565636192335-14d0f48d7c71?w=400&q=80",
+      "status": "available"
+    },
+    {
+      "id": "6",
+      "name": "Panel LED Cuadrado 40W",
+      "shortDescription": "Panel moderno para iluminación de interiores y negocios",
+      "category": "Iluminación",
+      "image": "https://images.unsplash.com/photo-1565631969034-0e5c0f0e8c59?w=400&q=80",
+      "status": "high-demand"
+    },
+    {
+      "id": "7",
+      "name": "Lámpara de Escritorio LED",
+      "shortDescription": "Lámpara ajustable con 3 niveles de luminosidad",
+      "category": "Iluminación",
+      "image": "https://images.unsplash.com/photo-1565636191335-14d0f48d7c71?w=400&q=80",
+      "status": "available"
+    },
+    {
+      "id": "8",
+      "name": "Foco Empotrable INGCO",
+      "shortDescription": "Foco profesional para empotre en techos y paredes",
+      "category": "Iluminación",
+      "image": "https://images.unsplash.com/photo-1565181733868-e71b99932e29?w=400&q=80",
+      "status": "available"
+    }
+  ]
+}
