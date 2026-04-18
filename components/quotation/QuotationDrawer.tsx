@@ -1,134 +1,305 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer'
+import React from 'react'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { X, MessageCircle, Plus, Minus } from 'lucide-react'
-import { useQuotation } from '@/context/QuotationContext'
+import { X, MessageCircle, Plus, Minus, ShoppingCart } from 'lucide-react'
+import {
+  useQuotationStore,
+  selectItems,
+  selectTotalUnits,
+  selectHasItems,
+} from '@/store/quotationStore'
+import type { ContactInfo } from '@/store/quotationStore'
 
-interface QuotationDrawerProps {
-  isOpen: boolean
-  onOpenChange: (open: boolean) => void
+// Número de WhatsApp de CharaTools — centralizado aquí
+const WA_NUMBER = '584241234567'
+
+// ── Formulario de Contacto (sub-componente) ──────────────────────────────────
+
+/**
+ * Formulario de datos de contacto que usa refs (inputs no controlados)
+ * para evitar re-renders en cada keystroke. Solo sincroniza al store en onBlur.
+ * Los datos persisten gracias al middleware persist de Zustand.
+ */
+function ContactForm() {
+  const contactInfo = useQuotationStore((s) => s.contactInfo)
+  const setContactField = useQuotationStore((s) => s.setContactField)
+
+  const nombreRef = React.useRef<HTMLInputElement>(null)
+  const cedulaRef = React.useRef<HTMLInputElement>(null)
+  const sectorRef = React.useRef<HTMLInputElement>(null)
+
+  // Sincronizar valores del store a los refs al montar
+  React.useEffect(() => {
+    if (nombreRef.current) nombreRef.current.value = contactInfo.nombre
+    if (cedulaRef.current) cedulaRef.current.value = contactInfo.cedula
+    if (sectorRef.current) sectorRef.current.value = contactInfo.sector
+  }, [contactInfo.nombre, contactInfo.cedula, contactInfo.sector])
+
+  const inputClass =
+    'w-full h-10 px-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all'
+
+  return (
+    <fieldset className="space-y-2.5 pb-2 border-b border-gray-100">
+      <legend className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
+        Datos de Contacto
+      </legend>
+
+      <div>
+        <label htmlFor="contact-nombre" className="sr-only">
+          Nombre Completo
+        </label>
+        <input
+          ref={nombreRef}
+          id="contact-nombre"
+          type="text"
+          placeholder="Nombre Completo"
+          defaultValue={contactInfo.nombre}
+          onBlur={(e) => setContactField('nombre', e.target.value)}
+          className={inputClass}
+          autoComplete="name"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="contact-cedula" className="sr-only">
+          Cédula de Identidad / RIF
+        </label>
+        <input
+          ref={cedulaRef}
+          id="contact-cedula"
+          type="text"
+          placeholder="Cédula / RIF *"
+          defaultValue={contactInfo.cedula}
+          onBlur={(e) => setContactField('cedula', e.target.value)}
+          className={inputClass}
+          autoComplete="off"
+          required
+          aria-required="true"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="contact-sector" className="sr-only">
+          Sector / Zona
+        </label>
+        <input
+          ref={sectorRef}
+          id="contact-sector"
+          type="text"
+          placeholder="Sector / Zona"
+          defaultValue={contactInfo.sector}
+          onBlur={(e) => setContactField('sector', e.target.value)}
+          className={inputClass}
+          autoComplete="address-level2"
+        />
+      </div>
+    </fieldset>
+  )
 }
 
-export function QuotationDrawer({ isOpen, onOpenChange }: QuotationDrawerProps) {
-  const { items, removeItem, clearItems, updateQuantity } = useQuotation()
-  const [name, setName] = useState('')
-  const [sector, setSector] = useState('')
+// ── Componente Principal ─────────────────────────────────────────────────────
 
+export function QuotationDrawer() {
+  const [mounted, setMounted] = React.useState(false)
+
+  const isOpen = useQuotationStore((s) => s.isDrawerOpen)
+  const setDrawerOpen = useQuotationStore((s) => s.setDrawerOpen)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Selectores atómicos — cada uno subscrito de forma independiente
+  const items = useQuotationStore(selectItems)
+  const totalUnits = useQuotationStore(selectTotalUnits)
+  const hasItems = useQuotationStore(selectHasItems)
+
+  // Actions
+  const increaseQty = useQuotationStore((s) => s.increaseQty)
+  const decreaseQty = useQuotationStore((s) => s.decreaseQty)
+  const removeItem = useQuotationStore((s) => s.removeItem)
+  const clearQuotation = useQuotationStore((s) => s.clearQuotation)
+  const syncToWhatsApp = useQuotationStore((s) => s.syncToWhatsApp)
+  const contactInfo = useQuotationStore((s) => s.contactInfo)
+
+  if (!mounted) return null
+
+  // ── Disparar WhatsApp ──────────────────────────────────────────────────────
   const handleSendWhatsApp = () => {
-    if (items.length === 0) return
+    if (!hasItems) return
 
-    const itemsList = items.map((item) => `• ${item.name} - Cantidad: ${item.quantity} (${item.category})`).join('\n')
+    // Validar cédula obligatoria
+    if (!contactInfo.cedula.trim()) {
+      const cedulaInput = document.getElementById('contact-cedula') as HTMLInputElement | null
+      if (cedulaInput) {
+        cedulaInput.focus()
+        cedulaInput.classList.add('ring-2', 'ring-red-400', 'border-red-400')
+        setTimeout(() => {
+          cedulaInput.classList.remove('ring-2', 'ring-red-400', 'border-red-400')
+        }, 2000)
+      }
+      return
+    }
 
-    const message = `Hola CharaTools! 👋\n\nQuiero cotizar los siguientes productos:\n\n${itemsList}\n\nMi nombre: ${name || 'No especificado'}\nSector/zona: ${sector || 'No especificado'}\n\nPor favor envíenme los precios disponibles.`
+    const url = syncToWhatsApp(WA_NUMBER)
+    window.open(url, '_blank', 'noopener,noreferrer')
 
-    const encoded = encodeURIComponent(message)
-    const whatsappUrl = `https://wa.me/584241234567?text=${encoded}`
-
-    window.open(whatsappUrl, '_blank')
+    // Cerramos el drawer y limpiamos la lista tras el envío exitoso
+    setDrawerOpen(false)
+    clearQuotation()
   }
 
   return (
-    <Drawer open={isOpen} onOpenChange={onOpenChange}>
+    <Drawer open={isOpen} onOpenChange={setDrawerOpen}>
       <DrawerContent className="bg-white border-gray-200 text-gray-900 max-h-[85dvh] md:max-w-md md:ml-auto md:rounded-l-lg md:rounded-r-none">
+        {/* ── Header ─────────────────────────────────────────────────────── */}
         <DrawerHeader className="sticky top-0 z-10 bg-white border-b border-gray-300 px-4 py-4">
           <div className="flex items-center justify-between">
-            <DrawerTitle className="text-lg md:text-xl font-bold text-gray-900">
-              Mi Lista de Cotización ({items.length})
+            <DrawerTitle className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
+              <ShoppingCart className="w-5 h-5 text-yellow-500" />
+              Mi Lista de Cotización
+              <span className="ml-1 text-sm font-normal text-gray-500">
+                ({items.length} producto{items.length !== 1 ? 's' : ''}, {totalUnits} und)
+              </span>
             </DrawerTitle>
-            <DrawerClose className="rounded-lg hover:bg-gray-100 transition-colors">
+            <DrawerClose className="rounded-lg hover:bg-gray-100 transition-colors p-1">
               <X className="w-5 h-5 text-gray-500 hover:text-gray-900" />
             </DrawerClose>
           </div>
         </DrawerHeader>
 
+        {/* ── Lista de ítems ──────────────────────────────────────────────── */}
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-          {items.length === 0 ? (
-            <p className="text-center text-gray-700 py-8">Tu lista está vacía. Agrega productos para cotizar.</p>
+          {!hasItems ? (
+            <div className="flex flex-col items-center justify-center py-16 gap-3 text-center">
+              <ShoppingCart className="w-12 h-12 text-gray-300" />
+              <p className="text-gray-500 text-sm">
+                Tu lista está vacía.
+                <br />
+                Agrega productos para cotizar.
+              </p>
+            </div>
           ) : (
             items.map((item) => (
-              <div key={item.id} className="flex flex-col bg-gray-50 p-3 rounded-lg border border-gray-300 gap-2">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <p className="font-semibold text-sm text-gray-900">{item.name}</p>
-                    <p className="text-xs text-gray-600">{item.category}</p>
+              <div
+                key={item.id}
+                className="flex flex-col bg-gray-50 p-3 rounded-lg border border-gray-200 gap-2 hover:border-yellow-300 transition-colors"
+              >
+                {/* Nombre + Eliminar */}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-sm text-gray-900 truncate">{item.name}</p>
+                    <p className="text-xs text-gray-500">{item.brand}</p>
+                    {item.reference && (
+                      <p className="text-xs text-gray-400">Ref: {item.reference}</p>
+                    )}
+                    {item.notes && (
+                      <p className="text-xs text-blue-600 mt-0.5">📝 {item.notes}</p>
+                    )}
                   </div>
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="text-gray-500 hover:text-red-600 transition-colors ml-2 flex-shrink-0"
+                    className="text-gray-400 hover:text-red-500 transition-colors flex-shrink-0 p-1 rounded hover:bg-red-50"
                     aria-label={`Eliminar ${item.name}`}
                   >
                     <X className="w-4 h-4" />
                   </button>
                 </div>
-                <div className="flex items-center justify-center gap-2 bg-white rounded border border-gray-200 p-1">
-                  <button
-                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                    className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-600 hover:text-black transition-colors"
-                    aria-label={`Disminuir cantidad de ${item.name}`}
-                  >
-                    <Minus className="w-3 h-3" />
-                  </button>
-                  <span className="w-8 text-center text-sm font-semibold text-gray-900">{item.quantity}</span>
-                  <button
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                    className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-600 hover:text-black transition-colors"
-                    aria-label={`Aumentar cantidad de ${item.name}`}
-                  >
-                    <Plus className="w-3 h-3" />
-                  </button>
+
+                {/* Controles +/- */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500 uppercase tracking-wide">
+                    {item.unit}
+                  </span>
+                  <div className="flex items-center gap-1 bg-white rounded-lg border border-gray-200 p-0.5">
+                    <button
+                      onClick={() => decreaseQty(item.id)}
+                      className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100 text-gray-600 hover:text-black transition-colors"
+                      aria-label={`Disminuir cantidad de ${item.name}`}
+                    >
+                      <Minus className="w-3 h-3" />
+                    </button>
+                    <span className="w-8 text-center text-sm font-bold text-gray-900 select-none">
+                      {item.qty}
+                    </span>
+                    <button
+                      onClick={() => increaseQty(item.id)}
+                      className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100 text-gray-600 hover:text-black transition-colors"
+                      aria-label={`Aumentar cantidad de ${item.name}`}
+                    >
+                      <Plus className="w-3 h-3" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))
           )}
         </div>
 
-        {items.length > 0 && (
-          <div className="sticky bottom-0 z-10 bg-white border-t border-gray-300 px-4 py-4 space-y-4">
+        {/* ── Footer con Formulario + CTAs ────────────────────────────────── */}
+        {hasItems && (
+          <div className="sticky bottom-0 z-10 bg-white border-t border-gray-200 px-4 py-4 space-y-3 max-h-[40vh] overflow-y-auto">
+            {/* ── Formulario de Contacto ── */}
+            <ContactForm />
+
+            {/* Limpiar lista */}
             <Button
-              onClick={clearItems}
+              onClick={clearQuotation}
               variant="ghost"
-              className="w-full text-xs text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+              className="w-full text-xs text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors"
             >
-              Limpiar lista
+              Vaciar lista completa
             </Button>
 
-            <div className="space-y-3">
-              <div>
-                <label className="text-xs font-semibold text-gray-800 mb-1 block">Tu nombre</label>
-                <Input
-                  type="text"
-                  placeholder="Ej: Juan Pérez"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-500 text-sm h-9"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-semibold text-gray-800 mb-1 block">Sector/zona</label>
-                <Input
-                  type="text"
-                  placeholder="Ej: Charallave"
-                  value={sector}
-                  onChange={(e) => setSector(e.target.value)}
-                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-500 text-sm h-9"
-                />
-              </div>
-            </div>
-
+            {/* CTA Principal — WhatsApp */}
             <Button
               onClick={handleSendWhatsApp}
-              className="w-full h-12 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all shadow-md"
+              className="w-full h-14 bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-200 text-base"
             >
               <MessageCircle className="w-5 h-5" />
               Cotizar por WhatsApp
             </Button>
 
-            <p className="text-xs text-gray-500 text-center leading-snug">
-              Los precios varían según disponibilidad. Te respondemos en minutos.
+            <p className="text-xs text-gray-400 text-center leading-snug">
+              Al enviar, se abrirá WhatsApp con tu lista lista.
+              <br />
+              Los precios se confirman en chat. Respuesta en minutos.
             </p>
+
+            {/* ── Badge Cashea — Cierre de venta ────────────────────────────
+                CRO (page-cro.md § Objection Handling): la objeción financiera
+                se mata en el último punto antes de que el usuario abandone.
+                Pricing Strategy: Mental Accounting — "cuotas" reduce percepción
+                del costo total aunque el precio sea el mismo.
+            ── */}
+            <div className="flex items-center justify-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5">
+              <svg
+                className="w-4 h-4 text-orange-500 flex-shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect width="20" height="14" x="2" y="5" rx="2" />
+                <line x1="2" x2="22" y1="10" y2="10" />
+              </svg>
+              <p className="text-xs text-gray-600 leading-snug text-center">
+                Cotiza hoy y consulta tus{' '}
+                <strong className="text-orange-500 font-bold">cuotas sin interés con Cashea</strong>
+                {' '}— tienda oficial.
+              </p>
+            </div>
           </div>
         )}
       </DrawerContent>

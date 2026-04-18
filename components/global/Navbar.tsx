@@ -1,70 +1,144 @@
 'use client'
 
-import React from 'react'
-import { useQuotation } from '@/context/QuotationContext'
-import { ShoppingCart } from 'lucide-react'
+/**
+ * @file Navbar.tsx
+ * @description Cabecera principal CharaTools.
+ * 
+ * Mejoras:
+ * - Buscador Masivo: Redirección instantánea a resultados del catálogo.
+ * - Fix Hydration: Contador de items solo se muestra tras el montaje.
+ * - Navegación B2B: Links directos a categorías optimizados para SEO.
+ */
 
-interface NavbarProps {
-  onOpenQuotation: () => void
-}
+import React, { useState } from 'react'
+import { ShoppingCart, Search, Menu, X } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { useQuotationStore, selectTotalItems } from '@/store/quotationStore'
+import { DesktopMegaMenu, MobileMegaMenu } from './MegaMenu'
 
-export function Navbar({ onOpenQuotation }: NavbarProps) {
-  const { items } = useQuotation()
-  const itemCount = items.length
+export function Navbar() {
+  const router = useRouter()
+  const [mounted, setMounted] = React.useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const itemCount = useQuotationStore(selectTotalItems)
+  const setDrawerOpen = useQuotationStore((s) => s.setDrawerOpen)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!searchQuery.trim()) return
+    router.push(`/catalogo/todos?q=${encodeURIComponent(searchQuery.trim())}`)
+    setIsMenuOpen(false)
+  }
 
   return (
     <header
       role="banner"
-      className="sticky top-0 z-50 h-16 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-4 md:px-8"
+      className="sticky top-0 z-50 h-16 md:h-20 bg-gray-900 border-b border-gray-800 flex items-center px-4 md:px-8 lg:px-16"
     >
-      <a href="/" className="flex items-center gap-2">
-        <div className="w-10 h-10 md:w-12 md:h-12 rounded bg-yellow-400 flex items-center justify-center text-black font-bold text-lg md:text-xl">
-          CT
-        </div>
-        <span className="hidden sm:inline font-bold text-white text-lg">CharaTools</span>
-      </a>
+      <div className="flex items-center justify-between w-full gap-4">
+        {/* ── Logo ── */}
+        <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded bg-yellow-400 flex items-center justify-center text-black font-extrabold text-xl md:text-2xl group-hover:scale-105 transition-transform">
+            CT
+          </div>
+          <div className="hidden lg:flex flex-col leading-none">
+            <span className="font-black text-white text-lg tracking-tight">CharaTools</span>
+            <span className="text-[10px] text-yellow-400 font-bold uppercase tracking-widest">Ferretería B2B</span>
+          </div>
+        </Link>
 
-      <nav
-        aria-label="Categorías principales"
-        className="hidden md:flex gap-8 text-sm text-gray-300"
-      >
-        <a href="#catalogo" className="hover:text-white transition-colors">
-          Herramientas
-        </a>
-        <a href="#catalogo" className="hover:text-white transition-colors">
-          Plomería
-        </a>
-        <a href="#catalogo" className="hover:text-white transition-colors">
-          Iluminación
-        </a>
-        <a href="#catalogo" className="hover:text-white transition-colors">
-          Electricidad
-        </a>
-        <a href="#catalogo" className="hover:text-white transition-colors">
-          Impermeabilización
-        </a>
-      </nav>
+        {/* ── Mega-Menú B2B (Desktop) ── */}
+        <DesktopMegaMenu />
 
-      <button
-        onClick={onOpenQuotation}
-        aria-label={`Ver lista de cotización, ${itemCount} ítems`}
-        className="relative inline-flex items-center justify-center w-10 h-10 md:w-auto md:px-4 md:py-2 rounded-lg bg-yellow-400 hover:bg-yellow-500 transition-colors"
-      >
-        <ShoppingCart className="w-5 h-5 md:w-4 md:h-4 text-black" />
-        <span className="hidden md:inline text-xs font-bold text-black ml-2">
-          Mi Cotización ({itemCount})
-        </span>
-
-        {itemCount > 0 && (
-          <span
-            aria-live="polite"
-            aria-atomic="true"
-            className="absolute -top-2 -right-2 w-5 h-5 md:w-6 md:h-6 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center"
+        {/* ── Buscador Masivo (Desktop) ── */}
+        <form 
+          onSubmit={handleSearch}
+          className="hidden md:flex flex-1 max-w-xl relative group"
+        >
+          <input
+            type="text"
+            placeholder="Buscar por nombre, marca o categoría..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full h-11 bg-gray-800 border-2 border-gray-700 rounded-xl px-4 pl-11 text-sm text-white focus:outline-none focus:border-yellow-400 focus:bg-gray-700 transition-all"
+          />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
+          <button 
+            type="submit"
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-3 bg-yellow-400 text-black text-xs font-bold rounded-lg hover:bg-yellow-500 transition-colors"
           >
-            {itemCount}
-          </span>
-        )}
-      </button>
+            Buscar
+          </button>
+        </form>
+
+        {/* ── Acciones ── */}
+        <div className="flex items-center gap-2 md:gap-4">
+          {/* Botón Buscar (Mobile) */}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 text-gray-400 hover:text-white"
+            aria-label="Buscar productos"
+          >
+            <Search className="w-6 h-6" />
+          </button>
+
+          {/* Botón Cotización */}
+          <button
+            onClick={() => setDrawerOpen(true)}
+            aria-label={`Ver lista de cotización, ${itemCount} ítems`}
+            className="relative inline-flex items-center h-10 md:h-12 px-3 md:px-5 rounded-xl bg-yellow-400 hover:bg-yellow-500 transition-all active:scale-95 shadow-lg shadow-yellow-900/20"
+          >
+            <ShoppingCart className="w-5 h-5 text-black" />
+            <span className="hidden sm:inline text-sm font-bold text-black ml-2">
+              Mi Cotización ({mounted ? itemCount : 0})
+            </span>
+
+            {mounted && itemCount > 0 && (
+              <span
+                aria-live="polite"
+                aria-atomic="true"
+                className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-orange-500 text-white text-[10px] font-black rounded-full flex items-center justify-center animate-bounce border-2 border-gray-900"
+              >
+                {itemCount}
+              </span>
+            )}
+          </button>
+          
+          {/* Menú Hamburgesa (Mobile) */}
+          <button 
+            className="md:hidden p-2 text-gray-400"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* ── Menú Mobile / Búsqueda Mobile ── */}
+      {isMenuOpen && (
+        <div className="absolute top-16 md:top-20 left-0 w-full bg-gray-900 border-b border-gray-800 p-4 md:hidden animate-in slide-in-from-top duration-200 z-50 max-h-[calc(100vh-64px)] overflow-y-auto">
+          <form onSubmit={handleSearch} className="relative mb-4">
+            <input
+              type="text"
+              placeholder="Buscar productos..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full h-12 bg-gray-800 border-2 border-gray-700 rounded-xl px-4 pl-11 text-white focus:outline-none focus:border-yellow-400"
+              autoFocus
+            />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+          </form>
+          
+          <MobileMegaMenu closeMenu={() => setIsMenuOpen(false)} />
+        </div>
+      )}
     </header>
   )
 }

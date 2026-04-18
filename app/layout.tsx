@@ -29,15 +29,36 @@ export const metadata: Metadata = {
   },
 }
 
+import { Navbar } from '@/components/global/Navbar'
+import { BrandTicker } from '@/components/sections/BrandTicker'
+import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
+import { Footer } from '@/components/global/Footer'
+import { WhatsAppFAB } from '@/components/global/WhatsAppFAB'
+
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode
+  modal?: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
-      <body className="font-sans antialiased bg-gray-50 text-gray-900">
-        {children}
+    <html lang="es" className="scroll-smooth" suppressHydrationWarning>
+      <body className="font-sans antialiased bg-gray-50 text-gray-900 flex flex-col min-h-screen" suppressHydrationWarning>
+        <BrandTicker />
+        <Navbar />
+
+        <div className="flex-1">
+          {children}
+          {modal}
+        </div>
+
+        <Footer />
+
+        {/* Elementos flotantes globales */}
+        <QuotationDrawer />
+        <WhatsAppFAB />
+
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

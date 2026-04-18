@@ -2,13 +2,14 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import { useQuotationStore } from '@/store/quotationStore'
 
 interface HeroSectionProps {
   onOpenCatalog: () => void
-  onOpenQuotation: () => void
 }
 
-export function HeroSection({ onOpenCatalog, onOpenQuotation }: HeroSectionProps) {
+export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
+  const setDrawerOpen = useQuotationStore((s) => s.setDrawerOpen)
   return (
     <section
       aria-labelledby="hero-heading"
@@ -41,7 +42,7 @@ export function HeroSection({ onOpenCatalog, onOpenQuotation }: HeroSectionProps
             Ver catálogo y cotizar
           </Button>
           <Button
-            onClick={onOpenQuotation}
+            onClick={() => setDrawerOpen(true)}
             className="w-full md:w-auto px-6 py-2.5 md:py-2 h-11 md:h-10 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg transition-all active:scale-95 shadow-md"
           >
             Cotizar por WhatsApp

@@ -1,24 +1,14 @@
 'use client'
 
 import React, { useState } from 'react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Plus, Check } from 'lucide-react'
-
-type StockStatus = 'available' | 'high-demand' | 'new-batch' | 'out-of-stock'
-
-interface Product {
-  id: string
-  name: string
-  shortDescription: string
-  category: string
-  image: string
-  status: StockStatus
-}
+import { useQuotationStore } from '@/store/quotationStore'
+import type { CatalogProduct, StockStatus } from '@/lib/catalog.types'
 
 interface ProductCardProps {
-  product: Product
-  onAddToQuotation: (product: Product) => void
-  isInQuotation: boolean
+  product: CatalogProduct
 }
 
 const statusBadges: Record<
@@ -51,17 +41,37 @@ const statusBadges: Record<
   },
 }
 
-export function ProductCard({ product, onAddToQuotation, isInQuotation }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
   const [isAdded, setIsAdded] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  const addItem = useQuotationStore((s) => s.addItem)
+  const isInQuotationStore = useQuotationStore((s) => 
+    s.items.some(item => item.id === product.id)
+  )
+  const isInQuotation = mounted && isInQuotationStore
 
   const badge = statusBadges[product.status]
 
   const handleAddClick = async () => {
     setIsLoading(true)
-    // Simulate API call
+    // Simulación de feedback visual premium
     await new Promise((resolve) => setTimeout(resolve, 200))
-    onAddToQuotation(product)
+    
+    addItem({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      reference: product.reference,
+      unit: product.unit,
+      qty: 1
+    })
+
     setIsLoading(false)
     setIsAdded(true)
     setTimeout(() => setIsAdded(false), 1500)
@@ -75,29 +85,33 @@ export function ProductCard({ product, onAddToQuotation, isInQuotation }: Produc
       role="region"
       aria-label={product.name}
     >
-      <figure className="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
-        <div className="absolute top-2 right-2 z-10">
-          <span
-            className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${badge.bgColor} ${badge.textColor}`}
-            aria-label={`Estado: ${product.status}`}
-          >
-            {badge.label}
-          </span>
-        </div>
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-      </figure>
+      <Link href={`/producto/${product.id}`} className="group/image relative">
+        <figure className="w-full aspect-[4/3] bg-gray-100 overflow-hidden">
+          <div className="absolute top-2 right-2 z-10">
+            <span
+              className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${badge.bgColor} ${badge.textColor}`}
+              aria-label={`Estado: ${product.status}`}
+            >
+              {badge.label}
+            </span>
+          </div>
+          <img
+            src={product.image}
+            alt={product.name}
+            loading="lazy"
+            className="w-full h-full object-cover group-hover/image:scale-105 transition-transform duration-300"
+          />
+        </figure>
+      </Link>
 
       <div className="flex flex-col flex-grow p-3 md:p-4 gap-3">
         <p className="text-xs text-gray-600 uppercase tracking-wider">{product.category}</p>
 
-        <h3 className="text-sm md:text-base font-semibold text-gray-900 line-clamp-2 leading-snug">
-          {product.name}
-        </h3>
+        <Link href={`/producto/${product.id}`} className="block group/title">
+          <h3 className="text-sm md:text-base font-semibold text-gray-900 line-clamp-2 leading-snug group-hover/title:text-yellow-600 transition-colors">
+            {product.name}
+          </h3>
+        </Link>
 
         <p className="text-xs md:text-sm text-gray-700 line-clamp-2 flex-grow">
           {product.shortDescription}
@@ -139,6 +153,20 @@ export function ProductCard({ product, onAddToQuotation, isInQuotation }: Produc
             )}
           </div>
         </Button>
+
+        {/* ── Micro-tag Cashea — Destructor de objeción de precio ──────────
+            CRO: Placement near CTA = maximum impact (page-cro.md § Trust Signals).
+            Solo visible en productos con stock para no generar fricción falsa.
+        ── */}
+        {!isDisabled && (
+          <p className="flex items-center justify-center gap-1 text-[10px] text-gray-400 leading-none pt-0.5" aria-label="Disponible con financiamiento Cashea">
+            <svg className="w-3 h-3 text-orange-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect width="20" height="14" x="2" y="5" rx="2" />
+              <line x1="2" x2="22" y1="10" y2="10" />
+            </svg>
+            <span>Llévatelo con <strong className="text-orange-400 font-bold">Cashea</strong></span>
+          </p>
+        )}
       </div>
     </article>
   )
