@@ -1,62 +1,28 @@
-Implementar las siguientes tareas
+# CharaTools — Lista de Tareas
 
-**1. Buscador Inteligente en el navbar**
-No existe un buscador funcional que me permita buscar por nombre, descripción y categoría.ademas si escribo 3M me muestre todos los productos de esa marca sin importar que no tengan el nombre 3M en el nombre del producto, si no en la descripción del producto. y asi con todas las marcas. [ Listo ]
+## ✅ Completadas
+- [x] **#1** Buscador inteligente en Navbar (por nombre, descripción, marca, categoría)
+- [x] **#3** Input de cédula en el formulario del carrito
+- [x] **#4** Sección /quienes-somos
+- [x] **#5** Sección /faq
+- [x] **#13** Sección /contacto
+- [x] **#14** Botón WhatsApp flotante (WhatsAppFAB)
+- [x] **#15** Footer profesional (4 columnas)
+- [x] **#16** Slugs de producto — página `/producto/[id]` con SEO completo (generateMetadata, Schema.org JSON-LD, SSG)
+- [x] **#17** Sección de promociones por marca (`/promociones/[marca]`)
+- [x] **#18** Página de productos en oferta (`/ofertas` Outlet FOMO)
+- [x] **Cashea Integration** — CasheaBanner, micro-tag en ProductCard, badge en QuotationDrawer
 
-**2. Implementar sistema de Whatsapp**
-Agregarlo para que se pueda contactar por whatsapp a la empresa, megustaria que funcionara de la misma manera que el de la ferreteria Ekey.
+---
 
-**3. Añadir input de cédula al formulario del carrito de compras**
-Agregarlo para que se pueda agregar la cédula al formulario del carrito de compras. [ Listo ]
+## 🔄 En Progreso
 
-**4. Añadir sección de Quiénes Somos**
-Agregarlo para que se pueda agregar la información de la empresa.
+- [/] **#6 – #12** Páginas de Políticas Legales (Términos, Privacidad, Devoluciones, Envíos, Pagos, Garantías, Cookies)
 
-**5. Añadir sección de Preguntas Frecuentes**
-Agregarlo para que se pueda agregar las preguntas frecuentes.
+---
 
-**6. Añadir sección de Términos y Condiciones**
-Agregarlo para que se pueda agregar los términos y condiciones.
+## ⏳ Pendientes
 
-**7. Añadir sección de Política de Privacidad**
-Agregarlo para que se pueda agregar la política de privacidad.
-
-**8. Añadir sección de Política de Devoluciones**
-Agregarlo para que se pueda agregar la política de devoluciones.
-
-**9. Añadir sección de Política de Envíos**
-Agregarlo para que se pueda agregar la política de envíos.
-
-**10. Añadir sección de Política de Pagos**
-Agregarlo para que se pueda agregar la política de pagos.
-
-**11. Añadir sección de Política de Garantías**
-Agregarlo para que se pueda agregar la política de garantías.
-
-**12. Añadir sección de Política de Cookies**
-Agregarlo para que se pueda agregar la política de cookies.
-
-**13. Añadir sección de Contacto**
-Información básica de la empresa y su ubicación precisa.
-
-**14. Añadir un botón de Whatsapp Flotante**
-Agregarlo para que se pueda contactar por whatsapp a la empresa de manera flotante.
-
-**15. Footer profesional**
-Agregarlo para que se pueda agregar la información de la empresa de manera profesional y amigable para el usuario.
-
-**16. Slugs personalizados para productos y categorías**
-Información de productos y categorías, ejemplo:  
-/productos/ Sierra-circular-electrica-makita-5806b
-
-**17. Diseñar sección de promociones por marca**
-Información de productos y categorías, ejemplo:  
-/productos/ Sierra-circular-electrica-makita-5806b
-
-**18. Diseñar página de productos en oferta**
-Agregarlo para que se pueda agregar la información de la empresa de manera profesional y amigable para el usuario.
-
-**19. Diseñar página de catálogo por subcategoría**
-Agregarlo para que se pueda agregar la información de la empresa de manera profesional y amigable para el usuario.
-
-**20. **
+- [ ] **#2** Integración WhatsApp estilo Ekey (análisis + mejora del FAB actual)
+- [ ] **#19** Catálogo por subcategoría (ya existe `/catalogo/[categoria]` — refinar diseño)
+- [ ] **Inyectar CasheaBanner en `app/page.tsx`** (el componente ya existe, falta agregarlo al Home)

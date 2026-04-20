@@ -24,9 +24,10 @@ function parseFiltersFromParams(params: URLSearchParams): CatalogFilters & { cat
   const potenciaMax = params.get('potMax') ? Number(params.get('potMax')) : undefined
   const q = params.get('q') || undefined
   const cat = params.get('cat') || undefined
+  const cashea = params.get('cashea') === 'true' ? 'true' : undefined
   const stock = params.getAll('stock').filter(Boolean) as StockStatus[]
 
-  return { marcas, potenciaMin, potenciaMax, q, cat, stock: stock.length > 0 ? stock : undefined }
+  return { marcas, potenciaMin, potenciaMax, q, cat, stock: stock.length > 0 ? stock : undefined, cashea }
 }
 
 // ---------------------------------------------------------------------------
@@ -98,6 +99,11 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
       )
     }
 
+    // Filtro por Cashea
+    if (filters.cashea === 'true') {
+      result = result.filter((p) => p.isCasheaEligible)
+    }
+
     return result
   }, [allProducts, filters])
 
@@ -155,6 +161,7 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
     if (filters.potenciaMax !== undefined) count++
     if (filters.q) count++
     if (filters.cat) count++
+    if (filters.cashea === 'true') count++
     if (filters.stock?.length) count += filters.stock.length
     return count
   }, [filters])

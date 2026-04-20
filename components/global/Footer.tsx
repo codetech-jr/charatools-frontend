@@ -32,6 +32,15 @@ const NAV_LINKS = {
     { label: 'Preguntas Frecuentes', href: '/faq' },
     { label: 'Contacto', href: '/contacto' },
   ],
+  legal: [
+    { label: 'Términos y Condiciones', href: '/terminos-y-condiciones' },
+    { label: 'Privacidad', href: '/politica-de-privacidad' },
+    { label: 'Envíos', href: '/politica-de-envios' },
+    { label: 'Pagos', href: '/politica-de-pagos' },
+    { label: 'Devoluciones', href: '/politica-de-devoluciones' },
+    { label: 'Garantía', href: '/politica-de-garantia' },
+    { label: 'Cookies', href: '/politica-de-cookies' },
+  ],
 }
 
 const BRANDS = ['INGCO', '3M', 'Stanley', 'Truper', 'Dewalt', 'Schneider']
@@ -151,13 +160,24 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── Barra de copyright ── */}
+      {/* ── Barra de copyright y legal ── */}
       <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <span>© {new Date().getFullYear()} CharaTools. Todos los derechos reservados.</span>
-          <span className="text-gray-700">
-            Charallave, Miranda · Venezuela
-          </span>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            <span>© {new Date().getFullYear()} CharaTools. Todos los derechos reservados.</span>
+            <span className="hidden sm:inline text-gray-700">|</span>
+            <span className="text-gray-600">Charallave, Miranda · Venezuela</span>
+          </div>
+          
+          <ul className="flex flex-wrap justify-center lg:justify-end gap-x-4 gap-y-2">
+            {NAV_LINKS.legal.map(({ label, href }) => (
+              <li key={href}>
+                <Link href={href} className="hover:text-yellow-400 transition-colors">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

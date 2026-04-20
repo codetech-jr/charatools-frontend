@@ -35,6 +35,10 @@ export interface CatalogProduct {
   tags?: string[]
   /** Productos relacionados (IDs) para up-selling en modal */
   relatedIds?: string[]
+  /** Flag para zona outlet/ofertas */
+  isOutlet?: boolean
+  /** Elegible para compra financiada con Cashea */
+  isCasheaEligible?: boolean
 }
 
 // ---------------------------------------------------------------------------
@@ -52,6 +56,8 @@ export interface CatalogFilters {
   stock?: StockStatus[]
   /** Término de búsqueda libre */
   q?: string
+  /** Filtro de elegibilidad Cashea */
+  cashea?: 'true'
 }
 
 // ---------------------------------------------------------------------------
@@ -108,6 +114,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     status: 'available',
     tags: ['taladro', 'percutor', 'concreto', 'mampostería'],
     relatedIds: ['esmeril-ingco-820w', 'cable-electrico-2-100m'],
+    isCasheaEligible: true,
   },
   {
     id: 'esmeril-ingco-820w',
@@ -124,6 +131,8 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&q=80',
     status: 'available',
     tags: ['esmeril', 'amoladora', 'corte', 'desbaste'],
+    isOutlet: true,
+    isCasheaEligible: true,
   },
   {
     id: 'bomba-periferica-1-2hp',
@@ -139,6 +148,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
     status: 'high-demand',
     tags: ['bomba', 'agua', 'riego', 'presión'],
+    isCasheaEligible: true,
   },
   {
     id: 'tuberia-ppr-12',
@@ -178,6 +188,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
     status: 'new-batch',
     tags: ['breaker', 'disyuntor', 'tablero', 'protección'],
+    isCasheaEligible: true,
   },
   {
     id: 'bombillo-led-9w',
@@ -207,6 +218,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1565631969034-0e5c0f0e8c59?w=400&q=80',
     status: 'high-demand',
     tags: ['panel', 'LED', 'empotrado', 'oficina'],
+    isOutlet: true,
   },
   {
     id: 'cinta-aislante-3m',
@@ -247,6 +259,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1585526881453-899142f58fd0?w=400&q=80',
     status: 'high-demand',
     tags: ['press control', 'presión', 'bomba', 'automático'],
+    isCasheaEligible: true,
   },
   {
     id: 'casco-seguridad-3m',

@@ -125,6 +125,32 @@ function SidebarContent({
         )}
       </div>
 
+      {/* ── Filtro Especial: Cashea ── */}
+      <div className="py-4 border-b border-gray-200">
+        <label className="flex items-center justify-between cursor-pointer group px-1">
+          <div className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
+              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
+              <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
+            </svg>
+            <span className="text-sm font-bold text-gray-900 group-hover:text-black transition-colors">Solo Financiables Cashea</span>
+          </div>
+          {/* Custom Toggle Switch */}
+          <div className="relative flex items-center">
+            <input 
+              type="checkbox" 
+              className="sr-only" 
+              checked={filters.cashea === 'true'} 
+              onChange={(e) => onUpdateParams({ cashea: e.target.checked ? 'true' : null })}
+              aria-label="Filtrar solo productos financiables con Cashea"
+            />
+            <div className={`block w-10 h-6 rounded-full transition-colors duration-300 ${filters.cashea === 'true' ? 'bg-orange-500' : 'bg-gray-300'}`}></div>
+            <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${filters.cashea === 'true' ? 'translate-x-4' : 'translate-x-0 shadow-sm'}`}></div>
+          </div>
+        </label>
+      </div>
+
       {/* ── Filtro: Categorías ── */}
       <FilterAccordion title="Categoría">
         <div className="space-y-1 px-1">

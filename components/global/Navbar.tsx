@@ -11,7 +11,7 @@
  */
 
 import React, { useState } from 'react'
-import { ShoppingCart, Search, Menu, X } from 'lucide-react'
+import { ShoppingCart, Search, Menu, X, Zap, Tag } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useQuotationStore, selectTotalItems } from '@/store/quotationStore'
@@ -56,6 +56,16 @@ export function Navbar() {
 
         {/* ── Mega-Menú B2B (Desktop) ── */}
         <DesktopMegaMenu />
+
+        {/* ── Quick Links (Desktop) ── */}
+        <div className="hidden xl:flex items-center gap-6 font-bold text-sm whitespace-nowrap">
+          <Link href="/ofertas" className="text-red-400 hover:text-red-300 flex items-center gap-1.5 transition-colors">
+            <Zap className="w-4 h-4" /> Zona Outlet
+          </Link>
+          <Link href="/promociones/ingco" className="text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors">
+            <Tag className="w-4 h-4" /> Promos INGCO
+          </Link>
+        </div>
 
         {/* ── Buscador Masivo (Desktop) ── */}
         <form 
@@ -135,6 +145,24 @@ export function Navbar() {
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
           </form>
+
+          {/* Quick Links Mobile */}
+          <div className="flex gap-3 mb-5">
+            <Link 
+              href="/ofertas" 
+              onClick={() => setIsMenuOpen(false)} 
+              className="flex-1 flex items-center justify-center gap-2 bg-red-950/30 text-red-400 border border-red-900/50 rounded-xl p-3 text-sm font-bold"
+            >
+              <Zap className="w-4 h-4" /> Outlet
+            </Link>
+            <Link 
+              href="/promociones/ingco" 
+              onClick={() => setIsMenuOpen(false)} 
+              className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-gray-300 rounded-xl p-3 text-sm font-bold border border-gray-700"
+            >
+              <Tag className="w-4 h-4" /> Promos
+            </Link>
+          </div>
           
           <MobileMegaMenu closeMenu={() => setIsMenuOpen(false)} />
         </div>

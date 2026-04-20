@@ -132,11 +132,22 @@ export default function Home() {
         {/* Trust Bar */}
         <TrustBar />
 
-        {/* Category Grid */}
-        <CategoryGrid activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+        {/* Product Grid Section */}
+        <section className="bg-zinc-50 py-12 lg:py-24 border-y border-gray-200/60">
+          <header className="max-w-7xl mx-auto px-4 md:px-8 mb-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+              🔥 Los Más Pedidos en Obra
+            </h2>
+            <p className="mt-4 text-sm md:text-base text-gray-600 max-w-2xl mx-auto text-balance">
+              Equipamiento industrial y herramientas de alta resistencia seleccionadas específicamente para garantizar durabilidad en el trabajo pesado.
+            </p>
+          </header>
+          
+          <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={activeFilter} />
+        </section>
 
-        {/* Product Grid */}
-        <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={activeFilter} />
+        {/* Category Grid (Filters) */}
+        <CategoryGrid activeFilter={activeFilter} onFilterChange={handleFilterChange} />
 
         {/* ── NEW: Combos by project ── */}
         <CombosSection />
