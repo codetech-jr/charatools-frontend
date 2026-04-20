@@ -87,7 +87,7 @@ export function ProductDetailModal({ product, isModal = false }: ProductDetailMo
 
   const content = (
     <div
-      className="flex flex-col bg-white h-full"
+      className="flex flex-col bg-white h-full overflow-hidden"
       role="dialog"
       aria-modal={isModal}
       aria-label={`Detalle de ${product.name}`}
@@ -112,7 +112,7 @@ export function ProductDetailModal({ product, isModal = false }: ProductDetailMo
       </div>
 
       {/* ── Scrollable Content ── */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto overscroll-contain">
         {/* Imagen */}
         <div className="w-full aspect-[4/3] bg-gray-100 overflow-hidden">
           <img
@@ -292,7 +292,7 @@ export function ProductDetailModal({ product, isModal = false }: ProductDetailMo
           onClick={() => router.back()}
         />
         {/* Panel del modal — desliza desde abajo en móvil, lateral en desktop */}
-        <div className="fixed inset-x-0 bottom-0 z-50 md:inset-y-0 md:right-0 md:inset-x-auto md:w-[420px] flex flex-col bg-white max-h-[90dvh] md:max-h-none rounded-t-2xl md:rounded-none shadow-2xl">
+        <div className="fixed inset-x-0 bottom-0 z-50 md:inset-y-0 md:right-0 md:inset-x-auto md:w-[420px] flex flex-col bg-white max-h-[90dvh] md:max-h-screen rounded-t-2xl md:rounded-none shadow-2xl overflow-hidden">
           {content}
         </div>
       </>
