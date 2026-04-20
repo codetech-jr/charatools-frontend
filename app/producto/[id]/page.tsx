@@ -55,6 +55,8 @@ import type { CatalogProduct, StockStatus } from '@/lib/catalog.types'
 // client boundary automáticamente. Turbopack no permite ssr:false en RSC.
 // El mounted guard interno del componente previene cualquier flash SSR.
 import AddToQuoteButton from '@/components/catalog/AddToQuoteButton'
+import { RelatedProductsCarousel } from '@/components/catalog/RelatedProductsCarousel'
+import { DiscoverMoreCategories } from '@/components/catalog/DiscoverMoreCategories'
 
 // ── react-best-practices: js-index-maps ───────────────────────────────────
 // Mapa O(1) construido una vez a nivel de módulo (server-side).
@@ -450,48 +452,16 @@ export default async function ProductoPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* ── Productos Relacionados (futuro) ─────────────────────────────── */}
-        {product.relatedIds && product.relatedIds.length > 0 && (
-          <section
-            className="mt-14 pt-8 border-t border-gray-200"
-            aria-label="Productos relacionados"
-          >
-            <h2 className="text-base font-black text-gray-900 mb-4">
-              También te puede interesar
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {product.relatedIds
-                .map((rid) => PRODUCT_MAP.get(rid))
-                .filter((p): p is CatalogProduct => Boolean(p))
-                .map((related) => (
-                  <Link
-                    key={related.id}
-                    href={`/producto/${related.id}`}
-                    className="group flex flex-col bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-yellow-400 transition-all hover:shadow-sm"
-                  >
-                    <div className="relative aspect-square bg-gray-50">
-                      <Image
-                        src={related.image}
-                        alt={related.name}
-                        fill
-                        className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="p-2.5">
-                      <p className="text-[10px] text-gray-400 uppercase">{related.brand}</p>
-                      <p className="text-xs font-bold text-gray-900 line-clamp-2 leading-snug mt-0.5 group-hover:text-yellow-600 transition-colors">
-                        {related.name}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-            </div>
-          </section>
-        )}
-
+        {/* ── Productos Relacionados (Cross-Selling) ─────────────────────── */}
+        <RelatedProductsCarousel 
+          currentProductId={product.id} 
+          category={product.category} 
+        />
       </div>
+
+      {/* ── Anti-Dead-End UX: Explorar más categorías ──────────────────── */}
+      <DiscoverMoreCategories categorySlug={product.category} />
+
     </main>
   )
 }

@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useQuotationStore, selectTotalItems } from '@/store/quotationStore'
 import { DesktopMegaMenu, MobileMegaMenu } from './MegaMenu'
+import { TrendingSearches } from './TrendingSearches'
 
 export function Navbar() {
   const router = useRouter()
@@ -33,7 +34,7 @@ export function Navbar() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (!searchQuery.trim()) return
-    router.push(`/catalogo/todos?q=${encodeURIComponent(searchQuery.trim())}`)
+    router.push(`/catalogo?q=${encodeURIComponent(searchQuery.trim())}`)
     setIsMenuOpen(false)
   }
 
@@ -68,25 +69,31 @@ export function Navbar() {
         </div>
 
         {/* ── Buscador Masivo (Desktop) ── */}
-        <form 
-          onSubmit={handleSearch}
-          className="hidden md:flex flex-1 max-w-xl relative group"
-        >
-          <input
-            type="text"
-            placeholder="Buscar por nombre, marca o categoría..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full h-11 bg-gray-800 border-2 border-gray-700 rounded-xl px-4 pl-11 text-sm text-white focus:outline-none focus:border-yellow-400 focus:bg-gray-700 transition-all"
-          />
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
-          <button 
-            type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-3 bg-yellow-400 text-black text-xs font-bold rounded-lg hover:bg-yellow-500 transition-colors"
+        <div className="hidden md:flex flex-1 max-w-xl relative flex-col">
+          <form 
+            onSubmit={handleSearch}
+            className="w-full relative group"
           >
-            Buscar
-          </button>
-        </form>
+            <input
+              type="text"
+              placeholder="Buscar por nombre, marca o categoría..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full h-11 bg-gray-800 border-2 border-gray-700 rounded-xl px-4 pl-11 text-sm text-white focus:outline-none focus:border-yellow-400 focus:bg-gray-700 transition-all"
+            />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
+            <button 
+              type="submit"
+              className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-3 bg-yellow-400 text-black text-xs font-bold rounded-lg hover:bg-yellow-500 transition-colors"
+            >
+              Buscar
+            </button>
+          </form>
+          {/* Trending Searches dropdown */}
+          <div className="absolute top-full left-0 w-full mt-2 hidden lg:block opacity-0 invisible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50 bg-white/95 backdrop-blur-md border border-gray-200 p-3 rounded-xl shadow-2xl">
+            <TrendingSearches />
+          </div>
+        </div>
 
         {/* ── Acciones ── */}
         <div className="flex items-center gap-2 md:gap-4">
@@ -134,7 +141,7 @@ export function Navbar() {
       {/* ── Menú Mobile / Búsqueda Mobile ── */}
       {isMenuOpen && (
         <div className="absolute top-16 md:top-20 left-0 w-full bg-gray-900 border-b border-gray-800 p-4 md:hidden animate-in slide-in-from-top duration-200 z-50 max-h-[calc(100vh-64px)] overflow-y-auto">
-          <form onSubmit={handleSearch} className="relative mb-4">
+          <form onSubmit={handleSearch} className="relative mb-2">
             <input
               type="text"
               placeholder="Buscar productos..."
@@ -145,6 +152,10 @@ export function Navbar() {
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
           </form>
+
+          <div className="mb-4 bg-white/5 p-2 rounded-xl border border-white/10">
+            <TrendingSearches />
+          </div>
 
           {/* Quick Links Mobile */}
           <div className="flex gap-3 mb-5">

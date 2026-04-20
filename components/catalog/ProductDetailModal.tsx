@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation'
 import { useQuotationStore } from '@/store/quotationStore'
 import { MOCK_PRODUCTS } from '@/lib/catalog.types'
 import type { CatalogProduct } from '@/lib/catalog.types'
+import { DiscoverMoreCategories } from '@/components/catalog/DiscoverMoreCategories'
 
 const STOCK_CONFIG: Record<CatalogProduct['status'], { label: string; dotClass: string; textClass: string }> = {
   available:      { label: 'Disponible',  dotClass: 'bg-green-500',  textClass: 'text-green-700' },
@@ -237,6 +238,9 @@ export function ProductDetailModal({ product, isModal = false }: ProductDetailMo
             </div>
           )}
         </div>
+        
+        {/* Anti-Dead-End Modal */}
+        <DiscoverMoreCategories categorySlug={product.category} isCompact />
       </div>
 
       {/* ── Sticky Bottom CTA ── */}
