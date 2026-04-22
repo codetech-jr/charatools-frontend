@@ -14,6 +14,7 @@
 import React, { useState, useEffect } from 'react'
 import { useQuotationStore } from '@/store/quotationStore'
 import { X } from 'lucide-react'
+import { trackWhatsAppLead } from '@/lib/analytics'
 
 const WA_URL =
   'https://api.whatsapp.com/send?phone=584241234567&text=' +
@@ -69,7 +70,10 @@ export function WhatsAppFAB() {
           target="_blank" 
           rel="noopener noreferrer"
           className="flex-1 text-left cursor-pointer group"
-          onClick={() => setShowTooltip(false)}
+          onClick={() => {
+            setShowTooltip(false)
+            trackWhatsAppLead('fab', [])
+          }}
           aria-label="Hablar con asesor por WhatsApp"
         >
           <p className="text-[13px] sm:text-sm font-medium text-zinc-100 leading-snug">
@@ -100,7 +104,10 @@ export function WhatsAppFAB() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar a CharaTools por WhatsApp"
-        onClick={() => setShowTooltip(false)}
+        onClick={() => {
+          setShowTooltip(false)
+          trackWhatsAppLead('fab', [])
+        }}
         className={`
           pointer-events-auto
           group flex items-center justify-center gap-2

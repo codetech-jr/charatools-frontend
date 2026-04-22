@@ -5,6 +5,20 @@ Todos los cambios notables de este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto no se adhiere estrictamente a Semantic Versioning durante su fase MVP, pero mantiene un registro estructurado.
 
+## [1.1.0-AdminPanel] - 2026-04-22
+
+### Added
+- **Base de Datos Dinámica**: Integración de Supabase (PostgreSQL) y `@supabase/ssr` para abandonar el uso de JSONs estáticos (`products.json`).
+- **Panel de Administración (`/admin`)**: Sistema interno de gestión de inventario con rutas protegidas, permitiendo agregar, editar y eliminar productos en tiempo real.
+- **Autenticación Administrativa**: Flujo de autenticación seguro basado en tokens/sesiones para el Dashboard interno (`adminToken.ts`).
+- **Generación de Cotizaciones en PDF**: Integración de `jspdf` para exportar el carrito de cotización a un documento B2B formal descargable.
+- **Páginas Legales y Estáticas**: Se agregaron secciones informativas requeridas como Políticas de Privacidad, Términos y Condiciones, Envíos, Garantías y Contacto.
+- **Nuevas Funcionalidades del Catálogo**: Rutas dedicadas para vistas de Promociones y Ofertas.
+
+### Changed
+- Refactorización de la lógica del catálogo (`AdminProductsTable.tsx` y vistas públicas) para consumir Server Actions vinculados a Supabase.
+- Modificaciones estructurales en el `Navbar` y `Footer` para dar acceso/visibilidad a las nuevas políticas legales y vistas estáticas.
+
 ## [1.0.0-MVP] - 2026-04-18
 
 ### Added

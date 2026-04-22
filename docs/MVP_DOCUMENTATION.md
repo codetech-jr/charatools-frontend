@@ -15,6 +15,9 @@ Para entender por qué el proyecto está construido de la manera en que lo está
 - [ADR-001: Selección del Stack Tecnológico del MVP](./decisions/ADR-001-mvp-tech-stack.md) - *Por qué usamos Next.js 15, Tailwind y Shadcn.*
 - [ADR-002: Sistema de Cotización vía WhatsApp](./decisions/ADR-002-whatsapp-checkout.md) - *Por qué no hay pasarela de pago nativa.*
 - [ADR-003: Integración Prominente de Cashea](./decisions/ADR-003-cashea-integration.md) - *Por qué el financiamiento define gran parte de nuestra UI.*
+- [ADR-004: Migración a Base de Datos Dinámica con Supabase](./decisions/ADR-004-supabase-database.md) - *Transición de datos estáticos a backend relacional en la nube.*
+- [ADR-005: Panel de Administración Integrado](./decisions/ADR-005-admin-panel.md) - *Estrategia para el control de inventario y autenticación interna.*
+- [ADR-006: Generación Automática de Cotizaciones en PDF](./decisions/ADR-006-pdf-quotation.md) - *Respaldos formales B2B usando renderizado cliente con jsPDF.*
 
 ## 🚀 Inicio Rápido y Referencias
 

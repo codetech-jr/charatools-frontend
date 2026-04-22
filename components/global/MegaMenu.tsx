@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { Wrench, Droplets, Lightbulb, Zap, Umbrella, ChevronDown, ChevronRight } from 'lucide-react'
+import { trackSelectCategory } from '@/lib/analytics'
 
 // Taxonomía oficial de 5 categorías con iconos representativos
 const CATEGORIES = [
@@ -131,7 +132,10 @@ export function DesktopMegaMenu() {
                     href={cat.href}
                     role="menuitem"
                     onMouseEnter={() => setActiveCategory(cat.id)}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false)
+                      trackSelectCategory(cat.id)
+                    }}
                     onFocus={() => setActiveCategory(cat.id)}
                     className={`w-full flex items-center justify-between p-3 rounded-lg text-sm font-bold transition-all group focus:outline-none focus:ring-2 focus:ring-yellow-400 mb-1 ${
                       isActive ? 'bg-white text-black shadow-sm border border-gray-200' : 'text-gray-600 hover:bg-gray-200 border border-transparent'
@@ -156,7 +160,10 @@ export function DesktopMegaMenu() {
                 </h3>
                 <Link 
                   href={activeCatData.href} 
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false)
+                    trackSelectCategory(activeCatData.id)
+                  }}
                   className="text-xs font-bold text-yellow-600 hover:text-yellow-700 hover:underline uppercase tracking-wider"
                 >
                   Ver Todo
@@ -167,7 +174,10 @@ export function DesktopMegaMenu() {
                   <Link 
                     key={sub.name}
                     href={sub.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false)
+                      trackSelectCategory(`${activeCatData.id}/${sub.name}`)
+                    }}
                     className="p-3 rounded-lg border border-gray-100 hover:border-yellow-400 hover:bg-yellow-50/50 transition-all text-sm font-semibold text-gray-700 hover:text-black flex items-center justify-between group"
                   >
                     {sub.name}
@@ -212,7 +222,10 @@ export function MobileMegaMenu({ closeMenu }: { closeMenu: () => void }) {
                 <div className="px-4 pb-4 pt-1 bg-gray-800 space-y-2">
                   <Link 
                     href={cat.href}
-                    onClick={closeMenu}
+                    onClick={() => {
+                      closeMenu()
+                      trackSelectCategory(cat.id)
+                    }}
                     className="flex items-center justify-between w-full p-3 bg-yellow-400/10 text-yellow-400 rounded-lg text-sm font-bold border border-yellow-400/20"
                   >
                     Ver todo de {cat.name}
@@ -222,7 +235,10 @@ export function MobileMegaMenu({ closeMenu }: { closeMenu: () => void }) {
                     <Link
                       key={sub.name}
                       href={sub.href}
-                      onClick={closeMenu}
+                      onClick={() => {
+                        closeMenu()
+                        trackSelectCategory(`${cat.id}/${sub.name}`)
+                      }}
                       className="block p-3 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
                     >
                       {sub.name}

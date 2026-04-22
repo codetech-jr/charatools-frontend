@@ -20,11 +20,7 @@ import { createClient } from '@supabase/supabase-js'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
-// ── Variables de entorno (validadas en módulo) ─────────────────────────────
-
-const SUPABASE_URL          = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const SUPABASE_ANON         = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const SUPABASE_SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE_KEY!
+// ── Variables de entorno (se evalúan perezosamente dentro de las funciones) ───────────
 
 // ── Cliente 1: Lectura pública estática (sin cookies) ─────────────────────
 
@@ -40,7 +36,10 @@ const SUPABASE_SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE_KEY!
  * const { data } = await supabase.from('products').select('*')
  */
 export function createPublicSupabaseClient() {
-  return createClient(SUPABASE_URL, SUPABASE_ANON, {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  
+  return createClient(url, anonKey, {
     auth: {
       // Sin persistencia de sesión — cliente read-only anónimo
       persistSession: false,
@@ -77,10 +76,13 @@ export function createPublicSupabaseClient() {
  * await supabase.from('products').insert(data)
  */
 export function createAdminSupabaseClient() {
-  if (!SUPABASE_SERVICE_ROLE) {
-    throw new Error('[supabase/admin] SUPABASE_SERVICE_ROLE_KEY no está configurado')
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  const serviceRole = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  
+  if (!serviceRole) {
+    throw new Error('[supabase/admin] SUPABASE_SERVICE_ROLE_KEY no está configurado en .env.local')
   }
-  return createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE, {
+  return createClient(url, serviceRole, {
     auth: {
       persistSession: false,
       autoRefreshToken: false,
@@ -93,7 +95,10 @@ export function createAdminSupabaseClient() {
 export async function createServerSupabaseClient() {
   const cookieStore = await cookies()
 
-  return createServerClient(SUPABASE_URL, SUPABASE_ANON, {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+  return createServerClient(url, anonKey, {
     cookies: {
       getAll() {
         try {

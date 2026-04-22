@@ -23,6 +23,8 @@ import { Plus, Check, ShoppingCart } from 'lucide-react'
 import { useQuotationStore } from '@/store/quotationStore'
 import type { CatalogProduct } from '@/lib/catalog.types'
 
+import { trackAddToQuote } from '@/lib/analytics'
+
 interface AddToQuoteButtonProps {
   product: CatalogProduct
 }
@@ -62,6 +64,9 @@ export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
       unit: product.unit,
       qty: 1,
     })
+
+    // Track analytics event
+    trackAddToQuote(product)
 
     // Micro-feedback visual
     setStatus('added')

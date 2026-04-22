@@ -17,6 +17,7 @@ import {
   selectHasItems,
 } from '@/store/quotationStore'
 import type { ContactInfo } from '@/store/quotationStore'
+import { trackWhatsAppLead } from '@/lib/analytics'
 
 // Número de WhatsApp de CharaTools — centralizado aquí
 const WA_NUMBER = '584241234567'
@@ -151,6 +152,8 @@ export function QuotationDrawer() {
 
     const url = syncToWhatsApp(WA_NUMBER)
     window.open(url, '_blank', 'noopener,noreferrer')
+
+    trackWhatsAppLead('drawer', items)
 
     // Cerramos el drawer y limpiamos la lista tras el envío exitoso
     setDrawerOpen(false)
