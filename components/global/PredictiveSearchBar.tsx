@@ -96,7 +96,7 @@ export function PredictiveSearchBar() {
               {results.map((product) => (
                 <div key={product.id} className="group/item flex items-center gap-3 p-3 hover:bg-gray-50 border-b border-gray-100 last:border-0 transition-colors">
                   {/* Thumbnail */}
-                  <Link href={`/producto/${product.id}`} onClick={() => setIsFocused(false)} className="flex-shrink-0">
+                  <Link href={`/producto/${product.slug}`} onClick={() => setIsFocused(false)} className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-lg border border-gray-200 overflow-hidden bg-white">
                       <Image 
                         src={product.image.startsWith('http') ? product.image : '/placeholder.png'} 
@@ -109,7 +109,7 @@ export function PredictiveSearchBar() {
                   </Link>
 
                   {/* Info */}
-                  <Link href={`/producto/${product.id}`} onClick={() => setIsFocused(false)} className="flex-1 min-w-0 flex flex-col">
+                  <Link href={`/producto/${product.slug}`} onClick={() => setIsFocused(false)} className="flex-1 min-w-0 flex flex-col">
                     <span className="text-sm font-bold text-gray-900 truncate group-hover/item:text-yellow-600 transition-colors">
                       {product.name}
                     </span>

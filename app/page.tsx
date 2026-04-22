@@ -20,6 +20,7 @@ import { CatalogProduct } from '@/lib/catalog.types'
 const SAMPLE_PRODUCTS: CatalogProduct[] = [
   {
     id: '1',
+    slug: 'bomba-de-agua-periferica-1-2-hp',
     name: 'Bomba de Agua Periférica 1/2 HP',
     shortDescription: 'Bomba potente para riego y abastecimiento de agua',
     category: 'plomeria',
@@ -31,6 +32,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: '2',
+    slug: 'press-control-automatico',
     name: 'Press Control Automático',
     shortDescription: 'Regulador automático de presión de agua para sistemas residenciales',
     category: 'plomeria',
@@ -42,6 +44,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: '3',
+    slug: 'tuberia-ppr-1-2-para-aguas-blancas',
     name: 'Tubería PPR 1/2 para Aguas Blancas',
     shortDescription: 'Tubería PPR de calidad superior para instalaciones sanitarias',
     category: 'plomeria',
@@ -53,6 +56,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: '4',
+    slug: 'llave-de-paso-ppr',
     name: 'Llave de Paso PPR',
     shortDescription: 'Válvula de paso para tubería PPR, resistente y duradera',
     category: 'plomeria',
@@ -64,6 +68,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: '5',
+    slug: 'bombilla-led-9w-calida',
     name: 'Bombilla LED 9W Cálida',
     shortDescription: 'Bombilla LED de bajo consumo con luz cálida y larga duración',
     category: 'iluminacion',
@@ -75,6 +80,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: '6',
+    slug: 'panel-led-rectangular-60w',
     name: 'Panel LED Rectangular 60W',
     shortDescription: 'Panel LED moderno para iluminación eficiente de espacios',
     category: 'iluminacion',
@@ -86,6 +92,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: '7',
+    slug: 'cable-electrico-2-100m',
     name: 'Cable Eléctrico #2 x 100m',
     shortDescription: 'Cable eléctrico certificado para instalaciones residenciales',
     category: 'electricidad',
@@ -97,6 +104,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: '8',
+    slug: 'breaker-termomagnetico-30a',
     name: 'Breaker Termomagnético 30A',
     shortDescription: 'Disyuntor de seguridad para protección de circuitos eléctricos',
     category: 'electricidad',

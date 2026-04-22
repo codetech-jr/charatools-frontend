@@ -12,6 +12,8 @@ export type StockStatus = 'available' | 'high-demand' | 'new-batch' | 'out-of-st
 
 export interface CatalogProduct {
   id: string
+  /** URL slug legible para el router: /producto/[slug] */
+  slug: string
   name: string
   shortDescription: string
   /** Descripción larga para la página/modal de detalle */
@@ -99,6 +101,7 @@ export type CatalogBrand = typeof CATALOG_BRANDS[number]
 export const MOCK_PRODUCTS: CatalogProduct[] = [
   {
     id: 'taladro-ingco-550w',
+    slug: 'taladro-ingco-550w',
     name: 'Taladro Percutor 550W INGCO',
     shortDescription: 'Taladro percutor profesional con 2 velocidades y chuck 13mm.',
     description: 'Ideal para concreto y mampostería. Motor de 550W, mandril de 13mm, 2 velocidades seleccionables, función percutor activable. Incluye maletín y broca de prueba.',
@@ -118,6 +121,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'esmeril-ingco-820w',
+    slug: 'esmeril-ingco-820w',
     name: 'Esmeril Angular 820W 4½" INGCO',
     shortDescription: 'Esmeril profesional con disco de 115mm, 11,000 RPM.',
     category: 'herramientas-electricas',
@@ -136,6 +140,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'bomba-periferica-1-2hp',
+    slug: 'bomba-periferica-1-2hp',
     name: 'Bomba de Agua Periférica ½ HP',
     shortDescription: 'Bomba potente para riego y abastecimiento residencial.',
     category: 'plomeria',
@@ -152,6 +157,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'tuberia-ppr-12',
+    slug: 'tuberia-ppr-12',
     name: 'Tubería PPR ½" para Aguas Blancas (6m)',
     shortDescription: 'Tubería PPR PN20, resistente a altas temperaturas.',
     category: 'plomeria',
@@ -164,6 +170,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'cable-electrico-2-100m',
+    slug: 'cable-electrico-2-100m',
     name: 'Cable Eléctrico #2 x 100m',
     shortDescription: 'Cable THW calibre 2 AWG, certificado FONDONORMA.',
     category: 'electricidad',
@@ -177,6 +184,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'breaker-30a',
+    slug: 'breaker-30a',
     name: 'Breaker Termomagnético 30A',
     shortDescription: 'Disyuntor monofásico para tableros eléctricos residenciales.',
     category: 'electricidad',
@@ -192,6 +200,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'bombillo-led-9w',
+    slug: 'bombillo-led-9w',
     name: 'Bombillo LED 9W Luz Cálida E27',
     shortDescription: 'Bajo consumo, 800 lúmenes, vida útil 25,000 horas.',
     category: 'iluminacion',
@@ -207,6 +216,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'panel-led-60w',
+    slug: 'panel-led-60w',
     name: 'Panel LED Rectangular 60W',
     shortDescription: 'Panel empotrado, luz blanca neutra, driver incluido.',
     category: 'iluminacion',
@@ -222,6 +232,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'cinta-aislante-3m',
+    slug: 'cinta-aislante-3m',
     name: 'Cinta Aislante Temflex 1700 3M (x10 und)',
     shortDescription: 'Cinta PVC negro, resistente hasta 600V, pack de 10.',
     category: 'electricidad',
@@ -235,6 +246,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'flexometro-stanley-5m',
+    slug: 'flexometro-stanley-5m',
     name: 'Flexómetro Classic 5m Stanley',
     shortDescription: 'Cinta métrica resistente, bloqueo automático, gancho magnético.',
     category: 'herramientas-manuales',
@@ -249,6 +261,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'press-control-automatico',
+    slug: 'press-control-automatico',
     name: 'Press Control Automático 1HP',
     shortDescription: 'Regulador de presión para sistemas de agua residencial.',
     category: 'plomeria',
@@ -263,6 +276,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: 'casco-seguridad-3m',
+    slug: 'casco-seguridad-3m',
     name: 'Casco de Seguridad Industrial 3M',
     shortDescription: 'Casco tipo ratchet, ANSI Z89.1, resistente a impactos.',
     category: 'equipos-de-proteccion',

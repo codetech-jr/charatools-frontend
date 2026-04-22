@@ -88,7 +88,7 @@ export function ProductCard({ product }: ProductCardProps) {
       aria-label={product.name}
     >
       {/* ── Área de Imagen con Overlay ── */}
-      <Link href={`/producto/${product.id}`} className="relative aspect-[4/3] bg-gray-50 overflow-hidden block">
+      <Link href={`/producto/${product.slug}`} className="relative aspect-[4/3] bg-gray-50 overflow-hidden block">
         {/* Badges superiores */}
         <div className="absolute top-3 left-3 right-3 z-10 flex justify-between items-start">
           <span
@@ -138,7 +138,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Título Principal */}
-        <Link href={`/producto/${product.id}`} className="block group/title mt-1">
+        <Link href={`/producto/${product.slug}`} className="block group/title mt-1">
           <h3 className="text-sm md:text-base font-bold text-gray-900 line-clamp-2 leading-snug group-hover/title:text-yellow-600 transition-colors">
             {product.name}
           </h3>

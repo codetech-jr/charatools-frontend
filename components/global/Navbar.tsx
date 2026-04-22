@@ -14,6 +14,7 @@ import React, { useState } from 'react'
 import { ShoppingCart, Search, Menu, X, Zap, Tag } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useQuotationStore, selectTotalItems } from '@/store/quotationStore'
 import { DesktopMegaMenu, MobileMegaMenu } from './MegaMenu'
 import { TrendingSearches } from './TrendingSearches'
@@ -46,14 +47,15 @@ export function Navbar() {
     >
       <div className="flex items-center justify-between w-full gap-4">
         {/* ── Logo ── */}
-        <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded bg-yellow-400 flex items-center justify-center text-black font-extrabold text-xl md:text-2xl group-hover:scale-105 transition-transform">
-            CT
-          </div>
-          <div className="hidden lg:flex flex-col leading-none">
-            <span className="font-black text-white text-lg tracking-tight">CharaTools</span>
-            <span className="text-[10px] text-yellow-400 font-bold uppercase tracking-widest">Ferretería B2B</span>
-          </div>
+        <Link href="/" className="flex items-center flex-shrink-0 group" aria-label="CharaTools — Inicio">
+          <Image
+            src="/Logo_chara_tools-blanco-PNG.png"
+            alt="CharaTools Logo"
+            width={300}
+            height={100}
+            priority
+            className="w-auto h-20 md:h-28 group-hover:scale-105 transition-transform"
+          />
         </Link>
 
         {/* ── Mega-Menú B2B (Desktop) ── */}

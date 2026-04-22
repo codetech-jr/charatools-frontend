@@ -13,6 +13,7 @@
  */
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { MapPin, Clock, ArrowUpRight, Facebook, Instagram } from 'lucide-react'
 
 const WA_URL =
@@ -77,10 +78,14 @@ export function Footer() {
 
           {/* ── Columna 1: Marca + tagline ── */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2 group" aria-label="CharaTools — Inicio">
-              <span className="text-xl font-black text-white group-hover:text-yellow-400 transition-colors">
-                Chara<span className="text-yellow-400 group-hover:text-white transition-colors">Tools</span>
-              </span>
+            <Link href="/" className="inline-flex items-center group" aria-label="CharaTools — Inicio">
+              <Image
+                src="/Logo_chara_tools-blanco-PNG.png"
+                alt="CharaTools Logo"
+                width={300}
+                height={100}
+                className="w-auto h-20 md:h-28 group-hover:brightness-110 transition-all"
+              />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">
               Ferretería B2B en Charallave. Distribuidor oficial INGCO.

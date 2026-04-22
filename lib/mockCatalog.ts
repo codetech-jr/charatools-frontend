@@ -17,6 +17,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   // ═══════════════════════════════════════════════════════════════════════════
   {
     id: 'taladro-ingco-550w',
+    slug: 'taladro-ingco-550w',
     name: 'Taladro Percutor 550W INGCO',
     shortDescription: 'Taladro percutor profesional con 2 velocidades y chuck 13mm.',
     description: 'Ideal para concreto y mampostería. Motor de 550W, mandril de 13mm, 2 velocidades seleccionables, función percutor activable. Incluye maletín y broca de prueba.',
@@ -35,6 +36,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'esmeril-ingco-820w',
+    slug: 'esmeril-ingco-820w',
     name: 'Esmeril Angular 820W 4½" INGCO',
     shortDescription: 'Esmeril profesional con disco de 115mm y 11,000 RPM.',
     description: 'Motor de cobre puro de 820W, velocidad sin carga 11,000 RPM. Ideal para cortar, desbastar y pulir metales y concreto. Empuñadura lateral ajustable.',
@@ -52,6 +54,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'flexometro-stanley-5m',
+    slug: 'flexometro-stanley-5m',
     name: 'Flexómetro Classic 5m Stanley',
     shortDescription: 'Cinta métrica resistente, bloqueo automático, gancho magnético.',
     category: 'herramientas-general',
@@ -66,6 +69,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'sierra-caladora-dewalt-550w',
+    slug: 'sierra-caladora-dewalt-550w',
     name: 'Sierra Caladora 550W DeWalt',
     shortDescription: 'Sierra caladora orbital con velocidad variable y corte biselado a 45°.',
     description: 'Motor de 550W, corte máximo 65mm en madera y 6mm en acero. Velocidad variable 800-3100 CPM. Cambio de hoja sin herramientas. Ideal para carpintería y acabados.',
@@ -87,6 +91,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   // ═══════════════════════════════════════════════════════════════════════════
   {
     id: 'bomba-periferica-1-2hp',
+    slug: 'bomba-periferica-1-2hp',
     name: 'Bomba de Agua Periférica ½ HP',
     shortDescription: 'Bomba potente para riego y abastecimiento residencial.',
     description: 'Carcasa en hierro fundido, impulsor de bronce. Caudal máximo 40L/min, altura máxima 35m. Protección térmica integrada.',
@@ -103,6 +108,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'tuberia-ppr-12',
+    slug: 'tuberia-ppr-12',
     name: 'Tubería PPR ½" para Aguas Blancas (6m)',
     shortDescription: 'Tubería PPR PN20, resistente a altas temperaturas hasta 95°C.',
     category: 'plomeria',
@@ -115,6 +121,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'press-control-automatico',
+    slug: 'press-control-automatico',
     name: 'Press Control Automático 1HP',
     shortDescription: 'Regulador de presión para sistemas de agua residencial.',
     description: 'Encendido/apagado automático según flujo. Protección contra funcionamiento en seco. Compatible con bombas de ½ a 1HP.',
@@ -133,6 +140,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   // ═══════════════════════════════════════════════════════════════════════════
   {
     id: 'bombillo-led-9w',
+    slug: 'bombillo-led-9w',
     name: 'Bombillo LED 9W Luz Cálida E27',
     shortDescription: 'Bajo consumo, 800 lúmenes, vida útil 25,000 horas.',
     description: 'Reemplazo de bombillo incandescente de 60W. Base E27 estándar, luz cálida 3000K. Sin mercurio, encendido instantáneo.',
@@ -149,6 +157,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'panel-led-60w',
+    slug: 'panel-led-60w',
     name: 'Panel LED Rectangular 60W',
     shortDescription: 'Panel empotrado 60x60cm, luz blanca neutra, driver incluido.',
     description: 'Panel LED de 60x60cm para cielo raso. 4200 lúmenes, color 4000K (blanco neutro). Factor de potencia >0.9. Vida útil 30,000 horas.',
@@ -163,8 +172,9 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     tags: ['panel', 'LED', 'empotrado', 'oficina'],
   },
   {
-    id: 'reflector-led-50w',
-    name: 'Reflector LED 50W IP65 INGCO',
+    id: 'reflector-led-100w',
+    slug: 'reflector-led-100w',
+    name: 'Reflector LED 100W IP65 INGCO',
     shortDescription: 'Reflector exterior resistente al agua, 4500 lúmenes, luz blanca.',
     description: 'Carcasa de aluminio fundido, protección IP65, luz blanca 6500K. Ideal para patios, fachadas e iluminación industrial.',
     category: 'iluminacion',
@@ -183,8 +193,9 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   // ELECTRICIDAD (3 productos)
   // ═══════════════════════════════════════════════════════════════════════════
   {
-    id: 'cable-electrico-12-100m',
-    name: 'Cable Eléctrico #12 AWG x 100m',
+    id: 'cable-electrico-2-100m',
+    slug: 'cable-electrico-2-100m',
+    name: 'Cable Eléctrico #2 x 100m',
     shortDescription: 'Cable THW calibre 12 AWG, certificado FONDONORMA, uso residencial.',
     description: 'Cable de cobre sólido con aislamiento PVC THW. Temperatura máxima 75°C. Color según disponibilidad. Certificación FONDONORMA.',
     category: 'electricidad',
@@ -198,6 +209,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'breaker-30a',
+    slug: 'breaker-30a',
     name: 'Breaker Termomagnético 30A Schneider',
     shortDescription: 'Disyuntor monofásico para tableros eléctricos residenciales.',
     description: 'Breaker de 30 amperios, monofásico, capacidad de interrupción 10kA. Montaje en riel DIN. Protección contra sobrecarga y cortocircuito.',
@@ -213,6 +225,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'cinta-aislante-3m',
+    slug: 'cinta-aislante-3m',
     name: 'Cinta Aislante Temflex 1700 3M (x10 und)',
     shortDescription: 'Cinta PVC negro, resistente hasta 600V, pack de 10 rollos.',
     category: 'electricidad',
@@ -230,7 +243,8 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   // ═══════════════════════════════════════════════════════════════════════════
   {
     id: 'manto-asfaltico-3mm',
-    name: 'Manto Asfáltico 3mm x 10m²',
+    slug: 'manto-asfaltico-3mm',
+    name: 'Manto Asfáltico 3mm x 10m',
     shortDescription: 'Manto prefabricado con polietileno, para techos y azoteas.',
     description: 'Manto asfáltico modificado con APP, espesor 3mm, cobertura de 10m². Aplicación con soplete. Alta resistencia a la intemperie y UV.',
     category: 'impermeabilizacion',
@@ -243,7 +257,8 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'pintura-impermeabilizante-5gal',
-    name: 'Pintura Impermeabilizante Blanca 5 Gal',
+    slug: 'pintura-impermeabilizante-5gal',
+    name: 'Pintura Elastomérica Impermeabilizante (Cuñete 5 Gal)',
     shortDescription: 'Recubrimiento acrílico elastomérico para techos y paredes exteriores.',
     description: 'Pintura base agua con elasticidad superior, refleja hasta 85% de rayos solares. Rendimiento 4-5 m²/galón. Aplicar 2 capas mínimo.',
     category: 'impermeabilizacion',
@@ -256,7 +271,8 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   },
   {
     id: 'sellador-silicona-transparente',
-    name: 'Sellador de Silicona Transparente 280ml',
+    slug: 'sellador-silicona-transparente',
+    name: 'Sellador de Silicona Transparente 300ml',
     shortDescription: 'Silicona neutra para juntas de baño, cocina y ventanas.',
     description: 'Sellador de silicona neutra 100%, no corrosivo. Resistente a moho y UV. Temperatura de servicio -40°C a +150°C. Fraguado 24 horas.',
     category: 'impermeabilizacion',

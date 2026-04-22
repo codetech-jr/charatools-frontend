@@ -73,7 +73,7 @@ export function ProductRow({ product }: ProductRowProps) {
     >
       {/* ── Imagen + Link al modal de detalle ── */}
       <Link
-        href={`/producto/${product.id}`}
+        href={`/producto/${product.slug}`}
         className="flex-shrink-0 w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 relative"
         aria-label={`Ver detalle de ${product.name}`}
       >
@@ -102,7 +102,7 @@ export function ProductRow({ product }: ProductRowProps) {
 
         {/* Nombre — tappable */}
         <Link
-          href={`/producto/${product.id}`}
+          href={`/producto/${product.slug}`}
           className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 rounded"
         >
           <h3 className="text-sm font-bold text-gray-900 line-clamp-2 leading-snug group-hover:text-yellow-600 transition-colors">

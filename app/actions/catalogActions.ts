@@ -92,6 +92,7 @@ function toProduct(row: ProductRow): CatalogProduct {
 
   return {
     id:               row.id,
+    slug:             row.slug ?? row.id,
     name:             row.name,
     shortDescription: row.short_desc ?? '',
     description:      row.description ?? undefined,
