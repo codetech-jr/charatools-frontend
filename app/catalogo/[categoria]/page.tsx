@@ -3,15 +3,17 @@
  * @description Página de catálogo por categoría con filtros instantáneos.
  *
  * Arquitectura:
- * - Server Component: genera metadata SEO y pasa los productos al cliente
- * - Los filtros viven en la URL (SearchParams) — compatibles con SSR e indexables
- * - El filtrado real sucede en el cliente (<CatalogView>) sin round-trips al servidor
+ * - Async Server Component: llama a Supabase directamente (sin API route).
+ * - Fallback transparente al MOCK_PRODUCTS si Supabase devuelve vacío o error.
+ * - Los filtros viven en la URL (SearchParams) — compatibles con SSR e indexables.
+ * - El filtrado real sucede en el cliente (<CatalogView>) sin round-trips al servidor.
  */
 
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { CATALOG_CATEGORIES, MOCK_PRODUCTS } from '@/lib/catalog.types'
+import { getPublicCatalog } from '@/app/actions/catalogActions'
 import { CatalogView } from '@/components/catalog/CatalogView'
 
 interface PageProps {
@@ -22,7 +24,7 @@ interface PageProps {
 // ── Metadata dinámica por categoría (SEO) ──────────────────────────────────
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { categoria } = await params
-  
+
   if (categoria === 'todos') {
     return {
       title: 'Catálogo Completo | CharaTools',
@@ -54,14 +56,26 @@ export default async function CategoriaPage({ params }: PageProps) {
   const { categoria } = await params
 
   const isAll = categoria === 'todos'
-  const category = isAll 
+  const category = isAll
     ? { label: 'Todo el Catálogo', slug: 'todos', description: 'Explora nuestra gama completa de productos industriales.', icon: '🛠️' }
     : CATALOG_CATEGORIES.find((c) => c.slug === categoria)
 
   if (!category) notFound()
 
-  // Filtrar productos: de la categoría específica o todos
-  const products = isAll ? MOCK_PRODUCTS : MOCK_PRODUCTS.filter((p) => p.category === categoria)
+  // ── Data Fetching directo en Server Component (patrón App Router) ──────
+  const { products: dbProducts, error } = await getPublicCatalog()
+
+  if (error) {
+    console.warn('[CategoriaPage] Supabase error, usando MOCK_PRODUCTS:', error)
+  }
+
+  // Fuente de productos: Supabase si hay datos, mock como fallback
+  const allProducts = dbProducts.length > 0 ? dbProducts : MOCK_PRODUCTS
+
+  // Filtrar por categoría (o todos)
+  const products = isAll
+    ? allProducts
+    : allProducts.filter((p) => p.category === categoria)
 
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen bg-gray-50">
@@ -84,6 +98,16 @@ export default async function CategoriaPage({ params }: PageProps) {
             <p className="text-sm text-gray-400 mt-0.5">{category.description}</p>
           </div>
         </div>
+
+        {/* Indicador de fuente de datos — solo visible en desarrollo */}
+        {process.env.NODE_ENV === 'development' && (
+          <p className="text-xs mt-3 font-mono" aria-hidden="true">
+            {dbProducts.length > 0
+              ? <span className="text-green-400">✓ {products.length}/{dbProducts.length} productos desde Supabase</span>
+              : <span className="text-yellow-400">⚠ Usando datos mock ({products.length} productos)</span>
+            }
+          </p>
+        )}
       </div>
 
       {/* CatalogView necesita Suspense porque usa useSearchParams() */}
