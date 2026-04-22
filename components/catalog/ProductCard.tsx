@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Plus, Check } from 'lucide-react'
+import { Plus, Check, Info } from 'lucide-react'
 import { useQuotationStore } from '@/store/quotationStore'
 import type { CatalogProduct, StockStatus } from '@/lib/catalog.types'
 
@@ -13,41 +13,44 @@ interface ProductCardProps {
 
 const statusBadges: Record<
   StockStatus,
-  { label: string; bgColor: string; textColor: string; icon: string }
+  { label: string; bgClass: string; textClass: string; icon: string }
 > = {
   available: {
-    label: '✅ Disponible',
-    bgColor: 'bg-green-100',
-    textColor: 'text-green-800',
+    label: 'Disponible',
+    bgClass: 'bg-green-100/90 backdrop-blur-sm border-green-200',
+    textClass: 'text-green-800',
     icon: '✓',
   },
   'high-demand': {
-    label: '🔥 Alta rotación',
-    bgColor: 'bg-yellow-100',
-    textColor: 'text-yellow-800',
+    label: 'Alta rotación',
+    bgClass: 'bg-yellow-100/90 backdrop-blur-sm border-yellow-200',
+    textClass: 'text-yellow-800',
     icon: '🔥',
   },
   'new-batch': {
-    label: '📦 Nuevo lote',
-    bgColor: 'bg-yellow-200',
-    textColor: 'text-yellow-900',
+    label: 'Nuevo lote',
+    bgClass: 'bg-blue-100/90 backdrop-blur-sm border-blue-200',
+    textClass: 'text-blue-800',
     icon: '📦',
   },
   'out-of-stock': {
-    label: '⚠️ Sin stock',
-    bgColor: 'bg-red-100',
-    textColor: 'text-red-800',
+    label: 'Sin stock',
+    bgClass: 'bg-red-100/90 backdrop-blur-sm border-red-200',
+    textClass: 'text-red-800',
     icon: '⚠️',
   },
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const [isAdded, setIsAdded] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'added'>('idle')
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null)
   const [mounted, setMounted] = useState(false)
 
   React.useEffect(() => {
     setMounted(true)
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
   }, [])
   
   const addItem = useQuotationStore((s) => s.addItem)
@@ -58,11 +61,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const badge = statusBadges[product.status]
 
-  const handleAddClick = async () => {
-    setIsLoading(true)
-    // Simulación de feedback visual premium
-    await new Promise((resolve) => setTimeout(resolve, 200))
-    
+  const handleAddClick = React.useCallback((e: React.MouseEvent) => {
+    e.preventDefault() // Prevenir navegación si se hace clic en el botón
+    if (status === 'added') return
+
     addItem({
       id: product.id,
       name: product.name,
@@ -72,103 +74,128 @@ export function ProductCard({ product }: ProductCardProps) {
       qty: 1
     })
 
-    setIsLoading(false)
-    setIsAdded(true)
-    setTimeout(() => setIsAdded(false), 1500)
-  }
+    setStatus('added')
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => setStatus('idle'), 1000)
+  }, [status, product, addItem])
 
   const isDisabled = product.status === 'out-of-stock'
 
   return (
     <article 
-      className="flex flex-col rounded-lg bg-white border border-gray-200 overflow-hidden hover:border-yellow-400 transition-all duration-200"
+      className="group relative flex flex-col h-full bg-white border border-neutral-200 rounded-lg overflow-hidden cursor-pointer transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-md hover:border-neutral-300"
       role="region"
       aria-label={product.name}
     >
-      <Link href={`/producto/${product.id}`} className="group/image relative">
-        <figure className="w-full aspect-[4/3] bg-gray-100 overflow-hidden">
-          <div className="absolute top-2 right-2 z-10">
-            <span
-              className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${badge.bgColor} ${badge.textColor}`}
-              aria-label={`Estado: ${product.status}`}
-            >
-              {badge.label}
-            </span>
-          </div>
-          <img
-            src={product.image}
-            alt={product.name}
-            loading="lazy"
-            className="w-full h-full object-cover group-hover/image:scale-105 transition-transform duration-300"
-          />
-        </figure>
+      {/* ── Área de Imagen con Overlay ── */}
+      <Link href={`/producto/${product.id}`} className="relative aspect-[4/3] bg-gray-50 overflow-hidden block">
+        {/* Badges superiores */}
+        <div className="absolute top-3 left-3 right-3 z-10 flex justify-between items-start">
+          <span
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide border shadow-sm ${badge.bgClass} ${badge.textClass}`}
+            aria-label={`Estado: ${product.status}`}
+          >
+            <span aria-hidden="true">{badge.icon}</span>
+            {badge.label}
+          </span>
+
+          {/* Tag de Cashea Visualmente Atractivo superpuesto en la imagen */}
+          {!isDisabled && product.isCasheaEligible && (
+            <div className="bg-white/95 backdrop-blur-md border border-orange-100 shadow-sm rounded-full p-1.5" title="Financiable con Cashea">
+              <svg className="w-4 h-4 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
+                <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
+                <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
+              </svg>
+            </div>
+          )}
+        </div>
+
+        {/* Imagen del Producto */}
+        <img
+          src={product.image}
+          alt={product.name}
+          loading="lazy"
+          className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500 ease-out"
+        />
+        
+        {/* Gradiente inferior suave para contraste */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </Link>
 
-      <div className="flex flex-col flex-grow p-3 md:p-4 gap-3">
-        <p className="text-xs text-gray-600 uppercase tracking-wider">{product.category}</p>
+      {/* ── Contenido de la Tarjeta ── */}
+      <div className="flex flex-col flex-grow p-4 md:p-5 gap-3">
+        {/* Metadatos: Marca y SKU (Vital para B2B) */}
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 px-2 py-0.5 rounded-sm">
+            {product.brand}
+          </span>
+          {product.reference && (
+            <span className="text-[11px] font-mono text-gray-500 truncate" title={`SKU / Ref: ${product.reference}`}>
+              Ref: {product.reference}
+            </span>
+          )}
+        </div>
 
-        <Link href={`/producto/${product.id}`} className="block group/title">
-          <h3 className="text-sm md:text-base font-semibold text-gray-900 line-clamp-2 leading-snug group-hover/title:text-yellow-600 transition-colors">
+        {/* Título Principal */}
+        <Link href={`/producto/${product.id}`} className="block group/title mt-1">
+          <h3 className="text-sm md:text-base font-bold text-gray-900 line-clamp-2 leading-snug group-hover/title:text-yellow-600 transition-colors">
             {product.name}
           </h3>
         </Link>
 
-        <p className="text-xs md:text-sm text-gray-700 line-clamp-2 flex-grow">
+        {/* Descripción Corta */}
+        <p className="text-xs text-gray-500 line-clamp-2 flex-grow leading-relaxed">
           {product.shortDescription}
         </p>
 
-        <Button
-          onClick={handleAddClick}
-          disabled={isDisabled || isInQuotation}
-          aria-label={`Agregar ${product.name} a mi cotización`}
-          aria-pressed={isInQuotation}
-          className={`w-full h-10 md:h-11 font-bold rounded-lg transition-all duration-200 flex items-center justify-center ${
-            isInQuotation
-              ? 'bg-white border-2 border-yellow-400 text-black hover:bg-yellow-50'
-              : isAdded
-                ? 'bg-green-500 text-white'
-                : isDisabled
-                  ? 'bg-gray-300 text-gray-600 opacity-70 cursor-not-allowed'
-                  : 'bg-yellow-400 hover:bg-yellow-500 text-black active:scale-95'
-          }`}
-        >
-          <div className="flex items-center justify-center gap-2">
-            {isLoading ? (
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-            ) : isInQuotation ? (
+        {/* Contenedor del Botón */}
+        <div className="pt-2 mt-auto">
+          <Button
+            onClick={handleAddClick}
+            disabled={isDisabled || isInQuotation}
+            aria-live="polite"
+            aria-label={
+              status === 'added' ? 'Producto añadido a la cotización' : `Agregar ${product.name} a mi cotización`
+            }
+            aria-pressed={isInQuotation}
+            className={`w-full py-2.5 px-4 rounded-md font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 ease-out active:scale-95 ${
+              isInQuotation
+                ? 'bg-yellow-50 border-2 border-yellow-400 text-yellow-800 hover:bg-yellow-100 cursor-default'
+                : status === 'added'
+                  ? 'bg-neutral-800 text-white cursor-default shadow-md'
+                  : isDisabled
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200'
+                    : 'bg-yellow-400 hover:bg-yellow-300 text-neutral-900 shadow-sm hover:shadow-md'
+            }`}
+          >
+            {isInQuotation ? (
               <>
                 <Check className="w-4 h-4" />
-                <span>En tu lista</span>
+                <span>Agregado a Cotización</span>
               </>
-            ) : isAdded ? (
+            ) : status === 'added' ? (
               <>
-                <Check className="w-4 h-4" />
-                <span>Agregado</span>
+                <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>¡Añadido!</span>
+              </>
+            ) : isDisabled ? (
+              <>
+                <Info className="w-4 h-4" />
+                <span>Agotado temporalmente</span>
               </>
             ) : (
               <>
                 <Plus className="w-4 h-4" />
-                <span>Agregar</span>
+                <span>Añadir a Cotización</span>
               </>
             )}
-          </div>
-        </Button>
-
-        {/* ── Micro-tag Cashea — Destructor de objeción de precio ──────────
-            CRO: Placement near CTA = maximum impact (page-cro.md § Trust Signals).
-            Solo visible en productos con stock y elegibles para financiamiento.
-        ── */}
-        {!isDisabled && product.isCasheaEligible && (
-          <p className="flex items-center justify-center gap-1.5 text-[11px] font-medium text-gray-500 leading-none pt-1" aria-label="Financiable con Cashea">
-            <svg className="w-3.5 h-3.5 text-orange-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
-              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
-              <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
-            </svg>
-            <span>Facilidad <strong className="text-orange-500 font-bold">Cashea</strong></span>
-          </p>
-        )}
+          </Button>
+        </div>
       </div>
     </article>
   )
 }
+

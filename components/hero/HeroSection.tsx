@@ -27,19 +27,25 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
           id="hero-heading"
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
         >
-          CharaTools - Tu Herramienta Ideal
+          La ferretería de Charallave que tiene lo que necesitas — sin esperar.
         </h1>
 
         <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-lg">
-          Tu ferretería multimarca en Charallave. Herramientas, plomería, iluminación y electricidad. Cotiza por WhatsApp en menos de 2 minutos.
+          Herramientas InGco y Truper con garantía real, plomería, electricidad y más. Escríbenos por WhatsApp y retira en Charallave el mismo día.
         </p>
 
         <div className="flex flex-col md:flex-row gap-3 pt-4">
           <Button
+            onClick={() => window.open('https://wa.me/58XXXXXXXXX?text=Hola%2C+quiero+ver+el+cat%C3%A1logo', '_blank')}
+            className="w-full md:w-auto px-6 py-2.5 md:py-2 h-11 md:h-10 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-all active:scale-95 shadow-md flex items-center justify-center gap-2"
+          >
+            Consultar por WhatsApp
+          </Button>
+          <Button
             onClick={onOpenCatalog}
             className="w-full md:w-auto px-6 py-2.5 md:py-2 h-11 md:h-10 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-lg transition-all active:scale-95 shadow-md"
           >
-            Ver catálogo y cotizar
+            Ver catálogo de productos
           </Button>
           <Button
             onClick={() => setDrawerOpen(true)}

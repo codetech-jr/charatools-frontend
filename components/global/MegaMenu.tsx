@@ -112,10 +112,13 @@ export function DesktopMegaMenu() {
         Nuestro Catálogo <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      {isOpen && (
         <div 
           role="menu"
-          className="absolute top-[calc(100%+8px)] left-0 w-[650px] bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+          className={`absolute top-[calc(100%+8px)] left-0 w-[650px] bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 ease-out ${
+            isOpen 
+              ? 'opacity-100 visible translate-y-0 pointer-events-auto delay-0' 
+              : 'opacity-0 invisible -translate-y-2 pointer-events-none delay-100'
+          }`}
         >
           <div className="flex h-[360px]">
             {/* Sidebar Categorías (Izquierda) */}
@@ -175,7 +178,6 @@ export function DesktopMegaMenu() {
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 }

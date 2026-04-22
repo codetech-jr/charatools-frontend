@@ -7,8 +7,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'CharaTools - Ferretería Oficial INGCO',
-  description: 'Distribuidor oficial INGCO. Herramientas, plomería, pintura y material eléctrico. Cotiza por WhatsApp en minutos.',
+  title: 'Ferretería en Charallave | Charatools — Stock Real, Hoy',
+  description: 'Ferretería en Charallave con stock real para urgencias del hogar. Herramientas InGco y Truper originales, asesoría directa por WhatsApp y retiro en tienda hoy.',
   generator: 'v0.app',
   icons: {
     icon: [

@@ -5,14 +5,20 @@
  * @description Panel central de resultados del catálogo B2B.
  *
  * Contiene:
+ * - [SEO] SeoCategoryHero encima del grid (renderizado defensivo).
  * - Header: Breadcrumbs, total de resultados, dropdown de ordenamiento, toggle list/grid.
  * - Grid/Lista responsive: grid-cols-2 (mobile) → grid-cols-4 (xl).
  * - Empty state con CTA para limpiar filtros.
+ * - [SEO] SeoCategoryFooter debajo del grid (renderizado defensivo).
+ *
+ * Programación defensiva SEO:
+ * - Si `activeCategory` no tiene entrada en `seoCategoryData`, los bloques
+ *   Hero y Footer simplemente no se renderizan. El grid funciona normal.
+ * - NUNCA lanzar error por ausencia de copy SEO.
  *
  * Principios (frontend-ui-engineering.md):
  * - Componente focused: solo presentación del grid de resultados.
  * - Recibe datos filtrados como prop (no filtra internamente).
- * - < 200 líneas estrictas.
  */
 
 import React, { useState, useMemo } from 'react'
@@ -21,6 +27,9 @@ import { LayoutGrid, List, PackageX, ArrowUpDown } from 'lucide-react'
 import { ProductCard } from './ProductCard'
 import { ProductRow } from './ProductRow'
 import type { CatalogProduct } from '@/lib/catalog.types'
+import { SeoCategoryHero } from '@/components/seo/SeoCategoryHero'
+import { SeoCategoryFooter } from '@/components/seo/SeoCategoryFooter'
+import { seoCategoryData } from '@/lib/seoCategoryData'
 
 // ── Tipos ──────────────────────────────────────────────────────────────────
 
@@ -67,8 +76,24 @@ export function CatalogResultsPanel({
     }
   }, [products, sortBy])
 
+  // ── Lookup defensivo de datos SEO ──────────────────────────────────────
+  // `seoData` será `undefined` si la categoría aún no tiene copy redactado.
+  // Los componentes Hero/Footer solo se montan si `seoData` existe.
+  const seoData = activeCategory ? seoCategoryData[activeCategory] : undefined
+
   return (
     <div className="flex-1 min-w-0">
+      {/* ── [SEO] Hero de Categoría ─────────────────────────────────────
+           Renderizado defensivo: solo aparece si hay copy para este slug.
+           El H1 reemplaza visualmente al título del header anterior.
+      ── */}
+      {seoData && (
+        <SeoCategoryHero
+          title={seoData.title}
+          description={seoData.description}
+        />
+      )}
+
       {/* ── Header: Breadcrumbs + Controles ── */}
       <div className="bg-white border-b border-gray-200 px-4 lg:px-6 py-3">
         {/* Breadcrumbs */}
@@ -197,6 +222,25 @@ export function CatalogResultsPanel({
           </div>
         )}
       </div>
+
+      {/* ── [SEO] Footer de Categoría ─────────────────────────────────────
+           Renderizado defensivo: solo aparece si hay copy para este slug.
+           Texto siempre en DOM (max-height CSS) → indexable por Googlebot.
+      ── */}
+      {seoData && (
+        <SeoCategoryFooter
+          blocks={seoData.blocks}
+          ctaSection={{
+            closingText: `${seoData.ctaSection.title} — ${seoData.ctaSection.text}`,
+            ctaLabel: seoData.ctaSection.btnText,
+            ctaHref:
+              'https://api.whatsapp.com/send?phone=584241234567&text=' +
+              encodeURIComponent(
+                `¡Hola! Estoy viendo la categoría "${categoryLabel}" en Charatools y necesito asesoría.`
+              ),
+          }}
+        />
+      )}
     </div>
   )
 }

@@ -9,7 +9,7 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
-import { X, MessageCircle, Plus, Minus, ShoppingCart } from 'lucide-react'
+import { X, MessageCircle, Plus, Minus, ShoppingCart, Download } from 'lucide-react'
 import {
   useQuotationStore,
   selectItems,
@@ -157,6 +157,12 @@ export function QuotationDrawer() {
     clearQuotation()
   }
 
+  const handleDownloadPDF = async () => {
+    if (!hasItems) return
+    const { generateProformaPDF } = await import('@/lib/pdfGenerator')
+    generateProformaPDF(items, contactInfo)
+  }
+
   return (
     <Drawer open={isOpen} onOpenChange={setDrawerOpen}>
       <DrawerContent className="bg-white border-gray-200 text-gray-900 max-h-[85dvh] md:max-w-md md:ml-auto md:rounded-l-lg md:rounded-r-none">
@@ -266,6 +272,16 @@ export function QuotationDrawer() {
             >
               <MessageCircle className="w-5 h-5" />
               Cotizar por WhatsApp
+            </Button>
+
+            {/* CTA Secundario — PDF Proforma */}
+            <Button
+              onClick={handleDownloadPDF}
+              variant="outline"
+              className="w-full h-12 border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-semibold rounded-xl flex items-center justify-center gap-2 transition-all"
+            >
+              <Download className="w-4 h-4" />
+              Descargar PDF Proforma / Imprimir
             </Button>
 
             <p className="text-xs text-gray-400 text-center leading-snug">

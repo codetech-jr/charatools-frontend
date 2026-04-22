@@ -13,6 +13,7 @@ import { WhatsAppAdvisorSection } from '@/components/sections/WhatsAppAdvisorSec
 import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection'
 import { BrandTicker } from '@/components/sections/BrandTicker'
 import { ContactMapSection } from '@/components/sections/ContactMapSection'
+import { SeoBomb } from '@/components/seo/SeoBomb'
 import { CatalogProduct } from '@/lib/catalog.types'
 
 // Sample products
@@ -120,11 +121,144 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      {/* Schema FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cómo funciona pedir por WhatsApp? ¿Es seguro?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Es el método más rápido. Solo envía la lista de repuestos, un humano verifica el stock, coordinas retiro o delivery. Sin formularios tediosos ni tarjetas en webs de terceros."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Los equipos INGCO tienen garantía real? ¿Qué cubre?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí. Al ser distribuidores autorizados INGCO y Truper, tienes garantía directa por defectos de fábrica. Sin terceros. Reemplazo real bajo verificación técnica."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cuáles son los métodos de pago?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Aceptamos pago al instante mediante Pago Móvil, Transferencias nacionales, Efectivo y financiamiento en cuotas a través de Cashea."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cómo sé que los productos son originales y no copias?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Todos los equipos InGCO, Truper y Stanley incluyen caja original, serial verificable, factura y hologramas. Cero imitaciones."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
+      {/* Schema Local Business */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HardwareStore",
+            "name": "Charatools",
+            "image": "https://charatools.com/logo_chara_tools_con_borde_fdo_blanco_png.png",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Charallave",
+              "addressRegion": "Miranda",
+              "addressCountry": "VE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 10.2359,
+              "longitude": -66.8653
+            },
+            "telephone": "+58 424-XXXXXXX",
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "08:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "08:00",
+                "closes": "13:00"
+              }
+            ],
+            "priceRange": "$$",
+            "paymentAccepted": "Efectivo, Pago Móvil, Zelle, Transferencia Bancaria, Cashea",
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Cúa"
+              },
+              {
+                "@type": "City",
+                "name": "Ocumare del Tuy"
+              },
+              {
+                "@type": "City",
+                "name": "Santa Teresa del Tuy"
+              },
+              {
+                "@type": "City",
+                "name": "Yare"
+              }
+            ],
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "INGCO"
+              },
+              {
+                "@type": "Brand",
+                "name": "Truper"
+              },
+              {
+                "@type": "Brand",
+                "name": "Dewalt"
+              },
+              {
+                "@type": "Brand",
+                "name": "Schneider"
+              }
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "320"
+            }
+          })
+        }}
+      />
+
+      <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
         <HeroSection
-          onOpenCatalog={handleOpenCatalog}
-        />
+          onOpenCatalog={handleOpenCatalog} />
 
         {/* ── NEW: Cashea banner ── */}
         <CasheaBanner />
@@ -142,7 +276,7 @@ export default function Home() {
               Equipamiento industrial y herramientas de alta resistencia seleccionadas específicamente para garantizar durabilidad en el trabajo pesado.
             </p>
           </header>
-          
+
           <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={activeFilter} />
         </section>
 
@@ -158,9 +292,12 @@ export default function Home() {
         {/* ── NEW: Inventory gallery ── */}
         <InventoryGallerySection />
 
+        {/* ── NEW: SEO Bomb ── */}
+        <SeoBomb />
+
         {/* ── NEW: Contact and Map ── */}
         <ContactMapSection />
 
-    </div>
+      </div></>
   )
 }

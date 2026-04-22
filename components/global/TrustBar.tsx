@@ -5,10 +5,9 @@ import { BadgeCheck, Zap, Package, MessageCircle } from 'lucide-react'
 
 export function TrustBar() {
   const items = [
-    { icon: BadgeCheck, label: 'Asesoría técnica especializada' },
-    { icon: Zap, label: 'Despacho en Charallave' },
-    { icon: Package, label: '+500 pedidos despachados' },
-    { icon: MessageCircle, label: 'Respuesta en ~15 minutos' },
+    { icon: MessageCircle, label: 'Asesoría sin robots', description: 'Un asesor de verdad te responde en WhatsApp. Sin tickets, sin esperas inútiles.' },
+    { icon: BadgeCheck, label: 'Herramientas 100% originales', description: 'InGco y Truper con garantía real del fabricante. Aquí no vendemos imitaciones.' },
+    { icon: Zap, label: 'Retira hoy en Charallave', description: 'Stock disponible para llevar el mismo día. Sin esperar semanas ni pagar envío a Caracas.' },
   ]
 
   return (

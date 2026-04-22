@@ -29,7 +29,8 @@ interface AddToQuoteButtonProps {
 
 export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
   const [mounted, setMounted] = React.useState(false)
-  const [justAdded, setJustAdded] = React.useState(false)
+  const [status, setStatus] = React.useState<'idle' | 'added'>('idle')
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null)
 
   // react-best-practices: rerender-derived-state
   // Suscripción a selector booleano derivado — evita re-render completo
@@ -43,6 +44,9 @@ export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
   // Evitar flash de hidratación
   React.useEffect(() => {
     setMounted(true)
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
   }, [])
 
   const isOutOfStock = product.status === 'out-of-stock'
@@ -60,8 +64,9 @@ export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
     })
 
     // Micro-feedback visual
-    setJustAdded(true)
-    setTimeout(() => setJustAdded(false), 1800)
+    setStatus('added')
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => setStatus('idle'), 1000)
 
     // Abre el drawer para confirmar la cotización (UX B2B)
     setTimeout(() => setDrawerOpen(true), 250)
@@ -97,8 +102,8 @@ export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
             ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
             : isInQuotation
               ? 'bg-white border-2 border-yellow-400 text-gray-900 cursor-default'
-              : justAdded
-                ? 'bg-green-500 text-white shadow-lg shadow-green-200'
+              : status === 'added'
+                ? 'bg-neutral-800 text-white shadow-lg cursor-default'
                 : 'bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg shadow-yellow-200/50 hover:shadow-yellow-300/50'
           }
         `}
@@ -113,10 +118,12 @@ export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
             <Check className="w-5 h-5 text-yellow-500" aria-hidden="true" />
             En tu lista de cotización
           </>
-        ) : justAdded ? (
+        ) : status === 'added' ? (
           <>
-            <Check className="w-5 h-5" aria-hidden="true" />
-            ¡Agregado!
+            <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            ¡Añadido!
           </>
         ) : (
           <>

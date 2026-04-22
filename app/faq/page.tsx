@@ -144,6 +144,23 @@ export default function FaqPage() {
 
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: FAQ_ITEMS.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+              },
+            })),
+          }),
+        }}
+      />
 
       {/* ── Header ── */}
       <div className="bg-gray-900 px-4 py-12 md:py-16 text-center">
