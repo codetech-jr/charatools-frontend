@@ -28,7 +28,7 @@ const FAQ_ITEMS = [
 
 1. Armas tu lista en el catálogo y presionas "Cotizar por WhatsApp".
 2. Se abre WhatsApp con tu lista ya redactada.
-3. Un asesor humano — no un bot — te confirma disponibilidad y te da la información en menos de 15 minutos.
+3. Un asesor técnico te confirma disponibilidad y te da la información en menos de 15 minutos.
 4. Coordinas el retiro en tienda o la entrega a tu dirección.
 
 No hay datos bancarios que ingresar, no hay formulario que llenar, no hay contraseñas que recordar. Solo WhatsApp, que ya tienes en el teléfono.`,
@@ -197,7 +197,7 @@ export default function FaqPage() {
             ¿Tu pregunta no está aquí?
           </p>
           <a
-            href="https://api.whatsapp.com/send?phone=584241234567&text=Hola%20CharaTools,%20tengo%20una%20pregunta"
+            href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20tengo%20una%20pregunta"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-12 px-6 bg-orange-500 text-white font-bold text-sm rounded-xl hover:bg-orange-600 active:scale-95 transition-all shadow-lg shadow-orange-100"

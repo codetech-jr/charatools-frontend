@@ -11,7 +11,7 @@
  */
 
 import React, { useState } from 'react'
-import { ShoppingCart, Search, Menu, X, Zap, Tag } from 'lucide-react'
+import { ClipboardList, Search, Menu, X, Zap, Tag } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -97,7 +97,7 @@ export function Navbar() {
             aria-label={`Ver lista de cotización, ${itemCount} ítems`}
             className="relative inline-flex items-center h-10 md:h-12 px-3 md:px-5 rounded-xl bg-yellow-400 hover:bg-yellow-500 transition-all active:scale-95 shadow-lg shadow-yellow-900/20"
           >
-            <ShoppingCart className="w-5 h-5 text-black" />
+            <ClipboardList className="w-5 h-5 text-black" />
             <span className="hidden sm:inline text-sm font-bold text-black ml-2">
               Mi Cotización ({mounted ? itemCount : 0})
             </span>

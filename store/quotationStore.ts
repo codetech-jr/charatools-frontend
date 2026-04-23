@@ -135,7 +135,7 @@ interface QuotationState {
    * Genera la URL completa de WhatsApp con el mensaje formateado.
    * El mensaje sigue el formato B2B de CharaTools y va URL-encoded.
    *
-   * @param waNumber - Número de WhatsApp destino (ej: "584241234567")
+   * @param waNumber - Número de WhatsApp destino (ej: "584220148405")
    * @returns URL lista para abrir en WhatsApp (wa.me o api.whatsapp.com)
    */
   syncToWhatsApp: (waNumber: string) => string;
@@ -144,7 +144,7 @@ interface QuotationState {
 // ---------------------------------------------------------------------------
 // Número de WhatsApp por defecto (se puede sobreescribir al llamar syncToWhatsApp)
 // ---------------------------------------------------------------------------
-const DEFAULT_WA_NUMBER = "584241234567";
+const DEFAULT_WA_NUMBER = "584220148405";
 
 // ---------------------------------------------------------------------------
 // Helpers Internos

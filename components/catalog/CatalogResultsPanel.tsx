@@ -234,7 +234,7 @@ export function CatalogResultsPanel({
             closingText: `${seoData.ctaSection.title} — ${seoData.ctaSection.text}`,
             ctaLabel: seoData.ctaSection.btnText,
             ctaHref:
-              'https://api.whatsapp.com/send?phone=584241234567&text=' +
+              'https://api.whatsapp.com/send?phone=584220148405&text=' +
               encodeURIComponent(
                 `¡Hola! Estoy viendo la categoría "${categoryLabel}" en Charatools y necesito asesoría.`
               ),

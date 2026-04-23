@@ -133,10 +133,10 @@ Archivo: `components/quotation/QuotationDrawer.tsx`
 
 Busca esta línea:
 ```tsx
-const whatsappUrl = `https://wa.me/584241234567?text=${encoded}`
+const whatsappUrl = `https://wa.me/584220148405?text=${encoded}`
 ```
 
-Reemplaza `584241234567` con tu número (formato internacional sin + ni espacios):
+Reemplaza `584220148405` con tu número (formato internacional sin + ni espacios):
 ```tsx
 const whatsappUrl = `https://wa.me/1234567890?text=${encoded}`
 ```

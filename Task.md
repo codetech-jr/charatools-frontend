@@ -2,6 +2,13 @@
 
 ## ✅ Completadas
 - [x] **#1** Buscador inteligente en Navbar (por nombre, descripción, marca, categoría)
+- [x] Implementación técnica de GA4 y Clarity en `app/layout.tsx`
+- [x] Creación de utilidad tipada `lib/analytics.ts`
+- [x] Implementación de `trackAddToQuote` en catálogo
+- [x] Implementación de `trackWhatsAppLead` en `QuotationDrawer.tsx`
+- [x] Implementación de `trackWhatsAppLead` en `WhatsAppFAB.tsx`
+- [x] Integración de `trackSelectCategory` en `MegaMenu.tsx`
+- [x] Sincronización con GitHub (Push exitoso y verificación de Build)
 - [x] **#3** Input de cédula en el formulario del carrito
 - [x] **#4** Sección /quienes-somos
 - [x] **#5** Sección /faq

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-const WHATSAPP_NUMBER = '584241234567'
+const WHATSAPP_NUMBER = '584220148405'
 const WHATSAPP_INVENTORY_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   'Hola CharaTools! 📦 Quisiera consultar si tienen en inventario un artículo específico.'
 )}`

@@ -146,7 +146,7 @@ pnpm dev
 
 ### Para Cambiar Número WhatsApp
 1. Abre `components/quotation/QuotationDrawer.tsx`
-2. Busca `584241234567`
+2. Busca `584220148405`
 3. Reemplaza con tu número (formato: codigopais + numero)
 
 ### Para Agregar Más Productos

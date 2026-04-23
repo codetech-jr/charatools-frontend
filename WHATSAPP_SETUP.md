@@ -48,10 +48,10 @@ Abre: `components/quotation/QuotationDrawer.tsx`
 
 Busca esta línea (alrededor de la línea 28):
 ```tsx
-const whatsappUrl = `https://wa.me/584241234567?text=${encoded}`
+const whatsappUrl = `https://wa.me/584220148405?text=${encoded}`
 ```
 
-Reemplaza `584241234567` con tu número.
+Reemplaza `584220148405` con tu número.
 
 ### Paso 2: Asegurate del Formato
 
@@ -65,7 +65,7 @@ https://wa.me/[CODIGO_PAIS][NUMERO_TELEFONO]?text=[MENSAJE_CODIFICADO]
 **Venezuela (+58)**
 ```tsx
 // Si tu número es: +58 424 123 4567
-const whatsappUrl = `https://wa.me/584241234567?text=${encoded}`
+const whatsappUrl = `https://wa.me/584220148405?text=${encoded}`
 ```
 
 **Colombia (+57)**
@@ -148,7 +148,7 @@ import { MessageCircle } from 'lucide-react'
 
 export function WhatsAppButton() {
   const handleClick = () => {
-    const whatsappUrl = `https://wa.me/584241234567?text=Hola%20CharaTools!%20Quisiera%20cotizar.`
+    const whatsappUrl = `https://wa.me/584220148405?text=Hola%20CharaTools!%20Quisiera%20cotizar.`
     window.open(whatsappUrl, '_blank')
   }
 
@@ -184,7 +184,7 @@ Para asegurarte que el número es correcto:
    - Usa este código para validar:
    ```js
    // Abre en consola del navegador (F12 → Console)
-   const numero = "584241234567"
+   const numero = "584220148405"
    window.open(`https://wa.me/${numero}`, '_blank')
    // Si abre WhatsApp correctamente, ¡es válido!
    ```
@@ -192,7 +192,7 @@ Para asegurarte que el número es correcto:
 3. **Método 3: Tabla de Códigos**
    | País | Código | Ejemplo |
    |------|--------|---------|
-   | Venezuela | 58 | 584241234567 |
+   | Venezuela | 58 | 584220148405 |
    | Colombia | 57 | 573001234567 |
    | México | 52 | 525551234567 |
    | España | 34 | 34612345678 |

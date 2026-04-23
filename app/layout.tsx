@@ -61,12 +61,27 @@ export default function RootLayout({
         <QuotationDrawer />
         <WhatsAppFAB />
 
+        {/* Privacidad y Consentimiento (Cookiebot) — Debe ir primero */}
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="a4fac7bb-8187-481f-a28e-f35eac167c2d"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        )}
+
         {process.env.NODE_ENV === 'production' && <Analytics />}
         {process.env.NODE_ENV === 'production' && (
           <GoogleAnalytics gaId="G-LR949VYFD0" /> 
         )}
         {process.env.NODE_ENV === 'production' && (
-          <Script id="microsoft-clarity" strategy="afterInteractive">
+          <Script 
+            id="microsoft-clarity" 
+            strategy="afterInteractive"
+            data-cookieconsent="statistics"
+          >
             {`
               (function(c,l,a,r,i,t,y){
                   c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

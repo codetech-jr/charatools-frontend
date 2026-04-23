@@ -1,6 +1,6 @@
 /**
- * @file middleware.ts
- * @description Middleware Next.js — Protección de rutas /admin + Headers OWASP.
+ * @file proxy.ts
+ * @description Proxy/Middleware Next.js — Protección de rutas /admin + Headers OWASP.
  *
  * Estrategia de seguridad:
  *  1. Headers OWASP aplicados a TODAS las rutas (X-Frame-Options, nosniff, etc.)
@@ -67,7 +67,11 @@ function applyAdminCsp(response: NextResponse): NextResponse {
 
 // ── Middleware principal ───────────────────────────────────────────────────
 
-export async function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
+  return mainMiddleware(request)
+}
+
+export async function mainMiddleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // ── Rutas no-admin: solo headers OWASP básicos ─────────────────────────

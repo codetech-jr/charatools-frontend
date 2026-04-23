@@ -17,7 +17,7 @@ import { X } from 'lucide-react'
 import { trackWhatsAppLead } from '@/lib/analytics'
 
 const WA_URL =
-  'https://api.whatsapp.com/send?phone=584241234567&text=' +
+  'https://api.whatsapp.com/send?phone=584220148405&text=' +
   encodeURIComponent('¡Hola! 👋 Necesito consultar disponibilidad y precios para unos productos urgentes.')
 
 export function WhatsAppFAB() {
@@ -77,7 +77,7 @@ export function WhatsAppFAB() {
           aria-label="Hablar con asesor por WhatsApp"
         >
           <p className="text-[13px] sm:text-sm font-medium text-zinc-100 leading-snug">
-            <span className="font-bold text-yellow-400">👋 ¡Hey!</span> ¿Necesitas checar disponibilidad inmediata para algún SKU Difícil? 
+            <span className="font-bold text-yellow-400">👋 ¡Hey!</span> ¿Necesitas checar disponibilidad inmediata para algún  Difícil? 
             <span className="block mt-1.5 text-zinc-400 text-xs group-hover:text-white transition-colors">
               Estoy 100% On-line en tienda. Dale Clic →
             </span>

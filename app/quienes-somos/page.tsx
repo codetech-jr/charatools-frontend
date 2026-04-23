@@ -113,7 +113,7 @@ export default function QuienesSomosPage() {
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
               <a
-                href="https://api.whatsapp.com/send?phone=584241234567&text=Hola%20CharaTools,%20quiero%20información"
+                href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20quiero%20información"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 h-12 px-6 bg-transparent border-2 border-gray-600 text-gray-300 font-bold text-sm rounded-xl hover:border-gray-400 hover:text-white transition-all"
@@ -265,7 +265,7 @@ export default function QuienesSomosPage() {
             No esperes. Escribe ahora y confirma disponibilidad en minutos.
           </p>
           <a
-            href="https://api.whatsapp.com/send?phone=584241234567&text=Hola%20CharaTools,%20busco%20disponibilidad%20de%20una%20pieza"
+            href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20busco%20disponibilidad%20de%20una%20pieza"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-14 px-8 bg-orange-500 text-white font-bold text-base rounded-xl hover:bg-orange-600 active:scale-95 transition-all shadow-lg shadow-orange-200"

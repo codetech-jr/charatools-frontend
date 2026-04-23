@@ -9,18 +9,13 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
-import { X, MessageCircle, Plus, Minus, ShoppingCart, Download } from 'lucide-react'
+import { X, MessageCircle, Plus, Minus, ClipboardList, Download } from 'lucide-react'
 import {
   useQuotationStore,
   selectItems,
   selectTotalUnits,
-  selectHasItems,
 } from '@/store/quotationStore'
-import type { ContactInfo } from '@/store/quotationStore'
-import { trackWhatsAppLead } from '@/lib/analytics'
-
-// Número de WhatsApp de CharaTools — centralizado aquí
-const WA_NUMBER = '584241234567'
+import { useWhatsAppCheckout } from '@/hooks/useWhatsAppCheckout'
 
 // ── Formulario de Contacto (sub-componente) ──────────────────────────────────
 
@@ -121,43 +116,23 @@ export function QuotationDrawer() {
   // Selectores atómicos — cada uno subscrito de forma independiente
   const items = useQuotationStore(selectItems)
   const totalUnits = useQuotationStore(selectTotalUnits)
-  const hasItems = useQuotationStore(selectHasItems)
+
+  // Nuevo Hook de Conversión B2B
+  const { handleWhatsAppCheckout, hasItems } = useWhatsAppCheckout()
 
   // Actions
   const increaseQty = useQuotationStore((s) => s.increaseQty)
   const decreaseQty = useQuotationStore((s) => s.decreaseQty)
   const removeItem = useQuotationStore((s) => s.removeItem)
   const clearQuotation = useQuotationStore((s) => s.clearQuotation)
-  const syncToWhatsApp = useQuotationStore((s) => s.syncToWhatsApp)
   const contactInfo = useQuotationStore((s) => s.contactInfo)
 
   if (!mounted) return null
 
   // ── Disparar WhatsApp ──────────────────────────────────────────────────────
   const handleSendWhatsApp = () => {
-    if (!hasItems) return
-
-    // Validar cédula obligatoria
-    if (!contactInfo.cedula.trim()) {
-      const cedulaInput = document.getElementById('contact-cedula') as HTMLInputElement | null
-      if (cedulaInput) {
-        cedulaInput.focus()
-        cedulaInput.classList.add('ring-2', 'ring-red-400', 'border-red-400')
-        setTimeout(() => {
-          cedulaInput.classList.remove('ring-2', 'ring-red-400', 'border-red-400')
-        }, 2000)
-      }
-      return
-    }
-
-    const url = syncToWhatsApp(WA_NUMBER)
-    window.open(url, '_blank', 'noopener,noreferrer')
-
-    trackWhatsAppLead('drawer', items)
-
-    // Cerramos el drawer y limpiamos la lista tras el envío exitoso
-    setDrawerOpen(false)
-    clearQuotation()
+    // La lógica de validación, formateo, tracking y window.open está encapsulada en el hook
+    handleWhatsAppCheckout()
   }
 
   const handleDownloadPDF = async () => {
@@ -173,7 +148,7 @@ export function QuotationDrawer() {
         <DrawerHeader className="sticky top-0 z-10 bg-white border-b border-gray-300 px-4 py-4">
           <div className="flex items-center justify-between">
             <DrawerTitle className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
-              <ShoppingCart className="w-5 h-5 text-yellow-500" />
+              <ClipboardList className="w-5 h-5 text-yellow-500" />
               Mi Lista de Cotización
               <span className="ml-1 text-sm font-normal text-gray-500">
                 ({items.length} producto{items.length !== 1 ? 's' : ''}, {totalUnits} und)
@@ -189,7 +164,7 @@ export function QuotationDrawer() {
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
           {!hasItems ? (
             <div className="flex flex-col items-center justify-center py-16 gap-3 text-center">
-              <ShoppingCart className="w-12 h-12 text-gray-300" />
+              <ClipboardList className="w-12 h-12 text-gray-300" />
               <p className="text-gray-500 text-sm">
                 Tu lista está vacía.
                 <br />

@@ -55,7 +55,7 @@ const CTA_DATA: CtaSection = {
     '¿Todavía tienes dudas sobre qué equipo es el ideal para ti? Nuestros asesores técnicos en Charallave están disponibles ahora mismo. Cuéntanos tu situación y te damos una recomendación sin compromiso.',
   ctaLabel: '💬 Asesoría gratuita por WhatsApp',
   ctaHref:
-    'https://api.whatsapp.com/send?phone=584241234567&text=' +
+    'https://api.whatsapp.com/send?phone=584220148405&text=' +
     encodeURIComponent(
       '¡Hola! Estoy buscando una planta eléctrica. ¿Pueden ayudarme a elegir la correcta?'
     ),

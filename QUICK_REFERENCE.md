@@ -109,7 +109,7 @@ LIMPIAR     → text-gray-600 "Limpiar lista"
 
 ### Para Cambiar WhatsApp
 - [ ] Abrir `QuotationDrawer.tsx`
-- [ ] Buscar `584241234567`
+- [ ] Buscar `584220148405`
 - [ ] Reemplazar con tu número
 - [ ] Formato: codigopais + numero (ej: 584128765432)
 

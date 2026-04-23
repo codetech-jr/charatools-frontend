@@ -196,12 +196,12 @@ xl: 1280px  → 5 cols productos
 El número está configurado en `QuotationDrawer.tsx`:
 
 ```javascript
-const whatsappUrl = `https://wa.me/584241234567?text=${encoded}`
+const whatsappUrl = `https://wa.me/584220148405?text=${encoded}`
 ```
 
 **Cambiar número:**
 1. Abre `components/quotation/QuotationDrawer.tsx`
-2. Busca `584241234567`
+2. Busca `584220148405`
 3. Reemplaza con tu número (país + código)
 4. Ejemplo: `584128765432` para Venezuela
 

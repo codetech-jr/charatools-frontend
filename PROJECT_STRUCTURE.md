@@ -213,7 +213,7 @@ No se requieren variables de entorno para desarrollo.
 Para producción, considera:
 ```env
 # Opcional
-NEXT_PUBLIC_WHATSAPP_NUMBER=584241234567
+NEXT_PUBLIC_WHATSAPP_NUMBER=584220148405
 NEXT_PUBLIC_GA_ID=your-ga-id
 ```
 

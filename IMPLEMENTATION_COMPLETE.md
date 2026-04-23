@@ -173,9 +173,9 @@ Ver `DEPLOYMENT.md` para otras opciones (Netlify, AWS, Docker, etc)
 Archivo: `components/quotation/QuotationDrawer.tsx` (línea ~28)
 ```tsx
 // Busca esta línea:
-const whatsappUrl = `https://wa.me/584241234567?text=${encoded}`
+const whatsappUrl = `https://wa.me/584220148405?text=${encoded}`
 
-// Reemplaza 584241234567 con tu número
+// Reemplaza 584220148405 con tu número
 ```
 
 ### Cambiar Colores

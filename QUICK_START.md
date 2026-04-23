@@ -49,16 +49,16 @@ Archivo: `components/quotation/QuotationDrawer.tsx`
 
 Línea ~28, busca:
 ```tsx
-const whatsappUrl = `https://wa.me/584241234567?text=${encoded}`
+const whatsappUrl = `https://wa.me/584220148405?text=${encoded}`
 ```
 
-Reemplaza `584241234567` con **tu número**:
+Reemplaza `584220148405` con **tu número**:
 ```tsx
 const whatsappUrl = `https://wa.me/TU_NUMERO?text=${encoded}`
 ```
 
 **Formato del número**: `[CODIGO_PAIS][NUMERO]`  
-- Venezuela: `584241234567` (58 + número sin 0)
+- Venezuela: `584220148405` (58 + número sin 0)
 - Colombia: `573001234567`
 - México: `525551234567`
 

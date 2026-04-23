@@ -93,7 +93,7 @@ export default async function DynamicCategoryPage({ params }: PageProps) {
   const filteredProducts = allProducts.filter(p => p.category === category)
 
   // Enlace para WhatsApp (CTA)
-  const ctaHref = `https://api.whatsapp.com/send?phone=584241234567&text=${encodeURIComponent(
+  const ctaHref = `https://api.whatsapp.com/send?phone=584220148405&text=${encodeURIComponent(
     `¡Hola! Estoy viendo la categoría "${seoData.title}" en Charatools y necesito asesoría.`
   )}`
 

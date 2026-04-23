@@ -79,7 +79,7 @@ const STATUS_BADGES: Record<StockStatus, { label: string; bg: string; text: stri
   'out-of-stock':{ label: '⚠️ Sin stock',     bg: 'bg-red-100',    text: 'text-red-800'    },
 }
 
-const WHATSAPP_NUMBER = '584241234567'
+const WHATSAPP_NUMBER = '584220148405'
 
 function buildWhatsAppUrl(combo: Combo): string {
   const msg = `Hola CharaTools! 👋 Quiero cotizar el *${combo.name}*.\n\nÍtems:\n${combo.items.map(i => `• ${i}`).join('\n')}\n\n¿Está disponible?`

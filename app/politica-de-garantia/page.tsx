@@ -141,7 +141,7 @@ export default function GarantiaPage() {
             Evita dolores de cabeza. Asesórate con nuestro equipo técnico sobre qué herramienta soporta tu nivel de trabajo diario.
           </p>
           <a
-            href="https://wa.me/580000000000?text=Hola%2C+tengo+una+duda+sobre+la+garantía+de+una+herramienta"
+            href="https://wa.me/584220148405?text=Hola%2C+tengo+una+duda+sobre+la+garantía+de+una+herramienta"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-yellow-400 text-black font-bold px-8 py-4 rounded-xl hover:bg-yellow-500 transition-colors focus:ring-4 focus:ring-yellow-400/30 outline-none"

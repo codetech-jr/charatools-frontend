@@ -124,7 +124,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {/* ── Contenido de la Tarjeta ── */}
-      <div className="flex flex-col flex-grow p-4 md:p-5 gap-3">
+      <div className="flex flex-col flex-grow p-4 md:p-5 grid grid-rows-[auto_1fr_auto] gap-3">
         {/* Metadatos: Marca y SKU (Vital para B2B) */}
         <div className="flex items-center justify-between gap-2">
           <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 px-2 py-0.5 rounded-sm">
@@ -137,20 +137,20 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        {/* Título Principal */}
+        {/* Título Principal - Altura fija para 2 líneas para asegurar alineación */}
         <Link href={`/producto/${product.slug}`} className="block group/title mt-1">
-          <h3 className="text-sm md:text-base font-bold text-gray-900 line-clamp-2 leading-snug group-hover/title:text-yellow-600 transition-colors">
+          <h3 className="text-sm md:text-base font-bold text-gray-900 line-clamp-2 min-h-[2.5rem] md:min-h-[2.8rem] leading-tight group-hover/title:text-yellow-600 transition-colors text-left">
             {product.name}
           </h3>
         </Link>
 
-        {/* Descripción Corta */}
-        <p className="text-xs text-gray-500 line-clamp-2 flex-grow leading-relaxed">
+        {/* Descripción Corta - Forzamos text-left para escaneo rápido */}
+        <p className="text-xs text-gray-500 line-clamp-2 flex-grow leading-relaxed text-left">
           {product.shortDescription}
         </p>
 
-        {/* Contenedor del Botón */}
-        <div className="pt-2 mt-auto">
+        {/* Contenedor del Botón - Anclado al fondo por el grid */}
+        <div className="pt-2 border-t border-gray-50">
           <Button
             onClick={handleAddClick}
             disabled={isDisabled || isInQuotation}
@@ -189,7 +189,7 @@ export function ProductCard({ product }: ProductCardProps) {
             ) : (
               <>
                 <Plus className="w-4 h-4" />
-                <span>Añadir a Cotización</span>
+                <span>Cotizar Ahora</span>
               </>
             )}
           </Button>

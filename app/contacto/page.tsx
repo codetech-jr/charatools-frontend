@@ -15,7 +15,7 @@ import { MapPin, Clock, Phone, ArrowRight } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Contacto | CharaTools — Un asesor real busca la pieza por ti',
   description:
-    'Escribe por WhatsApp y un asesor humano de CharaTools confirma disponibilidad en menos de 15 minutos. Ubicados en Charallave, Miranda.',
+    'Escribe por WhatsApp y un asesor técnico de CharaTools confirma disponibilidad en menos de 15 minutos. Ubicados en Charallave, Miranda.',
   openGraph: {
     title: 'Contacta a CharaTools — Respuesta garantizada en <15 min',
     description:
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 // ── Datos de contacto ───────────────────────────────────────────────────────
 
-const WA_NUMBER = '584241234567'
+const WA_NUMBER = '584220148405'
 const WA_URL = `https://api.whatsapp.com/send?phone=${WA_NUMBER}&text=${encodeURIComponent(
   'Hola CharaTools, necesito ayuda con un producto.'
 )}`
@@ -70,7 +70,7 @@ export default function ContactoPage() {
             Sin formularios. Sin esperas.
           </span>
           <h1 className="text-2xl md:text-4xl font-black text-white leading-tight max-w-2xl">
-            Escribe ahora y un asesor humano<br className="hidden md:block" />
+            Escribe ahora y un asesor técnico<br className="hidden md:block" />
             de CharaTools busca la pieza por ti.
           </h1>
         </div>

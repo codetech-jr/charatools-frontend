@@ -17,7 +17,7 @@ import Image from 'next/image'
 import { MapPin, Clock, ArrowUpRight, Facebook, Instagram } from 'lucide-react'
 
 const WA_URL =
-  'https://api.whatsapp.com/send?phone=584241234567&text=' +
+  'https://api.whatsapp.com/send?phone=584220148405&text=' +
   encodeURIComponent('Hola CharaTools, quiero información sobre un producto.')
 
 // Custom icons for brands not in lucide-react
@@ -77,10 +77,10 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* ── Columna 1: Marca + tagline ── */}
-          <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center group" aria-label="CharaTools — Inicio">
+          <div className="space-y-4 sm:col-span-2 lg:col-span-1 flex flex-col items-center text-center md:items-start md:text-left">
+            <Link href="/" className="inline-flex items-center justify-center md:justify-start group" aria-label="CharaTools — Inicio">
               <Image
-                src="/Logo_chara_tools-blanco-PNG.png"
+                src="/logo_chara_tools_con_borde_fdo_negro_png.png"
                 alt="CharaTools Logo"
                 width={300}
                 height={100}
@@ -88,27 +88,27 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">
-              Ferretería B2B en Charallave. Distribuidor oficial INGCO.
-              Repuestos originales, respuesta real, sin demoras.
+              Ferretería Multimarca en Charallave.
+              Herramientas, repuestos y soluciones para tus proyectos, con respuesta real, sin demoras.
             </p>
 
             {/* Info de contacto directo */}
-            <div className="space-y-2 pt-2">
-              <div className="flex items-start gap-2">
+            <div className="space-y-3 pt-2 flex flex-col items-center md:items-start">
+              <div className="flex items-center md:items-start gap-2">
                 <MapPin className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span className="text-xs leading-snug">
                   Charallave, Municipio Cristóbal Rojas<br />
                   Estado Miranda, Venezuela
                 </span>
               </div>
-              <div className="flex items-start gap-2">
+              <div className="flex items-center md:items-start gap-2">
                 <Clock className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span className="text-xs">Lun – Sáb: 7:00 am – 6:00 pm</span>
               </div>
             </div>
 
             {/* Redes Sociales */}
-            <div className="pt-4 flex items-center gap-4">
+            <div className="pt-4 flex items-center justify-center md:justify-start gap-4">
               {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -125,11 +125,11 @@ export function Footer() {
           </div>
 
           {/* ── Columna 2: Catálogo ── */}
-          <nav aria-label="Categorías del catálogo">
+          <nav aria-label="Categorías del catálogo" className="text-center md:text-left">
             <h3 className="text-xs font-black text-white uppercase tracking-widest mb-4">
               Catálogo
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="flex flex-col items-center md:items-start space-y-2.5">
               {NAV_LINKS.catalogo.map(({ label, href }) => (
                 <li key={href}>
                   <Link
@@ -144,11 +144,11 @@ export function Footer() {
           </nav>
 
           {/* ── Columna 3: Empresa ── */}
-          <nav aria-label="Secciones de la empresa">
+          <nav aria-label="Secciones de la empresa" className="text-center md:text-left">
             <h3 className="text-xs font-black text-white uppercase tracking-widest mb-4">
               Empresa
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="flex flex-col items-center md:items-start space-y-2.5">
               {NAV_LINKS.empresa.map(({ label, href }) => (
                 <li key={href}>
                   <Link
@@ -163,12 +163,12 @@ export function Footer() {
           </nav>
 
           {/* ── Columna 4: Marcas + CTA ── */}
-          <div className="space-y-6">
+          <div className="space-y-6 flex flex-col items-center text-center md:items-start md:text-left">
             <div>
               <h3 className="text-xs font-black text-white uppercase tracking-widest mb-4">
                 Marcas Oficiales
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap justify-center md:justify-start gap-2">
                 {BRANDS.map((brand) => (
                   <span
                     key={brand}
