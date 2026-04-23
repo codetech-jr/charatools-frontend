@@ -77,7 +77,7 @@ export function WhatsAppFAB() {
           aria-label="Hablar con asesor por WhatsApp"
         >
           <p className="text-[13px] sm:text-sm font-medium text-zinc-100 leading-snug">
-            <span className="font-bold text-yellow-400">👋 ¡Hey!</span> ¿Necesitas checar disponibilidad inmediata para algún  Difícil? 
+            <span className="font-bold text-yellow-400">👋 ¡Hey!</span> ¿Necesitas checar disponibilidad inmediata para algún producto? 
             <span className="block mt-1.5 text-zinc-400 text-xs group-hover:text-white transition-colors">
               Estoy 100% On-line en tienda. Dale Clic →
             </span>
