@@ -44,7 +44,7 @@ export function MembresiaBanner_Home_CTA() {
             {
               icon: '💰',
               title: '5% OFF en cada pedido',
-              body: 'Descuento automático en compras superiores a $50. Válido hasta diciembre 2025.',
+              body: 'Descuento automático en compras superiores a $50. Válido hasta diciembre 2026.',
             },
             {
               icon: '⚡',
