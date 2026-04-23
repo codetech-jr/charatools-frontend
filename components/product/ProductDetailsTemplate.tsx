@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import {
   Tag,
@@ -11,8 +10,8 @@ import {
   AlertTriangle,
   Flame,
   ArrowLeft,
-  CreditCard,
 } from 'lucide-react'
+import Image from 'next/image'
 import type { CatalogProduct, StockStatus } from '@/lib/catalog.types'
 import AddToQuoteButton from '@/components/catalog/AddToQuoteButton'
 import { RelatedProductsCarousel } from '@/components/catalog/RelatedProductsCarousel'
@@ -186,9 +185,9 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
             <AddToQuoteButton product={product} />
 
             {/* ── Badge Cashea ──────────────────────────────────────────── */}
-            {!isOutOfStock && (
+            {!isOutOfStock && product.isCasheaEligible && (
               <div className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3">
-                <CreditCard className="w-4 h-4 text-orange-500 flex-shrink-0" aria-hidden="true" />
+                <Image src="/cashea.svg" alt="Cashea" width={28} height={28} className="rounded-lg shadow-sm" />
                 <p className="text-xs text-gray-600 leading-snug">
                   Llévatelo hoy con{' '}
                   <strong className="text-orange-500 font-bold">Cashea</strong>{' '}

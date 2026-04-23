@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import { X, MessageCircle, Plus, Minus, ClipboardList, Download } from 'lucide-react'
+import Image from 'next/image'
 import { VipPromotionBanner } from './VipPromotionBanner'
 import {
   useQuotationStore,
@@ -286,19 +287,7 @@ export function QuotationDrawer() {
                 del costo total aunque el precio sea el mismo.
             ── */}
             <div className="flex items-center justify-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5">
-              <svg
-                className="w-4 h-4 text-orange-500 flex-shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <line x1="2" x2="22" y1="10" y2="10" />
-              </svg>
+              <Image src="/cashea.svg" alt="Cashea" width={24} height={24} className="rounded-lg shadow-sm" />
               <p className="text-xs text-gray-600 leading-snug text-center">
                 Cotiza hoy y consulta tus{' '}
                 <strong className="text-orange-500 font-bold">cuotas sin interés con Cashea</strong>

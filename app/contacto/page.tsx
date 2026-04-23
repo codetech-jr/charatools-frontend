@@ -69,8 +69,9 @@ export default function ContactoPage() {
           <span className="inline-block text-yellow-400 text-xs font-black uppercase tracking-widest mb-3">
             Sin formularios. Sin esperas.
           </span>
-          <h1 className="text-2xl md:text-4xl font-black text-white leading-tight max-w-2xl">
-            Escribe ahora y un asesor técnico<br className="hidden md:block" />
+          <h1 className="text-2xl md:text-4xl font-black text-white leading-tight max-w-2xl text-balance">
+            Escribe ahora y un asesor técnico{" "}
+            <br className="hidden md:block" />
             de CharaTools busca la pieza por ti.
           </h1>
         </div>

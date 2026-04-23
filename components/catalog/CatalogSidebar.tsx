@@ -21,8 +21,9 @@
  * - Focus trap implícito via backdrop click-to-close.
  */
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ChevronDown, X, SlidersHorizontal } from 'lucide-react'
+import Image from 'next/image'
 import type { CatalogFilters } from '@/lib/catalog.types'
 import { CATALOG_BRANDS } from '@/lib/catalog.types'
 
@@ -44,7 +45,7 @@ const SIDEBAR_CATEGORIES = [
 
 // ── Tipos ──────────────────────────────────────────────────────────────────
 
-interface CatalogSidebarProps {
+export interface CatalogSidebarProps {
   filters: CatalogFilters
   activeFilterCount: number
   onToggleBrand: (brand: string) => void
@@ -52,6 +53,7 @@ interface CatalogSidebarProps {
   onClearFilters: () => void
   /** Categoría activa actual (slug de la URL, o null para 'todos') */
   activeCategory: string | null
+  hideHeader?: boolean
 }
 
 // ── Componente de Acordeón reutilizable ────────────────────────────────────
@@ -91,49 +93,66 @@ function FilterAccordion({
   )
 }
 
-// ── Contenido del Sidebar (compartido entre Desktop y Mobile) ──────────────
+// ── Contenido del Filtro (compartido entre Desktop y Mobile) ──────────────
 
-function SidebarContent({
+export function FiltersContent({
   filters,
   activeFilterCount,
   onToggleBrand,
   onUpdateParams,
   onClearFilters,
   activeCategory,
+  hideHeader = false,
 }: CatalogSidebarProps) {
   return (
     <div className="space-y-0">
       {/* Cabecera */}
-      <div className="flex items-center justify-between pb-3 mb-1 border-b border-gray-200">
-        <div className="flex items-center gap-2">
-          <SlidersHorizontal className="w-4 h-4 text-gray-500" aria-hidden="true" />
-          <span className="text-sm font-black text-gray-900 uppercase tracking-wide">Filtros</span>
+      {!hideHeader && (
+        <div className="flex items-center justify-between pb-3 mb-1 border-b border-gray-200">
+          <div className="flex items-center gap-2">
+            <SlidersHorizontal className="w-4 h-4 text-gray-500" aria-hidden="true" />
+            <span className="text-sm font-black text-gray-900 uppercase tracking-wide">Filtros</span>
+            {activeFilterCount > 0 && (
+              <span className="inline-flex items-center justify-center w-5 h-5 bg-yellow-400 text-black text-xs font-bold rounded-full">
+                {activeFilterCount}
+              </span>
+            )}
+          </div>
           {activeFilterCount > 0 && (
-            <span className="inline-flex items-center justify-center w-5 h-5 bg-yellow-400 text-black text-xs font-bold rounded-full">
-              {activeFilterCount}
-            </span>
+            <button
+              onClick={onClearFilters}
+              className="text-xs text-gray-500 hover:text-red-500 underline underline-offset-2 transition-colors"
+              aria-label="Limpiar todos los filtros"
+            >
+              Limpiar
+            </button>
           )}
         </div>
-        {activeFilterCount > 0 && (
+      )}
+
+      {/* Si el header está oculto pero hay filtros activos, mostramos botón limpiar flotante o en algún lado */}
+      {hideHeader && activeFilterCount > 0 && (
+        <div className="flex justify-end mb-2">
           <button
             onClick={onClearFilters}
-            className="text-xs text-gray-500 hover:text-red-500 underline underline-offset-2 transition-colors"
-            aria-label="Limpiar todos los filtros"
+            className="text-xs text-red-500 font-bold hover:underline transition-colors"
           >
-            Limpiar
+            Limpiar filtros ({activeFilterCount})
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* ── Filtro Especial: Cashea ── */}
       <div className="py-4 border-b border-gray-200">
         <label className="flex items-center justify-between cursor-pointer group px-1">
           <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
-              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
-              <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
-            </svg>
+            <Image 
+              src="/cashea.svg" 
+              alt="Cashea" 
+              width={20} 
+              height={20} 
+              className="rounded-md shadow-sm" 
+            />
             <span className="text-sm font-bold text-gray-900 group-hover:text-black transition-colors">Solo Financiables Cashea</span>
           </div>
           {/* Custom Toggle Switch */}
@@ -253,76 +272,8 @@ export function DesktopCatalogSidebar(props: CatalogSidebarProps) {
       className="hidden lg:block w-[260px] flex-shrink-0 sticky top-20 self-start max-h-[calc(100vh-80px)] overflow-y-auto bg-white border-r border-gray-200 p-4"
       aria-label="Filtros del catálogo"
     >
-      <SidebarContent {...props} />
+      <FiltersContent {...props} />
     </aside>
   )
 }
 
-// ── Mobile Filter Drawer ───────────────────────────────────────────────────
-
-export function MobileFilterDrawer(props: CatalogSidebarProps) {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (
-    <>
-      {/* Botón flotante para abrir filtros en móvil */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="lg:hidden fixed bottom-20 right-4 z-40 flex items-center gap-2 h-12 px-5 bg-gray-900 text-white font-bold text-sm rounded-full shadow-xl hover:bg-gray-800 active:scale-95 transition-all"
-        aria-label="Abrir filtros"
-      >
-        <SlidersHorizontal className="w-4 h-4" aria-hidden="true" />
-        Filtros
-        {props.activeFilterCount > 0 && (
-          <span className="w-5 h-5 bg-yellow-400 text-black text-xs font-black rounded-full flex items-center justify-center">
-            {props.activeFilterCount}
-          </span>
-        )}
-      </button>
-
-      {/* Backdrop + Drawer */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Overlay oscuro */}
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
-            aria-hidden="true"
-          />
-
-          {/* Drawer desde abajo */}
-          <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] bg-white rounded-t-2xl overflow-y-auto animate-in slide-in-from-bottom duration-300">
-            {/* Handle visual */}
-            <div className="sticky top-0 bg-white pt-3 pb-2 px-4 border-b border-gray-100 z-10">
-              <div className="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-3" />
-              <div className="flex items-center justify-between">
-                <h2 className="text-base font-black text-gray-900">Filtros</h2>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 text-gray-500 hover:text-black rounded-lg"
-                  aria-label="Cerrar filtros"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            <div className="p-4">
-              <SidebarContent {...props} />
-            </div>
-
-            {/* Botón de aplicar (cierra el drawer) */}
-            <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="w-full h-12 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-500 active:scale-[0.98] transition-all"
-              >
-                Ver resultados
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  )
-}

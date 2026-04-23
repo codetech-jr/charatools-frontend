@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, AlertTriangle, CreditCard } from 'lucide-react'
 import { MOCK_PRODUCTS } from '@/lib/catalog.types'
 import { ProductCard } from '@/components/catalog/ProductCard'
@@ -51,9 +52,9 @@ export default function OfertasPage() {
 
           {/* Cashea Integration Badge on Hero */}
           <div className="inline-flex flex-col sm:flex-row sm:items-center bg-white/10 backdrop-blur-sm border border-red-400/30 rounded-xl p-4 gap-4">
-            <div className="flex items-center bg-blue-600 text-white px-3 py-1.5 rounded-lg text-sm font-bold w-fit">
-              <CreditCard className="w-4 h-4 mr-2" />
-              cashea
+            <div className="flex items-center bg-white text-black px-2 py-1 rounded-lg w-fit">
+              <Image src="/cashea.svg" alt="Cashea" width={22} height={22} className="mr-1" />
+              <span className="text-sm font-bold uppercase">cashea</span>
             </div>
             <p className="text-sm sm:text-base font-medium">
               Asegura tu equipo hoy y <strong className="text-yellow-300">paga en cuotas sin interés</strong>. No dejes que te lo ganen.

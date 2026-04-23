@@ -18,18 +18,19 @@
  */
 
 import Link from 'next/link'
-import { ArrowRight, CreditCard, Wallet, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, CreditCard, CheckCircle2 } from 'lucide-react'
+import Image from 'next/image'
 
 // ── Pasos visuales de la propuesta de valor ────────────────────────────────
 
 const STEPS = [
   {
-    icon: Wallet,
+    icon: 'cashea' as const,
     label: 'Paga inicial',
     sub: 'Cuota 1 hoy',
   },
   {
-    icon: CreditCard,
+    icon: 'cashea' as const,
     label: '+ 2 Cuotas',
     sub: 'Sin interés',
   },
@@ -78,20 +79,23 @@ export function CasheaBanner() {
             aria-label="Cómo funciona Cashea: 3 pasos"
           >
             {STEPS.map((step, idx) => {
-              const Icon = step.icon
               const isLast = idx === STEPS.length - 1
               return (
                 <div key={step.label} className="flex items-center gap-2 md:gap-3">
                   {/* Bloque de paso */}
                   <div className="flex flex-col items-center gap-1 min-w-[60px]">
                     <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden ${
                         isLast
                           ? 'bg-yellow-400 text-black'
                           : 'bg-gray-700 border border-gray-600 text-gray-300'
                       }`}
                     >
-                      <Icon className="w-5 h-5" aria-hidden="true" />
+                      {step.icon === 'cashea' ? (
+                        <Image src="/cashea.svg" alt="Cashea" width={32} height={32} className="rounded-md" />
+                      ) : (
+                        <step.icon className="w-5 h-5" aria-hidden="true" />
+                      )}
                     </div>
                     <span className={`text-[10px] font-bold text-center leading-tight ${isLast ? 'text-yellow-400' : 'text-gray-300'}`}>
                       {step.label}

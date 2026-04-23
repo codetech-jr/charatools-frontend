@@ -27,8 +27,9 @@ export function MembresiaBanner_Home_CTA() {
             <Gem className="h-3.5 w-3.5" aria-hidden="true" />
             Club de Beneficios VIP
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
-            Clientes frecuentes merecen<br className="hidden md:block" />
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight text-balance">
+            Clientes frecuentes merecen {" "}
+            <br className="hidden md:block" />
             <span className="text-amber-400">precios preferenciales</span>
           </h2>
           <p className="text-base md:text-lg text-purple-200/70 max-w-2xl mx-auto leading-relaxed">

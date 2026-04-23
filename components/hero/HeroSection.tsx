@@ -25,7 +25,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
 
         <h1
           id="hero-heading"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight text-balance"
         >
           La ferretería de Charallave que tiene lo que necesitas — sin esperar.
         </h1>

@@ -15,7 +15,8 @@
  */
 
 import React, { Suspense } from 'react'
-import { DesktopCatalogSidebar, MobileFilterDrawer } from './CatalogSidebar'
+import { DesktopCatalogSidebar } from './CatalogSidebar'
+import type { CatalogSidebarProps } from './CatalogSidebar'
 import { CatalogResultsPanel } from './CatalogResultsPanel'
 import { useCatalogFilters } from '@/hooks/useCatalogFilters'
 import type { CatalogProduct } from '@/lib/catalog.types'
@@ -40,7 +41,7 @@ function CatalogPageViewInner({ products }: CatalogPageViewProps) {
     ? products.find(p => p.category === activeCategory)?.categoryLabel ?? 'Catálogo'
     : 'Todo el Catálogo'
 
-  const sidebarProps = {
+  const sidebarProps: CatalogSidebarProps = {
     filters,
     activeFilterCount,
     onToggleBrand: toggleBrand,
@@ -60,10 +61,8 @@ function CatalogPageViewInner({ products }: CatalogPageViewProps) {
         categoryLabel={categoryLabel}
         activeCategory={activeCategory}
         onClearFilters={clearFilters}
+        sidebarProps={sidebarProps}
       />
-
-      {/* ── Drawer de Filtros Mobile ── */}
-      <MobileFilterDrawer {...sidebarProps} />
     </div>
   )
 }

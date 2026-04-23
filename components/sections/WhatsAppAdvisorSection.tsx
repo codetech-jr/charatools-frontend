@@ -127,11 +127,12 @@ export function WhatsAppAdvisorSection() {
 
             <h2
               id="asesoria-heading"
-              className="text-3xl md:text-4xl font-black leading-tight mb-5"
+              className="text-3xl md:text-4xl font-black leading-tight mb-5 text-balance"
             >
               ¿No sabes cómo se llama{' '}
               <span className="text-green-400">la pieza?</span>
-              <br />
+              {' '}
+              <br className="hidden md:block" />
               Manda la foto. Nosotros la buscamos.
             </h2>
 

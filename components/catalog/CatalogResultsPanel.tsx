@@ -23,13 +23,17 @@
 
 import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { LayoutGrid, List, PackageX, ArrowUpDown } from 'lucide-react'
+import { LayoutGrid, List, PackageX, ArrowUpDown, SlidersHorizontal } from 'lucide-react'
 import { ProductCard } from './ProductCard'
 import { ProductRow } from './ProductRow'
 import type { CatalogProduct } from '@/lib/catalog.types'
 import { SeoCategoryHero } from '@/components/seo/SeoCategoryHero'
 import { SeoCategoryFooter } from '@/components/seo/SeoCategoryFooter'
 import { seoCategoryData } from '@/lib/seoCategoryData'
+
+import type { CatalogSidebarProps } from './CatalogSidebar'
+import { FiltersContent } from './CatalogSidebar'
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetHeader } from '@/components/ui/sheet'
 
 // ── Tipos ──────────────────────────────────────────────────────────────────
 
@@ -41,6 +45,7 @@ interface CatalogResultsPanelProps {
   categoryLabel: string
   activeCategory: string | null
   onClearFilters: () => void
+  sidebarProps: CatalogSidebarProps
 }
 
 const SORT_OPTIONS: { value: SortOption; label: string }[] = [
@@ -57,6 +62,7 @@ export function CatalogResultsPanel({
   categoryLabel,
   activeCategory,
   onClearFilters,
+  sidebarProps,
 }: CatalogResultsPanelProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [sortBy, setSortBy] = useState<SortOption>('relevance')
@@ -117,7 +123,7 @@ export function CatalogResultsPanel({
           </ol>
         </nav>
 
-        {/* Toolbar: Contador + Sort + Toggle */}
+        {/* Toolbar: Contador + Sort + Toggle + Filtros Mobile */}
         <div className="flex items-center justify-between gap-3">
           {/* Contador de resultados */}
           <p
@@ -131,6 +137,37 @@ export function CatalogResultsPanel({
           </p>
 
           <div className="flex items-center gap-2">
+            {/* Filtros Mobile Trigger (Solo visible en pantallas pequeñas) */}
+            <div className="lg:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <button
+                    className="flex items-center gap-1.5 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-2.5 h-9 text-xs font-bold text-gray-700 transition-colors"
+                    aria-label="Filtros"
+                  >
+                    <SlidersHorizontal className="w-3.5 h-3.5" aria-hidden="true" />
+                    Filtros
+                    {sidebarProps.activeFilterCount > 0 && (
+                      <span className="flex items-center justify-center w-4 h-4 bg-yellow-400 text-black text-[10px] font-black rounded-full ml-1">
+                        {sidebarProps.activeFilterCount}
+                      </span>
+                    )}
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-[85%] sm:max-w-sm p-0 overflow-y-auto">
+                  <SheetHeader className="px-4 pt-6 pb-2 border-b border-gray-100">
+                    <SheetTitle className="text-lg font-black text-gray-900">Filtros</SheetTitle>
+                    <SheetDescription className="sr-only">
+                      Opciones para filtrar productos en el catálogo
+                    </SheetDescription>
+                  </SheetHeader>
+                  <div className="p-4">
+                    <FiltersContent {...sidebarProps} hideHeader={true} />
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+
             {/* Dropdown Ordenar */}
             <div className="relative">
               <label htmlFor="sort-select" className="sr-only">Ordenar por</label>

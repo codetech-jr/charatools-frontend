@@ -16,6 +16,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Plus, Check, Zap, Info } from 'lucide-react'
+import Image from 'next/image'
 import { useQuotationStore } from '@/store/quotationStore'
 import type { CatalogProduct } from '@/lib/catalog.types'
 
@@ -134,11 +135,13 @@ export function ProductRow({ product }: ProductRowProps) {
             <>
               <span className="text-gray-200 text-xs" aria-hidden="true">|</span>
               <span className="flex items-center gap-1 text-[11px] font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100 shadow-sm" title="Facilidad Cashea">
-                <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
-                  <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
-                  <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
-                </svg>
+                <Image 
+                  src="/cashea.svg" 
+                  alt="Cashea" 
+                  width={14} 
+                  height={14} 
+                  className="flex-shrink-0" 
+                />
                 Cashea
               </span>
             </>
