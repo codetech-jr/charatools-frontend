@@ -142,26 +142,28 @@ export function CatalogResultsPanel({
               <Sheet>
                 <SheetTrigger asChild>
                   <button
-                    className="flex items-center gap-1.5 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-2.5 h-9 text-xs font-bold text-gray-700 transition-colors"
-                    aria-label="Filtros"
+                    className="flex items-center gap-2 bg-white hover:bg-gray-50 border border-gray-300 rounded-lg px-3 h-10 text-xs font-black text-gray-900 shadow-sm transition-all active:scale-95"
+                    aria-label="Abrir filtros"
                   >
-                    <SlidersHorizontal className="w-3.5 h-3.5" aria-hidden="true" />
-                    Filtros
+                    <SlidersHorizontal className="w-4 h-4 text-gray-500" aria-hidden="true" />
+                    <span>Filtros</span>
                     {sidebarProps.activeFilterCount > 0 && (
-                      <span className="flex items-center justify-center w-4 h-4 bg-yellow-400 text-black text-[10px] font-black rounded-full ml-1">
+                      <span className="flex items-center justify-center min-w-[18px] h-[18px] bg-yellow-400 text-black text-[10px] font-black rounded-full px-1">
                         {sidebarProps.activeFilterCount}
                       </span>
                     )}
                   </button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-[85%] sm:max-w-sm p-0 overflow-y-auto">
-                  <SheetHeader className="px-4 pt-6 pb-2 border-b border-gray-100">
-                    <SheetTitle className="text-lg font-black text-gray-900">Filtros</SheetTitle>
+                <SheetContent side="left" className="w-[85%] sm:max-w-sm p-0 overflow-y-auto bg-white border-r border-gray-200 shadow-2xl">
+                  <SheetHeader className="px-5 pt-7 pb-4 border-b border-gray-100 bg-white sticky top-0 z-10">
+                    <div className="flex items-center justify-between">
+                      <SheetTitle className="text-xl font-black text-gray-900 tracking-tight">Filtros</SheetTitle>
+                    </div>
                     <SheetDescription className="sr-only">
                       Opciones para filtrar productos en el catálogo
                     </SheetDescription>
                   </SheetHeader>
-                  <div className="p-4">
+                  <div className="px-5 py-2 bg-white">
                     <FiltersContent {...sidebarProps} hideHeader={true} />
                   </div>
                 </SheetContent>

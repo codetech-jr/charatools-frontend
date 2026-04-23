@@ -70,24 +70,26 @@ function FilterAccordion({
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   return (
-    <div className="border-b border-gray-200">
+    <div className="border-b border-gray-100 last:border-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
-        className="w-full flex items-center justify-between py-3 px-1 text-sm font-bold text-gray-800 hover:text-black transition-colors"
+        className="w-full flex items-center justify-between py-4 px-2 text-sm font-bold text-gray-900 hover:text-black transition-colors"
       >
         {title}
         <ChevronDown
-          className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gray-900' : ''}`}
           aria-hidden="true"
         />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-200 ease-in-out ${
-          isOpen ? 'max-h-[500px] opacity-100 pb-3' : 'max-h-0 opacity-0'
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-[800px] opacity-100 pb-5' : 'max-h-0 opacity-0'
         }`}
       >
-        {children}
+        <div className="px-1">
+          {children}
+        </div>
       </div>
     </div>
   )
@@ -143,16 +145,18 @@ export function FiltersContent({
       )}
 
       {/* ── Filtro Especial: Cashea ── */}
-      <div className="py-4 border-b border-gray-200">
-        <label className="flex items-center justify-between cursor-pointer group px-1">
-          <div className="flex items-center gap-2">
-            <Image 
-              src="/cashea.svg" 
-              alt="Cashea" 
-              width={20} 
-              height={20} 
-              className="rounded-md shadow-sm" 
-            />
+      <div className="py-5 border-b border-gray-100">
+        <label className="flex items-center justify-between cursor-pointer group px-2">
+          <div className="flex items-center gap-3">
+            <div className="p-1.5 bg-yellow-50 rounded-lg border border-yellow-100 shadow-sm">
+              <Image 
+                src="/cashea.svg" 
+                alt="Cashea" 
+                width={22} 
+                height={22} 
+                className="rounded-sm" 
+              />
+            </div>
             <span className="text-sm font-bold text-gray-900 group-hover:text-black transition-colors">Solo Financiables Cashea</span>
           </div>
           {/* Custom Toggle Switch */}
