@@ -180,7 +180,7 @@ export function WhatsAppAdvisorSection() {
             </a>
 
             <p className="text-xs text-gray-500 mt-4">
-              Lun–Vie 8am–6pm · Sáb 8am–1pm
+              Lun–Sáb 9am–6pm
               <span className="mx-2 text-gray-700">·</span>
               Respuesta garantizada en horario de atención
             </p>

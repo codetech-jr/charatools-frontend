@@ -40,13 +40,13 @@ const CONTACT_INFO = [
   {
     icon: Clock,
     label: 'Horario de atención',
-    value: 'Lunes a Sábado: 7:00 am – 6:00 pm',
+    value: 'Lunes a Sábado: 9:00 am – 6:00 pm',
     sublabel: 'WhatsApp disponible fuera del horario',
   },
   {
     icon: Phone,
     label: 'WhatsApp directo',
-    value: '+58 424-1234567',
+    value: '+58 422-0148405',
     sublabel: 'Respuesta en menos de 15 minutos',
     href: WA_URL,
   },
@@ -55,7 +55,7 @@ const CONTACT_INFO = [
 // ── Mapa de Charallave (iframe nativo Google Maps) ──────────────────────────
 // Coordenadas: Charallave, Miranda, Venezuela
 const MAP_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31517.36!2d-66.87!3d10.24!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a5d5c6c5c5c5c%3A0x0!2sCharallave%2C%20Miranda%2C%20Venezuela!5e0!3m2!1ses!2sve!4v1697000000000!5m2!1ses!2sve'
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.2635868855286!2d-66.8588125!3d10.2403125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2aef64d99420cf%3A0x4d50768d057e7c0c!2sCHARATOOLS%201010%2C%20C.A!5e0!3m2!1ses-419!2sve!4v1776950611483!5m2!1ses-419!2sve'
 
 // ── Página ─────────────────────────────────────────────────────────────────
 
@@ -180,7 +180,8 @@ export default function ContactoPage() {
             <div className="absolute bottom-4 left-4 bg-gray-900/90 backdrop-blur-sm text-white px-3 py-2 rounded-lg border border-gray-700 max-w-[220px]">
               <p className="text-xs font-black text-yellow-400">CharaTools</p>
               <p className="text-xs text-gray-300 leading-snug">
-                Charallave, Municipio Cristóbal Rojas<br />Estado Miranda, Venezuela
+                Charallave, Municipio Cristóbal Rojas<br />Estado Miranda, Venezuela <br />
+                Calle 9, AV José Gregorio Hernández, Charallave - Centro.
               </p>
             </div>
           </div>

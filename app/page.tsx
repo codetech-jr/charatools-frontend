@@ -13,6 +13,7 @@ import { WhatsAppAdvisorSection } from '@/components/sections/WhatsAppAdvisorSec
 import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection'
 import { BrandTicker } from '@/components/sections/BrandTicker'
 import { ContactMapSection } from '@/components/sections/ContactMapSection'
+import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA'
 import { SeoBomb } from '@/components/seo/SeoBomb'
 import { CatalogProduct } from '@/lib/catalog.types'
 
@@ -275,7 +276,7 @@ export default function Home() {
         <TrustBar />
 
         {/* Product Grid Section */}
-        <section className="bg-zinc-50 py-12 lg:py-24 border-y border-gray-200/60">
+        <section id="catalogo" className="bg-zinc-50 pt-12 lg:pt-24 pb-12 lg:pb-16 border-y border-gray-200/60">
           <header className="max-w-7xl mx-auto px-4 md:px-8 mb-10 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
               🔥 Los Más Pedidos en Obra
@@ -287,6 +288,9 @@ export default function Home() {
 
           <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={activeFilter} />
         </section>
+
+        {/* ── VIP Membership Section — Masterclass Gold/Purple UI ── */}
+        <MembresiaBanner_Home_CTA />
 
         {/* Category Grid (Filters) */}
         <CategoryGrid activeFilter={activeFilter} onFilterChange={handleFilterChange} />

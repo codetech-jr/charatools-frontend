@@ -34,9 +34,9 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 )
 
 const SOCIAL_LINKS = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: TikTokIcon, href: '#', label: 'TikTok' },
+  { icon: Facebook, href: 'https://www.facebook.com/charatools/', label: 'Facebook' },
+  { icon: Instagram, href: 'https://www.instagram.com/charatools/', label: 'Instagram' },
+  { icon: TikTokIcon, href: 'https://www.tiktok.com/@charatools', label: 'TikTok' },
   { icon: WhatsAppIcon, href: WA_URL, label: 'WhatsApp' },
 ]
 
@@ -103,7 +103,7 @@ export function Footer() {
               </div>
               <div className="flex items-center md:items-start gap-2">
                 <Clock className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-xs">Lun – Sáb: 7:00 am – 6:00 pm</span>
+                <span className="text-xs">Lun – Sáb: 9:00 am – 6:00 pm</span>
               </div>
             </div>
 

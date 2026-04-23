@@ -10,10 +10,12 @@ import {
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import { X, MessageCircle, Plus, Minus, ClipboardList, Download } from 'lucide-react'
+import { VipPromotionBanner } from './VipPromotionBanner'
 import {
   useQuotationStore,
   selectItems,
   selectTotalUnits,
+  selectTotalItems,
 } from '@/store/quotationStore'
 import { useWhatsAppCheckout } from '@/hooks/useWhatsAppCheckout'
 
@@ -116,6 +118,11 @@ export function QuotationDrawer() {
   // Selectores atómicos — cada uno subscrito de forma independiente
   const items = useQuotationStore(selectItems)
   const totalUnits = useQuotationStore(selectTotalUnits)
+  const totalItems = useQuotationStore(selectTotalItems)
+
+  // Mostrar banner VIP cuando el pedido tiene volumen suficiente (≥ 10 unidades)
+  // En un contexto B2B sin precios visibles, el volumen es el proxy del valor del pedido.
+  const showVipBanner = totalItems >= 3 || totalUnits >= 10
 
   // Nuevo Hook de Conversión B2B
   const { handleWhatsAppCheckout, hasItems } = useWhatsAppCheckout()
@@ -231,6 +238,10 @@ export function QuotationDrawer() {
         {/* ── Footer con Formulario + CTAs ────────────────────────────────── */}
         {hasItems && (
           <div className="sticky bottom-0 z-10 bg-white border-t border-gray-200 px-4 py-4 space-y-3 max-h-[40vh] overflow-y-auto">
+            {/* ── Banner VIP — Goal-Gradient Effect: aparece cuando el pedido
+                tiene volumen, dando el último empujón de conversión ── */}
+            {showVipBanner && <VipPromotionBanner variant="drawer" />}
+
             {/* ── Formulario de Contacto ── */}
             <ContactForm />
 

@@ -34,7 +34,7 @@ export function ContactMapSection() {
                 <div>
                   <p className="font-bold text-gray-900">Ubicación física</p>
                   <p className="text-gray-600 text-sm mt-1 leading-relaxed">
-                    Charallave, Estado Miranda. Ven a nuestro local para ver y probar las 
+                    Charallave - Centro, Estado Miranda, Calle 9, AV José Gregorio Hernández. Ven a nuestro local para ver y probar las 
                     mejores herramientas y materiales para tu proyecto.
                   </p>
                 </div>
@@ -44,8 +44,7 @@ export function ContactMapSection() {
                 <span className="text-2xl" aria-hidden="true">🕒</span>
                 <div>
                   <p className="font-bold text-gray-900">Horario de atención</p>
-                  <p className="text-gray-600 text-sm mt-1">Lunes a Viernes: 8:00 am – 6:00 pm</p>
-                  <p className="text-gray-600 text-sm">Sábados: 8:00 am – 1:00 pm</p>
+                  <p className="text-gray-600 text-sm mt-1">Lunes a Sábados: 9:00 am – 6:00 pm</p>
                 </div>
               </div>
             </div>

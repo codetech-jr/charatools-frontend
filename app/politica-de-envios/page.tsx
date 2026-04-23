@@ -50,7 +50,7 @@ export default function EnviosPage() {
                 Todo pedido procesado, pagado y confirmado antes de las <strong>11:00 a.m.</strong> se despacha el mismo día hábil (sujeto a disponibilidad de ruta). Los pedidos procesados después de esta hora se incluirán en la ruta del siguiente día hábil.
               </p>
               <p>
-                El horario de entregas logísticas es de Lunes a Viernes de 8:00 a.m. a 4:30 p.m.
+                El horario de entregas logísticas es de Lunes a Viernes de 9:00 a.m. a 5:00 p.m.
               </p>
             </div>
           </div>

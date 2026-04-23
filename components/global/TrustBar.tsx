@@ -5,7 +5,7 @@ import { BadgeCheck, Zap, Package, MessageCircle } from 'lucide-react'
 
 export function TrustBar() {
   const items = [
-    { icon: MessageCircle, label: 'Asesoría sin robots', description: 'Un asesor de verdad te responde en WhatsApp. Sin tickets, sin esperas inútiles.' },
+    { icon: MessageCircle, label: 'Asesoría técnica personalizada', description: 'Un asesor de verdad te responde en WhatsApp. Sin tickets, sin esperas inútiles.' },
     { icon: BadgeCheck, label: 'Herramientas 100% originales', description: 'InGco y Truper con garantía real del fabricante. Aquí no vendemos imitaciones.' },
     { icon: Zap, label: 'Retira hoy en Charallave', description: 'Stock disponible para llevar el mismo día. Sin esperar semanas ni pagar envío a Caracas.' },
   ]

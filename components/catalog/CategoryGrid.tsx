@@ -56,7 +56,7 @@ interface CategoryGridProps {
 
 export function CategoryGrid({ activeFilter, onFilterChange }: CategoryGridProps) {
   return (
-    <section id="catalogo" className="w-full bg-gray-50 px-4 md:px-8 lg:px-16 py-12 md:py-16">
+    <section className="w-full bg-gray-50 px-4 md:px-8 lg:px-16 py-12 md:py-16">
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
         {categories.map((category) => (
           <button

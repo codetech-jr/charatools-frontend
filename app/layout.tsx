@@ -9,9 +9,34 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Ferretería en Charallave | Charatools — Stock Real, Hoy',
-  description: 'Ferretería en Charallave con stock real para urgencias del hogar. Herramientas InGco y Truper originales, asesoría directa por WhatsApp y retiro en tienda hoy.',
-  generator: 'v0.app',
+  metadataBase: new URL('https://charatools-frontend.vercel.app/'),
+  title: {
+    default: 'Charatools - Tu Ferretería Multimarca en Charallave',
+    template: '%s | Charatools',
+  },
+  description: 'Tu ferretería de confianza en los Valles del Tuy. Stock real de herramientas InGco, Truper, electricidad y plomería. Cotiza hoy mismo sin intermediarios.',
+  openGraph: {
+    type: 'website',
+    locale: 'es_VE',
+    url: 'https://charatools-frontend.vercel.app/',
+    siteName: 'Charatools',
+    title: 'Charatools - Tu Ferretería Multimarca en Charallave',
+    description: 'Tu ferretería de confianza en los Valles del Tuy. Stock real de herramientas InGco, Truper, electricidad y plomería. Cotiza hoy mismo sin intermediarios.',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Charatools - Tu Ferretería Multimarca en Charallave',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Charatools - Tu Ferretería Multimarca en Charallave',
+    description: 'Tu ferretería de confianza en los Valles del Tuy. Stock real de herramientas InGco, Truper, electricidad y plomería. Cotiza hoy mismo sin intermediarios.',
+    images: ['/opengraph-image.png'],
+  },
   icons: {
     icon: [
       {

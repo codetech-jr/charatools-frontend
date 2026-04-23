@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
-import { Wrench, Droplets, Lightbulb, Zap, Umbrella, ChevronDown, ChevronRight } from 'lucide-react'
+import { Wrench, Droplets, Lightbulb, Zap, Umbrella, ChevronDown, ChevronRight, LayoutGrid } from 'lucide-react'
 import { trackSelectCategory } from '@/lib/analytics'
 
 // Taxonomía oficial de 5 categorías con iconos representativos
@@ -124,6 +124,25 @@ export function DesktopMegaMenu() {
           <div className="flex h-[360px]">
             {/* Sidebar Categorías (Izquierda) */}
             <div className="w-[260px] bg-gray-50 border-r border-gray-200 overflow-y-auto p-3">
+              {/* ── Link Directo a Todo el Catálogo ── */}
+              <Link
+                href="/catalogo"
+                role="menuitem"
+                onClick={() => {
+                  setIsOpen(false)
+                  trackSelectCategory('all-products')
+                }}
+                className="w-full flex items-center justify-between p-3 rounded-lg text-sm font-black transition-all group focus:outline-none focus:ring-2 focus:ring-yellow-400 mb-3 bg-yellow-400 text-black shadow-md hover:bg-yellow-500 border border-yellow-500"
+              >
+                <div className="flex items-center gap-3">
+                  <LayoutGrid className="w-5 h-5" />
+                  <span>Explora todo</span>
+                </div>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">Categorías</p>
+
               {CATEGORIES.map((cat) => {
                 const isActive = activeCategory === cat.id;
                 return (
@@ -198,6 +217,23 @@ export function MobileMegaMenu({ closeMenu }: { closeMenu: () => void }) {
   return (
     <nav className="flex flex-col w-full" role="navigation" aria-label="Catálogo Móvil">
       <p className="text-xs font-black text-gray-500 uppercase tracking-widest mb-3 px-1 border-b border-gray-800 pb-2">Nuestro Catálogo</p>
+      
+      {/* ── Link Directo a Todo el Catálogo (Mobile) ── */}
+      <Link 
+        href="/catalogo" 
+        onClick={() => {
+          closeMenu()
+          trackSelectCategory('all-products')
+        }} 
+        className="w-full flex items-center justify-between p-4 mb-3 bg-yellow-400 text-black rounded-xl text-sm font-black shadow-lg active:scale-[0.98] transition-all border border-yellow-500"
+      >
+        <div className="flex items-center gap-3">
+          <LayoutGrid className="w-5 h-5 text-black" />
+          <span>Explora todos nuestros productos</span>
+        </div>
+        <ChevronRight className="w-5 h-5 text-black" />
+      </Link>
+
       <div className="space-y-1">
         {CATEGORIES.map(cat => {
           const isExpanded = expandedCat === cat.id;

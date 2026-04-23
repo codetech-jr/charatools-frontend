@@ -15,10 +15,7 @@ export function ProductGrid({ products, activeFilter }: ProductGridProps) {
     : products
 
   return (
-    <section
-      id="catalogo"
-      className="w-full bg-gray-50 px-4 md:px-8 lg:px-16 py-12 md:py-16"
-    >
+    <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
       {filteredProducts.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-800 text-lg">No hay productos en esta categoría.</p>
@@ -33,6 +30,6 @@ export function ProductGrid({ products, activeFilter }: ProductGridProps) {
           ))}
         </div>
       )}
-    </section>
+    </div>
   )
 }

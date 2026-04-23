@@ -16,7 +16,7 @@ import { ShieldCheck, Headset, Clock, ArrowRight, Wrench, Zap, Droplets } from '
 export const metadata: Metadata = {
   title: 'Quiénes Somos | CharaTools — Tu Aliado en la Obra',
   description:
-    'CharaTools nació en Charallave porque en la obra no hay tiempo que perder. Distribuidor oficial INGCO, 3M, Stanley y Truper. Repuestos originales, respuesta en minutos.',
+    'CharaTools nació en Charallave porque en la obra no hay tiempo que perder. Distribuidor multimarca de herramientas y equipos como INGCO, 3M, Stanley y Truper. Repuestos originales, respuesta en minutos.',
   openGraph: {
     title: 'CharaTools — Tu Aliado en la Obra, no otro proveedor',
     description:
@@ -95,12 +95,12 @@ export default function QuienesSomosPage() {
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-lg">
               CharaTools nació en Charallave porque los ferreteristas de aquí sabemos lo que cuesta
               parar una obra por un repuesto que no llega. Por eso tenemos stock real, marcas
-              originales y un asesor humano que responde antes de que termines de escribir.
+              originales y un asesor técnico que responde antes de que termines de escribir.
             </p>
 
             <p className="text-gray-400 text-sm leading-relaxed max-w-lg">
-              Distribuidor oficial de <strong className="text-white">INGCO</strong>, con respaldo de{' '}
-              <strong className="text-white">3M, Stanley, Truper, Dewalt y Schneider</strong>.
+              Distribuidor multimarca de herramientas y equipos de las mejores marcas como <strong className="text-white">INGCO</strong>, con respaldo de{' '}
+              <strong className="text-white">3M, Stanley, Truper, Dewalt y Schneider</strong>, entre otras. Aquí no vendemos imitaciones.
               Sin intermediarios. Sin excusas.
             </p>
 
@@ -230,6 +230,8 @@ export default function QuienesSomosPage() {
         </div>
       </section>
 
+
+
       {/* ═══════════════════════════════════════════════════════════════════
           MARCAS OFICIALES
       ═══════════════════════════════════════════════════════════════════ */}
@@ -262,7 +264,8 @@ export default function QuienesSomosPage() {
             La próxima pieza que necesitas<br />ya está en nuestro inventario.
           </h2>
           <p className="text-gray-500 text-base">
-            No esperes. Escribe ahora y confirma disponibilidad en minutos.
+            No esperes. Escribe ahora y confirma disponibilidad en minutos.<br />
+            <span className="text-sm font-bold text-yellow-600">¿Buscas descuentos exclusivos? Revisa nuestra Membresía VIP en la página principal.</span>
           </p>
           <a
             href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20busco%20disponibilidad%20de%20una%20pieza"
