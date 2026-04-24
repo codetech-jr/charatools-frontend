@@ -133,7 +133,7 @@ export function WhatsAppAdvisorSection() {
               <span className="text-green-400">la pieza?</span>
               {' '}
               <br className="hidden md:block" />
-              Manda la foto. Nosotros la buscamos.
+              Envíanos la foto. Nosotros te asesoramos con la búsqueda.
             </h2>
 
             <p className="text-gray-400 text-base leading-relaxed mb-10 max-w-lg">
