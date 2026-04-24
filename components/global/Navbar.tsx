@@ -63,11 +63,11 @@ export function Navbar() {
 
         {/* ── Quick Links (Desktop) ── */}
         <div className="hidden xl:flex items-center gap-6 font-bold text-sm whitespace-nowrap">
-          <Link href="/ofertas" className="text-red-400 hover:text-red-300 flex items-center gap-1.5 transition-colors">
+         {/*  <Link href="/ofertas" className="text-red-400 hover:text-red-300 flex items-center gap-1.5 transition-colors">
             <Zap className="w-4 h-4" /> Zona Outlet
-          </Link>
-          <Link href="/promociones/ingco" className="text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors">
-            <Tag className="w-4 h-4" /> Promos INGCO
+          </Link> */}
+          <Link href="/promociones" className="text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors">
+            <Tag className="w-4 h-4" /> Promociones
           </Link>
         </div>
 

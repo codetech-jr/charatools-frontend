@@ -39,7 +39,7 @@ export function MembresiaBanner_Home_CTA() {
         </div>
 
         {/* Grid de beneficios - CRO: Visual scannability */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto gap-6 mb-12">
           {[
             {
               icon: '💰',
@@ -51,15 +51,10 @@ export function MembresiaBanner_Home_CTA() {
               title: 'Atención prioritaria',
               body: 'Tu consulta salta al inicio de nuestra cola de WhatsApp. Respuesta inmediata.',
             },
-            {
-              icon: '📦',
-              title: 'Reserva de stock',
-              body: 'Aseguramos tus repuestos críticos antes de que salgan al catálogo general.',
-            },
           ].map((benefit) => (
             <div
               key={benefit.title}
-              className="group rounded-2xl border border-amber-400/10 bg-white/5 p-6 space-y-3 hover:border-amber-400/30 hover:bg-white/[0.07] transition-all duration-300"
+              className="group flex flex-col items-center text-center rounded-2xl border border-amber-400/10 bg-white/5 p-6 space-y-3 hover:border-amber-400/30 hover:bg-white/[0.07] transition-all duration-300"
             >
               <div className="text-3xl mb-2 transition-transform group-hover:scale-110 duration-300" aria-hidden="true">
                 {benefit.icon}

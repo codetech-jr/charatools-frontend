@@ -64,7 +64,7 @@ const NAV_LINKS = {
   ],
 }
 
-const BRANDS = ['INGCO', '3M', 'Stanley', 'Truper', 'Dewalt', 'Schneider']
+const BRANDS = ['INGCO', '3M', 'Stanley', 'Truper', 'Bellota', 'Lumistar']
 
 export function Footer() {
   return (

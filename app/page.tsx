@@ -8,7 +8,7 @@ import { CategoryGrid } from '@/components/catalog/CategoryGrid'
 import { ProductGrid } from '@/components/catalog/ProductGrid'
 import { CasheaBanner } from '@/components/sections/CasheaBanner'
 import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
-import { CombosSection } from '@/components/sections/CombosSection'
+/*import { CombosSection } from '@/components/sections/CombosSection'*/
 import { WhatsAppAdvisorSection } from '@/components/sections/WhatsAppAdvisorSection'
 import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection'
 import { BrandTicker } from '@/components/sections/BrandTicker'
@@ -279,7 +279,7 @@ export default function Home() {
         <section id="catalogo" className="bg-zinc-50 pt-12 lg:pt-24 pb-12 lg:pb-16 border-y border-gray-200/60">
           <header className="max-w-7xl mx-auto px-4 md:px-8 mb-10 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-              🔥 Los Más Pedidos en Obra
+              🔥 Nuestros Productos Más Vendidos  
             </h2>
             <p className="mt-4 text-sm md:text-base text-gray-600 max-w-2xl mx-auto text-balance">
               Equipamiento industrial y herramientas de alta resistencia seleccionadas específicamente para garantizar durabilidad en el trabajo pesado.
@@ -296,7 +296,7 @@ export default function Home() {
         <CategoryGrid activeFilter={activeFilter} onFilterChange={handleFilterChange} />
 
         {/* ── NEW: Combos by project ── */}
-        <CombosSection />
+        {/* <CombosSection /> */}
 
         {/* ── NEW: WhatsApp photo advisor ── */}
         <WhatsAppAdvisorSection />

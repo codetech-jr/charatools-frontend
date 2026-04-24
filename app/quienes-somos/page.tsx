@@ -38,7 +38,7 @@ const TRUST_BLOCKS = [
   {
     icon: ShieldCheck,
     title: 'Garantía Multimarca',
-    body: 'INGCO, 3M, Stanley, Truper, Dewalt, Schneider. Todos originales, todos con garantía del fabricante. Sin copias, sin sorpresas.',
+    body: 'INGCO, 3M, Stanley, Lumistar, Run, Bellota. Todos originales, todos con garantía del fabricante. Sin copias, sin sorpresas.',
     accent: 'text-orange-500',
     bg: 'bg-orange-50',
     border: 'border-orange-200',
@@ -60,8 +60,13 @@ const BRANDS = [
   { name: '3M', icon: Zap, desc: 'Eléctrico, selladores, seguridad' },
   { name: 'Stanley', icon: Wrench, desc: 'Herramientas de precisión' },
   { name: 'Truper', icon: Droplets, desc: 'Plomería y construcción' },
-  { name: 'Dewalt', icon: Wrench, desc: 'Potencia profesional' },
   { name: 'Schneider', icon: Zap, desc: 'Automatización y eléctrico' },
+  { name: 'Bellota', icon: Wrench, desc: 'Herramientas de construcción' },
+  { name: 'Bticino', icon: Zap, desc: 'Material eléctrico residencial' },
+  { name: 'Tubrica', icon: Droplets, desc: 'Sistemas de tuberías' },
+  { name: 'Manpica', icon: Droplets, desc: 'Pinturas y revestimientos' },
+  { name: 'Cebra', icon: Wrench, desc: 'Brochas y complementos' },
+  { name: 'Venceramica', icon: Droplets, desc: 'Piezas sanitarias' },
 ]
 
 // ── Página ─────────────────────────────────────────────────────────────────

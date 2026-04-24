@@ -71,10 +71,9 @@ export function ContactMapSection() {
             
           </div>
 
-          {/* Right Map column */}
           <div className="lg:col-span-7 h-64 sm:h-96 lg:h-auto bg-gray-200">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.2635868855286!2d-66.8588125!3d10.2403125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2aef64d99420cf%3A0x4d50768d057e7c0c!2sCHARATOOLS%201010%2C%20C.A!5e0!3m2!1ses-419!2sve!4v1776446299832!5m2!1ses-419!2sve" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d-66.8588125!3d10.2403125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2aef64d99420cf%3A0x4d50768d057e7c0c!2sCHARATOOLS%201010%2C%20C.A!5e0!3m2!1ses-419!2sve!4v1776446299832!5m2!1ses-419!2sve" 
               width="100%" 
               height="100%" 
               style={{ border: 0, minHeight: '100%' }} 

@@ -31,7 +31,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
         </h1>
 
         <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-lg">
-          Herramientas InGco y Truper con garantía real, plomería, electricidad y más. Escríbenos por WhatsApp y retira en Charallave el mismo día.
+          Herramientas InGco con garantía real, plomería, electricidad y más. Escríbenos por WhatsApp y retira en Charallave el mismo día.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 w-full max-w-lg">

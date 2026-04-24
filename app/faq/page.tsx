@@ -34,9 +34,9 @@ const FAQ_ITEMS = [
 No hay datos bancarios que ingresar, no hay formulario que llenar, no hay contraseñas que recordar. Solo WhatsApp, que ya tienes en el teléfono.`,
   },
   {
-    id: 'faq-garantia-ingco',
-    question: '¿Los equipos INGCO tienen garantía real? ¿Qué cubre?',
-    answer: `Sí. Todos los equipos INGCO que vendemos son originales importados, con su número de serie registrado. La garantía oficial de INGCO cubre:
+    id: 'faq-garantia',
+    question: '¿Los equipos tienen garantía real? ¿Qué cubre?',
+    answer: `Sí. Todos los equipos que vendemos son originales importados, con su número de serie registrado. La garantía oficial cubre:
 
 • Defectos de fabricación por 12 meses desde la fecha de compra.
 • Soporte técnico con repuestos originales disponibles.
@@ -66,18 +66,6 @@ Escríbenos primero para confirmar disponibilidad antes de hacer el pedido. Así
 • Zelle para pedidos grandes (consultar).
 
 No manejamos tarjeta de crédito ni pasarelas de pago online por el momento. Toda transacción se confirma por WhatsApp con su respectivo comprobante.`,
-  },
-  {
-    id: 'faq-originales',
-    question: '¿Cómo sé que los productos son originales y no copias?',
-    answer: `Es la pregunta correcta — y la más importante.
-
-Cada producto que vendemos tiene:
-• Caja original del fabricante con holograma de autenticidad.
-• Número de serie verificable en el sitio del fabricante.
-• Factura fiscal que respalda la compra.
-
-Somos distribuidores autorizados, no revendedores de terceros. Si ves el mismo producto 30% más barato en otro lugar sin factura ni garantía, estás mirando una copia. Eso te saldrá mucho más caro cuando falle a mitad de obra.`,
   },
 ] as const
 

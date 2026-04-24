@@ -2,11 +2,6 @@
 
 import React, { useState } from 'react'
 
-const WHATSAPP_NUMBER = '584220148405'
-const WHATSAPP_INVENTORY_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  'Hola CharaTools! 📦 Quisiera consultar si tienen en inventario un artículo específico.'
-)}`
-
 interface GalleryImage {
   src: string
   alt: string
@@ -109,9 +104,9 @@ export function InventoryGallerySection() {
             id="inventario-heading"
             className="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-4"
           >
-            No somos un catálogo virtual.{' '}
+            No somos una tienda virtual.{' '}
             <br className="hidden md:block" />
-            <span className="text-yellow-500">Este es nuestro stock real.</span>
+            <span className="text-yellow-500">Esta es nuestra tienda real.</span>
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto text-base leading-relaxed">
             Fotos de nuestro local en Charallave. Lo que ves aquí lo tienes disponible
@@ -147,23 +142,6 @@ export function InventoryGallerySection() {
               </span>
             ))}
           </div>
-
-          <p className="text-sm text-gray-500 mb-5">
-            ¿Buscas algo que no ves en la galería?{' '}
-            <strong className="text-gray-700">Pregúntanos.</strong>
-          </p>
-
-          <a
-            href={WHATSAPP_INVENTORY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Consultar inventario completo por WhatsApp"
-            className="inline-flex items-center gap-2 border-2 border-gray-900
-                       hover:bg-gray-900 hover:text-white text-gray-900 font-bold
-                       px-7 py-3.5 rounded-xl text-sm transition-all duration-200"
-          >
-            Consultar inventario completo →
-          </a>
         </div>
 
       </div>
