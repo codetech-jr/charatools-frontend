@@ -2,19 +2,20 @@
 
 import React, { useState } from 'react'
 import { Navbar } from '@/components/global/Navbar'
+import { CasheaAlertBar } from '@/components/global/CasheaAlertBar'
 import { TrustBar } from '@/components/global/TrustBar'
-import { HeroSection } from '@/components/hero/HeroSection'
+import { HeroSlider } from '@/components/hero/HeroSlider'
 import { CategoryGrid } from '@/components/catalog/CategoryGrid'
 import { ProductGrid } from '@/components/catalog/ProductGrid'
 import { CasheaBanner } from '@/components/sections/CasheaBanner'
 import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
 /*import { CombosSection } from '@/components/sections/CombosSection'*/
-import { WhatsAppAdvisorSection } from '@/components/sections/WhatsAppAdvisorSection'
-import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection'
+/*import { WhatsAppAdvisorSection } from '@/components/sections/WhatsAppAdvisorSection'*/
+ /*import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection' */
 import { BrandTicker } from '@/components/sections/BrandTicker'
 import { ContactMapSection } from '@/components/sections/ContactMapSection'
-import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA'
-import { SeoBomb } from '@/components/seo/SeoBomb'
+/* import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA' 
+import { SeoBomb } from '@/components/seo/SeoBomb' */
 import { CatalogProduct } from '@/lib/catalog.types'
 
 // Sample products
@@ -30,6 +31,8 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     unit: 'und',
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
     status: 'high-demand',
+    isCasheaEligible: true,
+    price: 35.00,
   },
   {
     id: '2',
@@ -42,6 +45,8 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     unit: 'und',
     image: 'https://images.unsplash.com/photo-1585526881453-899142f58fd0?w=400&q=80',
     status: 'high-demand',
+    isCasheaEligible: true,
+    price: 25.00,
   },
   {
     id: '3',
@@ -114,6 +119,8 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     unit: 'und',
     image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
     status: 'new-batch',
+    isCasheaEligible: true,
+    price: 12.00,
   },
 ]
 
@@ -265,21 +272,23 @@ export default function Home() {
       />
 
       <div className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <HeroSection
-          onOpenCatalog={handleOpenCatalog} />
+        {/* Alert Bar */}
+        <CasheaAlertBar />
 
-        {/* ── NEW: Cashea banner ── */}
-        <CasheaBanner />
+        {/* Hero Section */}
+        <HeroSlider onOpenCatalog={handleOpenCatalog} />
 
         {/* Trust Bar */}
         <TrustBar />
+
+        {/* Category Grid (Tubrica Style) */}
+        <CategoryGrid activeFilter={activeFilter} onFilterChange={handleFilterChange} />
 
         {/* Product Grid Section */}
         <section id="catalogo" className="bg-zinc-50 pt-12 lg:pt-24 pb-12 lg:pb-16 border-y border-gray-200/60">
           <header className="max-w-7xl mx-auto px-4 md:px-8 mb-10 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-              🔥 Nuestros Productos Más Vendidos  
+              🔥 Nuestros Productos Más Vendidos
             </h2>
             <p className="mt-4 text-sm md:text-base text-gray-600 max-w-2xl mx-auto text-balance">
               Equipamiento industrial y herramientas de alta resistencia seleccionadas específicamente para garantizar durabilidad en el trabajo pesado.
@@ -289,26 +298,26 @@ export default function Home() {
           <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={activeFilter} />
         </section>
 
-        {/* ── VIP Membership Section — Masterclass Gold/Purple UI ── */}
-        <MembresiaBanner_Home_CTA />
-
-        {/* Category Grid (Filters) */}
-        <CategoryGrid activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+        {/* ── VIP Membership Section ── */}
+       {/* <MembresiaBanner_Home_CTA /> */}
 
         {/* ── NEW: Combos by project ── */}
         {/* <CombosSection /> */}
 
         {/* ── NEW: WhatsApp photo advisor ── */}
-        <WhatsAppAdvisorSection />
+        {/*<WhatsAppAdvisorSection />*/}
 
         {/* ── NEW: Inventory gallery ── */}
-        <InventoryGallerySection />
+        {/*<InventoryGallerySection />*/}
 
         {/* ── NEW: SEO Bomb ── */}
-        <SeoBomb />
+        {/* <SeoBomb /> */}
 
         {/* ── NEW: Contact and Map ── */}
         <ContactMapSection />
+
+        {/* ── NEW: Pre-Footer Financiero ── */}
+        <CasheaBanner />
 
       </div></>
   )

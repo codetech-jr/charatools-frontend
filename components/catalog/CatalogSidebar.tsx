@@ -150,7 +150,7 @@ export function FiltersContent({
           <div className="flex items-center gap-3">
             <div className="p-1.5 bg-yellow-50 rounded-lg border border-yellow-100 shadow-sm">
               <Image 
-                src="/cashea.svg" 
+                src="/Cashea-Icono-Color.svg" 
                 alt="Cashea" 
                 width={22} 
                 height={22} 

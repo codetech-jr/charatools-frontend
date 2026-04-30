@@ -27,7 +27,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
           id="hero-heading"
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight text-balance"
         >
-          La ferretería de Charallave que tiene lo que necesitas — sin esperar.
+          Todo para tu obra en Charallave. Stock real, atención experta y sin esperas.
         </h1>
 
         <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-lg">
@@ -63,7 +63,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
         <div className="w-full aspect-square md:aspect-video lg:aspect-[4/3] rounded-lg overflow-hidden border border-gray-200">
           <img
             src="/hero-tools.jpg"
-            alt="Herramientas INGCO profesionales"
+            alt="Fachada de la Ferretería CharaTools en el centro de Charallave con amplio stock de herramientas Truper e Ingco"
             loading="eager"
             fetchPriority="high"
             className="w-full h-full object-cover"

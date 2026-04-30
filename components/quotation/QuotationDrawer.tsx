@@ -287,7 +287,7 @@ export function QuotationDrawer() {
                 del costo total aunque el precio sea el mismo.
             ── */}
             <div className="flex items-center justify-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5">
-              <Image src="/cashea.svg" alt="Cashea" width={24} height={24} className="rounded-lg shadow-sm" />
+              <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={24} height={24} className="rounded-lg shadow-sm" />
               <p className="text-xs text-gray-600 leading-snug text-center">
                 Cotiza hoy y consulta tus{' '}
                 <strong className="text-orange-500 font-bold">cuotas sin interés con Cashea</strong>

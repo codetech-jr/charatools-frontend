@@ -33,10 +33,10 @@ export function ContactMapSection() {
                 <span className="text-2xl" aria-hidden="true">📍</span>
                 <div>
                   <p className="font-bold text-gray-900">Ubicación física</p>
-                  <p className="text-gray-600 text-sm mt-1 leading-relaxed">
+                  <address className="text-gray-600 text-sm mt-1 leading-relaxed not-italic">
                     Charallave - Centro, Estado Miranda, Calle 9, AV José Gregorio Hernández. Ven a nuestro local para ver y probar las 
                     mejores herramientas y materiales para tu proyecto.
-                  </p>
+                  </address>
                 </div>
               </div>
 

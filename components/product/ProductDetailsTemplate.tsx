@@ -187,7 +187,7 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
             {/* ── Badge Cashea ──────────────────────────────────────────── */}
             {!isOutOfStock && product.isCasheaEligible && (
               <div className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3">
-                <Image src="/cashea.svg" alt="Cashea" width={28} height={28} className="rounded-lg shadow-sm" />
+                <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={28} height={28} className="rounded-lg shadow-sm" />
                 <p className="text-xs text-gray-600 leading-snug">
                   Llévatelo hoy con{' '}
                   <strong className="text-orange-500 font-bold">Cashea</strong>{' '}

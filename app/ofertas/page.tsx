@@ -53,7 +53,7 @@ export default function OfertasPage() {
           {/* Cashea Integration Badge on Hero */}
           <div className="inline-flex flex-col sm:flex-row sm:items-center bg-white/10 backdrop-blur-sm border border-red-400/30 rounded-xl p-4 gap-4">
             <div className="flex items-center bg-white text-black px-2 py-1 rounded-lg w-fit">
-              <Image src="/cashea.svg" alt="Cashea" width={22} height={22} className="mr-1" />
+              <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={22} height={22} className="mr-1" />
               <span className="text-sm font-bold uppercase">cashea</span>
             </div>
             <p className="text-sm sm:text-base font-medium">

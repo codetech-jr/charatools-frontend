@@ -41,6 +41,8 @@ export interface CatalogProduct {
   isOutlet?: boolean
   /** Elegible para compra financiada con Cashea */
   isCasheaEligible?: boolean
+  /** Precio sugerido para cálculos de Cashea (opcional en catálogo B2B) */
+  price?: number
 }
 
 // ---------------------------------------------------------------------------
@@ -118,6 +120,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     tags: ['taladro', 'percutor', 'concreto', 'mampostería'],
     relatedIds: ['esmeril-ingco-820w', 'cable-electrico-2-100m'],
     isCasheaEligible: true,
+    price: 45.00,
   },
   {
     id: 'esmeril-ingco-820w',
@@ -137,6 +140,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     tags: ['esmeril', 'amoladora', 'corte', 'desbaste'],
     isOutlet: true,
     isCasheaEligible: true,
+    price: 55.00,
   },
   {
     id: 'bomba-periferica-1-2hp',
@@ -154,6 +158,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     status: 'high-demand',
     tags: ['bomba', 'agua', 'riego', 'presión'],
     isCasheaEligible: true,
+    price: 35.00,
   },
   {
     id: 'tuberia-ppr-12',
@@ -197,6 +202,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     status: 'new-batch',
     tags: ['breaker', 'disyuntor', 'tablero', 'protección'],
     isCasheaEligible: true,
+    price: 12.00,
   },
   {
     id: 'bombillo-led-9w',
@@ -273,6 +279,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     status: 'high-demand',
     tags: ['press control', 'presión', 'bomba', 'automático'],
     isCasheaEligible: true,
+    price: 25.00,
   },
   {
     id: 'casco-seguridad-3m',

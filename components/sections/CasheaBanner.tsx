@@ -46,7 +46,7 @@ const STEPS = [
 export function CasheaBanner() {
   return (
     <section
-      aria-label="Financiamiento Cashea — Llévate tu herramienta hoy y paga después"
+      aria-label="Compra con Cashea en cuotas sin interés — CharaTools Aliado Principal"
       className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-y border-gray-700 overflow-hidden"
     >
       {/* Línea de acento naranja arriba */}
@@ -61,15 +61,13 @@ export function CasheaBanner() {
             <p className="text-xs font-black text-yellow-400 uppercase tracking-[0.15em]">
               Tienda Oficial Cashea ✓
             </p>
-            {/* Headline — Present Bias + Loss Aversion */}
+            {/* Headline — Consumo Responsable */}
             <h2 className="text-lg md:text-xl font-black text-white leading-tight">
-              Llévate tu herramienta{' '}
-              <span className="text-yellow-400">hoy</span>.{' '}
-              Paga{' '}
-              <span className="text-orange-400">después</span>.
+              Compras pensadas, <br className="hidden md:block" />
+              <span className="text-[#FDFA3D]">cuotas responsables</span>.
             </h2>
-            <p className="text-xs text-gray-400 max-w-xs mx-auto md:mx-0">
-              Divide tu compra en cuotas sin interés directo en la tienda.
+            <p className="text-xs text-gray-400 max-w-xs mx-auto md:mx-0 mt-1">
+              Cashéalo sin afectar tu presupuesto. Divide tu pago en la tienda.
             </p>
           </div>
 
@@ -87,17 +85,17 @@ export function CasheaBanner() {
                     <div
                       className={`w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden ${
                         isLast
-                          ? 'bg-yellow-400 text-black'
+                          ? 'bg-[#FDFA3D] text-black'
                           : 'bg-gray-700 border border-gray-600 text-gray-300'
                       }`}
                     >
                       {step.icon === 'cashea' ? (
-                        <Image src="/cashea.svg" alt="Cashea" width={32} height={32} className="rounded-md" />
+                        <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={32} height={32} className="rounded-md" />
                       ) : (
                         <step.icon className="w-5 h-5" aria-hidden="true" />
                       )}
                     </div>
-                    <span className={`text-[10px] font-bold text-center leading-tight ${isLast ? 'text-yellow-400' : 'text-gray-300'}`}>
+                    <span className={`text-[10px] font-bold text-center leading-tight ${isLast ? 'text-[#FDFA3D]' : 'text-gray-300'}`}>
                       {step.label}
                     </span>
                     <span className="text-[9px] text-gray-500 text-center leading-tight">{step.sub}</span>

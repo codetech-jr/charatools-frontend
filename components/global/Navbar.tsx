@@ -11,7 +11,7 @@
  */
 
 import React, { useState } from 'react'
-import { ClipboardList, Search, Menu, X, Zap, Tag } from 'lucide-react'
+import { ClipboardList, Search, Menu, X, Zap, Tag, Crown, Info, Sparkles } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -43,7 +43,7 @@ export function Navbar() {
   return (
     <header
       role="banner"
-      className="sticky top-0 z-50 h-16 md:h-20 bg-gray-900 border-b border-gray-800 flex items-center px-4 md:px-8 lg:px-16"
+      className="sticky top-0 z-50 h-20 md:h-24 bg-gray-900 border-b border-gray-800 flex items-center px-4 md:px-8 lg:px-16"
     >
       <div className="flex items-center justify-between w-full gap-4">
         {/* ── Logo ── */}
@@ -51,10 +51,10 @@ export function Navbar() {
           <Image
             src="/Logo_chara_tools-blanco-PNG.png"
             alt="CharaTools Logo"
-            width={300}
-            height={100}
+            width={600}
+            height={200}
             priority
-            className="w-auto h-20 md:h-28 group-hover:scale-105 transition-transform"
+            className="w-auto h-28 md:h-40 group-hover:scale-105 transition-transform"
           />
         </Link>
 
@@ -62,12 +62,20 @@ export function Navbar() {
         <DesktopMegaMenu />
 
         {/* ── Quick Links (Desktop) ── */}
-        <div className="hidden xl:flex items-center gap-6 font-bold text-sm whitespace-nowrap">
-         {/*  <Link href="/ofertas" className="text-red-400 hover:text-red-300 flex items-center gap-1.5 transition-colors">
-            <Zap className="w-4 h-4" /> Zona Outlet
-          </Link> */}
-          <Link href="/promociones" className="text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors">
-            <Tag className="w-4 h-4" /> Promociones
+        <div className="hidden lg:flex items-center gap-3">
+          <Link 
+            href="/membresia" 
+            className="text-gray-300 hover:text-white border border-gray-700 hover:border-gray-500 px-4 py-2 rounded-xl transition-all flex items-center gap-2"
+          >
+            <Crown className="w-4 h-4 text-yellow-500" /> 
+            Membresía
+          </Link>
+          <Link 
+            href="/cashea" 
+            className="bg-[#FDFA3D] hover:bg-[#F0ED26] text-[#000000] px-4 py-2 rounded-xl transition-all flex items-center gap-2 font-black shadow-lg shadow-[#FDFA3D]/20"
+          >
+            <Image src="/Cashea-Icono-Negro.svg" alt="Cashea" width={20} height={20} className="" />
+            Cashea
           </Link>
         </div>
 
@@ -113,6 +121,17 @@ export function Navbar() {
             )}
           </button>
           
+          {/* Logo Cashea junto al botón */}
+          <div className="hidden sm:flex items-center">
+             <Image 
+               src="/Cashea-Icono-Color.svg" 
+               alt="Socio Cashea" 
+               width={40} 
+               height={40} 
+               className="h-10 w-auto md:h-12 hover:scale-105 transition-transform"
+             />
+          </div>
+
           {/* Menú Hamburgesa (Mobile) */}
           <button 
             className="md:hidden p-2 text-gray-400"
@@ -125,7 +144,7 @@ export function Navbar() {
 
       {/* ── Menú Mobile / Búsqueda Mobile ── */}
       {isMenuOpen && (
-        <div className="absolute top-16 md:top-20 left-0 w-full bg-gray-900 border-b border-gray-800 p-4 md:hidden animate-in slide-in-from-top duration-200 z-50 max-h-[calc(100vh-64px)] overflow-y-auto">
+        <div className="absolute top-20 md:top-24 left-0 w-full bg-gray-900 border-b border-gray-800 p-4 md:hidden animate-in slide-in-from-top duration-200 z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
           <div className="relative mb-2">
             <PredictiveSearchBar />
           </div>
@@ -135,21 +154,32 @@ export function Navbar() {
           </div>
 
           {/* Quick Links Mobile */}
-          <div className="flex gap-3 mb-5">
-            <Link 
-              href="/ofertas" 
-              onClick={() => setIsMenuOpen(false)} 
-              className="flex-1 flex items-center justify-center gap-2 bg-red-950/30 text-red-400 border border-red-900/50 rounded-xl p-3 text-sm font-bold"
-            >
-              <Zap className="w-4 h-4" /> Outlet
-            </Link>
-            <Link 
-              href="/promociones/ingco" 
-              onClick={() => setIsMenuOpen(false)} 
-              className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-gray-300 rounded-xl p-3 text-sm font-bold border border-gray-700"
-            >
-              <Tag className="w-4 h-4" /> Promos
-            </Link>
+          <div className="flex flex-col gap-3 mb-5">
+            <div className="flex gap-3">
+              <Link 
+                href="/promociones" 
+                onClick={() => setIsMenuOpen(false)} 
+                className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-xl p-3 text-sm font-bold"
+              >
+                <Tag className="w-4 h-4 text-orange-500" /> Promociones
+              </Link>
+            </div>
+            <div className="flex gap-3">
+              <Link 
+                href="/membresia" 
+                onClick={() => setIsMenuOpen(false)} 
+                className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-xl p-3 text-sm font-bold"
+              >
+                <Crown className="w-4 h-4 text-yellow-500" /> Membresía
+              </Link>
+              <Link 
+                href="/cashea" 
+                onClick={() => setIsMenuOpen(false)} 
+                className="flex-1 flex items-center justify-center gap-2 bg-[#FDFA3D] text-[#000000] rounded-xl p-3 text-sm font-black border border-[#F0ED26]"
+              >
+                <Image src="/Cashea-Icono-Negro.svg" alt="Cashea" width={20} height={20} className="" /> Cashea
+              </Link>
+            </div>
           </div>
           
           <MobileMegaMenu closeMenu={() => setIsMenuOpen(false)} />

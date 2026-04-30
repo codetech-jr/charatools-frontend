@@ -136,7 +136,7 @@ export function ProductRow({ product }: ProductRowProps) {
               <span className="text-gray-200 text-xs" aria-hidden="true">|</span>
               <span className="flex items-center gap-1 text-[11px] font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100 shadow-sm" title="Facilidad Cashea">
                 <Image 
-                  src="/cashea.svg" 
+                  src="/Cashea-Icono-Color.svg" 
                   alt="Cashea" 
                   width={14} 
                   height={14} 
