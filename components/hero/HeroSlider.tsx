@@ -20,7 +20,7 @@ const SLIDES: SlideData[] = [
   {
     id: 1,
     title: "Tu herramienta ideal está en Charallave.",
-    subtitle: "Ferretería Multimarca con el stock más robusto del Tuy. Si no lo tenemos, no existe.",
+    subtitle: "Somos la ferretería de confianza con el stock más robusto de los Valles del Tuy.",
     ctaText: "Ver Catálogo 100% Real",
     bgImage: "/hero-tools.jpg",
     overlayColor: "bg-black/40",

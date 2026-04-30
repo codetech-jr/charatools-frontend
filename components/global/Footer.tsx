@@ -88,7 +88,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">
-              Ferretería Multimarca en Charallave.
+              Ferretería de Confianza en Charallave.
               Herramientas, repuestos y soluciones para tus proyectos, con respuesta real, sin demoras.
             </p>
 

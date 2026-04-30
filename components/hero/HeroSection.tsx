@@ -19,7 +19,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
         <div className="inline-flex items-center gap-2 w-fit px-3 py-1.5 rounded-full bg-yellow-100 border border-yellow-400">
           <span className="w-2 h-2 rounded-full bg-green-500" />
           <span className="text-xs md:text-sm font-semibold text-yellow-800">
-            Tu Ferretería Multimarca
+            Tu Ferretería de Confianza
           </span>
         </div>
 
@@ -27,7 +27,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
           id="hero-heading"
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight text-balance"
         >
-          Todo para tu obra en Charallave. Stock real, atención experta y sin esperas.
+          Somos la Ferretería más completa de Charallave. Inventario especializado, atención experta y sin esperas.
         </h1>
 
         <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-lg">
