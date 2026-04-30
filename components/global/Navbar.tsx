@@ -156,13 +156,6 @@ export function Navbar() {
           {/* Quick Links Mobile */}
           <div className="flex flex-col gap-3 mb-5">
             <div className="flex gap-3">
-              <Link 
-                href="/promociones" 
-                onClick={() => setIsMenuOpen(false)} 
-                className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-xl p-3 text-sm font-bold"
-              >
-                <Tag className="w-4 h-4 text-orange-500" /> Promociones
-              </Link>
             </div>
             <div className="flex gap-3">
               <Link 
