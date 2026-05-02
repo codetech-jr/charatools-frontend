@@ -42,7 +42,7 @@ export function useWhatsAppCheckout() {
 
       const contactBlock = `\n\n───────────────────\n👤 *Cliente:* ${contactInfo.nombre || 'Interesado'}\n🪪 *Cédula/RIF:* ${contactInfo.cedula}\n📍 *Sector:* ${contactInfo.sector || 'No provisto'}`
 
-      const footer = `\n\nQuedo atento a la confirmación de precios y métodos de pago (Cashea/Transferencia). ¡Gracias! 🤝`
+      const footer = `\n\nQuedo atento a la confirmación de precios y métodos de pago (Transferencia/Efectivo/Pago Móvil). ¡Gracias! 🤝`
 
       const fullMessage = `${header}${itemsList}${contactBlock}${footer}`
       

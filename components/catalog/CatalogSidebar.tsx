@@ -144,36 +144,6 @@ export function FiltersContent({
         </div>
       )}
 
-      {/* ── Filtro Especial: Cashea ── */}
-      <div className="py-5 border-b border-gray-100">
-        <label className="flex items-center justify-between cursor-pointer group px-2">
-          <div className="flex items-center gap-3">
-            <div className="p-1.5 bg-yellow-50 rounded-lg border border-yellow-100 shadow-sm">
-              <Image 
-                src="/Cashea-Icono-Color.svg" 
-                alt="Cashea" 
-                width={22} 
-                height={22} 
-                className="rounded-sm" 
-              />
-            </div>
-            <span className="text-sm font-bold text-gray-900 group-hover:text-black transition-colors">Solo Financiables Cashea</span>
-          </div>
-          {/* Custom Toggle Switch */}
-          <div className="relative flex items-center">
-            <input 
-              type="checkbox" 
-              className="sr-only" 
-              checked={filters.cashea === 'true'} 
-              onChange={(e) => onUpdateParams({ cashea: e.target.checked ? 'true' : null })}
-              aria-label="Filtrar solo productos financiables con Cashea"
-            />
-            <div className={`block w-10 h-6 rounded-full transition-colors duration-300 ${filters.cashea === 'true' ? 'bg-orange-500' : 'bg-gray-300'}`}></div>
-            <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${filters.cashea === 'true' ? 'translate-x-4' : 'translate-x-0 shadow-sm'}`}></div>
-          </div>
-        </label>
-      </div>
-
       {/* ── Filtro: Categorías ── */}
       <FilterAccordion title="Categoría">
         <div className="space-y-1 px-1">

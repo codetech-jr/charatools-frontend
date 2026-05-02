@@ -65,7 +65,7 @@ export default function PrivacidadPage() {
                 <strong>No vendemos, alquilamos, ni compartimos tu información</strong> con agencias de marketing ni terceros. El historial de compras de tu empresa se mantiene en estricta confidencialidad dentro de nuestros sistemas internos.
               </p>
               <p>
-                Los datos procesados por Cashea o plataformas de pago de terceros se rigen estrictamente por sus propias políticas de privacidad.
+                Los datos procesados por plataformas de pago de terceros se rigen estrictamente por sus propias políticas de privacidad.
               </p>
             </div>
           </div>

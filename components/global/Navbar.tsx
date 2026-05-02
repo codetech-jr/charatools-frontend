@@ -61,7 +61,6 @@ export function Navbar() {
         {/* ── Mega-Menú B2B (Desktop) ── */}
         <DesktopMegaMenu />
 
-        {/* ── Quick Links (Desktop) ── */}
         <div className="hidden lg:flex items-center gap-3">
           <Link 
             href="/membresia" 
@@ -69,13 +68,6 @@ export function Navbar() {
           >
             <Crown className="w-4 h-4 text-yellow-500" /> 
             Membresía
-          </Link>
-          <Link 
-            href="/cashea" 
-            className="bg-[#FDFA3D] hover:bg-[#F0ED26] text-[#000000] px-4 py-2 rounded-xl transition-all flex items-center gap-2 font-black shadow-lg shadow-[#FDFA3D]/20"
-          >
-            <Image src="/Cashea-Icono-Negro.svg" alt="Cashea" width={20} height={20} className="" />
-            Cashea
           </Link>
         </div>
 
@@ -114,23 +106,14 @@ export function Navbar() {
               <span
                 aria-live="polite"
                 aria-atomic="true"
-                className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-orange-500 text-white text-[10px] font-black rounded-full flex items-center justify-center animate-bounce border-2 border-gray-900"
+                className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-black text-white text-[10px] font-black rounded-full flex items-center justify-center animate-bounce border-2 border-gray-900"
               >
                 {itemCount}
               </span>
             )}
           </button>
           
-          {/* Logo Cashea junto al botón */}
-          <div className="hidden sm:flex items-center">
-             <Image 
-               src="/Cashea-Icono-Color.svg" 
-               alt="Socio Cashea" 
-               width={40} 
-               height={40} 
-               className="h-10 w-auto md:h-12 hover:scale-105 transition-transform"
-             />
-          </div>
+
 
           {/* Menú Hamburgesa (Mobile) */}
           <button 
@@ -164,13 +147,6 @@ export function Navbar() {
                 className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-xl p-3 text-sm font-bold"
               >
                 <Crown className="w-4 h-4 text-yellow-500" /> Membresía
-              </Link>
-              <Link 
-                href="/cashea" 
-                onClick={() => setIsMenuOpen(false)} 
-                className="flex-1 flex items-center justify-center gap-2 bg-[#FDFA3D] text-[#000000] rounded-xl p-3 text-sm font-black border border-[#F0ED26]"
-              >
-                <Image src="/Cashea-Icono-Negro.svg" alt="Cashea" width={20} height={20} className="" /> Cashea
               </Link>
             </div>
           </div>

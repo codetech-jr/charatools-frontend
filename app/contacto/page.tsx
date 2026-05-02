@@ -128,7 +128,7 @@ export default function ContactoPage() {
                 href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 w-full h-16 bg-orange-500 text-white font-black text-base rounded-2xl hover:bg-orange-600 active:scale-[0.98] transition-all shadow-xl shadow-orange-200"
+                className="inline-flex items-center justify-center gap-3 w-full h-16 bg-black text-white font-black text-base rounded-2xl hover:bg-gray-900 active:scale-[0.98] transition-all shadow-xl shadow-gray-200"
                 aria-label="Abrir WhatsApp para contactar a CharaTools"
               >
                 {/* Icono WhatsApp SVG inline para no depender de librería */}

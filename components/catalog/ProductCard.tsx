@@ -100,13 +100,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {badge.label}
           </span>
 
-          {/* Tag de Cashea Visualmente Atractivo (Brand Compliance) */}
-          {!isDisabled && product.isCasheaEligible && (
-            <div className="absolute top-3 right-3 bg-[#FDFA3D] border border-[#F0ED26] shadow-md rounded-full px-2 py-1 flex items-center justify-center gap-1 z-20" title="Cashea Online">
-              <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={14} height={14} className="brightness-0" />
-              <span className="text-[10px] font-black text-black tracking-wide uppercase">Online</span>
-            </div>
-          )}
+
         </div>
 
         {/* Imagen del Producto */}
@@ -147,26 +141,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.shortDescription}
         </p>
 
-        {/* Bloque Cashea "Box Promo" (Brand Compliance) */}
-        {!isDisabled && product.isCasheaEligible && product.price && (
-          <div className="p-3 bg-gray-50 border border-gray-100 rounded-xl space-y-1">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={14} height={14} className="rounded-sm" />
-              <span className="text-[10px] font-black text-gray-900 uppercase tracking-tighter">¡Cashéalo! Online</span>
-            </div>
-            <div className="flex justify-between items-baseline">
-              <span className="text-[9px] font-bold text-gray-500">Desde el 40% de inicial*</span>
-              <span className="text-sm font-black text-gray-900">${(product.price * 0.4).toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between items-baseline border-t border-gray-200 pt-1">
-              <span className="text-[9px] font-bold text-gray-500">+ 3 cuotas sin interés de</span>
-              <span className="text-xs font-black text-gray-700">${((product.price * 0.6) / 3).toFixed(2)}</span>
-            </div>
-            <p className="text-[8px] text-gray-400 leading-tight pt-1">
-              * El % de inicial y valor de las cuotas varían según tu nivel en Cashea. Disponibilidad sujeta a tienda.
-            </p>
-          </div>
-        )}
+
 
         {/* Contenedor del Botón - Anclado al fondo por el grid */}
         <div className="pt-2 border-t border-gray-50">

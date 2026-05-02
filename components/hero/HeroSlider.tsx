@@ -22,34 +22,26 @@ const SLIDES: SlideData[] = [
     title: "Tu herramienta ideal está en Charallave.",
     subtitle: "Somos la ferretería de confianza con el stock más robusto de los Valles del Tuy.",
     ctaText: "Ver Catálogo 100% Real",
-    bgImage: "/hero-tools.jpg",
+    bgImage: "/negocio.png",
     overlayColor: "bg-black/40",
   },
   {
     id: 2,
-    title: "Compra como un profesional, paga como socio.",
-    subtitle: "Únete a nuestra Membresía VIP y accede a precios de obra y atención prioritaria.",
+    title: "Compra como un profesional, disfruta descuentos globales.",
+    subtitle: "Únete a nuestra Membresía y maximiza tu presupuesto con ahorros en el total de tu cuenta.",
     ctaText: "Quiero mi Membresía",
     ctaLink: "/membresia",
-    bgImage: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop",
+    bgImage: "/negocio.png",
     overlayColor: "bg-blue-900/40",
   },
-  {
-    id: 3,
-    title: "Lleva lo que necesitas hoy. Paga después.",
-    subtitle: "Compra en cuotas sin interés con Cashea. El aliado de tu bolsillo en cada proyecto.",
-    ctaText: "Comprar con Cashea",
-    whatsappMsg: "Hola! Me interesa comprar herramientas con Cashea",
-    bgImage: "https://images.unsplash.com/photo-1530124560676-4ceb274f1dfa?q=80&w=2070&auto=format&fit=crop",
-    overlayColor: "bg-yellow-900/40",
-  },
+
   {
     id: 4,
     title: "El inventario más grande de los Valles del Tuy.",
     subtitle: "Ubicados en el corazón de Charallave. Despacho inmediato para contratistas y hogar.",
     ctaText: "Cómo llegar / Ubicación",
     ctaLink: "/contacto",
-    bgImage: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?q=80&w=2070&auto=format&fit=crop",
+    bgImage: "/negocio.png",
     overlayColor: "bg-neutral-900/40",
   },
 ]
@@ -77,7 +69,7 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
     
     const intervalId = setInterval(() => {
       emblaApi.scrollNext()
-    }, 6000)
+    }, 12000)
 
     return () => {
       emblaApi.off('select', onSelect)

@@ -188,7 +188,7 @@ export function Footer() {
                 href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 h-11 px-5 bg-orange-500 text-white font-bold text-sm rounded-xl hover:bg-orange-600 active:scale-95 transition-all"
+                className="inline-flex items-center gap-2 h-11 px-5 bg-black text-white font-bold text-sm rounded-xl hover:bg-gray-900 active:scale-95 transition-all"
                 aria-label="Abrir WhatsApp para cotizar"
               >
                 WhatsApp directo

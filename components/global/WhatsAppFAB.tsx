@@ -23,81 +23,15 @@ const WA_URL =
 export function WhatsAppFAB() {
   const isDrawerOpen = useQuotationStore((s) => s.isDrawerOpen)
   const [mounted, setMounted] = useState(false)
-  const [showTooltip, setShowTooltip] = useState(false)
-  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    // Aparece a los 4.5 segundos de navegación como asesor proactivo (CRO UX)
-    const timer = setTimeout(() => {
-      if (!dismissed) setShowTooltip(true)
-    }, 4500)
-    return () => clearTimeout(timer)
-  }, [dismissed])
+  }, [])
 
   if (!mounted || isDrawerOpen) return null
 
   return (
     <div className="fixed bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end gap-3 pointer-events-none">
-      
-      {/* ── Esfera Pop-Up Flotante (Burbuja Chat Vendedor B2B) ── */}
-      <div 
-        className={`
-          pointer-events-auto
-          transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-bottom-right
-          ${showTooltip ? 'scale-100 opacity-100 translate-y-0' : 'scale-50 opacity-0 translate-y-8 pointer-events-none'}
-          bg-zinc-900 text-white rounded-2xl rounded-br-sm shadow-2xl shadow-zinc-900/30 
-          border border-zinc-800
-          w-[calc(100vw-32px)] sm:w-auto sm:max-w-[320px] 
-          p-3 sm:p-4
-          flex items-start gap-3
-        `}
-      >
-        {/* Avatar del Vendedor/Asesor */}
-        <div className="relative w-10 h-10 rounded-full bg-zinc-800 flex-shrink-0 flex items-center justify-center overflow-hidden border border-zinc-700">
-          <img 
-            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150" 
-            alt="Asesor Online" 
-            className="w-full h-full object-cover" 
-          />
-          {/* Status Dot */}
-          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-zinc-900" />
-        </div>
-        
-        {/* Copy B2B Rompe-hielo / Enlace directo a WA */}
-        <a 
-          href={WA_URL} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex-1 text-left cursor-pointer group"
-          onClick={() => {
-            setShowTooltip(false)
-            trackWhatsAppLead('fab', [])
-          }}
-          aria-label="Hablar con asesor por WhatsApp"
-        >
-          <p className="text-[13px] sm:text-sm font-medium text-zinc-100 leading-snug">
-            <span className="font-bold text-yellow-400">👋 ¡Hey!</span> ¿Necesitas checar disponibilidad inmediata para algún producto? 
-            <span className="block mt-1.5 text-zinc-400 text-xs group-hover:text-white transition-colors">
-              Estoy 100% On-line en tienda. Dale Clic →
-            </span>
-          </p>
-        </a>
-
-        {/* Botón de cierre modal */}
-        <button 
-          onClick={(e) => { 
-            e.preventDefault()
-            setShowTooltip(false)
-            setDismissed(true)
-          }}
-          className="bg-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-700 w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
-          aria-label="Cerrar mensaje"
-        >
-          <X className="w-3.5 h-3.5" />
-        </button>
-      </div>
-
       {/* ── Botón FAB Principal de WhatsApp ── */}
       <a
         href={WA_URL}
@@ -105,7 +39,6 @@ export function WhatsAppFAB() {
         rel="noopener noreferrer"
         aria-label="Contactar a CharaTools por WhatsApp"
         onClick={() => {
-          setShowTooltip(false)
           trackWhatsAppLead('fab', [])
         }}
         className={`

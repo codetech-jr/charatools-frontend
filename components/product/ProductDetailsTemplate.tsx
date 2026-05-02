@@ -184,17 +184,7 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
             {/* ── Botón de Cotización (Client Island) ───────────────────── */}
             <AddToQuoteButton product={product} />
 
-            {/* ── Badge Cashea ──────────────────────────────────────────── */}
-            {!isOutOfStock && product.isCasheaEligible && (
-              <div className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3">
-                <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={28} height={28} className="rounded-lg shadow-sm" />
-                <p className="text-xs text-gray-600 leading-snug">
-                  Llévatelo hoy con{' '}
-                  <strong className="text-orange-500 font-bold">Cashea</strong>{' '}
-                  — cuotas sin interés. Tienda oficial.
-                </p>
-              </div>
-            )}
+
 
             {/* Referencia/SKU visible */}
             {product.reference && (

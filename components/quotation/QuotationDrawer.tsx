@@ -258,7 +258,7 @@ export function QuotationDrawer() {
             {/* CTA Principal — WhatsApp */}
             <Button
               onClick={handleSendWhatsApp}
-              className="w-full h-14 bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-200 text-base"
+              className="w-full h-14 bg-black hover:bg-gray-900 active:scale-[0.98] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-gray-200 text-base"
             >
               <MessageCircle className="w-5 h-5" />
               Cotizar por WhatsApp
@@ -280,20 +280,7 @@ export function QuotationDrawer() {
               Los precios se confirman en chat. Respuesta en minutos.
             </p>
 
-            {/* ── Badge Cashea — Cierre de venta ────────────────────────────
-                CRO (page-cro.md § Objection Handling): la objeción financiera
-                se mata en el último punto antes de que el usuario abandone.
-                Pricing Strategy: Mental Accounting — "cuotas" reduce percepción
-                del costo total aunque el precio sea el mismo.
-            ── */}
-            <div className="flex items-center justify-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5">
-              <Image src="/Cashea-Icono-Color.svg" alt="Cashea" width={24} height={24} className="rounded-lg shadow-sm" />
-              <p className="text-xs text-gray-600 leading-snug text-center">
-                Cotiza hoy y consulta tus{' '}
-                <strong className="text-orange-500 font-bold">cuotas sin interés con Cashea</strong>
-                {' '}— tienda oficial.
-              </p>
-            </div>
+
           </div>
         )}
       </DrawerContent>

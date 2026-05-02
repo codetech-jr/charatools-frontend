@@ -111,7 +111,7 @@ function MockProductGrid() {
                 {product.name}
               </p>
               <p className="text-yellow-600 font-bold text-base mt-1">{product.price}</p>
-              <p className={`text-xs mt-1 font-medium ${product.stock === 'Disponible' ? 'text-green-600' : 'text-orange-500'}`}>
+              <p className={`text-xs mt-1 font-medium ${product.stock === 'Disponible' ? 'text-green-600' : 'text-yellow-600'}`}>
                 {product.stock}
               </p>
             </div>

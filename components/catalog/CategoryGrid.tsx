@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 interface Category {
   id: string
@@ -9,7 +10,7 @@ interface Category {
   title: string
   subtitle: string
   bgColor: string
-  imagePlaceholder?: string
+  image: string
 }
 
 const categories: Category[] = [
@@ -19,6 +20,7 @@ const categories: Category[] = [
     title: 'Herramientas Profesionales',
     subtitle: 'Eléctricas, manuales y accesorios InGco.',
     bgColor: 'bg-neutral-800',
+    image: '/herramientas.webp'
   },
   {
     id: '4',
@@ -26,6 +28,7 @@ const categories: Category[] = [
     title: 'Electricidad Industrial',
     subtitle: 'Conductores, tableros y protección.',
     bgColor: 'bg-yellow-600',
+    image: '/categories/electricidad.png'
   },
   {
     id: '3',
@@ -33,6 +36,7 @@ const categories: Category[] = [
     title: 'Iluminación & LED',
     subtitle: 'Paneles, bombillos y reflectores.',
     bgColor: 'bg-neutral-900',
+    image: '/iluminacion.webp'
   },
   {
     id: '2',
@@ -40,6 +44,7 @@ const categories: Category[] = [
     title: 'Tuberías y Conexiones',
     subtitle: 'PPR, PVC y grifería de alta calidad.',
     bgColor: 'bg-blue-900',
+    image: '/pvc.webp'
   },
   {
     id: '5',
@@ -47,6 +52,7 @@ const categories: Category[] = [
     title: 'Impermeabilización',
     subtitle: 'Mantos, primers y selladores.',
     bgColor: 'bg-zinc-800',
+    image: '/impermeabilizacion.webp'
   },
 ]
 
@@ -87,16 +93,22 @@ export function CategoryGrid({ activeFilter, onFilterChange }: CategoryGridProps
                 index === 0 ? 'lg:col-span-2 aspect-[2/1]' : 'aspect-square sm:aspect-[4/3] lg:aspect-[3/4]'
               } ${activeFilter === category.slug ? 'ring-4 ring-yellow-400 border-transparent' : ''}`}
             >
-              {/* Background Color/Pattern Placeholder */}
-              <div className={`absolute inset-0 ${category.bgColor} opacity-90 transition-transform duration-500 group-hover:scale-105`} />
-              
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-              {/* Placeholder for future collage image */}
-              <div className="absolute inset-0 flex items-center justify-center text-white/5 font-black text-6xl uppercase pointer-events-none select-none tracking-tighter">
-                {category.slug}
+              {/* Category Image */}
+              <div className="absolute inset-0">
+                <Image
+                  src={category.image}
+                  alt={category.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                {/* Overlay color con transparencia para mezclar con la imagen */}
+                <div className={`absolute inset-0 ${category.bgColor} mix-blend-multiply opacity-40`} />
               </div>
+              
+              {/* Overlay Gradient for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
 
               {/* Content */}
               <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">

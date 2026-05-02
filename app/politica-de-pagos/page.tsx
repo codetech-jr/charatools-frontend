@@ -60,23 +60,8 @@ export default function PagosPage() {
 
           <div>
             <h2 className="text-2xl font-black text-gray-900 uppercase flex items-center gap-3 mb-4">
-              <BadgeCheck className="w-6 h-6 text-yellow-500" />
-              3. Financiamiento con Cashea
-            </h2>
-            <div className="prose prose-gray max-w-none text-gray-600">
-              <p>
-                Somos Tienda Oficial Cashea. Podrás procesar tus compras de herramientas eléctricas o combos utilizando esta plataforma para fraccionar el pago en cuotas sin interés.
-              </p>
-              <p>
-                Las cuotas, montos iniciales y límites de crédito son establecidos directamente por la aplicación Cashea, basados en el perfil crediticio del cliente, y no pueden ser modificados por CharaTools.
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-black text-gray-900 uppercase flex items-center gap-3 mb-4">
               <Banknote className="w-6 h-6 text-yellow-500" />
-              4. Facturación Fiscal
+              3. Facturación Fiscal
             </h2>
             <div className="prose prose-gray max-w-none text-gray-600">
               <p>

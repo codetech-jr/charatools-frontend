@@ -188,7 +188,7 @@ export default function FaqPage() {
             href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20tengo%20una%20pregunta"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 h-12 px-6 bg-orange-500 text-white font-bold text-sm rounded-xl hover:bg-orange-600 active:scale-95 transition-all shadow-lg shadow-orange-100"
+            className="inline-flex items-center gap-2 h-12 px-6 bg-black text-white font-bold text-sm rounded-xl hover:bg-gray-900 active:scale-95 transition-all shadow-lg shadow-gray-100"
           >
             Pregunta por WhatsApp
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

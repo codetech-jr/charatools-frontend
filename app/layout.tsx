@@ -61,6 +61,7 @@ import { BrandTicker } from '@/components/sections/BrandTicker'
 import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
 import { Footer } from '@/components/global/Footer'
 import { WhatsAppFAB } from '@/components/global/WhatsAppFAB'
+import { CasheaAlertBar } from '@/components/global/CasheaAlertBar'
 
 export default function RootLayout({
   children,
@@ -74,6 +75,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-gray-50 text-gray-900 flex flex-col min-h-screen" suppressHydrationWarning>
         <BrandTicker />
         <Navbar />
+        <CasheaAlertBar />
 
         <div className="flex-1">
           {children}

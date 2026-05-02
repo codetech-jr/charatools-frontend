@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Navbar } from '@/components/global/Navbar'
 import { CasheaAlertBar } from '@/components/global/CasheaAlertBar'
+
 import { TrustBar } from '@/components/global/TrustBar'
 import { HeroSlider } from '@/components/hero/HeroSlider'
 import { CategoryGrid } from '@/components/catalog/CategoryGrid'
 import { ProductGrid } from '@/components/catalog/ProductGrid'
-import { CasheaBanner } from '@/components/sections/CasheaBanner'
+
 import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
 /*import { CombosSection } from '@/components/sections/CombosSection'*/
 /*import { WhatsAppAdvisorSection } from '@/components/sections/WhatsAppAdvisorSection'*/
@@ -167,7 +167,7 @@ export default function Home() {
                 "name": "¿Cuáles son los métodos de pago?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Aceptamos pago al instante mediante Pago Móvil, Transferencias nacionales, Efectivo y financiamiento en cuotas a través de Cashea."
+                  "text": "Aceptamos pago al instante mediante Pago Móvil, Transferencias nacionales y Efectivo."
                 }
               },
               {
@@ -225,7 +225,7 @@ export default function Home() {
               }
             ],
             "priceRange": "$$",
-            "paymentAccepted": "Efectivo, Pago Móvil, Zelle, Transferencia Bancaria, Cashea",
+            "paymentAccepted": "Efectivo, Pago Móvil, Zelle, Transferencia Bancaria",
             "areaServed": [
               {
                 "@type": "City",
@@ -271,11 +271,8 @@ export default function Home() {
         }}
       />
 
-      <div className="min-h-screen bg-gray-50">
-        {/* Alert Bar */}
-        <CasheaAlertBar />
+      <div className="relative min-h-screen bg-white">
 
-        {/* Hero Section */}
         <HeroSlider onOpenCatalog={handleOpenCatalog} />
 
         {/* Trust Bar */}
@@ -316,8 +313,8 @@ export default function Home() {
         {/* ── NEW: Contact and Map ── */}
         <ContactMapSection />
 
-        {/* ── NEW: Pre-Footer Financiero ── */}
-        <CasheaBanner />
+        {/* ── NEW: Pre-Footer Cashea Bar ── */}
+        <CasheaAlertBar />
 
       </div></>
   )

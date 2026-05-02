@@ -144,31 +144,7 @@ export function FilterBar({
           </div>
         </div>
 
-        {/* ── Fila 2.5: Financiamiento Cashea ── */}
-        <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-            Financiamiento
-          </p>
-          <div role="group" aria-label="Filtro de financiamiento" className="flex gap-2">
-            <button
-              onClick={() => onUpdateParams({ cashea: filters.cashea === 'true' ? null : 'true' })}
-              aria-pressed={filters.cashea === 'true'}
-              className={`
-                flex-shrink-0 inline-flex items-center h-9 px-3 rounded-full
-                text-xs font-semibold border transition-all duration-150
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-1
-                active:scale-95
-                ${filters.cashea === 'true'
-                  ? 'bg-orange-500 border-orange-500 text-white shadow-sm'
-                  : 'bg-white border-gray-300 text-gray-700 hover:border-orange-500 hover:text-orange-500'
-                }
-              `}
-            >
-              {filters.cashea === 'true' && <X className="w-3 h-3 mr-1" aria-hidden="true" />}
-              Solo elegibles Cashea
-            </button>
-          </div>
-        </div>
+
 
         {/* ── Fila 3: Filtros de Potencia (solo si aplica) ── */}
         <div>

@@ -39,9 +39,9 @@ const TRUST_BLOCKS = [
     icon: ShieldCheck,
     title: 'Garantía Multimarca',
     body: 'INGCO, 3M, Stanley, Lumistar, Run, Bellota. Todos originales, todos con garantía del fabricante. Sin copias, sin sorpresas.',
-    accent: 'text-orange-500',
-    bg: 'bg-orange-50',
-    border: 'border-orange-200',
+    accent: 'text-blue-500',
+    bg: 'bg-blue-50',
+    border: 'border-blue-200',
   },
   {
     icon: Clock,
@@ -276,7 +276,7 @@ export default function QuienesSomosPage() {
             href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20busco%20disponibilidad%20de%20una%20pieza"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 h-14 px-8 bg-orange-500 text-white font-bold text-base rounded-xl hover:bg-orange-600 active:scale-95 transition-all shadow-lg shadow-orange-200"
+            className="inline-flex items-center gap-2 h-14 px-8 bg-black text-white font-bold text-base rounded-xl hover:bg-gray-900 active:scale-95 transition-all shadow-lg shadow-gray-200"
           >
             Buscar mi pieza ahora
             <ArrowRight className="w-5 h-5" aria-hidden="true" />
