@@ -78,36 +78,38 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden bg-neutral-900">
+    <section className="relative w-full h-[85vh] md:h-[88vh] overflow-hidden bg-neutral-900">
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex h-full">
           {SLIDES.map((slide) => (
             <div key={slide.id} className="relative flex-[0_0_100%] min-w-0 h-full">
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
-                style={{ backgroundImage: `url(${slide.bgImage})` }}
+              <img 
+                src={slide.bgImage}
+                alt={slide.title}
+                className="absolute inset-0 w-full h-full object-cover object-right scale-[1.15] origin-right transition-transform duration-1000 brightness-[0.8] contrast-[1.1]"
               />
               
-              {/* Overlay */}
-              <div className={`absolute inset-0 ${slide.overlayColor} backdrop-brightness-75`} />
+              {/* 2. Smoke Screen Gradient (Atmospheric Legibility Layer) */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 via-40% to-transparent z-10" />
+
+
 
               {/* Content */}
-              <div className="relative h-full flex items-center px-4 md:px-8 lg:px-16">
+              <div className="relative h-full flex items-center px-4 md:px-8 lg:px-16 z-20">
                 <div className="max-w-3xl w-full">
-                  <div className="bg-black/60 backdrop-blur-md p-6 md:p-10 rounded-2xl border border-white/10 shadow-2xl animate-fade-in-up">
-                    <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-yellow-400/20 border border-yellow-400/30">
+                  <div className="animate-fade-in-up">
+                    <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/20">
                       <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
                       <span className="text-[10px] md:text-xs font-bold text-yellow-400 uppercase tracking-widest">
                         CharaTools • Charallave
                       </span>
                     </div>
                     
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4 md:mb-6">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-[1.1] mb-4 md:mb-6 drop-shadow-2xl text-balance max-w-2xl">
                       {slide.title}
                     </h1>
                     
-                    <p className="text-base md:text-xl text-gray-200 mb-8 max-w-xl leading-relaxed">
+                    <p className="text-base md:text-xl text-gray-200 mb-8 max-w-xl leading-relaxed font-medium">
                       {slide.subtitle}
                     </p>
                     
@@ -118,7 +120,7 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
                           if (slide.ctaLink) window.location.href = slide.ctaLink
                           else onOpenCatalog()
                         }}
-                        className="h-14 px-8 bg-yellow-400 hover:bg-yellow-500 text-black font-black text-lg rounded-xl transition-all hover:scale-105 active:scale-95 group"
+                        className="h-14 px-8 bg-yellow-400 hover:bg-yellow-500 text-black font-black text-lg rounded-2xl transition-all hover:scale-105 active:scale-95 group shadow-[0_0_20px_rgba(250,204,21,0.3)]"
                       >
                         {slide.ctaText}
                         <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -131,7 +133,7 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
                             const msg = slide.whatsappMsg || "Hola! Vengo de la web y quiero consultar por sus productos"
                             window.open(`https://wa.me/584220148405?text=${encodeURIComponent(msg)}`, '_blank')
                         }}
-                        className="h-14 px-8 border-2 border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold text-lg rounded-xl backdrop-blur-sm transition-all"
+                        className="h-14 px-8 border-2 border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold text-lg rounded-2xl backdrop-blur-md transition-all"
                       >
                         <MessageCircle className="mr-2 w-5 h-5 text-green-400 fill-green-400/20" />
                         WhatsApp
@@ -148,13 +150,13 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
       {/* Navigation Controls */}
       <button 
         onClick={scrollPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 border border-white/10 text-white hover:bg-black/60 transition-all hidden md:flex"
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 border border-white/10 text-white hover:bg-black/60 transition-all hidden md:flex z-30"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button 
         onClick={scrollNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 border border-white/10 text-white hover:bg-black/60 transition-all hidden md:flex"
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 border border-white/10 text-white hover:bg-black/60 transition-all hidden md:flex z-30"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
