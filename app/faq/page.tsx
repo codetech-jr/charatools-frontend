@@ -34,17 +34,6 @@ const FAQ_ITEMS = [
 No hay datos bancarios que ingresar, no hay formulario que llenar, no hay contraseñas que recordar. Solo WhatsApp, que ya tienes en el teléfono.`,
   },
   {
-    id: 'faq-garantia',
-    question: '¿Los equipos tienen garantía real? ¿Qué cubre?',
-    answer: `Sí. Todos los equipos que vendemos son originales importados, con su número de serie registrado. La garantía oficial cubre:
-
-• Defectos de fabricación por 12 meses desde la fecha de compra.
-• Soporte técnico con repuestos originales disponibles.
-• Reposición o reparación del equipo según evaluación técnica.
-
-Lo que NO cubre: daños por mal uso, caídas, voltaje incorrecto o modificaciones no autorizadas. Si tienes una reclamación, nos escribes con la factura y el serial, y nosotros gestionamos todo contigo.`,
-  },
-  {
     id: 'faq-envios',
     question: '¿Hacen envíos? ¿Llegan a toda Miranda?',
     answer: `Sí. Cubrimos todo el estado Miranda y zonas aledañas. Trabaja así:
@@ -201,7 +190,7 @@ export default function FaqPage() {
         <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
           {[
             { label: 'Respuesta garantizada', value: '< 15 min' },
-            { label: 'Marcas con garantía oficial', value: '6 marcas' },
+            { label: 'Asesoría técnica especializada', value: 'Sí' },
             { label: 'Ubicación física verificable', value: 'Charallave' },
           ].map(({ label, value }) => (
             <div key={label} className="space-y-1">

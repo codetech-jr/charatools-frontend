@@ -37,11 +37,11 @@ const TRUST_BLOCKS = [
   },
   {
     icon: ShieldCheck,
-    title: 'Garantía Multimarca',
-    body: 'INGCO, 3M, Stanley, Lumistar, Run, Bellota. Todos originales, todos con garantía del fabricante. Sin copias, sin sorpresas.',
-    accent: 'text-blue-500',
-    bg: 'bg-blue-50',
-    border: 'border-blue-200',
+    title: 'Garantía Original',
+    body: 'Aquí no hay imitaciones. Solo marcas líderes con respaldo real.',
+    accent: 'text-green-600',
+    bg: 'bg-green-50',
+    border: 'border-green-200',
   },
   {
     icon: Clock,
@@ -85,7 +85,7 @@ export default function QuienesSomosPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
 
           {/* ── Columna de Texto ── */}
-          <div className="flex flex-col justify-center px-6 py-16 lg:px-16 lg:py-20 space-y-6 order-2 lg:order-1">
+          <div className="flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-6 py-16 lg:px-16 lg:py-20 space-y-6 order-2 lg:order-1">
             {/* Etiqueta de categoría */}
             <span className="inline-block text-yellow-400 text-xs font-black uppercase tracking-widest">
               Tu Aliado en la Obra
@@ -101,12 +101,6 @@ export default function QuienesSomosPage() {
               CharaTools nació en Charallave porque los ferreteristas de aquí sabemos lo que cuesta
               parar una obra por un repuesto que no llega. Por eso tenemos stock real, marcas
               originales y un asesor técnico que responde antes de que termines de escribir.
-            </p>
-
-            <p className="text-gray-400 text-sm leading-relaxed max-w-lg">
-              Distribuidor multimarca de herramientas y equipos de las mejores marcas como <strong className="text-white">INGCO</strong>, con respaldo de{' '}
-              <strong className="text-white">3M, Stanley, Truper, Dewalt y Schneider</strong>, entre otras. Aquí no vendemos imitaciones.
-              Sin intermediarios. Sin excusas.
             </p>
 
             <div className="flex flex-wrap gap-3 pt-2">
@@ -215,50 +209,53 @@ export default function QuienesSomosPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {TRUST_BLOCKS.map((block) => {
               const Icon = block.icon
               return (
                 <div
                   key={block.title}
-                  className={`${block.bg} ${block.border} border rounded-2xl p-6 space-y-3 hover:shadow-md transition-shadow`}
+                  className={`${block.bg} ${block.border} border-2 rounded-3xl p-8 space-y-4 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 max-w-sm w-full flex flex-col items-center text-center`}
                 >
-                  <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl ${block.bg} border ${block.border}`}>
-                    <Icon className={`w-5 h-5 ${block.accent}`} aria-hidden="true" />
+                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl ${block.bg} border-2 ${block.border} shadow-sm`}>
+                    <Icon className={`w-7 h-7 ${block.accent}`} aria-hidden="true" />
                   </div>
-                  <h3 className="text-base font-black text-gray-900">{block.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{block.body}</p>
+                  <h3 className="text-lg font-black text-gray-900 tracking-tight">{block.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed font-medium">{block.body}</p>
                 </div>
               )
             })}
           </div>
         </div>
       </section>
-
-
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          MARCAS OFICIALES
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-900 px-4 py-12 md:py-16" aria-label="Marcas que distribuimos">
-        <div className="max-w-5xl mx-auto text-center space-y-8">
-          <h2 className="text-xl md:text-2xl font-black text-white">
-            Marcas que distribuimos oficialmente
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-            {BRANDS.map(({ name, icon: BrandIcon, desc }) => (
-              <div
-                key={name}
-                className="flex flex-col items-center gap-2 bg-gray-800 rounded-xl px-3 py-4 border border-gray-700 hover:border-yellow-400 transition-colors group"
-              >
-                <BrandIcon className="w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors" aria-hidden="true" />
-                <span className="text-white font-bold text-sm">{name}</span>
-                <span className="text-gray-500 text-xs text-center leading-tight hidden md:block">{desc}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+ 
+       {/* ═══════════════════════════════════════════════════════════════════
+           NUESTRAS MARCAS — Social Proof
+       ═══════════════════════════════════════════════════════════════════ */}
+       <section className="bg-gray-50 px-4 py-14 md:py-20 border-y border-gray-100" aria-label="Marcas que distribuimos">
+         <div className="max-w-7xl mx-auto">
+           <div className="text-center mb-12 space-y-3">
+             <h2 className="text-2xl md:text-3xl font-black text-gray-900">Marcas que confían en nosotros</h2>
+             <p className="text-gray-500 text-base max-w-xl mx-auto">
+               Trabajamos directamente con fabricantes líderes para garantizar repuestos originales y soporte técnico especializado.
+             </p>
+           </div>
+           
+           <div className="flex flex-wrap justify-center gap-8 md:gap-12 items-center">
+             {BRANDS.map((brand) => {
+               const Icon = brand.icon
+               return (
+                 <div key={brand.name} className="group flex flex-col items-center gap-3 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+                   <div className="w-16 h-16 flex items-center justify-center bg-white rounded-2xl shadow-sm border border-gray-200 group-hover:border-yellow-400 group-hover:shadow-md transition-all">
+                     <Icon className="w-8 h-8 text-gray-400 group-hover:text-yellow-500" />
+                   </div>
+                   <span className="text-sm font-black text-gray-400 group-hover:text-gray-900">{brand.name}</span>
+                 </div>
+               )
+             })}
+           </div>
+         </div>
+       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
           CTA FINAL

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useCallback, useEffect, useState } from 'react'
+import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight, MessageCircle, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -22,7 +23,7 @@ const SLIDES: SlideData[] = [
     title: "Tu herramienta ideal está en Charallave.",
     subtitle: "Somos la ferretería de confianza con el stock más robusto de los Valles del Tuy.",
     ctaText: "Ver Catálogo 100% Real",
-    bgImage: "/negocio.png",
+    bgImage: "/negocio.webp",
     overlayColor: "bg-black/40",
   },
   {
@@ -31,7 +32,7 @@ const SLIDES: SlideData[] = [
     subtitle: "Únete a nuestra Membresía y maximiza tu presupuesto con ahorros en el total de tu cuenta.",
     ctaText: "Quiero mi Membresía",
     ctaLink: "/membresia",
-    bgImage: "/negocio.png",
+    bgImage: "/negocio.webp",
     overlayColor: "bg-blue-900/40",
   },
 
@@ -41,7 +42,7 @@ const SLIDES: SlideData[] = [
     subtitle: "Ubicados en el corazón de Charallave. Despacho inmediato para contratistas y hogar.",
     ctaText: "Cómo llegar / Ubicación",
     ctaLink: "/contacto",
-    bgImage: "/negocio.png",
+    bgImage: "/negocio.webp",
     overlayColor: "bg-neutral-900/40",
   },
 ]
@@ -82,15 +83,18 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex h-full">
           {SLIDES.map((slide) => (
-            <div key={slide.id} className="relative flex-[0_0_100%] min-w-0 h-full">
-              <img 
-                src={slide.bgImage}
+            <div key={slide.id} className="relative flex-[0_0_100%] min-w-0 h-full overflow-hidden">
+              <Image 
+                src={slide.bgImage || "/negocio.webp"}
                 alt={slide.title}
-                className="absolute inset-0 w-full h-full object-cover object-right scale-[1.15] origin-right transition-transform duration-1000 brightness-[0.8] contrast-[1.1]"
+                fill
+                priority={slide.id === 1}
+                className="object-cover object-[center_55%] md:object-[center_60%] lg:object-[center_60%] transition-transform duration-1000 brightness-[0.95] contrast-[1.05]"
+                sizes="100vw"
               />
               
               {/* 2. Smoke Screen Gradient (Atmospheric Legibility Layer) */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 via-40% to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/60 to-transparent md:bg-gradient-to-r md:from-[#050505] md:via-[#050505]/80 md:to-transparent z-10" />
 
 
 
@@ -105,11 +109,11 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
                       </span>
                     </div>
                     
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-[1.1] mb-4 md:mb-6 drop-shadow-2xl text-balance max-w-2xl">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-zinc-50 leading-[1.1] mb-4 md:mb-6 drop-shadow-2xl text-balance max-w-2xl">
                       {slide.title}
                     </h1>
                     
-                    <p className="text-base md:text-xl text-gray-200 mb-8 max-w-xl leading-relaxed font-medium">
+                    <p className="text-base md:text-xl text-zinc-200/90 mb-8 max-w-xl leading-relaxed font-medium">
                       {slide.subtitle}
                     </p>
                     

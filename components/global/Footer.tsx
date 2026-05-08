@@ -164,21 +164,6 @@ export function Footer() {
 
           {/* ── Columna 4: Marcas + CTA ── */}
           <div className="space-y-6 flex flex-col items-center text-center md:items-start md:text-left">
-            <div>
-              <h3 className="text-xs font-black text-white uppercase tracking-widest mb-4">
-                Marcas Oficiales
-              </h3>
-              <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                {BRANDS.map((brand) => (
-                  <span
-                    key={brand}
-                    className="inline-block bg-gray-800 border border-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-md"
-                  >
-                    {brand}
-                  </span>
-                ))}
-              </div>
-            </div>
 
             <div>
               <h3 className="text-xs font-black text-white uppercase tracking-widest mb-3">

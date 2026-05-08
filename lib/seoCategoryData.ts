@@ -78,7 +78,7 @@ export const seoCategoryData: SeoCategoryDataMap = {
       },
       { 
         subtitle: 'Equipamiento para Contratistas y Talleres', 
-        text: '¿Tienes una contrata o un taller que no para? Equípate con maquinaria que responda. Nuestras herramientas generales están pensadas para darle sin miedo, soportando las máximas exigencias de cualquier obra comercial o residencial en Charallave.' 
+        text: '¿Tienes una obra en marcha o un taller que no para? Equípate con maquinaria que responda. Nuestras herramientas generales están pensadas para darle sin miedo, soportando las máximas exigencias de cualquier obra comercial o residencial en Charallave.' 
       }
     ],
     ctaSection: { 
@@ -161,26 +161,26 @@ export const seoCategoryData: SeoCategoryDataMap = {
   'bombas-de-agua-y-presion': {
     title: 'Bombas de Agua en Charallave: Sube el Agua al Tanque Hoy Mismo',
     description:
-      'Si el agua no te llega pal\' tanque o la presión del grifo es un chorrillo miserable, ya sabes que el problema no espera. En Charatools tienes en stock bombas de agua de ½ HP y 1 HP, sumergibles, periféricas y presostatos de las marcas INGCO y Truper — las que han dado la talla en miles de casas del Tuy.',
+      'Si el agua no te llega pal\' tanque o la presión del grifo es un chorrillo miserable, ya sabes que el problema no espera. En Charatools tienes en stock bombas de agua de ½ HP y 1 HP, sumergibles, periféricas y presostatos de las marcas INGCO y Truper, las que han dado la talla en miles de casas del Tuy.',
     blocks: [
       {
         subtitle: '¿Qué bomba de agua necesito para mi casa en el Tuy?',
         text:
           'La pregunta del millón que nos hacen a diario. La respuesta sencilla: si tienes una casa de uno o dos pisos y quieres subir el agua del tanque bajo al tanque del techo, la bomba periférica de ½ HP (medio caballo) es la solución clásica y la más vendida del Tuy. Funciona perfecta pa\' ese jalón de agua que necesitas sin gastar corriente de más.\n' +
-          'Si el tanque está enterrado profundo, en un sótano o en un pozo, la bomba sumergible es la indicada — entra directo al agua y empuja con fuerza. Para más de dos pisos o uso continuo de alta demanda, la bomba de 1 HP aguanta la jornada sin recalentarse.\n' +
+          'Si el tanque está enterrado profundo, en un sótano o en un pozo, la bomba sumergible es la indicada, entra directo al agua y empuja con fuerza. Para más de dos pisos o uso continuo de alta demanda, la bomba de 1 HP aguanta la jornada sin recalentarse.\n' +
           '¿Tienes dudas? No adivines. Escríbenos y te orientamos de una según la altura de tu casa y la distancia a tu tanque.',
       },
       {
         subtitle: 'INGCO vs Truper: ¿Cuál bomba rinde más en el día a día?',
         text:
-          'Ambas marcas las vendemos en Charatools porque ambas han probado su aguante en el clima y las condiciones del Tuy. La diferencia está en el uso: INGCO destaca por su motor robusto y eficiencia eléctrica — ideal si tu bomba va a trabajar varias horas al día. Truper es una opción más económica de entrada que hace bien su trabajo para uso intermitente.\n' +
+          'Ambas marcas las vendemos en Charatools porque ambas han probado su aguante en el clima y las condiciones del Tuy. La diferencia está en el uso: INGCO destaca por su motor robusto y eficiencia eléctrica, ideal si tu bomba va a trabajar varias horas al día. Truper es una opción más económica de entrada que hace bien su trabajo para uso intermitente.\n' +
           'Para instalaciones nuevas o reemplazos donde la bomba va a trabajar duro mañana, tarde y noche, recomendamos INGCO. Para el rancho de los fines de semana o el apartamento de uso ligero, Truper cumple de maravilla sin romper el presupuesto.\n' +
-          'Ven a verlas en tienda o pregunta al WhatsApp — te mostramos las especificaciones para que compres sin arrepentirte.',
+          'Ven a verlas en tienda o pregunta al WhatsApp, te mostramos las especificaciones para que compres sin arrepentirte.',
       },
       {
         subtitle: 'Presostatos y Press Control: Tu Bomba Trabaja Sola, Tú Descansas',
         text:
-          'Una bomba sin presostato automático es una bomba que trabaja tú. Con un press control, el sistema detecta cuándo baja la presión y arranca solo — sin que tengas que estar pendiente ni abrir y cerrar válvulas a mano.\n' +
+          'Una bomba sin presostato automático es una bomba que trabaja tú. Con un press control, el sistema detecta cuándo baja la presión y arranca solo, sin que tengas que estar pendiente ni abrir y cerrar válvulas a mano.\n' +
           'Para edificios con múltiples apartamentos, negocios con consumo constante o casas donde nadie quiere lidiar con la bomba, el presostato es el complemento obligatorio. Tenemos en stock press control para bombas periféricas y centrífugas, listos para instalación inmediata.\n' +
           'Instalación sencilla que cualquier plomero del área puede hacer en menos de una hora. Ahorra tiempo, energía y prolonga la vida de tu bomba al evitar arranques en seco.',
       },
@@ -188,7 +188,7 @@ export const seoCategoryData: SeoCategoryDataMap = {
     ctaSection: {
       title: '¡No te Quedes Sin Agua Hoy: Busca tu Bomba Antes del Mediodía!',
       text:
-        'El problema de agua no se arregla mañana — se arregla hoy. Escríbenos ahorita mismo al WhatsApp con el modelo de tu bomba anterior o las medidas de tu instalación, y nuestros ferreteros te tienen la solución lista pa\' retirar en el día. Stock confirmado, precio directo, sin vuelta.',
+        'El problema de agua no se arregla mañana, se arregla hoy. Escríbenos ahorita mismo al WhatsApp con el modelo de tu bomba anterior o las medidas de tu instalación, y nuestros ferreteros te tienen la solución lista pa\' retirar en el día. Stock confirmado, precio directo, sin vuelta.',
       btnText: '💬 Ver Bombas Disponibles por WhatsApp',
     },
   },
@@ -204,26 +204,26 @@ export const seoCategoryData: SeoCategoryDataMap = {
       {
         subtitle: 'Tuberías PVC para Aguas Frías, Desagüe y Presión: Guía Rápida por Diámetro',
         text:
-          'No toda tubería PVC es igual — y comprar la equivocada te hace perder tiempo y dinero. Para bajantes de aguas negras y grises, el PVC sanitario de 4" (110mm) y 2" (50mm) es el estándar residencial en Venezuela. Para tuberías de presión que van conectadas a la red o a la bomba de agua, necesitas PVC hidráulico PN16 o PN20, que aguanta la presión sin explotar.\n' +
-          'Para instalaciones de agua caliente en cocinas o duchas eléctricas, el CPVC o el PPR PN20 son los materiales correctos — el PVC normal no soporta el calor y se deforma con el tiempo. Si tienes una remodelación grande o una construcción nueva, pídenos asesoría en tienda para dimensionar bien tus bajantes y no tener problemas a futuro.',
+          'No toda tubería PVC es igual y comprar la equivocada te hace perder tiempo y dinero. Para bajantes de aguas negras y grises, el PVC sanitario de 4" (110mm) y 2" (50mm) es el estándar residencial en Venezuela. Para tuberías de presión que van conectadas a la red o a la bomba de agua, necesitas PVC hidráulico PN16 o PN20, que aguanta la presión sin explotar.\n' +
+          'Para instalaciones de agua caliente en cocinas o duchas eléctricas, el CPVC o el PPR PN20 son los materiales correctos, el PVC normal no soporta el calor y se deforma con el tiempo. Si tienes una remodelación grande o una construcción nueva, pídenos asesoría en tienda para dimensionar bien tus bajantes y no tener problemas a futuro.',
       },
       {
         subtitle: 'Llaves de Paso, Llaves de Bola y Válvulas: El Control de Tu Sistema de Agua',
         text:
-          'Una llave de bola buena es la diferencia entre poder cortar el agua en segundos ante una emergencia o pasar media hora buscando la llave principal que nunca cierra bien. Manejamos llaves de bola de latón de ½", ¾" y 1" — las más usadas en instalaciones residenciales del Tuy — con cierre completo de 90° que no gotea ni oxida.\n' +
-          'También tenemos válvulas de pie para bombas (evitan que el agua retroceda al tanque), válvulas check y flotadores para tanques cisterna. Si tu tanque no para de rebosar o la bomba trabaja sin parar, puede ser el flotador — y tenemos el repuesto aquí.',
+          'Una llave de bola buena es la diferencia entre poder cortar el agua en segundos ante una emergencia o pasar media hora buscando la llave principal que nunca cierra bien. Manejamos llaves de bola de latón de ½", ¾" y 1", las más usadas en instalaciones residenciales del Tuy, con cierre completo de 90° que no gotea ni oxida.\n' +
+          'También tenemos válvulas de pie para bombas (evitan que el agua retroceda al tanque), válvulas check y flotadores para tanques cisterna. Si tu tanque no para de rebosar o la bomba trabaja sin parar, puede ser el flotador y tenemos el repuesto aquí.',
       },
       {
         subtitle: 'Pegamentos, Teflon y Accesorios: El Kit Completo pa\' Resolver el Daño',
         text:
-          'La chapuza más común que vemos es pegar tubería PVC con pegamento de mala calidad o sin preparar la superficie — y a los tres meses vuelve a gotear. El pegamento correcto para PVC hidráulico es diferente al de PVC sanitario, y la diferencia la sentirás en años de durabilidad.\n' +
+          'La chapuza más común que vemos es pegar tubería PVC con pegamento de mala calidad o sin preparar la superficie y a los tres meses vuelve a gotear. El pegamento correcto para PVC hidráulico es diferente al de PVC sanitario y la diferencia la sentirás en años de durabilidad.\n' +
           'Tenemos adhesivos certificados, cinta teflón industrial, uniones de PVC, codos de 45° y 90°, tees, reducciones y todo lo que necesita un plomero para hacer el trabajo bien hecho de una sola vez. Compra todo junto y ahorra el viaje de regreso.',
       },
     ],
     ctaSection: {
       title: 'Daño de Plomería no Espera: Resuelve Antes de que Empeore',
       text:
-        'Mándanos foto por WhatsApp del daño o la pieza que necesitas y te confirmamos disponibilidad en menos de 5 minutos. Nuestros ferreteros conocen los materiales y te guían para que compres exactamente lo correcto — sin inventos y sin quedar botado a mitad del trabajo.',
+        'Mándanos foto por WhatsApp del daño o la pieza que necesitas y te confirmamos disponibilidad en menos de 5 minutos. Nuestros ferreteros conocen los materiales y te guían para que compres exactamente lo correcto, sin inventos y sin quedar botado a mitad del trabajo.',
       btnText: '📸 Enviar Foto del Daño al WhatsApp',
     },
   },
@@ -297,8 +297,8 @@ export const seoCategoryData: SeoCategoryDataMap = {
     description: 'Cuando arrancan los palos de agua en el Tuy, una gotera escondida te puede dañar desde la pintura hasta los muebles. No esperes a tener la piscina en la sala; sella y protege tu techo a tiempo con materiales que no se cuartean con nuestro sol inclemente.',
     blocks: [
       { 
-        subtitle: 'Manto Asfáltico Truper 3mm: La Barrera Definitiva', 
-        text: 'Si quieres dormir tranquilo cuando llueve fuerte, el manto asfáltico Truper de 3mm es la solución probada. Olvídate de las filtraciones rebeldes en platabandas. Su grosor, flexibilidad y fuerte adherencia te garantizan años de protección total contra la humedad extrema.' 
+        subtitle: 'Manto Asfáltico IPA 3mm: La Barrera Definitiva', 
+        text: 'Si quieres dormir tranquilo cuando llueve fuerte, el manto asfáltico IPA de 3mm es la solución probada. Olvídate de las filtraciones rebeldes en platabandas. Su grosor, flexibilidad y fuerte adherencia te garantizan años de protección total contra la humedad extrema.' 
       },
       { 
         subtitle: 'Selladores de Silicona para Cero Goteras', 

@@ -125,12 +125,6 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
 ]
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState<string | null>(null)
-
-  const handleFilterChange = (slug: string | null) => {
-    setActiveFilter(slug)
-  }
-
   const handleOpenCatalog = () => {
     const element = document.getElementById('catalogo')
     element?.scrollIntoView({ behavior: 'smooth' })
@@ -279,7 +273,7 @@ export default function Home() {
         <TrustBar />
 
         {/* Category Grid (Tubrica Style) */}
-        <CategoryGrid activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+        <CategoryGrid />
 
         {/* Product Grid Section */}
         <section id="catalogo" className="bg-zinc-50 pt-12 lg:pt-24 pb-12 lg:pb-16 border-y border-gray-200/60">
@@ -292,7 +286,7 @@ export default function Home() {
             </p>
           </header>
 
-          <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={activeFilter} />
+          <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={null} />
         </section>
 
         {/* ── VIP Membership Section ── */}

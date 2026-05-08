@@ -3,10 +3,11 @@
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface Category {
   id: string
-  slug: 'herramientas' | 'plomeria' | 'iluminacion' | 'electricidad' | 'impermeabilizacion'
+  slug: string
   title: string
   subtitle: string
   bgColor: string
@@ -16,19 +17,11 @@ interface Category {
 const categories: Category[] = [
   {
     id: '1',
-    slug: 'herramientas',
+    slug: 'herramientas-electricas',
     title: 'Herramientas Profesionales',
     subtitle: 'Eléctricas, manuales y accesorios InGco.',
     bgColor: 'bg-neutral-800',
     image: '/herramientas.webp'
-  },
-  {
-    id: '4',
-    slug: 'electricidad',
-    title: 'Electricidad Industrial',
-    subtitle: 'Conductores, tableros y protección.',
-    bgColor: 'bg-yellow-600',
-    image: '/categories/electricidad.png'
   },
   {
     id: '3',
@@ -56,12 +49,7 @@ const categories: Category[] = [
   },
 ]
 
-interface CategoryGridProps {
-  activeFilter: string | null
-  onFilterChange: (slug: string | null) => void
-}
-
-export function CategoryGrid({ activeFilter, onFilterChange }: CategoryGridProps) {
+export function CategoryGrid() {
   return (
     <section className="w-full bg-white px-4 md:px-8 lg:px-16 py-16">
       <div className="max-w-7xl mx-auto">
@@ -74,24 +62,16 @@ export function CategoryGrid({ activeFilter, onFilterChange }: CategoryGridProps
               Soluciones integrales para cada etapa de tu proyecto.
             </p>
           </div>
-          {activeFilter && (
-            <button 
-              onClick={() => onFilterChange(null)}
-              className="text-yellow-600 font-bold hover:underline flex items-center gap-1"
-            >
-              Ver todas las categorías
-            </button>
-          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, index) => (
-            <button
+            <Link
               key={category.id}
-              onClick={() => onFilterChange(activeFilter === category.slug ? null : category.slug)}
+              href={`/catalogo/${category.slug}`}
               className={`group relative overflow-hidden rounded-2xl border border-neutral-200 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 hover:-translate-y-1 text-left ${
                 index === 0 ? 'lg:col-span-2 aspect-[2/1]' : 'aspect-square sm:aspect-[4/3] lg:aspect-[3/4]'
-              } ${activeFilter === category.slug ? 'ring-4 ring-yellow-400 border-transparent' : ''}`}
+              }`}
             >
               {/* Category Image */}
               <div className="absolute inset-0">
@@ -126,14 +106,7 @@ export function CategoryGrid({ activeFilter, onFilterChange }: CategoryGridProps
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
-
-              {/* Active Indicator */}
-              {activeFilter === category.slug && (
-                <div className="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
-                  Seleccionado
-                </div>
-              )}
-            </button>
+            </Link>
           ))}
         </div>
       </div>
