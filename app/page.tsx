@@ -14,8 +14,8 @@ import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
  /*import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection' */
 import { BrandTicker } from '@/components/sections/BrandTicker'
 import { ContactMapSection } from '@/components/sections/ContactMapSection'
-import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA' 
-import { SpecificSolutions } from '@/components/sections/SpecificSolutions'
+/*import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA' */ 
+/*import { SpecificSolutions } from '@/components/sections/SpecificSolutions'*/
 /* import { SeoBomb } from '@/components/seo/SeoBomb' */
 import { CatalogProduct } from '@/lib/catalog.types'
 
@@ -285,10 +285,10 @@ export default function Home() {
         </section>
 
         {/* ── NEW: Soluciones de Marketing Directo ── */}
-        <SpecificSolutions />
+        {/* <SpecificSolutions /> */}
 
         {/* ── VIP Membership Section ── */}
-        <MembresiaBanner_Home_CTA />
+        {/* <MembresiaBanner_Home_CTA /> */}
 
         {/* ── NEW: Combos by project ── */}
         {/* <CombosSection /> */}
