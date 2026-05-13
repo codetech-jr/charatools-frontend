@@ -27,7 +27,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
           id="hero-heading"
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight text-balance"
         >
-          Somos la Ferretería más completa de Charallave. Inventario especializado, atención experta y sin esperas.
+          Somos tu aliado de confianza con el stock más robusto de grifería, iluminación, electricidad, PVC y herramientas en los Valles del Tuy.
         </h1>
 
         <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-lg">

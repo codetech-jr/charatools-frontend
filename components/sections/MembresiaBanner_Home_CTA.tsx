@@ -28,28 +28,32 @@ export function MembresiaBanner_Home_CTA() {
             Club de Beneficios VIP
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight text-balance">
-            Clientes frecuentes merecen {" "}
+            Queremos premiar {" "}
             <br className="hidden md:block" />
-            <span className="text-amber-400">precios preferenciales</span>
+            <span className="text-amber-400">tu constancia</span>
           </h2>
           <p className="text-base md:text-lg text-purple-200/70 max-w-2xl mx-auto leading-relaxed">
-            Si compras con nosotros con regularidad, el programa VIP es tu mejor herramienta. 
-            Sin cuotas ni registros complejos. Solo beneficios reales en cada obra.
+            Beneficios diseñados para quienes nos eligen día a día. Si compras con nosotros con regularidad, el programa VIP es tu mejor herramienta.
           </p>
         </div>
 
         {/* Grid de beneficios - CRO: Visual scannability */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 max-w-5xl mx-auto gap-6 mb-12">
           {[
             {
               icon: '💰',
               title: '5% OFF en cada pedido',
-              body: 'Descuento automático en compras superiores a $50. Válido hasta diciembre 2026.',
+              body: 'Descuento automático en todas tus compras superiores a $50.',
             },
             {
               icon: '⚡',
-              title: 'Atención prioritaria',
-              body: 'Tu consulta salta al inicio de nuestra cola de WhatsApp. Respuesta inmediata.',
+              title: 'Alistamiento Anticipado',
+              body: 'Prioridad en la preparación de tus pedidos para retiro súper rápido.',
+            },
+            {
+              icon: '📦',
+              title: 'Reserva de Inventario',
+              body: 'Aseguramos los productos de tus cotizaciones VIP por 48h.',
             },
           ].map((benefit) => (
             <div
@@ -70,13 +74,13 @@ export function MembresiaBanner_Home_CTA() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-6">
               <p className="text-sm font-black uppercase tracking-widest text-amber-400/90">
-                ¿Cómo activarla hoy?
+                ¿Cómo funciona?
               </p>
               <ol className="space-y-4">
                 {[
-                  'Realiza tu pedido por WhatsApp (superior a $50).',
-                  'Solicita la activación VIP a tu asesor asignado.',
-                  '¡Listo! Tu descuento se aplica al instante en tu factura.',
+                  'La membresía se activa con una primera compra o pago único de $50.',
+                  'Una vez activa, muestra tu carnet/cuenta VIP a tu asesor de ventas en caja o WhatsApp.',
+                  'Tu descuento y prioridad se aplicarán al instante tras la validación manual.',
                 ].map((step, i) => (
                   <li key={i} className="flex items-start gap-4 text-sm md:text-base text-purple-100/80">
                     <span

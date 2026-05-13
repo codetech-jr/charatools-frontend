@@ -148,9 +148,9 @@ export const seoCategoryData: SeoCategoryDataMap = {
       },
     ],
     ctaSection: {
-      title: 'Stock físico disponible hoy en Charallave',
+      title: 'Herramientas Eléctricas en Charallave: Compra y Retira Hoy',
       text:
-        'No esperes semanas por importaciones. Nuestro inventario de herramientas eléctricas está disponible para retiro inmediato o despacho rápido al Tuy y Miranda.',
+        'Venta de herramientas profesionales con stock físico disponible para retiro inmediato en nuestra tienda de Charallave. Olvida las esperas por importación; garantizamos inventario real en los Valles del Tuy para que equipes tu proyecto hoy mismo sin demoras.',
       btnText: '💬 Consultar disponibilidad por WhatsApp',
     },
   },
@@ -221,10 +221,10 @@ export const seoCategoryData: SeoCategoryDataMap = {
       },
     ],
     ctaSection: {
-      title: 'Daño de Plomería no Espera: Resuelve Antes de que Empeore',
+      title: 'Para resolver el daño en la plomería hoy mismo.',
       text:
-        'Mándanos foto por WhatsApp del daño o la pieza que necesitas y te confirmamos disponibilidad en menos de 5 minutos. Nuestros ferreteros conocen los materiales y te guían para que compres exactamente lo correcto, sin inventos y sin quedar botado a mitad del trabajo.',
-      btnText: '📸 Enviar Foto del Daño al WhatsApp',
+        '¿Un daño de plomería? No esperes a que empeore. Tenemos el inventario más completo de conexiones, tuberías y grifería para retiro hoy mismo en tienda. Evita errores: nuestros expertos te asesoran para que lleves la pieza exacta y termines el trabajo rápido.',
+      btnText: 'Asesoría Gratuita por WhatsApp',
     },
   },
 
@@ -282,10 +282,10 @@ export const seoCategoryData: SeoCategoryDataMap = {
       },
     ],
     ctaSection: {
-      title: 'Ilumina tu espacio con eficiencia y estilo',
+      title: 'Iluminación LED en Charallave | Paneles, Bombillos y Reflectores',
       text:
-        'Cuéntanos las dimensiones de tu espacio y el tipo de iluminación que necesitas. Te diseñamos un plan de iluminación LED sin costo.',
-      btnText: '💬 Diseño de iluminación gratuito por WhatsApp',
+        'Encuentra el inventario más completo de iluminación profesional con disponibilidad inmediata. Contamos con productos de alta eficiencia para el retiro hoy mismo en nuestra sede de Charallave. Sin esperas por importación: calidad y stock garantizado cerca de ti.',
+      btnText: '💬 Asesoría Gratuita por WhatsApp',
     },
   },
 
@@ -293,8 +293,8 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // impermeabilización
   // ──────────────────────────────────────────────────────────────────────────
   'impermeabilizacion': {
-    title: 'Impermeabilización: Que la Lluvia se Quede Afuera de tu Casa',
-    description: 'Cuando arrancan los palos de agua en el Tuy, una gotera escondida te puede dañar desde la pintura hasta los muebles. No esperes a tener la piscina en la sala; sella y protege tu techo a tiempo con materiales que no se cuartean con nuestro sol inclemente.',
+    title: 'Impermeabilización en Charallave | Protege tu techo de las lluvias ',
+    description: 'No esperes a que lleguen los palos de agua para sellar tus filtraciones. Contamos con el inventario más resistente de mantos asfálticos, pinturas elásticas y selladores diseñados para el clima de los Valles del Tuy. Stock físico disponible para retiro inmediato en tienda: protege tu hogar y evita daños en pintura o muebles hoy mismo.',
     blocks: [
       { 
         subtitle: 'Manto Asfáltico IPA 3mm: La Barrera Definitiva', 
@@ -308,7 +308,7 @@ export const seoCategoryData: SeoCategoryDataMap = {
     ctaSection: { 
       title: '¿No sabes cuántos rollos de manto necesitas?', 
       text: 'Pásanos las medidas de tu platabanda al WhatsApp y nuestros asesores te calculan el material exacto para que impermeabilices sin que te falte ni te sobre presupuesto.', 
-      btnText: 'Cotizar Material para Techo' 
+      btnText: 'Asesoría Gratuita por WhatsApp' 
     },
   },
 

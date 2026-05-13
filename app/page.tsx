@@ -14,8 +14,9 @@ import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
  /*import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection' */
 import { BrandTicker } from '@/components/sections/BrandTicker'
 import { ContactMapSection } from '@/components/sections/ContactMapSection'
-/* import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA' 
-import { SeoBomb } from '@/components/seo/SeoBomb' */
+import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA' 
+import { SpecificSolutions } from '@/components/sections/SpecificSolutions'
+/* import { SeoBomb } from '@/components/seo/SeoBomb' */
 import { CatalogProduct } from '@/lib/catalog.types'
 
 // Sample products
@@ -24,35 +25,31 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     id: '1',
     slug: 'bomba-de-agua-periferica-1-2-hp',
     name: 'Bomba de Agua Periférica 1/2 HP',
-    shortDescription: 'Bomba potente para riego y abastecimiento de agua',
+    shortDescription: 'Bomba potente pa\' resolver problemas de riego y abastecimiento de agua en la casa.',
     category: 'plomeria',
     categoryLabel: 'Plomería',
     brand: 'INGCO',
     unit: 'und',
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
     status: 'high-demand',
-    isCasheaEligible: true,
-    price: 35.00,
   },
   {
     id: '2',
     slug: 'press-control-automatico',
     name: 'Press Control Automático',
-    shortDescription: 'Regulador automático de presión de agua para sistemas residenciales',
+    shortDescription: 'El regulador automático que no te puede faltar pa\' que la bomba trabaje fino.',
     category: 'plomeria',
     categoryLabel: 'Plomería',
     brand: 'INGCO',
     unit: 'und',
     image: 'https://images.unsplash.com/photo-1585526881453-899142f58fd0?w=400&q=80',
     status: 'high-demand',
-    isCasheaEligible: true,
-    price: 25.00,
   },
   {
     id: '3',
     slug: 'tuberia-ppr-1-2-para-aguas-blancas',
     name: 'Tubería PPR 1/2 para Aguas Blancas',
-    shortDescription: 'Tubería PPR de calidad superior para instalaciones sanitarias',
+    shortDescription: 'Tubería PPR burda de resistente para instalaciones sanitarias. Aguanta la pela.',
     category: 'plomeria',
     categoryLabel: 'Plomería',
     brand: 'Truper',
@@ -64,7 +61,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     id: '4',
     slug: 'llave-de-paso-ppr',
     name: 'Llave de Paso PPR',
-    shortDescription: 'Válvula de paso para tubería PPR, resistente y duradera',
+    shortDescription: 'Válvula de paso para tubería PPR, guerrera y duradera.',
     category: 'plomeria',
     categoryLabel: 'Plomería',
     brand: 'Truper',
@@ -76,7 +73,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     id: '5',
     slug: 'bombilla-led-9w-calida',
     name: 'Bombilla LED 9W Cálida',
-    shortDescription: 'Bombilla LED de bajo consumo con luz cálida y larga duración',
+    shortDescription: 'Bombillo LED rendidor pa\' iluminar cualquier cuarto.',
     category: 'iluminacion',
     categoryLabel: 'Iluminación',
     brand: 'Philips',
@@ -88,7 +85,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     id: '6',
     slug: 'panel-led-rectangular-60w',
     name: 'Panel LED Rectangular 60W',
-    shortDescription: 'Panel LED moderno para iluminación eficiente de espacios',
+    shortDescription: 'Tremendo panel LED moderno para iluminar oficinas o talleres.',
     category: 'iluminacion',
     categoryLabel: 'Iluminación',
     brand: 'Philips',
@@ -100,7 +97,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     id: '7',
     slug: 'cable-electrico-2-100m',
     name: 'Cable Eléctrico #2 x 100m',
-    shortDescription: 'Cable eléctrico certificado para instalaciones residenciales',
+    shortDescription: 'Cable eléctrico 100% cobre pa\' que el trabajo te quede al pelo.',
     category: 'electricidad',
     categoryLabel: 'Electricidad',
     brand: '3M',
@@ -112,15 +109,13 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     id: '8',
     slug: 'breaker-termomagnetico-30a',
     name: 'Breaker Termomagnético 30A',
-    shortDescription: 'Disyuntor de seguridad para protección de circuitos eléctricos',
+    shortDescription: 'Breaker para proteger los circuitos, pa\' no arriesgarse en la instalación.',
     category: 'electricidad',
     categoryLabel: 'Electricidad',
     brand: 'Schneider Electric',
     unit: 'und',
     image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
     status: 'new-batch',
-    isCasheaEligible: true,
-    price: 12.00,
   },
 ]
 
@@ -289,8 +284,11 @@ export default function Home() {
           <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={null} />
         </section>
 
+        {/* ── NEW: Soluciones de Marketing Directo ── */}
+        <SpecificSolutions />
+
         {/* ── VIP Membership Section ── */}
-       {/* <MembresiaBanner_Home_CTA /> */}
+        <MembresiaBanner_Home_CTA />
 
         {/* ── NEW: Combos by project ── */}
         {/* <CombosSection /> */}
@@ -308,7 +306,7 @@ export default function Home() {
         <ContactMapSection />
 
         {/* ── NEW: Pre-Footer Cashea Bar ── */}
-        <CasheaAlertBar />
+        {/* <CasheaAlertBar /> */}
 
       </div></>
   )
