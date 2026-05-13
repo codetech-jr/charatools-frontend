@@ -69,7 +69,7 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Herramientas Generales
   // ──────────────────────────────────────────────────────────────────────────
   'herramientas-general': {
-    title: 'Herramientas Eléctricas y Manuales: Pa\' Meterle el Pecho al Trabajo',
+    title: 'Herramientas Eléctricas en Charallave: Potencia Profesional al Mejor Precio',
     description: 'Ya seas un maestro de obra levantando un proyecto, un herrero armando estructuras o un dueño de casa resolviendo, aquí encuentras el equipo que aguanta la rosca. Herramientas que no te dejan botado a mitad de jornada.',
     blocks: [
       { 
@@ -161,7 +161,7 @@ export const seoCategoryData: SeoCategoryDataMap = {
   'bombas-de-agua-y-presion': {
     title: 'Bombas de Agua en Charallave: Sube el Agua al Tanque Hoy Mismo',
     description:
-      'Si el agua no te llega pal\' tanque o la presión del grifo es un chorrillo miserable, ya sabes que el problema no espera. En Charatools tienes en stock bombas de agua de ½ HP y 1 HP, sumergibles, periféricas y presostatos de las marcas INGCO y Truper, las que han dado la talla en miles de casas del Tuy.',
+      'Si el agua no te llega para el tanque o la presión del grifo es un chorrillo miserable, ya sabes que el problema no espera. En Charatools tienes en stock bombas de agua de ½ HP y 1 HP, sumergibles, periféricas y presostatos de las marcas INGCO y Truper, las que han dado la talla en miles de casas del Tuy.',
     blocks: [
       {
         subtitle: '¿Qué bomba de agua necesito para mi casa en el Tuy?',
