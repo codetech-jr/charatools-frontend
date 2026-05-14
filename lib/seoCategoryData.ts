@@ -64,27 +64,26 @@ export type SeoCategoryDataMap = Partial<Record<string, SeoCategoryEntry>>
 
 export const seoCategoryData: SeoCategoryDataMap = {
 
-
   // ──────────────────────────────────────────────────────────────────────────
   // Herramientas Generales
   // ──────────────────────────────────────────────────────────────────────────
   'herramientas-general': {
-    title: 'Herramientas Eléctricas en Charallave: Potencia Profesional al Mejor Precio',
-    description: 'Ya seas un maestro de obra levantando un proyecto, un herrero armando estructuras o un dueño de casa resolviendo, aquí encuentras el equipo que aguanta la rosca. Herramientas que no te dejan botado a mitad de jornada.',
+    title: 'Equipamiento de Alto Rendimiento Comercial e Industrial',
+    description: 'Provisión de herramientas de alta exigencia para proyectos de infraestructura. Capacidad logística en nuestro centro de distribución en Charallave para abastecer a contratistas en los Valles del Tuy.',
     blocks: [
       { 
-        subtitle: 'Taladros, Esmeriles y Caladoras de Alto Rendimiento', 
-        text: 'Sabemos que en los Valles del Tuy el trabajo pesado no perdona. Por eso te traemos desde taladros INGCO guerreros para el día a día, hasta caladoras y esmeriles angulares Dewalt diseñados para corte limpio y continuo. Herramienta buena es inversión que se paga sola y te ahorra dolores de cabeza.' 
+        subtitle: 'Maquinaria de Corte y Perforación Industrial', 
+        text: 'Suministro de equipos diseñados para trabajo pesado continuo. Comercializamos líneas de alto rendimiento para asegurar el cumplimiento estricto de cronogramas en obras civiles y comerciales.' 
       },
       { 
-        subtitle: 'Equipamiento para Contratistas y Talleres', 
-        text: '¿Tienes una obra en marcha o un taller que no para? Equípate con maquinaria que responda. Nuestras herramientas generales están pensadas para darle sin miedo, soportando las máximas exigencias de cualquier obra comercial o residencial en Charallave.' 
+        subtitle: 'Dotación para Contratistas y Talleres Especializados', 
+        text: 'Proveemos maquinaria robusta capaz de soportar las máximas exigencias operativas. Nuestro inventario garantiza la continuidad de las operaciones en proyectos de cualquier envergadura.' 
       }
     ],
     ctaSection: { 
-      title: '¿Buscando un equipo específico para tu obra?', 
-      text: 'Escríbenos al WhatsApp y te armamos la cotización al momento con las marcas que rinden de verdad. Inventario garantizado para que no detengas tu trabajo.', 
-      btnText: 'Consultar Stock por WhatsApp' 
+      title: 'Cotización institucional para equipamiento general', 
+      text: 'Gestión de pedidos por volumen y especificaciones técnicas. Contamos con el stock físico en nuestras instalaciones de Charallave para asegurar la operatividad de su empresa sin demoras logísticas.', 
+      btnText: 'Solicitar Gestión Corporativa' 
     },
   },
 
@@ -92,36 +91,28 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Plantas Eléctricas y Energía
   // ──────────────────────────────────────────────────────────────────────────
   'plantas-electricas-y-energia': {
-    title: 'Plantas Eléctricas en Charallave: Tu Solución ante los Cortes de Luz en el Tuy',
+    title: 'Sistemas de Respaldo Energético Continuo y Prevención de Pérdidas',
     description:
-      'Sabemos lo que se siente: el bajón de luz llega sin avisar y se lleva la nevera, el negocio y la tranquilidad. En Charatools tenemos en stock, listos para despachar hoy, los mejores equipos para tu hogar y negocio en Charallave y el Tuy.',
+      'Soluciones de generación eléctrica para garantizar la continuidad operativa. Equipamiento en stock físico en Charallave para el sostenimiento de infraestructura comercial e industrial en los Valles del Tuy.',
     blocks: [
       {
-        subtitle: '¿Qué planta de luz necesito para mi casa en el Tuy?',
-        text:
-          'Para un apartamento pequeño o habitación con pocas tomas, una planta de 950W a 1.200W es suficiente para mantener el router, luces LED y un ventilador.\n' +
-          'Para proteger la nevera y agregar un equipo de aire acondicionado pequeño, necesitas entre 2.000W y 2.500W.\n' +
-          'Para uso exigente (nevera + 2 aires + bomba de agua), apunta a 3.000W – 3.500W. ¿Tienes dudas? Escríbenos al WhatsApp y te ayudamos a calcular tu carga eléctrica gratis.',
+        subtitle: 'Generadores Comerciales de Media y Alta Demanda',
+        text: 'Comercializamos plantas eléctricas dimensionadas para sostener cargas críticas. Sistemas diseñados para proporcionar estabilidad de voltaje en operaciones que requieren suministro ininterrumpido.'
       },
       {
-        subtitle: 'Inversores de Corriente y Baterías: La Alternativa Silenciosa',
-        text:
-          'Si el ruido es un problema o vives en apartamento, los inversores con banco de baterías son tu mejor aliada.\n' +
-          'Una batería de 12V 150Ah con un inversor de 1.500W puede sostener una nevera + luces LED por 5 a 7 horas continuas, sin humo, sin combustible y sin decibeles.\n' +
-          'En Charatools manejamos inversores de onda pura (pure sine wave) que protegen equipos sensibles como televisores, computadoras y aires inverter.',
+        subtitle: 'Inversores de Corriente y Bancos de Baterías',
+        text: 'Alternativas de respaldo energético silencioso mediante inversores de onda pura. Soluciones óptimas para la protección de equipos sensibles y servidores en instalaciones corporativas.'
       },
       {
-        subtitle: 'Protectores de Voltaje y UPS: Tu Primera Línea de Defensa',
-        text:
-          'Antes de pensar en una planta, protege los electrodomésticos que ya tienes. Un bajón de luz sin protector puede quemar la tarjeta de control de tu nevera o televisor en segundos.\n' +
-          'Tenemos protectores de voltaje de alto impacto para neveras (1.200W – 3.000W), televisores y equipos sensibles, disponibles para retiro inmediato en nuestra tienda de Charallave.',
+        subtitle: 'Protección Integral de Voltaje',
+        text: 'Implementación de protectores de alto impacto y unidades UPS para la prevención de siniestros eléctricos. Salvaguarda de activos tecnológicos y maquinaria frente a fluctuaciones de la red.'
       },
     ],
     ctaSection: {
-      title: 'Garantía Local en el Tuy, sin llamadas internacionales',
+      title: 'Asesoramiento para dimensionamiento energético',
       text:
-        'Selecciona el equipo ideal arriba y cotiza ahora con retiro en el día en nuestra ferretería matriz. Nuestros asesores técnicos te ayudan a tomar la decisión correcta sin presiones y sin letra chica.',
-      btnText: '💬 Hablar con asesor vía WhatsApp',
+        'Nuestro equipo técnico evalúa los requerimientos de carga de sus instalaciones. Solicite un análisis especializado y coordine el retiro corporativo en nuestra sede de Charallave.',
+      btnText: 'Contactar Asesoría Energética',
     },
   },
 
@@ -129,29 +120,24 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Herramientas Eléctricas
   // ──────────────────────────────────────────────────────────────────────────
   'herramientas-electricas': {
-    title: 'Herramientas Eléctricas en Charallave: Potencia Profesional al Mejor Precio',
+    title: 'Herramientas Eléctricas de Uso Intensivo y Prolongado',
     description:
-      'Taladros, esmeriles, sierras y más de las marcas INGCO, Makita y Dewalt. Disponibilidad inmediata en Charallave con asesoría técnica sin costo para elegir la herramienta correcta para tu obra o taller.',
+      'Suministro logístico desde Charallave para el sector construcción e industria de los Valles del Tuy. Equipos certificados para garantizar una vida útil prolongada bajo operación continua.',
     blocks: [
       {
-        subtitle: '¿INGCO, Makita o Dewalt? Cómo elegir tu herramienta eléctrica',
-        text:
-          'Para uso residencial y obras pequeñas, INGCO ofrece la mejor relación calidad-precio del mercado venezolano. Sus taladros de 550W y esmeriles de 820W son los más vendidos en el Tuy.\n' +
-          'Para uso profesional intensivo (construcción diaria, talleres), Makita y Dewalt brindan mayor durabilidad y potencia. Son la elección de los maestros de obra con más exigencia.\n' +
-          'En Charatools manejamos ambas líneas y te ayudamos a comparar según tu uso real.',
+        subtitle: 'Equipamiento Profesional de Alto Rendimiento',
+        text: 'Distribuimos líneas especializadas diseñadas para máxima resistencia en entornos industriales. Motores de alto torque optimizados para largas jornadas de trabajo sin pérdida de eficiencia.'
       },
       {
-        subtitle: 'Consumibles y Accesorios para Herramientas Eléctricas',
-        text:
-          'Una herramienta sin sus consumibles es la mitad de la inversión. Tenemos discos de corte, discos de desbaste, brocas para concreto y madera, lijas y hojas de sierra compatibles con las marcas que manejamos.\n' +
-          'Compra todo en un solo lugar y llévate tu herramienta lista para usar desde el primer día.',
+        subtitle: 'Consumibles Industriales y Accesorios Técnicos',
+        text: 'Inventario permanente de discos de desbaste, brocas de concreto y consumibles certificados. Aseguramos el abastecimiento continuo para maximizar el rendimiento de la maquinaria instalada.'
       },
     ],
     ctaSection: {
-      title: 'Herramientas Eléctricas en Charallave: Compra y Retira Hoy',
+      title: 'Abastecimiento logístico para proyectos de construcción',
       text:
-        'Venta de herramientas profesionales con stock físico disponible para retiro inmediato en nuestra tienda de Charallave. Olvida las esperas por importación; garantizamos inventario real en los Valles del Tuy para que equipes tu proyecto hoy mismo sin demoras.',
-      btnText: '💬 Consultar disponibilidad por WhatsApp',
+        'Garantizamos disponibilidad inmediata en nuestro centro de despacho en Charallave para retiro corporativo. Consulte nuestras capacidades de dotación para satisfacer los requerimientos de su próximo proyecto.',
+      btnText: 'Consultar Disponibilidad de Inventario',
     },
   },
 
@@ -159,37 +145,28 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Bombas de Agua y Presión
   // ──────────────────────────────────────────────────────────────────────────
   'bombas-de-agua-y-presion': {
-    title: 'Bombas de Agua en Charallave: Sube el Agua al Tanque Hoy Mismo',
+    title: 'Soluciones de Bombeo de Caudal Constante y Presión Técnica Sostenida',
     description:
-      'Si el agua no te llega para el tanque o la presión del grifo es un chorrillo miserable, ya sabes que el problema no espera. En Charatools tienes en stock bombas de agua de ½ HP y 1 HP, sumergibles, periféricas y presostatos de las marcas INGCO y Truper, las que han dado la talla en miles de casas del Tuy.',
+      'Sistemas de bombeo para infraestructura en los Valles del Tuy. Equipos periféricos y sumergibles disponibles en nuestro centro logístico de Charallave para desarrollos de alto tráfico.',
     blocks: [
       {
-        subtitle: '¿Qué bomba de agua necesito para mi casa en el Tuy?',
-        text:
-          'La pregunta del millón que nos hacen a diario. La respuesta sencilla: si tienes una casa de uno o dos pisos y quieres subir el agua del tanque bajo al tanque del techo, la bomba periférica de ½ HP (medio caballo) es la solución clásica y la más vendida del Tuy. Funciona perfecta pa\' ese jalón de agua que necesitas sin gastar corriente de más.\n' +
-          'Si el tanque está enterrado profundo, en un sótano o en un pozo, la bomba sumergible es la indicada, entra directo al agua y empuja con fuerza. Para más de dos pisos o uso continuo de alta demanda, la bomba de 1 HP aguanta la jornada sin recalentarse.\n' +
-          '¿Tienes dudas? No adivines. Escríbenos y te orientamos de una según la altura de tu casa y la distancia a tu tanque.',
+        subtitle: 'Dimensionamiento de Sistemas de Bombeo',
+        text: 'Suministramos equipos periféricos y sumergibles calibrados para diversas alturas piezométricas. Garantizamos presión constante en instalaciones de múltiples niveles o de alta demanda volumétrica.'
       },
       {
-        subtitle: 'INGCO vs Truper: ¿Cuál bomba rinde más en el día a día?',
-        text:
-          'Ambas marcas las vendemos en Charatools porque ambas han probado su aguante en el clima y las condiciones del Tuy. La diferencia está en el uso: INGCO destaca por su motor robusto y eficiencia eléctrica, ideal si tu bomba va a trabajar varias horas al día. Truper es una opción más económica de entrada que hace bien su trabajo para uso intermitente.\n' +
-          'Para instalaciones nuevas o reemplazos donde la bomba va a trabajar duro mañana, tarde y noche, recomendamos INGCO. Para el rancho de los fines de semana o el apartamento de uso ligero, Truper cumple de maravilla sin romper el presupuesto.\n' +
-          'Ven a verlas en tienda o pregunta al WhatsApp, te mostramos las especificaciones para que compres sin arrepentirte.',
+        subtitle: 'Rendimiento Operativo y Eficiencia de Motores',
+        text: 'Comercializamos motores robustos con alta eficiencia eléctrica para uso continuo. Soluciones probadas que aseguran estabilidad hidráulica y retorno de inversión a largo plazo en instalaciones críticas.'
       },
       {
-        subtitle: 'Presostatos y Press Control: Tu Bomba Trabaja Sola, Tú Descansas',
-        text:
-          'Una bomba sin presostato automático es una bomba que trabaja tú. Con un press control, el sistema detecta cuándo baja la presión y arranca solo, sin que tengas que estar pendiente ni abrir y cerrar válvulas a mano.\n' +
-          'Para edificios con múltiples apartamentos, negocios con consumo constante o casas donde nadie quiere lidiar con la bomba, el presostato es el complemento obligatorio. Tenemos en stock press control para bombas periféricas y centrífugas, listos para instalación inmediata.\n' +
-          'Instalación sencilla que cualquier plomero del área puede hacer en menos de una hora. Ahorra tiempo, energía y prolonga la vida de tu bomba al evitar arranques en seco.',
+        subtitle: 'Controladores de Presión Automáticos',
+        text: 'Automatización de sistemas hidráulicos mediante presostatos técnicos y press controls. Optimización de los ciclos de encendido para prolongar significativamente la vida útil de los equipos de bombeo.'
       },
     ],
     ctaSection: {
-      title: '¡No te Quedes Sin Agua Hoy: Busca tu Bomba Antes del Mediodía!',
+      title: 'Asesoría técnica y despacho en Valles del Tuy',
       text:
-        'El problema de agua no se arregla mañana, se arregla hoy. Escríbenos ahorita mismo al WhatsApp con el modelo de tu bomba anterior o las medidas de tu instalación, y nuestros ferreteros te tienen la solución lista pa\' retirar en el día. Stock confirmado, precio directo, sin vuelta.',
-      btnText: '💬 Ver Bombas Disponibles por WhatsApp',
+        'Evalúe los requerimientos hidráulicos de sus instalaciones con nuestros especialistas. Disponemos del inventario en Charallave para la implementación técnica inmediata de soluciones escalables.',
+      btnText: 'Consultar Especificaciones Técnicas',
     },
   },
 
@@ -197,34 +174,24 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Plomería y Tuberías
   // ──────────────────────────────────────────────────────────────────────────
   'plomeria': {
-    title: 'Plomería y Tuberías en Charallave: PVC, Llaves de Paso y Todo lo que Necesitas',
+    title: 'Suministro Técnico en Plomería: Tuberías y Conexiones Universales',
     description:
-      'Cuando revienta una tubería o el juego de llaves de baño se dañó, cada minuto cuenta. En Charatools tienes tuberías PVC de todos los diámetros, llaves de bola, pegamentos, tanques cisterna y accesorios pa\' resolver ese daño de plomería hoy mismo, sin que tengas que salir a buscar en varias ferretería por todo el Tuy.',
+      'Soluciones integrales de plomería con stock continuo en Charallave. Tuberías industriales y piezas de conexión certificadas para obras e infraestructura en los Valles del Tuy.',
     blocks: [
       {
-        subtitle: 'Tuberías PVC para Aguas Frías, Desagüe y Presión: Guía Rápida por Diámetro',
-        text:
-          'No toda tubería PVC es igual y comprar la equivocada te hace perder tiempo y dinero. Para bajantes de aguas negras y grises, el PVC sanitario de 4" (110mm) y 2" (50mm) es el estándar residencial en Venezuela. Para tuberías de presión que van conectadas a la red o a la bomba de agua, necesitas PVC hidráulico PN16 o PN20, que aguanta la presión sin explotar.\n' +
-          'Para instalaciones de agua caliente en cocinas o duchas eléctricas, el CPVC o el PPR PN20 son los materiales correctos, el PVC normal no soporta el calor y se deforma con el tiempo. Si tienes una remodelación grande o una construcción nueva, pídenos asesoría en tienda para dimensionar bien tus bajantes y no tener problemas a futuro.',
+        subtitle: 'Tuberías Industriales y Residenciales',
+        text: 'Disponibilidad de tuberías PVC hidráulico y sanitario en medidas universales. Garantizamos stock permanente para la ejecución de obras sin interrupciones logísticas.'
       },
       {
-        subtitle: 'Llaves de Paso, Llaves de Bola y Válvulas: El Control de Tu Sistema de Agua',
-        text:
-          'Una llave de bola buena es la diferencia entre poder cortar el agua en segundos ante una emergencia o pasar media hora buscando la llave principal que nunca cierra bien. Manejamos llaves de bola de latón de ½", ¾" y 1", las más usadas en instalaciones residenciales del Tuy, con cierre completo de 90° que no gotea ni oxida.\n' +
-          'También tenemos válvulas de pie para bombas (evitan que el agua retroceda al tanque), válvulas check y flotadores para tanques cisterna. Si tu tanque no para de rebosar o la bomba trabaja sin parar, puede ser el flotador y tenemos el repuesto aquí.',
-      },
-      {
-        subtitle: 'Pegamentos, Teflon y Accesorios: El Kit Completo pa\' Resolver el Daño',
-        text:
-          'La chapuza más común que vemos es pegar tubería PVC con pegamento de mala calidad o sin preparar la superficie y a los tres meses vuelve a gotear. El pegamento correcto para PVC hidráulico es diferente al de PVC sanitario y la diferencia la sentirás en años de durabilidad.\n' +
-          'Tenemos adhesivos certificados, cinta teflón industrial, uniones de PVC, codos de 45° y 90°, tees, reducciones y todo lo que necesita un plomero para hacer el trabajo bien hecho de una sola vez. Compra todo junto y ahorra el viaje de regreso.',
-      },
+        subtitle: 'Presión y Hermeticidad Garantizada',
+        text: 'Comercializamos válvulas y conexiones con altas especificaciones de presión técnica. Aseguramos sellado hermético y durabilidad en sistemas de alto rendimiento.'
+      }
     ],
     ctaSection: {
-      title: 'Para resolver el daño en la plomería hoy mismo.',
+      title: 'Cotización institucional para proyectos de plomería',
       text:
-        '¿Un daño de plomería? No esperes a que empeore. Tenemos el inventario más completo de conexiones, tuberías y grifería para retiro hoy mismo en tienda. Evita errores: nuestros expertos te asesoran para que lleves la pieza exacta y termines el trabajo rápido.',
-      btnText: 'Asesoría Gratuita por WhatsApp',
+        'Asegure la continuidad de su obra con nuestro inventario físico para los Valles del Tuy. Consulte requerimientos técnicos de volumen para retiro corporativo en nuestras instalaciones de Charallave.',
+      btnText: 'Solicitar Cotización por WhatsApp',
     },
   },
 
@@ -232,31 +199,24 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Electricidad
   // ──────────────────────────────────────────────────────────────────────────
   'electricidad': {
-    title: 'Materiales Eléctricos en Charallave: Cables, Breakers y Tableros',
+    title: 'Materiales Eléctricos Certificados: Cableado y Protección Estructural',
     description:
-      'Cables THW certificados FONDONORMA, breakers termomagnéticos Schneider, tableros, ductos y todo lo que necesitas para instalaciones eléctricas residenciales y comerciales en Charallave y el Tuy.',
+      'Soluciones de infraestructura eléctrica con despacho inmediato en Charallave para desarrollos en los Valles del Tuy. Provisión de conductores y protección termomagnética bajo normativas internacionales.',
     blocks: [
       {
-        subtitle: 'Cables Eléctricos Certificados: Calibres y Usos',
-        text:
-          'El calibre del cable determina cuánta corriente puede manejar de forma segura. Usar un cable subdimensionado es el principal riesgo de incendio eléctrico.\n' +
-          'Cable #12 AWG → Tomacorrientes y luces de uso general.\n' +
-          'Cable #10 AWG → Circuitos de aires acondicionados y cocinas eléctricas.\n' +
-          'Cable #6 y #4 AWG → Sub-tableros y cargas pesadas trifásicas.\n' +
-          'Todos nuestros cables son certificados FONDONORMA, con aislamiento THW resistente al calor.',
+        subtitle: 'Conductores Eléctricos de Alta Capacidad',
+        text: 'Suministro de cableado con aislamiento térmico resistente, calibrado para cargas industriales. Productos estrictamente certificados para la prevención de riesgos por sobrecalentamiento.'
       },
       {
-        subtitle: 'Breakers y Tableros: Protección que Salva Equipos',
-        text:
-          'Un tablero eléctrico correctamente dimensionado con breakers de calidad es la diferencia entre un cortocircuito controlado y un incendio.\n' +
-          'Manejamos breakers termomagnéticos Schneider Electric de 15A a 100A, tanto monofásicos como bifásicos, compatibles con tableros residenciales y comerciales.',
+        subtitle: 'Protección Termomagnética y Tableros',
+        text: 'Comercialización de sistemas de control eléctrico de máxima precisión. Breakers y tableros dimensionados para la salvaguarda de infraestructuras críticas ante variaciones y cortocircuitos.'
       },
     ],
     ctaSection: {
-      title: 'Instalación eléctrica segura empieza con los materiales correctos',
+      title: 'Suministro eléctrico logístico por volumen',
       text:
-        'No improvises con tu instalación eléctrica. Nuestros asesores te ayudan a seleccionar los calibres y breakers correctos según el plano de tu proyecto.',
-      btnText: '💬 Asesoría eléctrica gratuita por WhatsApp',
+        'Atendemos requerimientos de materiales eléctricos desde nuestro centro logístico en Charallave. Garantice la seguridad y el cumplimiento normativo de su obra con productos certificados.',
+      btnText: 'Gestionar Requerimiento Eléctrico',
     },
   },
 
@@ -264,51 +224,47 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Iluminación
   // ──────────────────────────────────────────────────────────────────────────
   'iluminacion': {
-    title: 'Iluminación LED en Charallave: Bombillos, Paneles y Reflectores de Alto Rendimiento',
+    title: 'Iluminación y Componentes LED: Eficiencia Energética Industrial',
     description:
-      'Reduce tu consumo eléctrico hasta un 80% con tecnología LED Philips y marcas líderes. Disponible en Charallave para residencias, locales comerciales, galpones y espacios exteriores.',
+      'Suministro especializado de iluminación LED de alto rendimiento. Inventario disponible en Charallave para equipamiento de galpones y proyectos residenciales en los Valles del Tuy.',
     blocks: [
       {
-        subtitle: 'LED vs Ahorro Eléctrico: Los Números que Debes Conocer',
-        text:
-          'Un bombillo LED de 9W produce la misma luz que un incandescente de 60W. Eso es un 85% menos de consumo.\n' +
-          'Con los continuos cortes de luz y la dependencia de plantas eléctricas, cada watt ahorrado en iluminación extiende las horas de tu generador. El LED no es un gasto, es una inversión con retorno en meses.',
+        subtitle: 'Eficiencia Energética y Normativas Técnicas',
+        text: 'Provisión de luminarias de alta eficiencia que cumplen con los estándares y normativas técnicas de seguridad, optimizando drásticamente el consumo en entornos comerciales e industriales.'
       },
       {
-        subtitle: 'Paneles y Reflectores para Comercios y Galpones',
-        text:
-          'Para locales comerciales y oficinas, los paneles LED empotrables ofrecen una iluminación uniforme y profesional que mejora la percepción del espacio.\n' +
-          'Para galpones, estacionamientos y exteriores, los reflectores LED de 50W a 200W brindan seguridad y visibilidad con bajo consumo energético.',
-      },
+        subtitle: 'Cobertura Integral para Tableros de Carga',
+        text: 'Amplio inventario preparado para los requerimientos de tableros de carga, cableado por volumen y especificaciones de amperajes correctos destinados a proyectos a gran escala.'
+      }
     ],
     ctaSection: {
-      title: 'Iluminación LED en Charallave | Paneles, Bombillos y Reflectores',
+      title: 'Soluciones lumínicas para grandes superficies',
       text:
-        'Encuentra el inventario más completo de iluminación profesional con disponibilidad inmediata. Contamos con productos de alta eficiencia para el retiro hoy mismo en nuestra sede de Charallave. Sin esperas por importación: calidad y stock garantizado cerca de ti.',
-      btnText: '💬 Asesoría Gratuita por WhatsApp',
+        'Contamos con la capacidad logística en los Valles del Tuy para abastecer proyectos corporativos. Coordine el retiro corporativo en Charallave o contacte a nuestro departamento técnico.',
+      btnText: 'Contactar Departamento Técnico',
     },
   },
 
   // ──────────────────────────────────────────────────────────────────────────
-  // impermeabilización
+  // Impermeabilización
   // ──────────────────────────────────────────────────────────────────────────
   'impermeabilizacion': {
-    title: 'Impermeabilización en Charallave | Protege tu techo de las lluvias ',
-    description: 'No esperes a que lleguen los palos de agua para sellar tus filtraciones. Contamos con el inventario más resistente de mantos asfálticos, pinturas elásticas y selladores diseñados para el clima de los Valles del Tuy. Stock físico disponible para retiro inmediato en tienda: protege tu hogar y evita daños en pintura o muebles hoy mismo.',
+    title: 'Impermeabilización Estructural y Mantos Asfálticos Certificados',
+    description: 'Materiales técnicos con stock físico en Charallave orientados al contratista de obra en los Valles del Tuy. Soluciones certificadas para la prevención de filtraciones industriales y habitacionales.',
     blocks: [
       { 
-        subtitle: 'Manto Asfáltico IPA 3mm: La Barrera Definitiva', 
-        text: 'Si quieres dormir tranquilo cuando llueve fuerte, el manto asfáltico IPA de 3mm es la solución probada. Olvídate de las filtraciones rebeldes en platabandas. Su grosor, flexibilidad y fuerte adherencia te garantizan años de protección total contra la humedad extrema.' 
+        subtitle: 'Sistemas de Impermeabilización Comercial', 
+        text: 'Provisión de mantos asfálticos certificados para grandes y medianas cubiertas. Productos formulados específicamente para resistir alto tráfico, exposición UV y condiciones adversas prolongadas.' 
       },
       { 
-        subtitle: 'Selladores de Silicona para Cero Goteras', 
-        text: 'Para esas juntas de dilatación, grietas en las paredes o remates de ventanas donde siempre se cuela el agua, un buen cartucho de silicón transparente te salva la vida. Aplicación rápida y un sellado 100% hermético que mantiene los interiores de tu hogar completamente secos.' 
+        subtitle: 'Prevención de Filtraciones Industriales', 
+        text: 'Inventario permanente de selladores técnicos de grado estructural, garantizando la hermeticidad total en proyectos de infraestructura residencial y comercial.' 
       }
     ],
     ctaSection: { 
-      title: '¿No sabes cuántos rollos de manto necesitas?', 
-      text: 'Pásanos las medidas de tu platabanda al WhatsApp y nuestros asesores te calculan el material exacto para que impermeabilices sin que te falte ni te sobre presupuesto.', 
-      btnText: 'Asesoría Gratuita por WhatsApp' 
+      title: 'Dotación para Contratistas de Obra', 
+      text: 'Gestione sus volúmenes de material con nuestro equipo corporativo. Aseguramos disponibilidad inmediata en nuestras instalaciones de Charallave para el estricto cumplimiento de sus cronogramas de obra.', 
+      btnText: 'Asesoría técnica corporativa por WhatsApp' 
     },
   },
 
@@ -316,23 +272,23 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Equipos de Protección Personal
   // ──────────────────────────────────────────────────────────────────────────
   'equipos-de-proteccion': {
-    title: 'Equipos de Protección Personal en Charallave: EPP para Obra y Taller',
+    title: 'Equipos de Protección Personal en Charallave: EPP Certificado',
     description:
-      'Cascos industriales, lentes de seguridad, guantes, botas dieléctricas y más. Certificados bajo normas ANSI y OSHA. Stock disponible en Charallave para empresas constructoras y profesionales independientes del Tuy.',
+      'Provisión de cascos industriales, lentes, guantes y botas dieléctricas bajo normas ANSI y OSHA. Inventario físico en Charallave para abastecimiento logístico de empresas constructoras en los Valles del Tuy.',
     blocks: [
       {
-        subtitle: 'EPP Obligatorio por Ley: ¿Qué debe llevar tu equipo de trabajo?',
+        subtitle: 'Cumplimiento Normativo de EPP: Requisitos LOPCYMAT',
         text:
-          'La Ley Orgánica de Prevención, Condiciones y Medio Ambiente de Trabajo (LOPCYMAT) en Venezuela obliga a todo empleador a suministrar EPP adecuado a su personal.\n' +
-          'El kit básico para obra incluye: casco de seguridad, lentes de impacto, guantes de trabajo, botas con punta reforzada y chaleco reflectivo.\n' +
-          'En Charatools tienes todo este kit disponible en tienda física, con certificaciones y facturas válidas para tu empresa.',
+          'La Ley Orgánica de Prevención, Condiciones y Medio Ambiente de Trabajo (LOPCYMAT) exige el suministro de EPP adecuado para salvaguardar la integridad del personal operativo.\n' +
+          'El equipamiento reglamentario incluye: cascos de seguridad, protección visual de impacto, guantes técnicos, calzado con refuerzo y chalecos reflectivos.\n' +
+          'Disponemos de inventario certificado con facturación fiscal, garantizando el cumplimiento normativo para contratistas e industrias.',
       },
     ],
     ctaSection: {
-      title: 'EPP en volumen para tu empresa o cuadrilla',
+      title: 'Dotación corporativa de EPP por volumen',
       text:
-        'Solicita precios especiales para compras institucionales de EPP. Manejamos precios de distribuidor para empresas constructoras, contratistas y proyectos de infraestructura.',
-      btnText: '💬 Cotización institucional de EPP por WhatsApp',
+        'Gestión de requerimientos institucionales para adquisiciones de equipos de protección. Estructura de costos corporativos para desarrollos de infraestructura y operaciones industriales.',
+      btnText: 'Cotización institucional de EPP por WhatsApp',
     },
   },
 
