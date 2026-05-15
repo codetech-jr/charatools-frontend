@@ -17,9 +17,9 @@ interface Category {
 const categories: Category[] = [
   {
     id: '1',
-    slug: 'herramientas-electricas',
-    title: 'Herramientas Profesionales',
-    subtitle: 'Eléctricas, manuales y accesorios InGco.',
+    slug: 'herramientas-en-general',
+    title: 'Herramientas en General',
+    subtitle: 'Eléctricas, manuales y accesorios para profesionales.',
     bgColor: 'bg-neutral-800',
     image: '/herramientas.webp'
   },
