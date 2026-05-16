@@ -68,22 +68,22 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Herramientas Generales
   // ──────────────────────────────────────────────────────────────────────────
   'herramientas-general': {
-    title: 'Equipamiento de Alto Rendimiento Comercial e Industrial',
-    description: 'Provisión de herramientas de alta exigencia para proyectos de infraestructura. Capacidad logística en nuestro centro de distribución en Charallave para abastecer a contratistas en los Valles del Tuy.',
+    title: 'Herramientas Profesionales en Charallave al Mejor Precio',
+    description: 'Proveemos herramientas  para proyectos de infraestructura y construcción en los Valles del Tuy. Desde nuestra tienda en Charallave garantizamos la capacidad logística que contratistas y empresas necesitan.',
     blocks: [
-      { 
+      /*{ 
         subtitle: 'Maquinaria de Corte y Perforación Industrial', 
         text: 'Suministro de equipos diseñados para trabajo pesado continuo. Comercializamos líneas de alto rendimiento para asegurar el cumplimiento estricto de cronogramas en obras civiles y comerciales.' 
       },
       { 
         subtitle: 'Dotación para Contratistas y Talleres Especializados', 
         text: 'Proveemos maquinaria robusta capaz de soportar las máximas exigencias operativas. Nuestro inventario garantiza la continuidad de las operaciones en proyectos de cualquier envergadura.' 
-      }
+      }*/
     ],
     ctaSection: { 
-      title: 'Cotización institucional para equipamiento general', 
-      text: 'Gestión de pedidos por volumen y especificaciones técnicas. Contamos con el stock físico en nuestras instalaciones de Charallave para asegurar la operatividad de su empresa sin demoras logísticas.', 
-      btnText: 'Solicitar Gestión Corporativa' 
+      title: '', 
+      text: 'Venta de herramientas profesionales con stock físico disponible para retiro inmediato en nuestra tienda de Charallave. Garantizamos inventario real en los Valles del Tuy para que equipes tu proyecto hoy mismo sin demoras. ', 
+      btnText: 'Solicitar Asesoría Gratuita' 
     },
   },
 
@@ -224,24 +224,24 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Iluminación
   // ──────────────────────────────────────────────────────────────────────────
   'iluminacion': {
-    title: 'Iluminación y Componentes LED: Eficiencia Energética Industrial',
+    title: 'Iluminación LED en Charallave: Bombillos, Paneles y Reflectores de Alto Rendimiento',
     description:
-      'Suministro especializado de iluminación LED de alto rendimiento. Inventario disponible en Charallave para equipamiento de galpones y proyectos residenciales en los Valles del Tuy.',
+      '',
     blocks: [
-      {
+      /*{
         subtitle: 'Eficiencia Energética y Normativas Técnicas',
         text: 'Provisión de luminarias de alta eficiencia que cumplen con los estándares y normativas técnicas de seguridad, optimizando drásticamente el consumo en entornos comerciales e industriales.'
       },
       {
         subtitle: 'Cobertura Integral para Tableros de Carga',
         text: 'Amplio inventario preparado para los requerimientos de tableros de carga, cableado por volumen y especificaciones de amperajes correctos destinados a proyectos a gran escala.'
-      }
+      }*/
     ],
     ctaSection: {
-      title: 'Soluciones lumínicas para grandes superficies',
+      title: 'Asesoría Técnica Gratuita para Proyectos de Iluminación',
       text:
-        'Contamos con la capacidad logística en los Valles del Tuy para abastecer proyectos corporativos. Coordine el retiro corporativo en Charallave o contacte a nuestro departamento técnico.',
-      btnText: 'Contactar Departamento Técnico',
+        'Encuentra el inventario más completo de iluminación profesional con disponibilidad inmediata. Contamos con productos de alta eficiencia para el retiro hoy mismo en nuestra tienda en Charallave.',
+      btnText: 'Asesoría Gratuita',
     },
   },
 

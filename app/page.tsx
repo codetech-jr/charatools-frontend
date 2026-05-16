@@ -276,9 +276,6 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
               🔥 Nuestros Productos Más Vendidos
             </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 max-w-2xl mx-auto text-balance">
-              Equipamiento industrial y herramientas de alta resistencia seleccionadas específicamente para garantizar durabilidad en el trabajo pesado.
-            </p>
           </header>
 
           <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={null} />

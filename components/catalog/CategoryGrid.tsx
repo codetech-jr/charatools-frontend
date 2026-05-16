@@ -26,7 +26,7 @@ const categories: Category[] = [
   {
     id: '3',
     slug: 'iluminacion',
-    title: 'Iluminación & LED',
+    title: 'Iluminación',
     subtitle: 'Paneles, bombillos y reflectores.',
     bgColor: 'bg-neutral-900',
     image: '/iluminacion.webp'
@@ -34,7 +34,7 @@ const categories: Category[] = [
   {
     id: '2',
     slug: 'plomeria',
-    title: 'Tuberías y Conexiones',
+    title: 'Plomería',
     subtitle: 'PPR, PVC y grifería de alta calidad.',
     bgColor: 'bg-blue-900',
     image: '/pvc.webp'
@@ -47,6 +47,14 @@ const categories: Category[] = [
     bgColor: 'bg-zinc-800',
     image: '/impermeabilizacion.webp'
   },
+  {
+    id: '4',
+    slug: 'electricidad',
+    title: 'Electricidad',
+    subtitle: 'Cables, breaker, tomacorrientes y todo lo relacionado con electricidad.',
+    bgColor: 'bg-orange-900',
+    image: '/electricidad.webp'
+  }
 ]
 
 export function CategoryGrid() {

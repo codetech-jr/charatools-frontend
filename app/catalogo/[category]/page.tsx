@@ -12,8 +12,6 @@ import { MOCK_CATALOG } from '@/lib/mockCatalog'
 import { CatalogPageView } from '@/components/catalog/CatalogPageView'
 import { CATALOG_CATEGORIES } from '@/lib/catalog.types'
 import { seoCategoryData } from '@/lib/seoCategoryData'
-import { SeoCategoryHero } from '@/components/seo/SeoCategoryHero'
-import { SeoCategoryFooter } from '@/components/seo/SeoCategoryFooter'
 import { PackageX, ArrowLeft } from 'lucide-react'
 
 interface PageProps {
@@ -92,33 +90,12 @@ export default async function DynamicCategoryPage({ params }: PageProps) {
   // ── 3. Subfiltro Front-End para el Layout Genérico ────────────────────────
   const filteredProducts = allProducts.filter(p => p.category === category)
 
-  // Enlace para WhatsApp (CTA)
-  const ctaHref = `https://api.whatsapp.com/send?phone=584220148405&text=${encodeURIComponent(
-    `¡Hola! Estoy viendo la categoría "${seoData.title}" en Charatools y necesito asesoría.`
-  )}`
-
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen bg-gray-50 flex flex-col">
-      {/* ── [SEO] Hero Superior ── */}
-      <SeoCategoryHero 
-        title={seoData.title} 
-        description={seoData.description} 
-      />
-
       {/* ── Inyección del Layout Genérico (Product grids) ── */}
       <div className="flex-1 w-full bg-white lg:bg-gray-50">
         <CatalogPageView products={filteredProducts} />
       </div>
-
-      {/* ── [SEO] Footer Inferior con CTA ── */}
-      <SeoCategoryFooter 
-        blocks={seoData.blocks}
-        ctaSection={{
-          closingText: `${seoData.ctaSection.title} — ${seoData.ctaSection.text}`,
-          ctaLabel: seoData.ctaSection.btnText,
-          ctaHref
-        }}
-      />
     </main>
   )
 }
