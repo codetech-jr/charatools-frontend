@@ -17,7 +17,7 @@ import { BrandTicker } from '@/components/sections/BrandTicker'
 export const metadata: Metadata = {
   title: 'Quiénes Somos | CharaTools — Tu Aliado en la Obra',
   description:
-    'CharaTools nació en Charallave porque en la obra no hay tiempo que perder. Distribuidor multimarca de herramientas y equipos como INGCO, 3M y Stanley. Obtén una respuesta en minutos.',
+    'CharaTools nació en Charallave porque en la obra no hay tiempo que perder. Tu aliado ferretero de confianza en herramientas y equipos como INGCO, 3M y Stanley. Obtén una respuesta en minutos.',
   openGraph: {
     title: 'CharaTools — Tu Aliado en la Obra, no otro proveedor',
     description:

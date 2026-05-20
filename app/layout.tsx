@@ -11,7 +11,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://charatools-frontend.vercel.app/'),
   title: {
-    default: 'Charatools - Tu Ferretería Multimarca en Charallave',
+    default: 'Charatools - Tu aliado ferretero de confianza que llegó a potenciar Charallave',
     template: '%s | Charatools',
   },
   description: 'Tu ferretería de confianza en los Valles del Tuy. Stock real de herramientas InGco, Stanley, electricidad y plomería. Cotiza hoy mismo sin intermediarios.',
@@ -20,20 +20,20 @@ export const metadata: Metadata = {
     locale: 'es_VE',
     url: 'https://charatools-frontend.vercel.app/',
     siteName: 'Charatools',
-    title: 'Charatools - Tu Ferretería Multimarca en Charallave',
+    title: 'Charatools - Tu aliado ferretero de confianza que llegó a potenciar Charallave',
     description: 'Tu ferretería de confianza en los Valles del Tuy. Stock real de herramientas InGco, Stanley, electricidad y plomería. Cotiza hoy mismo sin intermediarios.',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Charatools - Tu Ferretería Multimarca en Charallave',
+        alt: 'Charatools - Tu aliado ferretero de confianza que llegó a potenciar Charallave',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Charatools - Tu Ferretería Multimarca en Charallave',
+    title: 'Charatools - Tu aliado ferretero de confianza que llegó a potenciar Charallave',
     description: 'Tu ferretería de confianza en los Valles del Tuy. Stock real de herramientas InGco, Stanley, electricidad y plomería. Cotiza hoy mismo sin intermediarios.',
     images: ['/opengraph-image.png'],
   },
