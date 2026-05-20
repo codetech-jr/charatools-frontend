@@ -6,7 +6,7 @@
  *
  * Secciones:
  * - Logo + tagline
- * - Links de navegación institucional (Catálogo, Quiénes Somos, FAQ, Contacto)
+ * - Links de navegación institucional (Catálogo, Quiénes Somos, Contacto)
  * - Marcas distribuidas
  * - Datos de contacto + CTA WhatsApp
  * - Copyright
@@ -50,7 +50,6 @@ const NAV_LINKS = {
   ],
   empresa: [
     { label: 'Quiénes Somos', href: '/quienes-somos' },
-    { label: 'Preguntas Frecuentes', href: '/faq' },
     { label: 'Contacto', href: '/contacto' },
   ],
   legal: [
@@ -64,7 +63,7 @@ const NAV_LINKS = {
   ],
 }
 
-const BRANDS = ['INGCO', '3M', 'Stanley', 'Truper', 'Bellota', 'Lumistar']
+const BRANDS = ['INGCO', '3M', 'Stanley', 'Bellota', 'Lumistar']
 
 export function Footer() {
   return (

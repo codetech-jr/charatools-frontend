@@ -14,7 +14,6 @@ import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
  /*import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection' */
 import { BrandTicker } from '@/components/sections/BrandTicker'
 import { ContactMapSection } from '@/components/sections/ContactMapSection'
-/*import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA' */ 
 /*import { SpecificSolutions } from '@/components/sections/SpecificSolutions'*/
 /* import { SeoBomb } from '@/components/seo/SeoBomb' */
 import { CatalogProduct } from '@/lib/catalog.types'
@@ -45,30 +44,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1585526881453-899142f58fd0?w=400&q=80',
     status: 'high-demand',
   },
-  {
-    id: '3',
-    slug: 'tuberia-ppr-1-2-para-aguas-blancas',
-    name: 'Tubería PPR 1/2 para Aguas Blancas',
-    shortDescription: 'Tubería PPR burda de resistente para instalaciones sanitarias. Aguanta la pela.',
-    category: 'plomeria',
-    categoryLabel: 'Plomería',
-    brand: 'Truper',
-    unit: 'm',
-    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    status: 'available',
-  },
-  {
-    id: '4',
-    slug: 'llave-de-paso-ppr',
-    name: 'Llave de Paso PPR',
-    shortDescription: 'Válvula de paso para tubería PPR, guerrera y duradera.',
-    category: 'plomeria',
-    categoryLabel: 'Plomería',
-    brand: 'Truper',
-    unit: 'und',
-    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
-    status: 'available',
-  },
+
   {
     id: '5',
     slug: 'bombilla-led-9w-calida',
@@ -105,18 +81,7 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
     status: 'available',
   },
-  {
-    id: '8',
-    slug: 'breaker-termomagnetico-30a',
-    name: 'Breaker Termomagnético 30A',
-    shortDescription: 'Breaker para proteger los circuitos, pa\' no arriesgarse en la instalación.',
-    category: 'electricidad',
-    categoryLabel: 'Electricidad',
-    brand: 'Schneider Electric',
-    unit: 'und',
-    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    status: 'new-batch',
-  },
+
 ]
 
 export default function Home() {
@@ -127,50 +92,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Schema FAQ */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "¿Cómo funciona pedir por WhatsApp? ¿Es seguro?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Es el método más rápido. Solo envía la lista de repuestos, un humano verifica el stock, coordinas retiro o delivery. Sin formularios tediosos ni tarjetas en webs de terceros."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Los equipos INGCO tienen garantía real? ¿Qué cubre?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Sí. Al ser distribuidores autorizados INGCO y Truper, tienes garantía directa por defectos de fábrica. Sin terceros. Reemplazo real bajo verificación técnica."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Cuáles son los métodos de pago?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Aceptamos pago al instante mediante Pago Móvil, Transferencias nacionales y Efectivo."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Cómo sé que los productos son originales y no copias?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Todos los equipos InGCO, Truper y Stanley incluyen caja original, serial verificable, factura y hologramas. Cero imitaciones."
-                }
-              }
-            ]
-          })
-        }}
-      />
 
       {/* Schema Local Business */}
       <script
@@ -240,15 +161,7 @@ export default function Home() {
               },
               {
                 "@type": "Brand",
-                "name": "Truper"
-              },
-              {
-                "@type": "Brand",
                 "name": "Dewalt"
-              },
-              {
-                "@type": "Brand",
-                "name": "Schneider"
               }
             ],
             "aggregateRating": {
@@ -284,8 +197,6 @@ export default function Home() {
         {/* ── NEW: Soluciones de Marketing Directo ── */}
         {/* <SpecificSolutions /> */}
 
-        {/* ── VIP Membership Section ── */}
-        {/* <MembresiaBanner_Home_CTA /> */}
 
         {/* ── NEW: Combos by project ── */}
         {/* <CombosSection /> */}

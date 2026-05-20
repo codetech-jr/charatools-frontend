@@ -28,10 +28,8 @@ VALUES
   ('INGCO',             'ingco',             NULL),
   ('Stanley',           'stanley',           NULL),
   ('Dewalt',            'dewalt',            NULL),
-  ('Truper',            'truper',            NULL),
   ('3M',                '3m',                NULL),
-  ('Philips',           'philips',           NULL),
-  ('Schneider Electric','schneider-electric', NULL)
+  ('Philips',           'philips',           NULL)
 ON CONFLICT (slug) DO NOTHING;
 
 -- =============================================================================
@@ -121,17 +119,7 @@ VALUES
     (SELECT id FROM public.categories WHERE slug = 'plomeria')
   ),
 
-  (
-    'Tubería PPR ½" para Aguas Blancas (6m)',
-    'tuberia-ppr-12',
-    'TRU-PPR12-6M',
-    'Tubería PPR PN20, resistente a altas temperaturas hasta 95°C.',
-    'Tubería PPR de ½ pulgada, PN20, para instalaciones de aguas blancas calientes y frías. Longitud de 6m por varilla. Alta resistencia química.',
-    '{"imagen":"https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80","tags":["tubería","PPR","aguas blancas","plomería"],"stockStatus":"available","unidad":"m"}'::jsonb,
-    false,
-    (SELECT id FROM public.brands     WHERE slug = 'truper'),
-    (SELECT id FROM public.categories WHERE slug = 'plomeria')
-  ),
+
 
   (
     'Press Control Automático 1HP',
@@ -197,17 +185,7 @@ VALUES
     (SELECT id FROM public.categories WHERE slug = 'electricidad')
   ),
 
-  (
-    'Breaker Termomagnético 30A Schneider',
-    'breaker-30a',
-    'SCH-EZ9F34230',
-    'Disyuntor monofásico para tableros eléctricos residenciales.',
-    'Breaker de 30 amperios, monofásico, capacidad de interrupción 10kA. Montaje en riel DIN. Protección contra sobrecarga y cortocircuito.',
-    '{"referencia":"EZ9F34230","voltaje":240,"imagen":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80","tags":["breaker","disyuntor","tablero","protección"],"stockStatus":"new-batch","unidad":"und"}'::jsonb,
-    true,
-    (SELECT id FROM public.brands     WHERE slug = 'schneider-electric'),
-    (SELECT id FROM public.categories WHERE slug = 'electricidad')
-  ),
+
 
   (
     'Cinta Aislante Temflex 1700 3M (x10 und)',
@@ -223,29 +201,7 @@ VALUES
 
   -- ── IMPERMEABILIZACIÓN ────────────────────────────────────────────────────
 
-  (
-    'Manto Asfáltico 3mm x 10m²',
-    'manto-asfaltico-3mm',
-    'TRU-MANTO3MM-10M2',
-    'Manto prefabricado con polietileno, para techos y azoteas.',
-    'Manto asfáltico modificado con APP, espesor 3mm, cobertura de 10m². Aplicación con soplete. Alta resistencia a la intemperie y UV.',
-    '{"imagen":"https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80","tags":["manto","asfáltico","impermeabilización","techo"],"stockStatus":"available","unidad":"rollo"}'::jsonb,
-    false,
-    (SELECT id FROM public.brands     WHERE slug = 'truper'),
-    (SELECT id FROM public.categories WHERE slug = 'impermeabilizacion')
-  ),
 
-  (
-    'Pintura Impermeabilizante Blanca 5 Gal',
-    'pintura-impermeabilizante-5gal',
-    'TRU-IMPERMEAB-5G',
-    'Recubrimiento acrílico elastomérico para techos y paredes exteriores.',
-    'Pintura base agua con elasticidad superior, refleja hasta 85% de rayos solares. Rendimiento 4-5 m²/galón. Aplicar 2 capas mínimo.',
-    '{"imagen":"https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80","tags":["pintura","impermeabilizante","elastomérica","techo"],"stockStatus":"available","unidad":"cuñete"}'::jsonb,
-    false,
-    (SELECT id FROM public.brands     WHERE slug = 'truper'),
-    (SELECT id FROM public.categories WHERE slug = 'impermeabilizacion')
-  ),
 
   (
     'Sellador de Silicona Transparente 280ml',

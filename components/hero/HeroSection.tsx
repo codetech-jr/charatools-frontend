@@ -31,7 +31,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
         </h1>
 
         <p className="text-base md:text-lg text-gray-800 leading-relaxed max-w-lg">
-          Herramientas InGco con garantía real, plomería, electricidad y más. Escríbenos por WhatsApp y retira en Charallave el mismo día.
+          Herramientas InGco, plomería, electricidad y más. Escríbenos por WhatsApp y retira en Charallave el mismo día.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 w-full max-w-lg">
@@ -63,7 +63,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
         <div className="w-full aspect-square md:aspect-video lg:aspect-[4/3] rounded-lg overflow-hidden border border-gray-200">
           <img
             src="/hero-tools.jpg"
-            alt="Fachada de la Ferretería CharaTools en el centro de Charallave con amplio stock de herramientas Truper e Ingco"
+            alt="Fachada de la Ferretería CharaTools en el centro de Charallave con amplio stock de herramientas Ingco"
             loading="eager"
             fetchPriority="high"
             className="w-full h-full object-cover"

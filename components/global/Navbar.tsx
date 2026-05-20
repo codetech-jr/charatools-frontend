@@ -61,15 +61,7 @@ export function Navbar() {
         {/* ── Mega-Menú B2B (Desktop) ── */}
         <DesktopMegaMenu />
 
-        <div className="hidden lg:flex items-center gap-3">
-          <Link 
-            href="/membresia" 
-            className="text-gray-300 hover:text-white border border-gray-700 hover:border-gray-500 px-4 py-2 rounded-xl transition-all flex items-center gap-2"
-          >
-            <Crown className="w-4 h-4 text-yellow-500" /> 
-            Membresía
-          </Link>
-        </div>
+
 
         {/* ── Buscador Masivo (Desktop) ── */}
         <div className="hidden md:flex flex-1 max-w-xl relative flex-col">
@@ -136,18 +128,8 @@ export function Navbar() {
             <TrendingSearches />
           </div>
 
-          {/* Quick Links Mobile */}
           <div className="flex flex-col gap-3 mb-5">
             <div className="flex gap-3">
-            </div>
-            <div className="flex gap-3">
-              <Link 
-                href="/membresia" 
-                onClick={() => setIsMenuOpen(false)} 
-                className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-xl p-3 text-sm font-bold"
-              >
-                <Crown className="w-4 h-4 text-yellow-500" /> Membresía
-              </Link>
             </div>
           </div>
           

@@ -14,7 +14,7 @@ export function SeoBomb() {
           </p>
           
           <p>
-            ¿Por qué venir a Charatools antes de arrancar a Caracas? Porque el tiempo vale. Porque el pasaje vale. Y porque aquí tienes lo que necesitas en stock, con asesoría técnica directa por WhatsApp y la posibilidad de retirar el mismo día en nuestra tienda matriz. Trabajamos con marcas originales como InGco y Truper — con garantía real, no con copias que se rompen al primer uso. Si vives en los Valles del Tuy o sus municipios vecinos, tu ferretería de confianza ya está aquí.
+            ¿Por qué venir a Charatools antes de arrancar a Caracas? Porque el tiempo vale. Porque el pasaje vale. Y porque aquí tienes lo que necesitas en stock, con asesoría técnica directa por WhatsApp y la posibilidad de retirar el mismo día en nuestra tienda matriz. Trabajamos con marcas originales como InGco y Vert — con garantía real, no con copias que se rompen al primer uso. Si vives en los Valles del Tuy o sus municipios vecinos, tu ferretería de confianza ya está aquí.
           </p>
           
           <p>

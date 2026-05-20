@@ -20,7 +20,7 @@ interface SlideData {
 const SLIDES: SlideData[] = [
   {
     id: 1,
-    title: "Tu herramienta ideal está en Charallave",
+    title: "Charatools: el aliado de confianza que llegó para potenciar Charallave",
     subtitle: "Somos tu aliado de confianza con el stock más robusto de grifería, iluminación, electricidad, PVC y herramientas en los Valles del Tuy.",
     ctaText: "Ver Catálogo Completo",
     bgImage: "/negocio.webp",
@@ -28,15 +28,6 @@ const SLIDES: SlideData[] = [
   },
   {
     id: 2,
-    title: "Ahorra en Grande este 2026",
-    subtitle: "Únete a nuestra membresía y obtén descuentos en grifería, iluminación, electricidad, PVC, herramientas y más. Todo el inventario de Charatools con beneficios exclusivos por el resto del año en los Valles del Tuy.",
-    ctaText: "Quiero mi Membresía 2026",
-    ctaLink: "/membresia",
-    bgImage: "/negocio.webp",
-    overlayColor: "bg-blue-900/40",
-  },
-  {
-    id: 3,
     title: "La Ferretería más grande y variada de Charallave",
     subtitle: "Encuentra el inventario más completo de los Valles del Tuy en nuestra tienda. Ubícanos fácilmente bajando por la misma calle de MRW hasta la siguiente cuadra, justo detrás de la Panadería D´Juan.",
     ctaText: "Ver ubicación en Google Maps",

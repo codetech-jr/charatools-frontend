@@ -90,7 +90,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
 // ---------------------------------------------------------------------------
 
 export const CATALOG_BRANDS = [
-  'INGCO', '3M', 'Schneider Electric', 'Philips', 'Truper', 'Stanley', 'Dewalt', 'Makita',
+  'INGCO', '3M', 'Philips', 'Stanley', 'Dewalt', 'Makita',
 ] as const
 
 export type CatalogBrand = typeof CATALOG_BRANDS[number]
@@ -167,7 +167,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     shortDescription: 'Tubería PPR PN20, resistente a altas temperaturas.',
     category: 'plomeria',
     categoryLabel: 'Plomería',
-    brand: 'Truper',
+    brand: 'Stanley',
     unit: 'm',
     image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
     status: 'available',
@@ -194,7 +194,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     shortDescription: 'Disyuntor monofásico para tableros eléctricos residenciales.',
     category: 'electricidad',
     categoryLabel: 'Electricidad',
-    brand: 'Schneider Electric',
+    brand: 'Philips',
     reference: 'EZ9F34230',
     unit: 'und',
     voltageVolts: 240,

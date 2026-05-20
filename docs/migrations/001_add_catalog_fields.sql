@@ -120,17 +120,7 @@ VALUES
     ARRAY['bomba','agua','riego','presión'],
     '{"referencia": "SPWP8001", "potenciaW": 370, "voltaje": 120}'::jsonb
   ),
-  (
-    'Tubería PPR ½" para Aguas Blancas (6m)',
-    'tuberia-ppr-12',
-    'Tubería PPR PN20, resistente a altas temperaturas hasta 95°C.',
-    NULL,
-    'plomeria', 'Truper', 'm',
-    'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    'available', false,
-    ARRAY['tubería','PPR','aguas blancas','plomería'],
-    '{}'::jsonb
-  ),
+
   (
     'Press Control Automático 1HP',
     'press-control-automatico',
@@ -186,17 +176,7 @@ VALUES
     ARRAY['cable','eléctrico','THW','#12'],
     '{"voltaje": 600}'::jsonb
   ),
-  (
-    'Breaker Termomagnético 30A Schneider',
-    'breaker-30a',
-    'Disyuntor monofásico para tableros eléctricos residenciales.',
-    'Breaker de 30A, monofásico, capacidad 10kA. Montaje en riel DIN.',
-    'electricidad', 'Schneider Electric', 'und',
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
-    'new-batch', true,
-    ARRAY['breaker','disyuntor','tablero','protección'],
-    '{"referencia": "EZ9F34230", "voltaje": 240}'::jsonb
-  ),
+
   (
     'Cinta Aislante Temflex 1700 3M (x10 und)',
     'cinta-aislante-3m',
@@ -208,28 +188,7 @@ VALUES
     ARRAY['cinta','aislante','3M','eléctrico'],
     '{"referencia": "TEMFLEX1700-10"}'::jsonb
   ),
-  (
-    'Manto Asfáltico 3mm x 10m²',
-    'manto-asfaltico-3mm',
-    'Manto prefabricado con polietileno, para techos y azoteas.',
-    'Manto asfáltico modificado con APP, espesor 3mm, cobertura 10m². Aplicación con soplete.',
-    'impermeabilizacion', 'Truper', 'rollo',
-    'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    'available', false,
-    ARRAY['manto','asfáltico','impermeabilización','techo'],
-    '{}'::jsonb
-  ),
-  (
-    'Pintura Impermeabilizante Blanca 5 Gal',
-    'pintura-impermeabilizante-5gal',
-    'Recubrimiento acrílico elastomérico para techos y paredes exteriores.',
-    'Pintura base agua con elasticidad superior. Rendimiento 4-5 m²/galón.',
-    'impermeabilizacion', 'Truper', 'cuñete',
-    'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    'available', false,
-    ARRAY['pintura','impermeabilizante','elastomérica','techo'],
-    '{}'::jsonb
-  ),
+
   (
     'Sellador de Silicona Transparente 280ml',
     'sellador-silicona-transparente',

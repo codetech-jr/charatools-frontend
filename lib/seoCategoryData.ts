@@ -199,9 +199,9 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Electricidad
   // ──────────────────────────────────────────────────────────────────────────
   'electricidad': {
-    title: 'Materiales Eléctricos Certificados: Cableado y Protección Estructural',
+    title: 'Materiales y Equipos Eléctricos',
     description:
-      'Soluciones de infraestructura eléctrica con despacho inmediato en Charallave para desarrollos en los Valles del Tuy. Provisión de conductores y protección termomagnética bajo normativas internacionales.',
+      'Potencia y protege tus proyectos con nuestra línea de electricidad. Encuentra tableros empotrables, cajas de paso, tubos conduit y accesorios, componentes de control como breakers y contactores, protectores eléctricos de alta seguridad y tomas decorativas de vanguardia. Todo lo que necesitas para instalaciones confiables en un solo lugar.',
     blocks: [
       {
         subtitle: 'Conductores Eléctricos de Alta Capacidad',
@@ -213,10 +213,10 @@ export const seoCategoryData: SeoCategoryDataMap = {
       },
     ],
     ctaSection: {
-      title: 'Suministro eléctrico logístico por volumen',
+      title: 'Energía segura y garantizada',
       text:
-        'Atendemos requerimientos de materiales eléctricos desde nuestro centro logístico en Charallave. Garantice la seguridad y el cumplimiento normativo de su obra con productos certificados.',
-      btnText: 'Gestionar Requerimiento Eléctrico',
+        'Encuentra desde tubos conduit hasta tomas decorativas con la mejor relación calidad-precio. Explora nuestra línea de electricidad y haz tu pedido ahora.',
+      btnText: 'Solicitar Cotización',
     },
   },
 
@@ -224,7 +224,7 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // Iluminación
   // ──────────────────────────────────────────────────────────────────────────
   'iluminacion': {
-    title: 'Iluminación LED en Charallave: Bombillos, Paneles y Reflectores de Alto Rendimiento',
+    title: 'Iluminación LED en Charallave: Bombillos, Paneles, Reflectores y Alumbrado público de Alto Rendimiento',
     description:
       '',
     blocks: [
@@ -250,7 +250,7 @@ export const seoCategoryData: SeoCategoryDataMap = {
   // ──────────────────────────────────────────────────────────────────────────
   'impermeabilizacion': {
     title: 'Impermeabilización Estructural y Mantos Asfálticos Certificados',
-    description: 'Materiales técnicos con stock físico en Charallave orientados al contratista de obra en los Valles del Tuy. Soluciones certificadas para la prevención de filtraciones industriales y habitacionales.',
+    description: 'Contamos con el inventario más resistente de mantos asfálticos, pinturas elásticas y selladores diseñados para el clima de los Valles del Tuy.',
     blocks: [
       { 
         subtitle: 'Sistemas de Impermeabilización Comercial', 

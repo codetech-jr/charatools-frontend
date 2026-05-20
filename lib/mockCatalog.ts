@@ -106,19 +106,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     status: 'high-demand',
     tags: ['bomba', 'agua', 'riego', 'presión'],
   },
-  {
-    id: 'tuberia-ppr-12',
-    slug: 'tuberia-ppr-12',
-    name: 'Tubería PPR ½" para Aguas Blancas (6m)',
-    shortDescription: 'Tubería PPR PN20, resistente a altas temperaturas hasta 95°C.',
-    category: 'plomeria',
-    categoryLabel: 'Plomería',
-    brand: 'Truper',
-    unit: 'm',
-    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    status: 'available',
-    tags: ['tubería', 'PPR', 'aguas blancas', 'plomería'],
-  },
+
   {
     id: 'press-control-automatico',
     slug: 'press-control-automatico',
@@ -207,22 +195,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     status: 'available',
     tags: ['cable', 'eléctrico', 'THW', '#12', 'cobre'],
   },
-  {
-    id: 'breaker-30a',
-    slug: 'breaker-30a',
-    name: 'Breaker Termomagnético 30A Schneider',
-    shortDescription: 'Disyuntor monofásico para tableros eléctricos residenciales.',
-    description: 'Breaker de 30 amperios, monofásico, capacidad de interrupción 10kA. Montaje en riel DIN. Protección contra sobrecarga y cortocircuito.',
-    category: 'electricidad',
-    categoryLabel: 'Electricidad',
-    brand: 'Schneider Electric',
-    reference: 'EZ9F34230',
-    unit: 'und',
-    voltageVolts: 240,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
-    status: 'new-batch',
-    tags: ['breaker', 'disyuntor', 'tablero', 'protección'],
-  },
+
   {
     id: 'cinta-aislante-3m',
     slug: 'cinta-aislante-3m',
@@ -241,34 +214,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
   // ═══════════════════════════════════════════════════════════════════════════
   // IMPERMEABILIZACIÓN (3 productos)
   // ═══════════════════════════════════════════════════════════════════════════
-  {
-    id: 'manto-asfaltico-3mm',
-    slug: 'manto-asfaltico-3mm',
-    name: 'Manto Asfáltico 3mm x 10m',
-    shortDescription: 'Manto prefabricado con polietileno, para techos y azoteas.',
-    description: 'Manto asfáltico modificado con APP, espesor 3mm, cobertura de 10m². Aplicación con soplete. Alta resistencia a la intemperie y UV.',
-    category: 'impermeabilizacion',
-    categoryLabel: 'Impermeabilización',
-    brand: 'Truper',
-    unit: 'rollo',
-    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    status: 'available',
-    tags: ['manto', 'asfáltico', 'impermeabilización', 'techo'],
-  },
-  {
-    id: 'pintura-impermeabilizante-5gal',
-    slug: 'pintura-impermeabilizante-5gal',
-    name: 'Pintura Elastomérica Impermeabilizante (Cuñete 5 Gal)',
-    shortDescription: 'Recubrimiento acrílico elastomérico para techos y paredes exteriores.',
-    description: 'Pintura base agua con elasticidad superior, refleja hasta 85% de rayos solares. Rendimiento 4-5 m²/galón. Aplicar 2 capas mínimo.',
-    category: 'impermeabilizacion',
-    categoryLabel: 'Impermeabilización',
-    brand: 'Truper',
-    unit: 'cuñete',
-    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
-    status: 'available',
-    tags: ['pintura', 'impermeabilizante', 'elastomérica', 'techo'],
-  },
+
   {
     id: 'sellador-silicona-transparente',
     slug: 'sellador-silicona-transparente',

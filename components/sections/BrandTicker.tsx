@@ -6,7 +6,6 @@ import Marquee from 'react-fast-marquee'
 const BRANDS = [
   { name: 'INGCO', src: '/logo-ingco.webp' },
   { name: '3M', src: '/logo-3M.webp' },
-  { name: 'Truper', src: '/logo-truper.webp' },
   { name: 'Stanley', src: '/logo-stanley.webp' },
   { name: 'Bellota', src: '/logo-bellota.webp' },
   { name: 'Bticino', src: '/logo-bticino.webp' },
@@ -28,16 +27,36 @@ const BRANDS = [
   { name: 'Littmann', src: '/logo-littmann.webp' },
   { name: 'Proxical', src: '/logo-proxical.webp' },
   { name: 'Sergeca', src: '/logo-sergeca.webp' },
+  { name: 'PCP', src: '/logo-pcp.webp' },
+  { name: 'Bosch', src: '/logo-bosch.webp' },
   { name: 'Termofusion', src: '/logo-termofusion.webp' },
   { name: 'Vert', src: '/logo-vert.webp' },
   { name: 'Zasc', src: '/logo-zasc.webp' },
+  { name: 'Protonic Electric', src: '/logo-protonic.webp' },
+  { name: 'Cobra', src: '/logo-cobra.webp' },
   { name: 'Ceramipego', src: '/logo-ceramipego.webp' },
-  { name: 'Belt-G', src: '/logo-belt-g.webp' }
+  { name: 'Belt-G', src: '/logo-belt-g.webp' },
 ]
 
-export function BrandTicker() {
+interface BrandTickerProps {
+  variant?: 'dark' | 'light' | 'transparent'
+  grayscale?: boolean
+}
+
+export function BrandTicker({ variant = 'dark', grayscale = true }: BrandTickerProps) {
+  const bgClass = 
+    variant === 'dark' 
+      ? 'bg-gray-900 border-b border-gray-800 py-6' 
+      : variant === 'light' 
+      ? 'bg-gray-50 border-y border-gray-200/60 py-6' 
+      : 'bg-transparent py-4' // transparent
+  
+  const imgClass = grayscale 
+    ? 'filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300'
+    : 'transition-all duration-300'
+
   return (
-    <div className="w-full bg-gray-900 border-b border-gray-800 overflow-hidden py-6" aria-hidden="true">
+    <div className={`w-full overflow-hidden ${bgClass}`} aria-hidden="true">
       <Marquee pauseOnHover={true} speed={40} gradient={false}>
         {BRANDS.map((brand, idx) => (
           <div 
@@ -47,7 +66,7 @@ export function BrandTicker() {
             <img
               src={brand.src}
               alt={`Logo de ${brand.name}`}
-              className="max-h-full max-w-full object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer"
+              className={`max-h-full max-w-full object-contain cursor-pointer ${imgClass}`}
             />
           </div>
         ))}

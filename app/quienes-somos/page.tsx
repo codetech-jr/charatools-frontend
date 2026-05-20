@@ -11,16 +11,17 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ShieldCheck, Headset, Clock, ArrowRight, Wrench, Zap, Droplets } from 'lucide-react'
+import { Headset, Clock, ArrowRight } from 'lucide-react'
+import { BrandTicker } from '@/components/sections/BrandTicker'
 
 export const metadata: Metadata = {
   title: 'Quiénes Somos | CharaTools — Tu Aliado en la Obra',
   description:
-    'CharaTools nació en Charallave porque en la obra no hay tiempo que perder. Distribuidor multimarca de herramientas y equipos como INGCO, 3M, Stanley y Truper. Repuestos originales, respuesta en minutos.',
+    'CharaTools nació en Charallave porque en la obra no hay tiempo que perder. Distribuidor multimarca de herramientas y equipos como INGCO, 3M y Stanley. Obtén una respuesta en minutos.',
   openGraph: {
     title: 'CharaTools — Tu Aliado en la Obra, no otro proveedor',
     description:
-      'Fundada por ferreteristas con experiencia de campo. Repuestos originales, sin intermediarios y respuesta en menos de 15 minutos por WhatsApp.',
+      'Fundada por ferreteristas con experiencia de campo. Productos ferreteros, sin intermediarios y respuesta en menos de 15 minutos por WhatsApp.',
   },
 }
 
@@ -30,44 +31,22 @@ const TRUST_BLOCKS = [
   {
     icon: Headset,
     title: 'Asesoría de Expertos',
-    body: 'No somos un bot. Cuando escribes, responde un asesor que conoce la diferencia entre un cable #12 y un #10, y sabe cuándo importa.',
+    body: 'Cuando escribes, responde un asesor que conoce la diferencia entre un cable #12 y un #10, y sabe cuándo importa.',
     accent: 'text-yellow-500',
     bg: 'bg-yellow-50',
     border: 'border-yellow-200',
   },
   {
-    icon: ShieldCheck,
-    title: 'Garantía Original',
-    body: 'Aquí no hay imitaciones. Solo marcas líderes con respaldo real.',
-    accent: 'text-green-600',
-    bg: 'bg-green-50',
-    border: 'border-green-200',
-  },
-  {
     icon: Clock,
     title: 'Respuesta en < 15 Min',
-    body: 'Escríbenos y en menos de 15 minutos sabes si el repuesto está disponible y cuándo llega. Porque la obra no espera.',
+    body: 'Escríbenos y en menos de 15 minutos sabes si el producto está disponible y cuándo llega. Porque la obra no espera.',
     accent: 'text-gray-700',
     bg: 'bg-gray-50',
     border: 'border-gray-200',
   },
 ] as const
 
-// ── Marcas con iconos de categoría ─────────────────────────────────────────
-
-const BRANDS = [
-  { name: 'INGCO', icon: Wrench, desc: 'Herramientas eléctricas y manuales' },
-  { name: '3M', icon: Zap, desc: 'Eléctrico, selladores, seguridad' },
-  { name: 'Stanley', icon: Wrench, desc: 'Herramientas de precisión' },
-  { name: 'Truper', icon: Droplets, desc: 'Plomería y construcción' },
-  { name: 'Schneider', icon: Zap, desc: 'Automatización y eléctrico' },
-  { name: 'Bellota', icon: Wrench, desc: 'Herramientas de construcción' },
-  { name: 'Bticino', icon: Zap, desc: 'Material eléctrico residencial' },
-  { name: 'Tubrica', icon: Droplets, desc: 'Sistemas de tuberías' },
-  { name: 'Manpica', icon: Droplets, desc: 'Pinturas y revestimientos' },
-  { name: 'Cebra', icon: Wrench, desc: 'Brochas y complementos' },
-  { name: 'Venceramica', icon: Droplets, desc: 'Piezas sanitarias' },
-]
+// ── Marcas con iconos de categoría (Reemplazado por BrandTicker) ───────────
 
 // ── Página ─────────────────────────────────────────────────────────────────
 
@@ -92,15 +71,13 @@ export default function QuienesSomosPage() {
             </span>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
-              Nada de demoras.<br />
-              Nada de repuestos<br />
-              <span className="text-yellow-400">que llegan en 3 días.</span>
+             Somos tu<br />
+              herramienta ideal<br />
+              <span className="text-yellow-400">en Charallave</span>
             </h1>
 
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-lg">
-              CharaTools nació en Charallave porque los ferreteristas de aquí sabemos lo que cuesta
-              parar una obra por un repuesto que no llega. Por eso tenemos stock real, marcas
-              originales y un asesor técnico que responde antes de que termines de escribir.
+              Contamos con stock variado, marcas de excelente calidad y asesores técnicos que responden antes de que termines de escribir.
             </p>
 
             <div className="flex flex-wrap gap-3 pt-2">
@@ -154,7 +131,7 @@ export default function QuienesSomosPage() {
             ¿Cuánto te cuesta parar la obra por una pieza?
           </h2>
           <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            Un taladro dañado un martes en la mañana puede costarte el jornal de 4 obreros.
+            Un taladro dañado un martes en la mañana puede costarte la jornada de 4 obreros.
             Una bomba sin repuesto puede parar una residencia entera.
             Nosotros existimos para que eso no pase.
           </p>
@@ -184,7 +161,7 @@ export default function QuienesSomosPage() {
                 {[
                   'Escribe por WhatsApp y en <15 min sabes si hay stock.',
                   'Recoge el mismo día o coordinas la entrega.',
-                  'Solo marcas originales con garantía del fabricante.',
+                  'Solo marcas profesionales para tu comodidad y la de tu cliente.',
                   'La obra sigue. El cliente está contento.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
@@ -232,29 +209,16 @@ export default function QuienesSomosPage() {
        {/* ═══════════════════════════════════════════════════════════════════
            NUESTRAS MARCAS — Social Proof
        ═══════════════════════════════════════════════════════════════════ */}
-       <section className="bg-gray-50 px-4 py-14 md:py-20 border-y border-gray-100" aria-label="Marcas que distribuimos">
-         <div className="max-w-7xl mx-auto">
-           <div className="text-center mb-12 space-y-3">
-             <h2 className="text-2xl md:text-3xl font-black text-gray-900">Marcas que confían en nosotros</h2>
+       <section className="bg-gray-50 py-14 md:py-20 border-y border-gray-100" aria-label="Marcas que distribuimos">
+         <div className="max-w-7xl mx-auto px-4 mb-4">
+           <div className="text-center space-y-3">
+             <h2 className="text-2xl md:text-3xl font-black text-gray-900">Marcas de aliados comerciales</h2>
              <p className="text-gray-500 text-base max-w-xl mx-auto">
-               Trabajamos directamente con fabricantes líderes para garantizar repuestos originales y soporte técnico especializado.
+               Trabajamos directamente con fabricantes líderes para garantizar herramientas profesionales y soporte técnico especializado.
              </p>
            </div>
-           
-           <div className="flex flex-wrap justify-center gap-8 md:gap-12 items-center">
-             {BRANDS.map((brand) => {
-               const Icon = brand.icon
-               return (
-                 <div key={brand.name} className="group flex flex-col items-center gap-3 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
-                   <div className="w-16 h-16 flex items-center justify-center bg-white rounded-2xl shadow-sm border border-gray-200 group-hover:border-yellow-400 group-hover:shadow-md transition-all">
-                     <Icon className="w-8 h-8 text-gray-400 group-hover:text-yellow-500" />
-                   </div>
-                   <span className="text-sm font-black text-gray-400 group-hover:text-gray-900">{brand.name}</span>
-                 </div>
-               )
-             })}
-           </div>
          </div>
+         <BrandTicker variant="transparent" grayscale={false} />
        </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
@@ -267,17 +231,25 @@ export default function QuienesSomosPage() {
           </h2>
           <p className="text-gray-500 text-base">
             No esperes. Escribe ahora y confirma disponibilidad en minutos.<br />
-            <span className="text-sm font-bold text-yellow-600">¿Buscas descuentos exclusivos? Revisa nuestra Membresía VIP en la página principal.</span>
           </p>
-          <a
-            href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20busco%20disponibilidad%20de%20una%20pieza"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 h-14 px-8 bg-black text-white font-bold text-base rounded-xl hover:bg-gray-900 active:scale-95 transition-all shadow-lg shadow-gray-200"
-          >
-            Buscar mi pieza ahora
-            <ArrowRight className="w-5 h-5" aria-hidden="true" />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="https://api.whatsapp.com/send?phone=584220148405&text=Hola%20CharaTools,%20busco%20disponibilidad%20de%20una%20pieza"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 h-14 px-8 bg-black text-white font-bold text-base rounded-xl hover:bg-gray-900 active:scale-95 transition-all shadow-lg shadow-gray-200"
+            >
+              Equipar mi proyecto 
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
+            </a>
+            <Link
+              href="/catalogo"
+              className="inline-flex items-center gap-2 h-14 px-8 bg-yellow-400 text-black font-bold text-base rounded-xl hover:bg-yellow-500 active:scale-95 transition-all shadow-lg shadow-yellow-900/10"
+            >
+              Ver Catálogo
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
