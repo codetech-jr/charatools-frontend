@@ -33,7 +33,7 @@ import { seoCategoryData } from '@/lib/seoCategoryData'
 
 import type { CatalogSidebarProps } from './CatalogSidebar'
 import { FiltersContent } from './CatalogSidebar'
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetHeader } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetHeader, SheetClose } from '@/components/ui/sheet'
 
 // ── Tipos ──────────────────────────────────────────────────────────────────
 
@@ -154,8 +154,8 @@ export function CatalogResultsPanel({
                     )}
                   </button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-[85%] sm:max-w-sm p-0 overflow-y-auto bg-white border-r border-gray-200 shadow-2xl">
-                  <SheetHeader className="px-5 pt-7 pb-4 border-b border-gray-100 bg-white sticky top-0 z-10">
+                <SheetContent side="left" className="w-[85%] sm:max-w-sm p-0 bg-white border-r border-gray-200 shadow-2xl flex flex-col h-full">
+                  <SheetHeader className="px-5 pt-6 pb-4 border-b border-gray-100 bg-white flex-shrink-0">
                     <div className="flex items-center justify-between">
                       <SheetTitle className="text-xl font-black text-gray-900 tracking-tight">Filtros</SheetTitle>
                     </div>
@@ -163,8 +163,18 @@ export function CatalogResultsPanel({
                       Opciones para filtrar productos en el catálogo
                     </SheetDescription>
                   </SheetHeader>
-                  <div className="px-5 py-2 bg-white">
+                  <div className="flex-1 overflow-y-auto px-5 py-2 bg-white">
                     <FiltersContent {...sidebarProps} hideHeader={true} />
+                  </div>
+                  <div className="p-4 border-t border-gray-100 bg-gray-50 flex-shrink-0">
+                    <SheetClose asChild>
+                      <button 
+                        className="w-full h-12 bg-yellow-400 text-black font-black text-sm rounded-xl hover:bg-yellow-500 active:scale-95 transition-all shadow-md flex items-center justify-center gap-2"
+                        aria-label="Aplicar filtros y cerrar"
+                      >
+                        Ver {products.length} producto{products.length !== 1 ? 's' : ''}
+                      </button>
+                    </SheetClose>
                   </div>
                 </SheetContent>
               </Sheet>

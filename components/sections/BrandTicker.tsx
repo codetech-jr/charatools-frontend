@@ -5,6 +5,7 @@ import Marquee from 'react-fast-marquee'
 
 const BRANDS = [
   { name: 'INGCO', src: '/logo-ingco.webp' },
+  { name: 'EMG', src: '/logo-emg.webp' },
   { name: '3M', src: '/logo-3M.webp' },
   { name: 'Stanley', src: '/logo-stanley.webp' },
   { name: 'Bellota', src: '/logo-bellota.webp' },
