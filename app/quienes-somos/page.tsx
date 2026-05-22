@@ -122,60 +122,22 @@ export default function QuienesSomosPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          EL PROBLEMA QUE RESOLVEMOS — Contraste antes/después
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 px-4 py-14 md:py-20" aria-label="El problema que resolvemos">
-        <div className="max-w-4xl mx-auto text-center space-y-4">
-          <h2 className="text-2xl md:text-3xl font-black text-gray-900">
-            ¿Cuánto te cuesta parar la obra por una pieza?
-          </h2>
-          <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            Un taladro dañado un martes en la mañana puede costarte la jornada de 4 obreros.
-            Una bomba sin repuesto puede parar una residencia entera.
-            Nosotros existimos para que eso no pase.
-          </p>
+       {/* ═══════════════════════════════════════════════════════════════════
+           NUESTRAS MARCAS — Social Proof
+       ═══════════════════════════════════════════════════════════════════ */}
+       <section className="bg-gray-50 py-14 md:py-20 border-y border-gray-100" aria-label="Marcas que distribuimos">
+         <div className="max-w-7xl mx-auto px-4 mb-4">
+           <div className="text-center space-y-3">
+             <h2 className="text-2xl md:text-3xl font-black text-gray-900">Marcas de aliados comerciales</h2>
+             <p className="text-gray-500 text-base max-w-xl mx-auto">
+               Trabajamos directamente con fabricantes líderes para garantizar herramientas profesionales y soporte técnico especializado.
+             </p>
+           </div>
+         </div>
+         <BrandTicker variant="transparent" grayscale={false} />
+       </section>
 
-          {/* Comparativa antes/después */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 text-left">
-            <div className="bg-red-50 border border-red-200 rounded-xl p-5 space-y-3">
-              <p className="text-xs font-black text-red-500 uppercase tracking-wide">Sin CharaTools</p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                {[
-                  'Llamas a 5 ferreterías y ninguna tiene el repuesto.',
-                  'Esperas 3 días por un pedido que puede llegar dañado.',
-                  'La copia barata se funde en 2 semanas.',
-                  'Tu cliente te llama preguntando por la obra.',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-red-400 font-bold flex-shrink-0">✗</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-xl p-5 space-y-3">
-              <p className="text-xs font-black text-green-600 uppercase tracking-wide">Con CharaTools</p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                {[
-                  'Escribe por WhatsApp y en <15 min sabes si hay stock.',
-                  'Recoge el mismo día o coordinas la entrega.',
-                  'Solo marcas profesionales para tu comodidad y la de tu cliente.',
-                  'La obra sigue. El cliente está contento.',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-green-500 font-bold flex-shrink-0">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
+             {/* ═══════════════════════════════════════════════════════════════════
           BENTO GRID — 3 Pilares de Confianza
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="px-4 py-14 md:py-20" aria-label="Nuestros pilares de servicio">
@@ -205,21 +167,7 @@ export default function QuienesSomosPage() {
           </div>
         </div>
       </section>
- 
-       {/* ═══════════════════════════════════════════════════════════════════
-           NUESTRAS MARCAS — Social Proof
-       ═══════════════════════════════════════════════════════════════════ */}
-       <section className="bg-gray-50 py-14 md:py-20 border-y border-gray-100" aria-label="Marcas que distribuimos">
-         <div className="max-w-7xl mx-auto px-4 mb-4">
-           <div className="text-center space-y-3">
-             <h2 className="text-2xl md:text-3xl font-black text-gray-900">Marcas de aliados comerciales</h2>
-             <p className="text-gray-500 text-base max-w-xl mx-auto">
-               Trabajamos directamente con fabricantes líderes para garantizar herramientas profesionales y soporte técnico especializado.
-             </p>
-           </div>
-         </div>
-         <BrandTicker variant="transparent" grayscale={false} />
-       </section>
+
 
       {/* ═══════════════════════════════════════════════════════════════════
           CTA FINAL
