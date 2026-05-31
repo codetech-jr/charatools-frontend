@@ -35,6 +35,15 @@ const SLIDES: SlideData[] = [
     bgImage: "/negocio.webp",
     overlayColor: "bg-neutral-900/40",
   },
+  {
+    id: 3,
+    title: "Ahorra en Grande este 2026",
+    subtitle: "Únete a nuestra membresía y obtén descuentos en grifería, iluminación, electricidad, PVC, herramientas y más. Todo el inventario de Charatools con beneficios exclusivos por ser miembro.",
+    ctaText: "Únete al Club VIP",
+    ctaLink: "/membresia",
+    bgImage: "/negocio.webp",
+    overlayColor: "bg-black/50",
+  },
 ]
 
 interface HeroSliderProps {

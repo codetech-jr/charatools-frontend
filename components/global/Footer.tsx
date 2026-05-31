@@ -14,7 +14,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Clock, ArrowUpRight, Facebook, Instagram } from 'lucide-react'
+import { MapPin, Clock, ArrowUpRight, Facebook, Instagram, Phone } from 'lucide-react'
 
 const WA_URL =
   'https://api.whatsapp.com/send?phone=584220148405&text=' +
@@ -103,6 +103,10 @@ export function Footer() {
               <div className="flex items-center md:items-start gap-2">
                 <Clock className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span className="text-xs">Lun – Sáb: 9:00 am – 6:00 pm</span>
+              </div>
+              <div className="flex items-center md:items-start gap-2">
+                <Phone className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-xs">+58 424-2201484</span>
               </div>
             </div>
 

@@ -23,9 +23,8 @@
 
 import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { LayoutGrid, List, PackageX, ArrowUpDown, SlidersHorizontal } from 'lucide-react'
+import { PackageX, ArrowUpDown, SlidersHorizontal } from 'lucide-react'
 import { ProductCard } from './ProductCard'
-import { ProductRow } from './ProductRow'
 import type { CatalogProduct } from '@/lib/catalog.types'
 import { SeoCategoryHero } from '@/components/seo/SeoCategoryHero'
 import { SeoCategoryFooter } from '@/components/seo/SeoCategoryFooter'
@@ -37,7 +36,6 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetH
 
 // ── Tipos ──────────────────────────────────────────────────────────────────
 
-type ViewMode = 'list' | 'grid'
 type SortOption = 'relevance' | 'name-asc' | 'name-desc' | 'brand'
 
 interface CatalogResultsPanelProps {
@@ -64,7 +62,6 @@ export function CatalogResultsPanel({
   onClearFilters,
   sidebarProps,
 }: CatalogResultsPanelProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [sortBy, setSortBy] = useState<SortOption>('relevance')
 
   // Ordenar productos client-side
@@ -197,38 +194,6 @@ export function CatalogResultsPanel({
                 </select>
               </div>
             </div>
-
-            {/* Toggle Lista / Grid */}
-            <div
-              role="group"
-              aria-label="Modo de visualización"
-              className="flex items-center bg-gray-50 border border-gray-200 rounded-lg p-0.5 gap-0.5"
-            >
-              <button
-                onClick={() => setViewMode('list')}
-                aria-pressed={viewMode === 'list'}
-                aria-label="Vista en lista"
-                className={`p-2 rounded-md transition-colors ${
-                  viewMode === 'list'
-                    ? 'bg-yellow-400 text-black'
-                    : 'text-gray-400 hover:text-gray-700'
-                }`}
-              >
-                <List className="w-4 h-4" aria-hidden="true" />
-              </button>
-              <button
-                onClick={() => setViewMode('grid')}
-                aria-pressed={viewMode === 'grid'}
-                aria-label="Vista en cuadrícula"
-                className={`p-2 rounded-md transition-colors ${
-                  viewMode === 'grid'
-                    ? 'bg-yellow-400 text-black'
-                    : 'text-gray-400 hover:text-gray-700'
-                }`}
-              >
-                <LayoutGrid className="w-4 h-4" aria-hidden="true" />
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -252,17 +217,6 @@ export function CatalogResultsPanel({
               Quitar todos los filtros
             </button>
           </div>
-        ) : viewMode === 'list' ? (
-          <ul
-            role="list"
-            className="divide-y divide-gray-100 bg-white lg:rounded-lg lg:overflow-hidden lg:border lg:border-gray-200"
-          >
-            {sortedProducts.map((product) => (
-              <li key={product.id}>
-                <ProductRow product={product} />
-              </li>
-            ))}
-          </ul>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 p-2">
             {sortedProducts.map((product) => (

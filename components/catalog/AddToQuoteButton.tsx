@@ -27,9 +27,11 @@ import { trackAddToQuote } from '@/lib/analytics'
 
 interface AddToQuoteButtonProps {
   product: CatalogProduct
+  /** Variante seleccionada por el usuario (opcional — ej: '½"', '#12', '1 HP') */
+  selectedVariant?: string
 }
 
-export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
+export default function AddToQuoteButton({ product, selectedVariant }: AddToQuoteButtonProps) {
   const [mounted, setMounted] = React.useState(false)
   const [status, setStatus] = React.useState<'idle' | 'added'>('idle')
   const timerRef = React.useRef<NodeJS.Timeout | null>(null)
@@ -56,9 +58,15 @@ export default function AddToQuoteButton({ product }: AddToQuoteButtonProps) {
   const handleAdd = () => {
     if (isOutOfStock || isInQuotation) return
 
+    // Si hay variante seleccionada, la incluimos en el nombre del ítem
+    // para que el equipo de ventas sepa exactamente qué medida cotizar.
+    const itemName = selectedVariant
+      ? `${product.name} — ${product.variantLabel ?? 'Medida'}: ${selectedVariant}`
+      : product.name
+
     addItem({
       id: product.id,
-      name: product.name,
+      name: itemName,
       brand: product.brand,
       reference: product.reference,
       unit: product.unit,

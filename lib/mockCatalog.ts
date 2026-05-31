@@ -2,7 +2,7 @@
  * @file mockCatalog.ts
  * @description Mock data centralizado del catálogo CharaTools B2B.
  *
- * 16 productos ultra-realistas repartidos entre las 5 categorías oficiales:
+ * Productos ultra-realistas repartidos entre las 5 categorías oficiales:
  * Herramientas en General, Plomería, Iluminación, Electricidad, Impermeabilización.
  *
  * Sin precios (modelo B2B: el precio se negocia por WhatsApp).
@@ -33,6 +33,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     status: 'available',
     tags: ['taladro', 'percutor', 'concreto', 'mampostería'],
     relatedIds: ['esmeril-ingco-820w', 'flexometro-stanley-5m'],
+    subcategory: 'electricas',
   },
   {
     id: 'esmeril-ingco-820w',
@@ -51,6 +52,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&q=80',
     status: 'available',
     tags: ['esmeril', 'amoladora', 'corte', 'desbaste'],
+    subcategory: 'electricas',
   },
   {
     id: 'flexometro-stanley-5m',
@@ -66,6 +68,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&q=80',
     status: 'available',
     tags: ['flexómetro', 'medida', 'stanley', 'cinta métrica'],
+    subcategory: 'medicion',
   },
   {
     id: 'sierra-caladora-dewalt-550w',
@@ -84,10 +87,11 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&q=80',
     status: 'new-batch',
     tags: ['sierra', 'caladora', 'madera', 'corte'],
+    subcategory: 'electricas',
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // PLOMERÍA (3 productos)
+  // PLOMERÍA (6 productos: 2 bombas, 3 tuberías para test de 3er nivel, 1 soldadura)
   // ═══════════════════════════════════════════════════════════════════════════
   {
     id: 'bomba-periferica-1-2hp',
@@ -105,8 +109,8 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
     status: 'high-demand',
     tags: ['bomba', 'agua', 'riego', 'presión'],
+    subcategory: 'bombas',
   },
-
   {
     id: 'press-control-automatico',
     slug: 'press-control-automatico',
@@ -121,6 +125,54 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1585526881453-899142f58fd0?w=400&q=80',
     status: 'high-demand',
     tags: ['press control', 'presión', 'bomba', 'automático'],
+    subcategory: 'bombas',
+  },
+  {
+    id: 'tuberia-sanitaria-estandar-3',
+    slug: 'tuberia-sanitaria-estandar-3',
+    name: 'Tubería Sanitaria Estándar 3" (6m) Tubrica',
+    shortDescription: 'Tubería PVC sanitaria para desagües y ventilación.',
+    description: 'Tubería de PVC tipo Sanitario de 3 pulgadas de diámetro por 6 metros de longitud. Ideal para sistemas de aguas servidas y ventilación residencial.',
+    category: 'plomeria',
+    categoryLabel: 'Plomería',
+    brand: 'Tubrica',
+    unit: 'und',
+    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
+    status: 'available',
+    tags: ['tubería', 'sanitaria', 'desagüe', 'Tubrica'],
+    subcategory: 'tuberias',
+    subitem: 'tuberia-sanitaria-estandar',
+  },
+  {
+    id: 'tuberia-termofusion-ppr-20',
+    slug: 'tuberia-termofusion-ppr-20',
+    name: 'Tubería Termofusión PPR 20mm PN20',
+    shortDescription: 'Tubería PPR de 20mm para agua caliente y fría.',
+    description: 'Tubería de polipropileno copolímero random (PPR) de 20mm de diámetro exterior. Presión nominal PN20. Ideal para distribución de agua potable fría y caliente sin filtraciones.',
+    category: 'plomeria',
+    categoryLabel: 'Plomería',
+    brand: 'Termofusion',
+    unit: 'und',
+    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
+    status: 'available',
+    tags: ['tubería', 'ppr', 'termofusión', 'agua caliente'],
+    subcategory: 'tuberias',
+    subitem: 'termofusion-ppr',
+  },
+  {
+    id: 'pega-pvc-soldadura-tinajera',
+    slug: 'pega-pvc-soldadura-tinajera',
+    name: 'Pega para PVC Soldadura Tinajera 8oz',
+    shortDescription: 'Pega soldadura líquida para tuberías de PVC rígido.',
+    description: 'Cemento solvente de fraguado rápido para soldar tuberías y conexiones de PVC de hasta 4" de diámetro. Excelente adherencia y resistencia a la presión.',
+    category: 'plomeria',
+    categoryLabel: 'Plomería',
+    brand: 'Fermetal',
+    unit: 'und',
+    image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
+    status: 'available',
+    tags: ['pega', 'cemento', 'soldadura', 'pvc', 'tinajera'],
+    subcategory: 'soldadura',
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -142,6 +194,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1565636192335-14d0f48d7c71?w=400&q=80',
     status: 'available',
     tags: ['LED', 'bombillo', 'iluminación', 'E27'],
+    subcategory: 'focos-led',
   },
   {
     id: 'panel-led-60w',
@@ -158,6 +211,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1565631969034-0e5c0f0e8c59?w=400&q=80',
     status: 'high-demand',
     tags: ['panel', 'LED', 'empotrado', 'oficina'],
+    subcategory: 'industrial',
   },
   {
     id: 'reflector-led-100w',
@@ -175,10 +229,11 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1565636192335-14d0f48d7c71?w=400&q=80',
     status: 'available',
     tags: ['reflector', 'LED', 'exterior', 'IP65', 'industrial'],
+    subcategory: 'reflectores',
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // ELECTRICIDAD (3 productos)
+  // ELECTRICIDAD (2 productos)
   // ═══════════════════════════════════════════════════════════════════════════
   {
     id: 'cable-electrico-2-100m',
@@ -194,8 +249,8 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
     status: 'available',
     tags: ['cable', 'eléctrico', 'THW', '#12', 'cobre'],
+    subcategory: 'cables',
   },
-
   {
     id: 'cinta-aislante-3m',
     slug: 'cinta-aislante-3m',
@@ -209,12 +264,12 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
     status: 'available',
     tags: ['cinta', 'aislante', '3M', 'eléctrico'],
+    subcategory: 'cables',
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // IMPERMEABILIZACIÓN (3 productos)
+  // IMPERMEABILIZACIÓN (1 producto)
   // ═══════════════════════════════════════════════════════════════════════════
-
   {
     id: 'sellador-silicona-transparente',
     slug: 'sellador-silicona-transparente',
@@ -228,6 +283,7 @@ export const MOCK_CATALOG: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
     status: 'available',
     tags: ['sellador', 'silicona', 'baño', 'juntas'],
+    subcategory: 'selladores',
   },
 ]
 

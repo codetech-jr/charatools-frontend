@@ -9,6 +9,7 @@ import { CategoryGrid } from '@/components/catalog/CategoryGrid'
 import { ProductGrid } from '@/components/catalog/ProductGrid'
 
 import { QuotationDrawer } from '@/components/quotation/QuotationDrawer'
+import { MembresiaBanner_Home_CTA } from '@/components/sections/MembresiaBanner_Home_CTA'
 /*import { CombosSection } from '@/components/sections/CombosSection'*/
 /*import { WhatsAppAdvisorSection } from '@/components/sections/WhatsAppAdvisorSection'*/
  /*import { InventoryGallerySection } from '@/components/sections/InventoryGallerySection' */
@@ -193,6 +194,11 @@ export default function Home() {
 
           <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={null} />
         </section>
+
+        {/* ── NEW: Membresia CTA ── */}
+        <div className="py-12 lg:py-20 bg-white flex justify-center px-4 md:px-8">
+          <MembresiaBanner_Home_CTA />
+        </div>
 
         {/* ── NEW: Soluciones de Marketing Directo ── */}
         {/* <SpecificSolutions /> */}

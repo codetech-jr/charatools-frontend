@@ -21,7 +21,7 @@ const categories: Category[] = [
     title: 'Herramientas en General',
     subtitle: 'Eléctricas, manuales y accesorios para profesionales.',
     bgColor: 'bg-neutral-800',
-    image: '/herramientas.webp'
+    image: '/categoria-herramientas.webp'
   },
   {
     id: '3',
@@ -29,7 +29,7 @@ const categories: Category[] = [
     title: 'Iluminación',
     subtitle: 'Paneles, bombillos y reflectores.',
     bgColor: 'bg-neutral-900',
-    image: '/iluminacion.webp'
+    image: '/categoria-iluminacion.webp'
   },
   {
     id: '2',
@@ -37,7 +37,7 @@ const categories: Category[] = [
     title: 'Plomería',
     subtitle: 'PPR, PVC y grifería de alta calidad.',
     bgColor: 'bg-blue-900',
-    image: '/pvc.webp'
+    image: '/categoria-plomeria.webp'
   },
   {
     id: '5',
@@ -45,7 +45,7 @@ const categories: Category[] = [
     title: 'Impermeabilización',
     subtitle: 'Mantos, primers y selladores.',
     bgColor: 'bg-zinc-800',
-    image: '/impermeabilizacion.webp'
+    image: '/categoria-impermeabilizacion.webp'
   },
   {
     id: '4',
@@ -53,7 +53,7 @@ const categories: Category[] = [
     title: 'Electricidad',
     subtitle: 'Cables, breaker, tomacorrientes y todo lo relacionado con electricidad.',
     bgColor: 'bg-orange-900',
-    image: '/electricidad.webp'
+    image: '/categoria-electricidad.webp'
   }
 ]
 

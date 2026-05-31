@@ -5,7 +5,7 @@
  * Beneficio clave: Los filtros son COMPARTIBLES (copiar URL preserva el estado).
  * El filtrado es 100% client-side: sin llamadas al servidor, <50ms en móvil.
  *
- * Soporta: q (búsqueda), marca (multi), potMin/potMax, cat (categoría), stock (multi)
+ * Soporta: q (búsqueda), marca (multi), potMin/potMax, cat (categoría), stock (multi), sub (subcategoría)
  */
 
 'use client'
@@ -24,10 +24,11 @@ function parseFiltersFromParams(params: URLSearchParams): CatalogFilters & { cat
   const potenciaMax = params.get('potMax') ? Number(params.get('potMax')) : undefined
   const q = params.get('q') || undefined
   const cat = params.get('cat') || undefined
+  const sub = params.get('sub') || undefined
   const cashea = params.get('cashea') === 'true' ? 'true' : undefined
   const stock = params.getAll('stock').filter(Boolean) as StockStatus[]
 
-  return { marcas, potenciaMin, potenciaMax, q, cat, stock: stock.length > 0 ? stock : undefined, cashea }
+  return { marcas, potenciaMin, potenciaMax, q, cat, stock: stock.length > 0 ? stock : undefined, cashea, sub }
 }
 
 // ---------------------------------------------------------------------------
@@ -45,8 +46,16 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
     [searchParams]
   )
 
-  // Categoría activa (extraída de los filtros para conveniencia)
-  const activeCategory = filters.cat ?? null
+  // Categoría activa (extraída de los filtros o del pathname)
+  const activeCategory = useMemo(() => {
+    if (filters.cat) return filters.cat
+    const segments = pathname.split('/').filter(Boolean)
+    // segments: ['catalogo', 'plomeria']
+    if (segments[0] === 'catalogo' && segments[1]) {
+      return segments[1]
+    }
+    return null
+  }, [filters.cat, pathname])
 
   // ── Filtrado instantáneo (client-side) ──────────────────────────────────
 
@@ -56,6 +65,13 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
     // Filtro por categoría
     if (filters.cat) {
       result = result.filter((p) => p.category === filters.cat)
+    }
+
+    // Filtro por subcategoría o sub-ítem
+    if (filters.sub) {
+      result = result.filter(
+        (p) => p.subcategory === filters.sub || p.subitem === filters.sub
+      )
     }
 
     // Filtro por marcas (multi-select OR)
@@ -116,8 +132,22 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
   const updateParams = useCallback(
     (updates: Record<string, string | string[] | null>) => {
       const params = new URLSearchParams(searchParams.toString())
+      let targetPathname = pathname
 
       Object.entries(updates).forEach(([key, value]) => {
+        if (key === 'cat') {
+          // Si estamos cambiando de categoría principal
+          if (value === null) {
+            targetPathname = '/catalogo'
+          } else if (typeof value === 'string') {
+            targetPathname = `/catalogo/${value}`
+          }
+          // Limpiar subcategoría al cambiar de categoría
+          params.delete('sub')
+          params.delete('cat')
+          return
+        }
+
         // Eliminar el param si el valor es null o array vacío
         if (value === null || (Array.isArray(value) && value.length === 0)) {
           params.delete(key)
@@ -131,7 +161,7 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
         }
       })
 
-      router.push(`${pathname}?${params.toString()}`, { scroll: false })
+      router.push(`${targetPathname}?${params.toString()}`, { scroll: false })
     },
     [router, pathname, searchParams]
   )
@@ -161,6 +191,7 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
     if (filters.potenciaMax !== undefined) count++
     if (filters.q) count++
     if (filters.cat) count++
+    if (filters.sub) count++
     if (filters.cashea === 'true') count++
     if (filters.stock?.length) count += filters.stock.length
     return count

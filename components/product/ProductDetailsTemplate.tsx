@@ -1,3 +1,19 @@
+'use client'
+
+/**
+ * @file components/product/ProductDetailsTemplate.tsx
+ * @description Plantilla de detalle de producto.
+ *
+ * Convertido a Client Component para gestionar el estado de la variante
+ * seleccionada (selectedVariant) que se comparte entre ProductVariantSelector
+ * y AddToQuoteButton.
+ *
+ * Arquitectura:
+ *   - El Server Component padre (app/producto/[slug]/page.tsx) sigue siendo
+ *     Server Component puro y pasa el producto como prop serializada.
+ *   - La interactividad (selección de variante, cotización) ocurre aquí.
+ */
+
 import React from 'react'
 import Link from 'next/link'
 import {
@@ -16,6 +32,7 @@ import type { CatalogProduct, StockStatus } from '@/lib/catalog.types'
 import AddToQuoteButton from '@/components/catalog/AddToQuoteButton'
 import { RelatedProductsCarousel } from '@/components/catalog/RelatedProductsCarousel'
 import { DiscoverMoreCategories } from '@/components/catalog/DiscoverMoreCategories'
+import { ProductVariantSelector } from '@/components/product/ProductVariantSelector'
 
 const STATUS_CONFIG: Record<
   StockStatus,
@@ -69,6 +86,11 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
   const StatusIcon = status.icon
   const isOutOfStock = product.status === 'out-of-stock'
 
+  // Estado de variante seleccionada — compartido con AddToQuoteButton
+  const [selectedVariant, setSelectedVariant] = React.useState<string | null>(null)
+
+  const hasVariants = product.variants && product.variants.length > 0
+
   return (
     <div className={isModal ? 'pb-8' : 'max-w-6xl mx-auto px-4 md:px-8 py-8 md:py-12'}>
       {/* Botón volver (mobile) */}
@@ -83,7 +105,6 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
       )}
 
       {/* ── Split 2 columnas Desktop ────────────────────────────────────── */}
-      {/* Usamos el mismo layout responsive incluso en el modal para aprovechar max-w-4xl/5xl */}
       <div className={`grid grid-cols-1 ${isModal ? 'md:grid-cols-2' : 'lg:grid-cols-2'} gap-8 lg:gap-12 items-start ${isModal ? 'p-6 md:p-8' : ''}`}>
 
         {/* ── Columna Izquierda: Imagen ─────────────────────────────────── */}
@@ -147,6 +168,16 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
             {product.shortDescription}
           </p>
 
+          {/* ── Selector de Variantes (medidas, diámetros, calibres) ────── */}
+          {hasVariants && (
+            <ProductVariantSelector
+              variants={product.variants!}
+              variantLabel={product.variantLabel}
+              selectedVariant={selectedVariant}
+              onSelect={(val) => setSelectedVariant(val || null)}
+            />
+          )}
+
           {/* Descripción larga */}
           {product.description && (
             <div>
@@ -182,9 +213,7 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
             </div>
 
             {/* ── Botón de Cotización (Client Island) ───────────────────── */}
-            <AddToQuoteButton product={product} />
-
-
+            <AddToQuoteButton product={product} selectedVariant={selectedVariant ?? undefined} />
 
             {/* Referencia/SKU visible */}
             {product.reference && (
@@ -198,9 +227,9 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
 
       {/* ── Productos Relacionados & Cross-Selling ─────────────────────── */}
       <div className={isModal ? 'px-6 md:px-8' : ''}>
-        <RelatedProductsCarousel 
-          currentProductId={product.id} 
-          category={product.category} 
+        <RelatedProductsCarousel
+          currentProductId={product.id}
+          category={product.category}
         />
       </div>
 

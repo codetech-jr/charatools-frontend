@@ -77,9 +77,9 @@ export function PredictiveSearchBar() {
             setIsFocused(true)
           }}
           onFocus={() => setIsFocused(true)}
-          className="w-full h-11 bg-gray-800 border-2 border-gray-700 rounded-xl px-4 pl-11 text-sm text-white focus:outline-none focus:border-yellow-400 focus:bg-gray-700 transition-all"
+          className="w-full h-11 bg-gray-800 border-2 border-yellow-400 rounded-xl px-4 pl-11 text-sm text-white focus:outline-none focus:bg-gray-700 transition-all"
         />
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-yellow-400 transition-colors" />
         <button 
           type="submit"
           className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-3 bg-yellow-400 text-black text-xs font-bold rounded-lg hover:bg-yellow-500 transition-colors"

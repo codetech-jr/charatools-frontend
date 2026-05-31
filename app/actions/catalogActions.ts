@@ -104,6 +104,8 @@ function toProduct(row: ProductRow): CatalogProduct {
     status:           toStockStatus(specStr(row.specs, 'stockStatus')),
     tags:             specArr(row.specs, 'tags'),
     isCasheaEligible: row.is_casheable ?? false,
+    subcategory:      specStr(row.specs, 'subcategory') ?? specStr(row.specs, 'sub'),
+    subitem:          specStr(row.specs, 'subitem') ?? specStr(row.specs, 'sub_item'),
   }
 }
 

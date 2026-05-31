@@ -1,185 +1,173 @@
 'use client'
 
 /**
- * @file ProductRow.tsx
- * @description Ítem de producto en formato lista densa (McMaster-Carr style).
- *
- * Diseño orientado a operarios B2B en móvil:
- * - Imagen pequeña (64x64) a la izquierda — identificación rápida visual
- * - Datos técnicos clave en una línea (marca, ref, potencia)
- * - Badge de stock claramente visible con alto contraste
- * - Botón "+ Agregar" grande (44px mín) con feedback inmediato
- * - Tap en nombre/imagen → abre modal de detalle (Intercepting Route)
- * - Sin hover effects innecesarios en móvil
+ * @file components/catalog/ProductRow.tsx
+ * @description Fila de producto para la vista en lista del catálogo.
+ * Diseño denso estilo McMaster-Carr: imagen pequeña + datos clave en línea.
+ * Comparte el mismo sistema de colores y estados que ProductCard.
  */
 
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { Plus, Check, Zap, Info } from 'lucide-react'
+import { Plus, Check, Info, Ruler } from 'lucide-react'
 import Image from 'next/image'
 import { useQuotationStore } from '@/store/quotationStore'
-import type { CatalogProduct } from '@/lib/catalog.types'
+import type { CatalogProduct, StockStatus } from '@/lib/catalog.types'
+
+const STATUS_DOT: Record<StockStatus, { color: string; label: string }> = {
+  available:      { color: 'bg-green-500',  label: 'Disponible' },
+  'high-demand':  { color: 'bg-yellow-500', label: 'Alta rotación' },
+  'new-batch':    { color: 'bg-blue-500',   label: 'Nuevo lote' },
+  'out-of-stock': { color: 'bg-red-400',    label: 'Sin stock' },
+}
 
 interface ProductRowProps {
   product: CatalogProduct
 }
 
-const STOCK_BADGE: Record<CatalogProduct['status'], { label: string; className: string }> = {
-  available:      { label: 'Stock',       className: 'bg-green-100 text-green-800 border-green-200' },
-  'high-demand':  { label: 'Alta rot.',  className: 'bg-yellow-100 text-yellow-800 border-yellow-200' },
-  'new-batch':    { label: 'Nuevo lote', className: 'bg-blue-100 text-blue-800 border-blue-200' },
-  'out-of-stock': { label: 'Sin stock',   className: 'bg-red-100 text-red-700 border-red-200' },
-}
-
 export function ProductRow({ product }: ProductRowProps) {
-  const [justAdded, setJustAdded] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [addStatus, setAddStatus] = React.useState<'idle' | 'added'>('idle')
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null)
+  const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
     setMounted(true)
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
   }, [])
-  const addItem = useQuotationStore((s) => s.addItem)
-  const isInQuotationStore = useQuotationStore((s) => 
-    s.items.some(item => item.id === product.id)
-  )
-  const isInQuotation = mounted && isInQuotationStore
 
-  const badge = STOCK_BADGE[product.status]
+  const addItem     = useQuotationStore((s) => s.addItem)
+  const isInStore   = useQuotationStore((s) => s.items.some((i) => i.id === product.id))
+  const isInQuotation = mounted && isInStore
+
+  const dot = STATUS_DOT[product.status]
   const isDisabled = product.status === 'out-of-stock'
+  const hasVariants = product.variants && product.variants.length > 0
 
   const handleAdd = (e: React.MouseEvent) => {
-    e.preventDefault() // No navegar si el click fue en el botón
-    if (isDisabled || isInQuotation) return
-
+    e.preventDefault()
+    if (isDisabled || isInQuotation || addStatus === 'added') return
     addItem({
-      id: product.id,
-      name: product.name,
-      brand: product.brand,
+      id:        product.id,
+      name:      product.name,
+      brand:     product.brand,
       reference: product.reference,
-      unit: product.unit,
-      qty: 1,
+      unit:      product.unit,
+      qty:       1,
     })
-
-    setJustAdded(true)
-    setTimeout(() => setJustAdded(false), 2000)
+    setAddStatus('added')
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => setAddStatus('idle'), 1200)
   }
 
   return (
     <article
-      className={`
-        flex items-center gap-3 px-4 py-3.5 bg-white border-b border-gray-100
-        hover:bg-gray-50/80 transition-colors duration-200 group
-      `}
+      className="group flex items-center gap-3 md:gap-4 px-4 md:px-6 py-3 hover:bg-yellow-50/50 transition-colors duration-150"
       aria-label={product.name}
     >
-      {/* ── Imagen + Link al modal de detalle ── */}
+      {/* Imagen miniatura */}
       <Link
         href={`/producto/${product.slug}`}
-        className="flex-shrink-0 w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 relative"
-        aria-label={`Ver detalle de ${product.name}`}
+        className="relative shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-lg overflow-hidden bg-white border border-gray-200 group-hover:border-yellow-300 transition-colors"
+        tabIndex={-1}
+        aria-hidden="true"
       >
-        <img
+        <Image
           src={product.image}
-          alt={product.name}
-          loading="lazy"
-          className="w-full h-full object-contain p-1 group-hover:scale-110 transition-transform duration-300 ease-out"
+          alt=""
+          fill
+          className="object-contain p-1.5"
+          sizes="64px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </Link>
 
-      {/* ── Info central ── */}
-      <div className="flex-1 min-w-0 flex flex-col justify-center">
-        {/* Línea de datos técnicos */}
-        <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 px-1.5 py-0.5 rounded-sm">
+      {/* Info principal */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap mb-0.5">
+          {/* Dot de estado */}
+          <span
+            className={`inline-block w-2 h-2 rounded-full shrink-0 ${dot.color}`}
+            title={dot.label}
+            aria-label={`Estado: ${dot.label}`}
+          />
+          {/* Marca */}
+          <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
             {product.brand}
           </span>
+          {/* Referencia */}
           {product.reference && (
-            <span className="text-[11px] text-gray-400 font-mono truncate" title={`SKU / Ref: ${product.reference}`}>
-              Ref: {product.reference}
+            <span className="text-[10px] font-mono text-gray-400 hidden sm:inline">
+              · {product.reference}
+            </span>
+          )}
+          {/* Badge "Tiene medidas" */}
+          {hasVariants && (
+            <span
+              className="inline-flex items-center gap-0.5 text-[9px] font-bold text-yellow-700 bg-yellow-100 border border-yellow-200 px-1.5 py-0.5 rounded-full"
+              title={`Disponible en varias ${product.variantLabel?.toLowerCase() ?? 'medidas'}`}
+            >
+              <Ruler className="w-2.5 h-2.5" aria-hidden="true" />
+              {product.variantLabel ?? 'Medidas'}
             </span>
           )}
         </div>
 
-        {/* Nombre — tappable */}
-        <Link
-          href={`/producto/${product.slug}`}
-          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 rounded"
-        >
-          <h3 className="text-sm font-bold text-gray-900 line-clamp-2 leading-snug group-hover:text-yellow-600 transition-colors">
+        {/* Nombre */}
+        <Link href={`/producto/${product.slug}`}>
+          <h3 className="text-sm font-bold text-gray-900 leading-snug line-clamp-1 group-hover:text-yellow-700 transition-colors">
             {product.name}
           </h3>
         </Link>
 
-        {/* Detalles extras y badges */}
-        <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-          {/* Badge de stock */}
-          <span
-            className={`inline-flex items-center text-[10px] uppercase tracking-wide font-bold px-2 py-0.5 rounded-full border shadow-sm ${badge.className}`}
-            aria-label={`Estado: ${badge.label}`}
-          >
-            {badge.label}
-          </span>
-          
-          {product.powerWatts && (
-            <>
-              <span className="text-gray-200 text-xs" aria-hidden="true">|</span>
-              <span className="inline-flex items-center gap-0.5 text-xs font-medium text-gray-500">
-                <Zap className="w-3.5 h-3.5 text-yellow-500" aria-hidden="true" />
-                <span>{product.powerWatts}W</span>
-              </span>
-            </>
-          )}
-
-
-        </div>
+        {/* Descripción corta — solo md+ */}
+        <p className="text-xs text-gray-400 line-clamp-1 leading-snug mt-0.5 hidden md:block">
+          {product.shortDescription}
+        </p>
       </div>
 
-      {/* ── Botón Agregar (siempre a la derecha) ── */}
+      {/* Unidad de venta */}
+      <span className="shrink-0 text-[10px] font-mono text-gray-400 hidden lg:block">
+        {product.unit}
+      </span>
+
+      {/* Botón de cotizar */}
       <button
         onClick={handleAdd}
-        disabled={isDisabled}
+        disabled={isDisabled || isInQuotation}
         aria-label={
           isInQuotation
             ? `${product.name} ya está en tu lista`
-            : `Agregar ${product.name} a mi cotización`
+            : isDisabled
+              ? 'Sin stock'
+              : `Agregar ${product.name} a cotización`
         }
         aria-pressed={isInQuotation}
-        className={`
-          relative flex-shrink-0 flex items-center justify-center gap-1.5
-          h-11 w-11 md:w-auto md:px-4 rounded-xl shadow-sm
-          text-xs font-bold border-2 transition-all duration-300 overflow-hidden
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-1
-          active:scale-95 group/btn
-          ${isInQuotation
-            ? 'border-yellow-400 bg-yellow-50 text-yellow-700 hover:bg-yellow-100'
-            : justAdded
-              ? 'border-green-500 bg-green-500 text-white shadow-green-500/30 shadow-lg'
-              : isDisabled
-                ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'border-yellow-400 bg-yellow-400 text-black hover:bg-yellow-500 hover:border-yellow-500 hover:shadow-lg hover:shadow-yellow-400/20'
-          }
-        `}
+        className={[
+          'shrink-0 h-9 px-3 md:px-4 rounded-lg font-bold text-xs flex items-center gap-1.5',
+          'transition-all duration-150 active:scale-95',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400',
+          isDisabled
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+            : isInQuotation
+              ? 'bg-white border-2 border-yellow-400 text-gray-800 cursor-default'
+              : addStatus === 'added'
+                ? 'bg-neutral-800 text-white cursor-default'
+                : 'bg-yellow-400 hover:bg-yellow-500 text-black shadow-sm hover:shadow-yellow-200/60',
+        ].join(' ')}
       >
-        {!isDisabled && !isInQuotation && !justAdded && (
-          <div className="absolute inset-0 -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+        {isInQuotation ? (
+          <Check className="w-3.5 h-3.5 text-yellow-500" aria-hidden="true" />
+        ) : isDisabled ? (
+          <Info className="w-3.5 h-3.5" aria-hidden="true" />
+        ) : addStatus === 'added' ? (
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        ) : (
+          <Plus className="w-3.5 h-3.5" aria-hidden="true" />
         )}
-
-        <div className="relative z-10 flex items-center justify-center gap-1.5">
-          {isInQuotation ? (
-            <Check className="w-4.5 h-4.5" aria-hidden="true" />
-          ) : justAdded ? (
-            <Check className="w-4.5 h-4.5 animate-in zoom-in duration-300" aria-hidden="true" />
-          ) : isDisabled ? (
-             <Info className="w-4.5 h-4.5" aria-hidden="true" />
-          ) : (
-            <Plus className="w-4.5 h-4.5 group-hover/btn:scale-110 transition-transform" aria-hidden="true" />
-          )}
-          {/* Texto solo en tablet+ */}
-          <span className="hidden md:inline sr-only md:not-sr-only">
-            {isInQuotation ? 'En lista' : justAdded ? '¡Añadido!' : 'Agregar'}
-          </span>
-        </div>
+        <span className="hidden sm:inline">
+          {isInQuotation ? 'En lista' : isDisabled ? 'Sin stock' : addStatus === 'added' ? '¡Listo!' : 'Cotizar'}
+        </span>
       </button>
     </article>
   )

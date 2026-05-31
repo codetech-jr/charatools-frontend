@@ -5,6 +5,19 @@
  */
 
 // ---------------------------------------------------------------------------
+// Variantes de producto (medidas, diámetros, calibres, etc.)
+// ---------------------------------------------------------------------------
+
+export interface ProductVariant {
+  /** Valor de la variante mostrado en el pill: "½\"", "¾\"", "#12", etc. */
+  value: string
+  /** Etiqueta alternativa de display (opcional — si difiere de value) */
+  label?: string
+  /** Marcar como agotado para deshabilitar el pill sin ocultarlo */
+  outOfStock?: boolean
+}
+
+// ---------------------------------------------------------------------------
 // Producto (catálogo B2B sin precios)
 // ---------------------------------------------------------------------------
 
@@ -43,6 +56,20 @@ export interface CatalogProduct {
   isCasheaEligible?: boolean
   /** Precio sugerido para cálculos de Cashea (opcional en catálogo B2B) */
   price?: number
+  /** Slug de la subcategoría (ej: 'tuberias', 'bombas') */
+  subcategory?: string
+  /** Slug del sub-ítem de tercer nivel (ej: 'tuberia-sanitaria-estandar') */
+  subitem?: string
+  /**
+   * Variantes seleccionables por medida/diámetro/calibre.
+   * Cuando está definido, se muestra el selector de pills en la página de detalle.
+   */
+  variants?: ProductVariant[]
+  /**
+   * Etiqueta del selector de variantes (ej: "Diámetro", "Calibre", "Longitud").
+   * Por defecto: "Medida" si no se especifica.
+   */
+  variantLabel?: string
 }
 
 // ---------------------------------------------------------------------------
@@ -62,6 +89,8 @@ export interface CatalogFilters {
   q?: string
   /** Filtro de elegibilidad Cashea */
   cashea?: 'true'
+  /** Filtro de subcategoría o sub-ítem */
+  sub?: string
 }
 
 // ---------------------------------------------------------------------------
@@ -179,8 +208,9 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
   {
     id: 'bomba-periferica-1-2hp',
     slug: 'bomba-periferica-1-2hp',
-    name: 'Bomba de Agua Periférica ½ HP',
-    shortDescription: 'Bomba potente para riego y abastecimiento residencial.',
+    name: 'Bomba de Agua Periférica INGCO',
+    shortDescription: 'Bomba centrífuga de alta eficiencia para riego y abastecimiento residencial.',
+    description: 'Bomba periférica INGCO de alto rendimiento. Cuerpo en hierro fundido y acero inoxidable, motor de inducción a prueba de salpicaduras. Ideal para pozos, cisternas y sistemas de riego. Incluye condensador y manual de instalación.',
     category: 'plomeria',
     categoryLabel: 'Plomería',
     brand: 'INGCO',
@@ -193,33 +223,66 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     tags: ['bomba', 'agua', 'riego', 'presión'],
     isCasheaEligible: true,
     price: 35.00,
+    variantLabel: 'Potencia',
+    variants: [
+      { value: '½ HP' },
+      { value: '¾ HP' },
+      { value: '1 HP' },
+      { value: '1½ HP', outOfStock: true },
+    ],
   },
   {
     id: 'tuberia-ppr-12',
     slug: 'tuberia-ppr-12',
-    name: 'Tubería PPR ½" para Aguas Blancas (6m)',
-    shortDescription: 'Tubería PPR PN20, resistente a altas temperaturas.',
+    name: 'Tubería PPR para Aguas Blancas (Termofusión)',
+    shortDescription: 'Tubería PPR PN20, resistente a altas temperaturas. Ideal para redes de agua caliente y fría en sistemas de termofusión.',
+    description: 'La tubería PPR PN20 es la solución más duradera para instalaciones de agua caliente y fría. Compatible con todos los accesorios de termofusión. Alta resistencia química y mecánica, vida útil superior a 50 años. Disponible en tramos de 6 metros.',
     category: 'plomeria',
     categoryLabel: 'Plomería',
-    brand: 'Stanley',
-    unit: 'm',
+    subcategory: 'tuberias-conexiones',
+    subitem: 'termofusion-ppr',
+    brand: 'Termofusion',
+    unit: 'varilla (6m)',
     image: 'https://images.unsplash.com/photo-1581092162562-40038f72742b?w=400&q=80',
     status: 'available',
-    tags: ['tubería', 'PPR', 'aguas blancas', 'plomería'],
+    tags: ['tubería', 'PPR', 'aguas blancas', 'termofusión', 'PN20'],
+    variantLabel: 'Diámetro',
+    variants: [
+      { value: '½"' },
+      { value: '¾"' },
+      { value: '1"' },
+      { value: '1¼"' },
+      { value: '1½"' },
+      { value: '2"' },
+      { value: '3"', outOfStock: true },
+    ],
   },
   {
-    id: 'cable-electrico-2-100m',
-    slug: 'cable-electrico-2-100m',
-    name: 'Cable Eléctrico #2 x 100m',
-    shortDescription: 'Cable THW calibre 2 AWG, certificado FONDONORMA.',
+    id: 'cable-electrico-thw',
+    slug: 'cable-electrico-thw',
+    name: 'Cable Eléctrico THW Certificado FONDONORMA',
+    shortDescription: 'Cable THW x 100m, certificado FONDONORMA. Apto para instalaciones residenciales e industriales hasta 600V.',
+    description: 'Cable de cobre sólido con aislamiento THW certificado por FONDONORMA. Resistente a humedad, aceites y temperaturas hasta 75°C. Disponible en múltiples calibres para adaptarse a cualquier instalación eléctrica residencial o industrial.',
     category: 'electricidad',
     categoryLabel: 'Electricidad',
     brand: '3M',
-    unit: 'rollo',
+    unit: 'rollo (100m)',
     voltageVolts: 600,
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
     status: 'available',
-    tags: ['cable', 'eléctrico', 'THW', '#2'],
+    tags: ['cable', 'eléctrico', 'THW', 'FONDONORMA', 'cobre'],
+    variantLabel: 'Calibre',
+    variants: [
+      { value: '#14' },
+      { value: '#12' },
+      { value: '#10' },
+      { value: '#8' },
+      { value: '#6' },
+      { value: '#4' },
+      { value: '#2' },
+      { value: '#1/0' },
+      { value: '#2/0', outOfStock: true },
+    ],
   },
   {
     id: 'breaker-30a',

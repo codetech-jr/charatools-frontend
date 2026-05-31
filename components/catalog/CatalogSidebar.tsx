@@ -26,6 +26,7 @@ import { ChevronDown, X, SlidersHorizontal } from 'lucide-react'
 import Image from 'next/image'
 import type { CatalogFilters } from '@/lib/catalog.types'
 import { CATALOG_BRANDS } from '@/lib/catalog.types'
+import { CATEGORIES } from '@/components/global/MegaMenu'
 
 // ── Constantes ─────────────────────────────────────────────────────────────
 
@@ -166,6 +167,71 @@ export function FiltersContent({
           })}
         </div>
       </FilterAccordion>
+
+      {/* ── Filtro: Subcategorías ── */}
+      {activeCategory && (() => {
+        const activeCatData = CATEGORIES.find(c => c.id === activeCategory)
+        if (!activeCatData || !activeCatData.subcategories) return null
+
+        return (
+          <FilterAccordion title="Subcategoría" defaultOpen={true}>
+            <div className="space-y-2 px-1">
+              {activeCatData.subcategories.map((sub) => {
+                // Obtener slug de la subcategoría desde su href (ej: /catalogo/plomeria?sub=tuberias -> tuberias)
+                const urlParts = sub.href.split('sub=')
+                const subSlug = urlParts[1] || ''
+                const isSubActive = filters.sub === subSlug
+
+                // Verificar si tiene sub-ítems
+                const hasSubItems = sub.items && sub.items.length > 0
+
+                return (
+                  <div key={sub.name} className="space-y-1">
+                    <button
+                      onClick={() => onUpdateParams({ sub: isSubActive ? null : subSlug })}
+                      aria-pressed={isSubActive}
+                      className={`w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between ${
+                        isSubActive
+                          ? 'bg-yellow-400 text-black font-bold'
+                          : 'text-gray-600 hover:bg-gray-100 hover:text-black'
+                      }`}
+                    >
+                      <span>{sub.name}</span>
+                    </button>
+
+                    {/* Mostrar sub-ítems de tercer nivel si existen */}
+                    {hasSubItems && (
+                      <div className="pl-4 border-l border-gray-200 ml-3 py-0.5 space-y-1">
+                        {sub.items.map((item) => {
+                          const itemParts = item.href.split('sub=')
+                          const itemSubSlug = itemParts[1] || ''
+                          const isItemActive = filters.sub === itemSubSlug
+
+                          return (
+                            <button
+                              key={item.name}
+                              onClick={() => onUpdateParams({ sub: isItemActive ? null : itemSubSlug })}
+                              aria-pressed={isItemActive}
+                              className={`w-full text-left px-2 py-1 rounded-md text-xs transition-all flex items-center gap-1.5 ${
+                                isItemActive
+                                  ? 'text-yellow-600 font-bold'
+                                  : 'text-gray-500 hover:text-black hover:bg-gray-50'
+                              }`}
+                            >
+                              <span className={`w-1 h-1 rounded-full flex-shrink-0 ${isItemActive ? 'bg-yellow-500' : 'bg-gray-300'}`} />
+                              <span className="truncate">{item.name}</span>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </FilterAccordion>
+        )
+      })()}
 
       {/* ── Filtro: Marcas ── */}
       <FilterAccordion title="Marca">
