@@ -196,9 +196,9 @@ export default function Home() {
         </section>
 
         {/* ── NEW: Membresia CTA ── */}
-        <div className="py-12 lg:py-20 bg-white flex justify-center px-4 md:px-8">
+        {/*<div className="py-12 lg:py-20 bg-white flex justify-center px-4 md:px-8">
           <MembresiaBanner_Home_CTA />
-        </div>
+        </div>*/}
 
         {/* ── NEW: Soluciones de Marketing Directo ── */}
         {/* <SpecificSolutions /> */}
