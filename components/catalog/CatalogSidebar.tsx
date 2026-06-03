@@ -42,6 +42,7 @@ const SIDEBAR_CATEGORIES = [
   { slug: 'iluminacion', label: 'Iluminación' },
   { slug: 'electricidad', label: 'Electricidad' },
   { slug: 'impermeabilizacion', label: 'Impermeabilización' },
+  { slug: 'seguridad-industrial', label: 'Seguridad Industrial' },
 ]
 
 // ── Tipos ──────────────────────────────────────────────────────────────────

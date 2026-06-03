@@ -49,10 +49,14 @@ const ProductSchema = z.object({
   short_desc:  z.string().max(300).trim(),
   description: z.string().max(2000).optional(),
   category_id: z.string().uuid('Categoría inválida'),
-  brand_id:    z.string().uuid('Marca inválida'),
+  brand_id:    z.string().uuid('Marca inválida').optional().nullable(),
   is_casheable: z.coerce.boolean().default(false),
   stock_status: z.enum(STOCK_STATUSES).default('available'),
   unidad:      z.string().default('und'),
+  subcategory: z.string().trim().optional(),
+  subitem:     z.string().trim().optional(),
+  variant_label: z.string().trim().optional(),
+  variants:    z.string().trim().optional(),
 })
 
 const StatusFlagsSchema = z.object({
@@ -122,10 +126,14 @@ export async function createProduct(
       short_desc:  formData.get('short_desc'),
       description: formData.get('description') || undefined,
       category_id: formData.get('category_id'),
-      brand_id:    formData.get('brand_id'),
+      brand_id:    formData.get('brand_id') || undefined,
       is_casheable: formData.get('is_casheable') === 'true',
       stock_status: formData.get('stock_status'),
       unidad:      formData.get('unidad') ?? 'und',
+      subcategory: formData.get('subcategory') || undefined,
+      subitem:     formData.get('subitem') || undefined,
+      variant_label: formData.get('variant_label') || undefined,
+      variants:    formData.get('variants') || undefined,
     })
 
     if (!parsed.success) {
@@ -134,7 +142,8 @@ export async function createProduct(
     }
 
     const { name, slug, sku, short_desc, description,
-            category_id, brand_id, is_casheable, stock_status, unidad } = parsed.data
+            category_id, brand_id, is_casheable, stock_status, unidad,
+            subcategory, subitem, variant_label, variants } = parsed.data
 
     // 2. Upload imagen (opcional)
     let imageUrl = '/placeholder-product.webp'
@@ -147,15 +156,34 @@ export async function createProduct(
       imageUrl = up.data!.url
     }
 
+    // Parsear variantes a array de objetos si se proveen
+    let parsedVariants = undefined
+    if (variants && variants.trim()) {
+      parsedVariants = variants
+        .split(',')
+        .map(v => v.trim())
+        .filter(v => v.length > 0)
+        .map(v => ({ value: v }))
+    }
+
     // 3. JSONB specs
-    const specs = { imagen: imageUrl, stockStatus: stock_status, unidad, tags: [] }
+    const specs = { 
+      imagen: imageUrl, 
+      stockStatus: stock_status, 
+      unidad, 
+      tags: [],
+      subcategory: subcategory || undefined,
+      subitem: subitem || undefined,
+      variantLabel: variant_label || undefined,
+      variants: parsedVariants || undefined
+    }
 
     // 4. INSERT
     const supabase = createAdminSupabaseClient()
     const { data, error } = await supabase
       .from('products')
       .insert({ name, slug, sku, short_desc, description: description ?? null,
-                category_id, brand_id, is_casheable, specs })
+                category_id, brand_id: brand_id ?? null, is_casheable, specs })
       .select('id')
       .single()
 
@@ -250,3 +278,116 @@ export async function deleteProduct(productId: string): Promise<ActionResult> {
     return { success: false, error: msg }
   }
 }
+
+// ── updateProduct ──────────────────────────────────────────────────────────
+
+export async function updateProduct(
+  productId: string,
+  formData: FormData,
+): Promise<ActionResult<{ id: string }>> {
+  try {
+    await requireAuth()
+    if (!productId) return { success: false, error: 'ID requerido.' }
+
+    // 1. Validar con Zod
+    const parsed = ProductSchema.safeParse({
+      name:        formData.get('name'),
+      slug:        formData.get('slug'),
+      sku:         formData.get('sku'),
+      short_desc:  formData.get('short_desc'),
+      description: formData.get('description') || undefined,
+      category_id: formData.get('category_id'),
+      brand_id:    formData.get('brand_id') || undefined,
+      is_casheable: formData.get('is_casheable') === 'true',
+      stock_status: formData.get('stock_status'),
+      unidad:      formData.get('unidad') ?? 'und',
+      subcategory: formData.get('subcategory') || undefined,
+      subitem:     formData.get('subitem') || undefined,
+      variant_label: formData.get('variant_label') || undefined,
+      variants:    formData.get('variants') || undefined,
+    })
+
+    if (!parsed.success) {
+      const e = parsed.error.errors[0]
+      return { success: false, error: `${String(e.path[0])}: ${e.message}` }
+    }
+
+    const { name, slug, sku, short_desc, description,
+            category_id, brand_id, is_casheable, stock_status, unidad,
+            subcategory, subitem, variant_label, variants } = parsed.data
+
+    // 2. Resolver imagen
+    let imageUrl = '/placeholder-product.webp'
+    const imgFile = formData.get('image') as File | null
+    const existingImageUrl = formData.get('existing_image_url') as string | null
+
+    if (imgFile && imgFile.size > 0) {
+      const upFd = new FormData()
+      upFd.set('image', imgFile)
+      const up = await uploadProductImage(upFd)
+      if (!up.success) return { success: false, error: up.error }
+      imageUrl = up.data!.url
+    } else if (existingImageUrl) {
+      imageUrl = existingImageUrl
+    }
+
+    // Parsear variantes a array de objetos si se proveen
+    let parsedVariants = undefined
+    if (variants && variants.trim()) {
+      parsedVariants = variants
+        .split(',')
+        .map(v => v.trim())
+        .filter(v => v.length > 0)
+        .map(v => ({ value: v }))
+    }
+
+    // 3. JSONB specs
+    const specs = { 
+      imagen: imageUrl, 
+      stockStatus: stock_status, 
+      unidad, 
+      tags: [],
+      subcategory: subcategory || undefined,
+      subitem: subitem || undefined,
+      variantLabel: variant_label || undefined,
+      variants: parsedVariants || undefined
+    }
+
+    // 4. UPDATE
+    const supabase = createAdminSupabaseClient()
+    const { data, error } = await supabase
+      .from('products')
+      .update({ 
+        name, 
+        slug, 
+        sku, 
+        short_desc, 
+        description: description ?? null,
+        category_id, 
+        brand_id: brand_id ?? null, 
+        is_casheable, 
+        specs 
+      })
+      .eq('id', productId)
+      .select('id')
+      .single()
+
+    if (error) {
+      if (error.code === '23505') return { success: false, error: 'Ya existe un producto con ese slug o SKU.' }
+      return { success: false, error: error.message }
+    }
+
+    // 5. Revalidar caché catálogo público
+    revalidatePath('/catalogo', 'layout')
+    revalidatePath('/admin/productos', 'page')
+    revalidatePath(`/producto/${slug}`, 'page')
+
+    return { success: true, data: { id: data.id } }
+
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : 'Error desconocido'
+    console.error('[updateProduct]', msg)
+    return { success: false, error: msg }
+  }
+}
+

@@ -106,6 +106,8 @@ function toProduct(row: ProductRow): CatalogProduct {
     isCasheaEligible: row.is_casheable ?? false,
     subcategory:      specStr(row.specs, 'subcategory') ?? specStr(row.specs, 'sub'),
     subitem:          specStr(row.specs, 'subitem') ?? specStr(row.specs, 'sub_item'),
+    variantLabel:     specStr(row.specs, 'variantLabel'),
+    variants:         Array.isArray(row.specs?.variants) ? (row.specs.variants as any[]) : undefined,
   }
 }
 

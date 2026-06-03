@@ -72,6 +72,10 @@ function rowToProduct(row: SupabaseProductRow): CatalogProduct {
     status:           toStockStatus(specs['stockStatus']),
     tags:             Array.isArray(specs['tags']) ? specs['tags'] as string[] : [],
     isCasheaEligible: row.is_casheable ?? false,
+    subcategory:      typeof specs['subcategory'] === 'string' ? specs['subcategory'] : undefined,
+    subitem:          typeof specs['subitem'] === 'string' ? specs['subitem'] : undefined,
+    variantLabel:     typeof specs['variantLabel'] === 'string' ? specs['variantLabel'] : undefined,
+    variants:         Array.isArray(specs['variants']) ? specs['variants'] as CatalogProduct['variants'] : undefined,
   }
 }
 
@@ -92,7 +96,26 @@ const getProductBySlug = cache(async (slug: string): Promise<CatalogProduct | nu
       .single()
 
     if (!error && data) {
-      return rowToProduct(data as unknown as SupabaseProductRow)
+      const product = rowToProduct(data as unknown as SupabaseProductRow)
+
+      // Resolver nombres legibles de subcategoría y sub-ítem
+      const slugsToResolve = [product.subcategory, product.subitem].filter(Boolean) as string[]
+      if (slugsToResolve.length > 0) {
+        const { data: cats } = await supabase
+          .from('categories')
+          .select('name, slug')
+          .in('slug', slugsToResolve)
+        if (cats) {
+          if (product.subcategory) {
+            product.subcategoryLabel = cats.find(c => c.slug === product.subcategory)?.name
+          }
+          if (product.subitem) {
+            product.subitemLabel = cats.find(c => c.slug === product.subitem)?.name
+          }
+        }
+      }
+
+      return product
     }
   } catch {
     // fallback silencioso al mock
@@ -190,15 +213,25 @@ function buildProductSchema(product: CatalogProduct): string {
     },
   }
 
+  // Breadcrumb dinámico: incluye subcategoría y sub-ítem si existen
+  const breadcrumbItems: { '@type': string; position: number; name: string; item: string }[] = [
+    { '@type': 'ListItem', position: 1, name: 'Inicio',    item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Catálogo',  item: `${SITE_URL}/catalogo` },
+    { '@type': 'ListItem', position: 3, name: product.categoryLabel, item: `${SITE_URL}/catalogo/${product.category}` },
+  ]
+  let pos = 4
+  if (product.subcategoryLabel && product.subcategory) {
+    breadcrumbItems.push({ '@type': 'ListItem', position: pos++, name: product.subcategoryLabel, item: `${SITE_URL}/catalogo/${product.category}?sub=${product.subcategory}` })
+  }
+  if (product.subitemLabel && product.subitem) {
+    breadcrumbItems.push({ '@type': 'ListItem', position: pos++, name: product.subitemLabel, item: `${SITE_URL}/catalogo/${product.category}?sub=${product.subitem}` })
+  }
+  breadcrumbItems.push({ '@type': 'ListItem', position: pos, name: product.name, item: `${SITE_URL}/producto/${product.slug}` })
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type':    'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio',    item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Catálogo',  item: `${SITE_URL}/catalogo` },
-      { '@type': 'ListItem', position: 3, name: product.categoryLabel, item: `${SITE_URL}/catalogo/${product.category}` },
-      { '@type': 'ListItem', position: 4, name: product.name,          item: `${SITE_URL}/producto/${product.slug}` },
-    ],
+    itemListElement: breadcrumbItems,
   }
 
   return JSON.stringify([productSchema, breadcrumbSchema])
@@ -231,6 +264,12 @@ export default async function ProductoPage({ params }: PageProps) {
             { label: 'Inicio',    href: '/' },
             { label: 'Catálogo', href: '/catalogo' },
             { label: product.categoryLabel, href: `/catalogo/${product.category}` },
+            ...(product.subcategoryLabel && product.subcategory
+              ? [{ label: product.subcategoryLabel, href: `/catalogo/${product.category}?sub=${product.subcategory}` }]
+              : []),
+            ...(product.subitemLabel && product.subitem
+              ? [{ label: product.subitemLabel, href: `/catalogo/${product.category}?sub=${product.subitem}` }]
+              : []),
           ].map(({ label, href }) => (
             <li key={href} className="flex items-center gap-1">
               <Link href={href} className="hover:text-gray-300 transition-colors">{label}</Link>

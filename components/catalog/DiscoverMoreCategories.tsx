@@ -39,7 +39,7 @@ const MOCK_SUBCATEGORIES: Record<string, { label: string; count: number; q: stri
     { label: 'Selladores', count: 23, q: 'sellador' },
     { label: 'Pintura Elastomérica', count: 12, q: 'pintura' },
   ],
-  'equipos-de-proteccion': [
+  'seguridad-industrial': [
     { label: 'Cascos', count: 19, q: 'casco' },
     { label: 'Guantes', count: 34, q: 'guante' },
     { label: 'Lentes de Seguridad', count: 21, q: 'lentes' },

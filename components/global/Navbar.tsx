@@ -95,7 +95,7 @@ export function Navbar() {
           {/* Botón Cotización */}
           <button
             onClick={() => setDrawerOpen(true)}
-            aria-label={`Ver lista de cotización, ${itemCount} ítems`}
+            aria-label={`Ver lista de cotización, ${mounted ? itemCount : 0} ítems`}
             className="relative inline-flex items-center h-10 md:h-12 px-3 md:px-5 rounded-xl bg-yellow-400 hover:bg-yellow-500 transition-all active:scale-95 shadow-lg shadow-yellow-900/20"
           >
             <ClipboardList className="w-5 h-5 text-black" />

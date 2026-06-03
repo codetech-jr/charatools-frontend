@@ -20,7 +20,7 @@ const categories: Category[] = [
     slug: 'herramientas-en-general',
     title: 'Herramientas en General',
     subtitle: 'Eléctricas, manuales y accesorios para profesionales.',
-    bgColor: 'bg-neutral-800',
+    bgColor: 'bg-neutral-300',
     image: '/categoria-herramientas.webp'
   },
   {
@@ -28,7 +28,7 @@ const categories: Category[] = [
     slug: 'iluminacion',
     title: 'Iluminación',
     subtitle: 'Paneles, bombillos y reflectores.',
-    bgColor: 'bg-neutral-900',
+    bgColor: 'bg-neutral-300',
     image: '/categoria-iluminacion.webp'
   },
   {
@@ -36,7 +36,7 @@ const categories: Category[] = [
     slug: 'plomeria',
     title: 'Plomería',
     subtitle: 'PPR, PVC y grifería de alta calidad.',
-    bgColor: 'bg-blue-900',
+    bgColor: 'bg-blue-300',
     image: '/categoria-plomeria.webp'
   },
   {
@@ -44,7 +44,7 @@ const categories: Category[] = [
     slug: 'impermeabilizacion',
     title: 'Impermeabilización',
     subtitle: 'Mantos, primers y selladores.',
-    bgColor: 'bg-zinc-800',
+    bgColor: 'bg-zinc-300',
     image: '/categoria-impermeabilizacion.webp'
   },
   {
@@ -52,9 +52,17 @@ const categories: Category[] = [
     slug: 'electricidad',
     title: 'Electricidad',
     subtitle: 'Cables, breaker, tomacorrientes y todo lo relacionado con electricidad.',
-    bgColor: 'bg-orange-900',
+    bgColor: 'bg-orange-300',
     image: '/categoria-electricidad.webp'
-  }
+  },
+  {
+    id: '6',
+    slug: 'seguridad-industrial',
+    title: 'Seguridad Industrial',
+    subtitle: 'Equipos de protección personal para trabajadores.',
+    bgColor: 'bg-neutral-300',
+    image: '/categoria-seguridad-industrial.webp'
+  },
 ]
 
 export function CategoryGrid() {
@@ -77,9 +85,7 @@ export function CategoryGrid() {
             <Link
               key={category.id}
               href={`/catalogo/${category.slug}`}
-              className={`group relative overflow-hidden rounded-2xl border border-neutral-200 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 hover:-translate-y-1 text-left ${
-                index === 0 ? 'lg:col-span-2 aspect-[2/1]' : 'aspect-square sm:aspect-[4/3] lg:aspect-[3/4]'
-              }`}
+              className="group relative overflow-hidden rounded-2xl border border-neutral-200 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 hover:-translate-y-1 text-left aspect-square sm:aspect-[4/3] lg:aspect-[3/4]"
             >
               {/* Category Image */}
               <div className="absolute inset-0">
@@ -95,7 +101,7 @@ export function CategoryGrid() {
               </div>
               
               {/* Overlay Gradient for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 to-transparent" />
 
 
               {/* Content */}
@@ -109,7 +115,7 @@ export function CategoryGrid() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-yellow-400 font-bold text-sm uppercase tracking-wider group-hover:gap-4 transition-all">
+                <div className="flex items-center gap-2 text-white font-bold text-sm uppercase tracking-wider group-hover:gap-4 transition-all">
                   Consultar catálogo
                   <ArrowRight className="w-4 h-4" />
                 </div>

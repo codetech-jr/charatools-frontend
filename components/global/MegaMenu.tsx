@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react'
 import Link from 'next/link'
-import { Wrench, Droplets, Lightbulb, Zap, Umbrella, ChevronDown, ChevronRight, LayoutGrid } from 'lucide-react'
+import { Wrench, Droplets, Lightbulb, Zap, Umbrella, ChevronDown, ChevronRight, LayoutGrid, Shield } from 'lucide-react'
 import { trackSelectCategory } from '@/lib/analytics'
 
 // Taxonomía oficial de 5 categorías con iconos representativos
@@ -31,8 +31,8 @@ export const CATEGORIES = [
         items: [
           { name: 'Tubería Sanitaria Estandar', href: '/catalogo/plomeria?sub=tuberia-sanitaria-estandar' },
           { name: 'Tubería Sanitaria Reforzada', href: '/catalogo/plomeria?sub=tuberia-sanitaria-reforzada' },
-          { name: 'Tuberías Aguas Frías', href: '/catalogo/plomeria?sub=tuberias-aguas-frias' },
-          { name: 'Tuberías Galvanizadas', href: '/catalogo/plomeria?sub=tuberias-galvanizadas' },
+          { name: 'Tubería Agua Fría', href: '/catalogo/plomeria?sub=tuberia-agua-fria' },
+          { name: 'Tubería Galvanizada', href: '/catalogo/plomeria?sub=tuberia-galvanizada' },
           { name: 'Termofusión (PPR)', href: '/catalogo/plomeria?sub=termofusion-ppr' }
         ]
       },
@@ -76,6 +76,18 @@ export const CATEGORIES = [
       { name: 'Pinturas Impermeabilizantes', href: '/catalogo/impermeabilizacion?sub=pinturas' },
       { name: 'Selladores y Siliconas', href: '/catalogo/impermeabilizacion?sub=selladores' },
       { name: 'Aditivos para Concreto', href: '/catalogo/impermeabilizacion?sub=aditivos' }
+    ]
+  },
+  {
+    id: 'seguridad-industrial',
+    name: 'Seguridad Industrial',
+    icon: Shield,
+    href: '/catalogo/seguridad-industrial',
+    subcategories: [
+      { name: 'Cascos de Seguridad', href: '/catalogo/seguridad-industrial?sub=cascos' },
+      { name: 'Guantes de Protección', href: '/catalogo/seguridad-industrial?sub=guantes' },
+      { name: 'Lentes y Visores', href: '/catalogo/seguridad-industrial?sub=lentes' },
+      { name: 'Calzado Dieléctrico', href: '/catalogo/seguridad-industrial?sub=calzado' }
     ]
   }
 ]

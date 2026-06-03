@@ -269,10 +269,10 @@ export const seoCategoryData: SeoCategoryDataMap = {
   },
 
   // ──────────────────────────────────────────────────────────────────────────
-  // Equipos de Protección Personal
+  // Seguridad Industrial
   // ──────────────────────────────────────────────────────────────────────────
-  'equipos-de-proteccion': {
-    title: 'Equipos de Protección Personal en Charallave: EPP Certificado',
+  'seguridad-industrial': {
+    title: 'Seguridad Industrial en Charallave: EPP Certificado',
     description:
       'Provisión de cascos industriales, lentes, guantes y botas dieléctricas bajo normas ANSI y OSHA. Inventario físico en Charallave para abastecimiento logístico de empresas constructoras en los Valles del Tuy.',
     blocks: [

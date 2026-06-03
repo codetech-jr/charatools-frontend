@@ -58,8 +58,12 @@ export interface CatalogProduct {
   price?: number
   /** Slug de la subcategoría (ej: 'tuberias', 'bombas') */
   subcategory?: string
+  /** Nombre legible de la subcategoría (ej: 'Tuberías y Conexiones') */
+  subcategoryLabel?: string
   /** Slug del sub-ítem de tercer nivel (ej: 'tuberia-sanitaria-estandar') */
   subitem?: string
+  /** Nombre legible del sub-ítem (ej: 'Tubería Sanitaria Estándar') */
+  subitemLabel?: string
   /**
    * Variantes seleccionables por medida/diámetro/calibre.
    * Cuando está definido, se muestra el selector de pills en la página de detalle.
@@ -111,7 +115,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   { slug: 'electricidad',            label: 'Electricidad',             icon: '🔌', description: 'Cables, breakers, tableros, conectores' },
   { slug: 'iluminacion',             label: 'Iluminación',              icon: '💡', description: 'LED, paneles, reflectores, bombillos' },
   { slug: 'impermeabilizacion',      label: 'Impermeabilización',       icon: '🧴', description: 'Membranas, selladores, impermeabilizantes' },
-  { slug: 'equipos-de-proteccion',   label: 'Equipos de Protección',    icon: '🦺', description: 'Cascos, lentes, guantes, botas' },
+  { slug: 'seguridad-industrial',    label: 'Seguridad Industrial',     icon: '🦺', description: 'Cascos, lentes, guantes, botas' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -383,8 +387,8 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     slug: 'casco-seguridad-3m',
     name: 'Casco de Seguridad Industrial 3M',
     shortDescription: 'Casco tipo ratchet, ANSI Z89.1, resistente a impactos.',
-    category: 'equipos-de-proteccion',
-    categoryLabel: 'Equipos de Protección',
+    category: 'seguridad-industrial',
+    categoryLabel: 'Seguridad Industrial',
     brand: '3M',
     unit: 'und',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',

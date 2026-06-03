@@ -184,7 +184,7 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
               <h2 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-2">
                 Descripción
               </h2>
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
                 {product.description}
               </p>
             </div>

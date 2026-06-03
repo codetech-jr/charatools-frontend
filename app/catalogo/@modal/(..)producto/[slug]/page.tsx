@@ -52,7 +52,7 @@ async function getProductBySlug(slug: string): Promise<CatalogProduct | null> {
     if (!error && data) {
       const row = data as unknown as SupabaseProductRow
       const specs = row.specs ?? {}
-      return {
+      const product: CatalogProduct = {
         id:               row.id,
         name:             row.name,
         slug:             row.slug,
@@ -68,7 +68,30 @@ async function getProductBySlug(slug: string): Promise<CatalogProduct | null> {
                            : 'available'),
         tags:             Array.isArray(specs['tags']) ? specs['tags'] as string[] : [],
         isCasheaEligible: row.is_casheable ?? false,
+        subcategory:      typeof specs['subcategory'] === 'string' ? specs['subcategory'] : undefined,
+        subitem:          typeof specs['subitem'] === 'string' ? specs['subitem'] : undefined,
+        variantLabel:     typeof specs['variantLabel'] === 'string' ? specs['variantLabel'] : undefined,
+        variants:         Array.isArray(specs['variants']) ? specs['variants'] as CatalogProduct['variants'] : undefined,
       }
+
+      // Resolver nombres legibles de subcategoría y sub-ítem
+      const slugsToResolve = [product.subcategory, product.subitem].filter(Boolean) as string[]
+      if (slugsToResolve.length > 0) {
+        const { data: cats } = await supabase
+          .from('categories')
+          .select('name, slug')
+          .in('slug', slugsToResolve)
+        if (cats) {
+          if (product.subcategory) {
+            product.subcategoryLabel = cats.find(c => c.slug === product.subcategory)?.name
+          }
+          if (product.subitem) {
+            product.subitemLabel = cats.find(c => c.slug === product.subitem)?.name
+          }
+        }
+      }
+
+      return product
     }
   } catch {
     // fallback silencioso
