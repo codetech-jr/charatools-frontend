@@ -92,6 +92,32 @@ export default async function DynamicCategoryPage({ params }: PageProps) {
 
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Indicador de fuente de datos — visible en desarrollo o si hay errores en producción */}
+      {(process.env.NODE_ENV === 'development' || error || dbProducts.length === 0) && (
+        <div className="p-3 bg-red-950/40 border-b border-red-900/50 text-xs font-mono space-y-1 text-zinc-950">
+          <div className="max-w-7xl mx-auto px-4">
+            <p className="font-bold text-red-700">DEBUG CONEXIÓN SUPABASE (CATEGORÍA):</p>
+            <p>
+              URL: <span className="text-zinc-700">{process.env.NEXT_PUBLIC_SUPABASE_URL ?? 'NO DEFINIDO'}</span>
+            </p>
+            <p>
+              ANON KEY: <span className="text-zinc-700">
+                {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+                  ? `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.substring(0, 15)}...${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.slice(-6)} (Largo: ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.length})`
+                  : 'NO DEFINIDO'}
+              </span>
+            </p>
+            <p>
+              PRODUCTOS DB: <span className="text-zinc-700">{dbProducts.length}</span>
+            </p>
+            {error && (
+              <p className="text-red-600 font-semibold">
+                ERROR: {error}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
       {/* ── Inyección del Layout Genérico (Product grids) ── */}
       <div className="flex-1 w-full bg-white lg:bg-gray-50">
         <CatalogPageView products={filteredProducts} />

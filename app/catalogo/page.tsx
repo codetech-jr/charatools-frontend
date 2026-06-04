@@ -56,14 +56,29 @@ export default async function CatalogoPage() {
           Explora nuestro inventario completo. Filtra por categoría, marca o búsqueda libre.
         </p>
 
-        {/* Indicador de fuente de datos — solo visible en desarrollo */}
-        {process.env.NODE_ENV === 'development' && (
-          <p className="text-xs mt-2 font-mono" aria-hidden="true">
-            {dbProducts.length > 0
-              ? <span className="text-green-400">✓ {dbProducts.length} productos cargados desde Supabase</span>
-              : <span className="text-yellow-400">⚠ Usando datos mock ({MOCK_CATALOG.length} productos)</span>
-            }
-          </p>
+        {/* Indicador de fuente de datos — visible en desarrollo o si hay errores en producción */}
+        {(process.env.NODE_ENV === 'development' || error || dbProducts.length === 0) && (
+          <div className="mt-4 p-3 bg-red-950/40 border border-red-900/50 rounded-lg text-xs font-mono space-y-1">
+            <p className="font-bold text-yellow-400">DEBUG CONEXIÓN SUPABASE:</p>
+            <p>
+              URL: <span className="text-zinc-300">{process.env.NEXT_PUBLIC_SUPABASE_URL ?? 'NO DEFINIDO'}</span>
+            </p>
+            <p>
+              ANON KEY: <span className="text-zinc-300">
+                {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+                  ? `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.substring(0, 15)}...${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.slice(-6)} (Largo: ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.length})`
+                  : 'NO DEFINIDO'}
+              </span>
+            </p>
+            <p>
+              PRODUCTOS DB: <span className="text-zinc-300">{dbProducts.length}</span>
+            </p>
+            {error && (
+              <p className="text-red-400 font-semibold">
+                ERROR: {error}
+              </p>
+            )}
+          </div>
         )}
       </div>
 
