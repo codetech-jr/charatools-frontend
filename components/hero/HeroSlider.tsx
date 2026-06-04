@@ -29,7 +29,7 @@ const SLIDES: SlideData[] = [
   {
     id: 2,
     title: "La Ferretería más grande y variada de Charallave",
-    subtitle: "Encuentra el inventario más completo de los Valles del Tuy en nuestra tienda. Ubícanos fácilmente bajando por la misma calle de MRW hasta la siguiente cuadra, justo detrás de la Panadería D´Juan.",
+    subtitle: "El inventario más completo de los Valles del Tuy. Ubícanos bajando por la calle de MRW hasta la siguiente cuadra, detrás de la Panadería D´Juan.",
     ctaText: "Ver ubicación en Google Maps",
     ctaLink: "/contacto",
     bgImage: "/negocio.webp",
@@ -78,7 +78,7 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="relative w-full h-[85vh] md:h-[88vh] overflow-hidden bg-neutral-900">
+    <section className="relative w-full h-[85dvh] md:h-[88dvh] min-h-[580px] md:min-h-[700px] overflow-hidden bg-neutral-900">
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex h-full">
           {SLIDES.map((slide) => (
@@ -112,21 +112,21 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
                       {slide.title}
                     </h1>
                     
-                    <p className="text-base md:text-xl text-zinc-200/90 mb-8 max-w-xl leading-relaxed font-medium">
+                    <p className="text-base md:text-lg lg:text-xl text-zinc-200/90 mb-6 md:mb-8 max-w-xl leading-relaxed font-medium">
                       {slide.subtitle}
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                       <Button
                         size="lg"
                         onClick={() => {
                           if (slide.ctaLink) window.location.href = slide.ctaLink
                           else onOpenCatalog()
                         }}
-                        className="h-14 px-8 bg-yellow-400 hover:bg-yellow-500 text-black font-black text-lg rounded-2xl transition-all hover:scale-105 active:scale-95 group shadow-[0_0_20px_rgba(250,204,21,0.3)]"
+                        className="h-12 sm:h-14 px-6 sm:px-8 bg-yellow-400 hover:bg-yellow-500 text-black font-black text-base sm:text-lg rounded-2xl transition-all hover:scale-105 active:scale-95 group shadow-[0_0_20px_rgba(250,204,21,0.3)]"
                       >
                         {slide.ctaText}
-                        <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                       </Button>
 
                       <Button
@@ -136,9 +136,9 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
                             const msg = slide.whatsappMsg || "Hola! Vengo de la web y quiero consultar por sus productos"
                             window.open(`https://wa.me/584220148405?text=${encodeURIComponent(msg)}`, '_blank')
                         }}
-                        className="h-14 px-8 border-2 border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold text-lg rounded-2xl backdrop-blur-md transition-all"
+                        className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold text-base sm:text-lg rounded-2xl backdrop-blur-md transition-all"
                       >
-                        <MessageCircle className="mr-2 w-5 h-5 text-green-400 fill-green-400/20" />
+                        <MessageCircle className="mr-2 w-4 h-4 sm:w-5 sm:h-5 text-green-400 fill-green-400/20" />
                         WhatsApp
                       </Button>
                     </div>
