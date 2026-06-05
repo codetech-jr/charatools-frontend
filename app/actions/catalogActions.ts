@@ -167,3 +167,162 @@ export async function getPublicCatalog(): Promise<CatalogResult> {
     return { products: [], error: message, hasLiveData: false }
   }
 }
+
+// ---------------------------------------------------------------------------
+// Función optimizada — Filtrado server-side por categoría + subcategoría
+// ---------------------------------------------------------------------------
+
+export interface CategoryFilterOptions {
+  /** Slug de subcategoría (specs->subcategory) */
+  subcategory?: string
+  /** Slug de sub-ítem de tercer nivel (specs->subitem) */
+  subitem?: string
+  /** Página actual (1-indexed). Default: 1 */
+  page?: number
+  /** Productos por página. Default: 24 */
+  pageSize?: number
+  /** Término de búsqueda libre */
+  q?: string
+}
+
+export interface PaginatedCatalogResult extends CatalogResult {
+  /** Total de productos que coinciden con los filtros (para calcular páginas) */
+  totalCount: number
+  /** Página actual */
+  page: number
+  /** Total de páginas */
+  totalPages: number
+}
+
+/**
+ * Obtiene productos filtrados por categoría con soporte de paginación server-side.
+ *
+ * Ventajas sobre getPublicCatalog():
+ * - Solo trae los productos de la categoría solicitada (no todos).
+ * - Paginación server-side: trae solo `pageSize` productos por request.
+ * - Filtros por subcategoría/subitem ejecutados en Supabase (no en cliente).
+ * - Los searchParams de la URL controlan la query → el estado de React
+ *   no se rompe al cambiar de filtro porque cada cambio genera un nuevo fetch.
+ *
+ * @example
+ * // En un Server Component:
+ * const result = await getProductsByCategory('plomeria', {
+ *   subitem: 'tuberia-sanitaria-estandar',
+ *   page: 1,
+ *   pageSize: 24,
+ * })
+ */
+export async function getProductsByCategory(
+  categorySlug: string,
+  options: CategoryFilterOptions = {},
+): Promise<PaginatedCatalogResult> {
+  const {
+    subcategory,
+    subitem,
+    page = 1,
+    pageSize = 24,
+    q,
+  } = options
+
+  try {
+    const supabase = createPublicSupabaseClient()
+
+    // ── 1. Resolver category_id desde el slug ──────────────────────────────
+    const { data: catRow, error: catErr } = await supabase
+      .from('categories')
+      .select('id')
+      .eq('slug', categorySlug)
+      .single()
+
+    if (catErr || !catRow) {
+      return {
+        products: [],
+        error: `Categoría "${categorySlug}" no encontrada`,
+        hasLiveData: false,
+        totalCount: 0,
+        page,
+        totalPages: 0,
+      }
+    }
+
+    // ── 2. Construir la query con filtros ────────────────────────────────────
+    let query = supabase
+      .from('products')
+      .select(`
+        id,
+        name,
+        slug,
+        sku,
+        short_desc,
+        description,
+        specs,
+        is_casheable,
+        brands   ( name, slug ),
+        categories ( name, slug )
+      `, { count: 'exact' })
+      .eq('category_id', catRow.id)
+
+    // Filtrar por subcategoría en JSONB
+    if (subcategory) {
+      query = query.eq('specs->>subcategory', subcategory)
+    }
+
+    // Filtrar por sub-ítem en JSONB
+    if (subitem) {
+      query = query.eq('specs->>subitem', subitem)
+    }
+
+    // Búsqueda libre por nombre
+    if (q) {
+      query = query.ilike('name', `%${q}%`)
+    }
+
+    // Ordenar y paginar
+    const from = (page - 1) * pageSize
+    const to = from + pageSize - 1
+
+    query = query
+      .order('name', { ascending: true })
+      .range(from, to)
+
+    // ── 3. Ejecutar ─────────────────────────────────────────────────────────
+    const { data, error, count } = await query
+
+    if (error) {
+      console.error('[getProductsByCategory] Supabase error:', error.message)
+      return {
+        products: [],
+        error: error.message,
+        hasLiveData: false,
+        totalCount: 0,
+        page,
+        totalPages: 0,
+      }
+    }
+
+    const totalCount = count ?? 0
+    const products = (data as unknown as ProductRow[]).map(toProduct)
+
+    return {
+      products,
+      error: null,
+      hasLiveData: products.length > 0,
+      totalCount,
+      page,
+      totalPages: Math.ceil(totalCount / pageSize),
+    }
+
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Error desconocido'
+    console.error('[getProductsByCategory] Unexpected error:', message)
+    return {
+      products: [],
+      error: message,
+      hasLiveData: false,
+      totalCount: 0,
+      page,
+      totalPages: 0,
+    }
+  }
+}
+
