@@ -29,14 +29,11 @@ export const CATEGORIES = [
         name: 'Tuberías y Conexiones',
         href: '/catalogo/plomeria?sub=tuberias',
         items: [
-          { name: 'Tubería Sanitaria Estándar', href: '/catalogo/plomeria?sub=tuberia-sanitaria-estandar' },
-          { name: 'Tubería Sanitaria Reforzada', href: '/catalogo/plomeria?sub=tuberia-sanitaria-reforzada' },
-          { name: 'Tubería Agua Fría', href: '/catalogo/plomeria?sub=tuberia-agua-fria' },
+          { name: 'Línea Sanitaria Estándar', href: '/catalogo/plomeria?sub=linea-sanitaria-estandar' },
+          { name: 'Línea Sanitaria Reforzada', href: '/catalogo/plomeria?sub=linea-sanitaria-reforzada' },
+          { name: 'Línea Agua Fría', href: '/catalogo/plomeria?sub=linea-agua-fria' },
+          { name: 'Línea Galvanizada', href: '/catalogo/plomeria?sub=linea-galvanizada' },
           { name: 'Termofusión (PPR)', href: '/catalogo/plomeria?sub=termofusion-ppr' },
-          { name: 'Conexiones Sanitarias Estándar', href: '/catalogo/plomeria?sub=conexiones-sanitarias-estandar' },
-          { name: 'Conexiones Sanitarias Reforzadas', href: '/catalogo/plomeria?sub=conexiones-sanitarias-reforzadas' },
-          { name: 'Conexiones Agua Fría', href: '/catalogo/plomeria?sub=conexiones-agua-fria' },
-          { name: 'Conexiones Galvanizadas', href: '/catalogo/plomeria?sub=conexiones-galvanizadas' },
         ]
       },
       { name: 'Grifería y Válvulas', href: '/catalogo/plomeria?sub=griferia' },

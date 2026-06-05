@@ -67,11 +67,24 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
       result = result.filter((p) => p.category === filters.cat)
     }
 
-    // Filtro por subcategoría o sub-ítem
+    // Filtro por subcategoría o sub-ítem (con soporte de unificación para plomería)
     if (filters.sub) {
-      result = result.filter(
-        (p) => p.subcategory === filters.sub || p.subitem === filters.sub
-      )
+      const SUBITEM_UNIFICATION: Record<string, string[]> = {
+        'linea-sanitaria-estandar': ['tuberia-sanitaria-estandar', 'conexiones-sanitarias-estandar'],
+        'linea-sanitaria-reforzada': ['tuberia-sanitaria-reforzada', 'conexiones-sanitarias-reforzadas'],
+        'linea-agua-fria': ['tuberia-agua-fria', 'conexiones-agua-fria'],
+        'linea-galvanizada': ['conexiones-galvanizadas'],
+      }
+      const unified = SUBITEM_UNIFICATION[filters.sub]
+      if (unified) {
+        result = result.filter(
+          (p) => p.subitem && unified.includes(p.subitem)
+        )
+      } else {
+        result = result.filter(
+          (p) => p.subcategory === filters.sub || p.subitem === filters.sub
+        )
+      }
     }
 
     // Filtro por marcas (multi-select OR)
@@ -120,7 +133,15 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
       result = result.filter((p) => p.isCasheaEligible)
     }
 
-    return result
+    // Ordenar por prioridad (tuberías primero, luego conexiones) y por nombre alfabéticamente
+    return [...result].sort((a, b) => {
+      const prioA = a.priority ?? 999
+      const prioB = b.priority ?? 999
+      if (prioA !== prioB) {
+        return prioA - prioB
+      }
+      return a.name.localeCompare(b.name)
+    })
   }, [allProducts, filters])
 
   // ── Mutadores de URL ────────────────────────────────────────────────────

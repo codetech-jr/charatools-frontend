@@ -69,11 +69,12 @@ export interface CatalogProduct {
    * Cuando está definido, se muestra el selector de pills en la página de detalle.
    */
   variants?: ProductVariant[]
-  /**
-   * Etiqueta del selector de variantes (ej: "Diámetro", "Calibre", "Longitud").
+  /** Etiqueta del selector de variantes (ej: "Diámetro", "Calibre", "Longitud").
    * Por defecto: "Medida" si no se especifica.
    */
   variantLabel?: string
+  /** Prioridad de ordenamiento (1: Tubería, 2: Conexión, etc.) */
+  priority?: number
 }
 
 // ---------------------------------------------------------------------------

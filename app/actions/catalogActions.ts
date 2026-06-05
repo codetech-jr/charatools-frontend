@@ -108,6 +108,7 @@ function toProduct(row: ProductRow): CatalogProduct {
     subitem:          specStr(row.specs, 'subitem') ?? specStr(row.specs, 'sub_item'),
     variantLabel:     specStr(row.specs, 'variantLabel'),
     variants:         Array.isArray(row.specs?.variants) ? (row.specs.variants as any[]) : undefined,
+    priority:         row.specs?.priority ? Number(row.specs.priority) : undefined,
   }
 }
 
@@ -267,9 +268,22 @@ export async function getProductsByCategory(
       query = query.eq('specs->>subcategory', subcategory)
     }
 
+    // Mapeo de sub-ítems unificados para plomería (unificación de tuberías y conexiones)
+    const SUBITEM_UNIFICATION: Record<string, string[]> = {
+      'linea-sanitaria-estandar': ['tuberia-sanitaria-estandar', 'conexiones-sanitarias-estandar'],
+      'linea-sanitaria-reforzada': ['tuberia-sanitaria-reforzada', 'conexiones-sanitarias-reforzadas'],
+      'linea-agua-fria': ['tuberia-agua-fria', 'conexiones-agua-fria'],
+      'linea-galvanizada': ['conexiones-galvanizadas'],
+    }
+
     // Filtrar por sub-ítem en JSONB
     if (subitem) {
-      query = query.eq('specs->>subitem', subitem)
+      const unifiedSubitems = SUBITEM_UNIFICATION[subitem]
+      if (unifiedSubitems) {
+        query = query.in('specs->>subitem', unifiedSubitems)
+      } else {
+        query = query.eq('specs->>subitem', subitem)
+      }
     }
 
     // Búsqueda libre por nombre
@@ -277,11 +291,12 @@ export async function getProductsByCategory(
       query = query.ilike('name', `%${q}%`)
     }
 
-    // Ordenar y paginar
+    // Ordenar y paginar: prioridad (specs->priority) primero, luego alfabéticamente (name)
     const from = (page - 1) * pageSize
     const to = from + pageSize - 1
 
     query = query
+      .order('specs->priority', { ascending: true })
       .order('name', { ascending: true })
       .range(from, to)
 
