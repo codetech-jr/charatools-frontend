@@ -108,7 +108,7 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
       <div className={`grid grid-cols-1 ${isModal ? 'md:grid-cols-2' : 'lg:grid-cols-2'} gap-8 lg:gap-12 items-start ${isModal ? 'p-6 md:p-8' : ''}`}>
 
         {/* ── Columna Izquierda: Imagen ─────────────────────────────────── */}
-        <div className="space-y-3 sticky top-4">
+        <div className="space-y-3 md:sticky md:top-4">
           <div className="relative aspect-square bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
             <Image
               src={product.image}
