@@ -35,7 +35,6 @@ export const CATEGORIES = [
           { name: 'Conexiones Sanitarias Reforzadas', href: '/catalogo/plomeria?sub=conexiones-sanitarias-reforzadas' },
           { name: 'Tubería Agua Fría', href: '/catalogo/plomeria?sub=tuberia-agua-fria' },
           { name: 'Conexiones Agua Fría', href: '/catalogo/plomeria?sub=conexiones-agua-fria' },
-          { name: 'Tubería Galvanizada', href: '/catalogo/plomeria?sub=tuberia-galvanizada' },
           { name: 'Conexiones Galvanizadas', href: '/catalogo/plomeria?sub=conexiones-galvanizadas' },
           { name: 'Termofusión (PPR)', href: '/catalogo/plomeria?sub=termofusion-ppr' }
         ]
