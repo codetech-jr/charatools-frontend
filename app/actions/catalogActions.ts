@@ -274,6 +274,7 @@ export async function getProductsByCategory(
       'linea-sanitaria-reforzada': ['tuberia-sanitaria-reforzada', 'conexiones-sanitarias-reforzadas'],
       'linea-agua-fria': ['tuberia-agua-fria', 'conexiones-agua-fria'],
       'linea-galvanizada': ['conexiones-galvanizadas'],
+      'linea-termofusion-ppr': ['tuberia-termofusion-ppr', 'conexiones-termofusion-ppr'],
     }
 
     // Filtrar por sub-ítem en JSONB

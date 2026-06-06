@@ -33,7 +33,7 @@ export const CATEGORIES = [
           { name: 'Línea Sanitaria Reforzada', href: '/catalogo/plomeria?sub=linea-sanitaria-reforzada' },
           { name: 'Línea Agua Fría', href: '/catalogo/plomeria?sub=linea-agua-fria' },
           { name: 'Línea Galvanizada', href: '/catalogo/plomeria?sub=linea-galvanizada' },
-          { name: 'Termofusión (PPR)', href: '/catalogo/plomeria?sub=termofusion-ppr' },
+          { name: 'Línea Termofusión (PPR)', href: '/catalogo/plomeria?sub=linea-termofusion-ppr' },
         ]
       },
       { name: 'Grifería y Válvulas', href: '/catalogo/plomeria?sub=griferia' },

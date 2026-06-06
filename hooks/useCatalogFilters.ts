@@ -74,6 +74,7 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
         'linea-sanitaria-reforzada': ['tuberia-sanitaria-reforzada', 'conexiones-sanitarias-reforzadas'],
         'linea-agua-fria': ['tuberia-agua-fria', 'conexiones-agua-fria'],
         'linea-galvanizada': ['conexiones-galvanizadas'],
+        'linea-termofusion-ppr': ['tuberia-termofusion-ppr', 'conexiones-termofusion-ppr'],
       }
       const unified = SUBITEM_UNIFICATION[filters.sub]
       if (unified) {
