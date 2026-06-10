@@ -341,12 +341,21 @@ export async function updateProduct(
         .map(v => ({ value: v }))
     }
 
-    // 3. JSONB specs
+    // 3. Obtener los specs existentes para no perder campos internos (como priority y tags)
+    const supabase = createAdminSupabaseClient()
+    const { data: existingProduct } = await supabase
+      .from('products')
+      .select('specs')
+      .eq('id', productId)
+      .single()
+
+    const existingSpecs = (existingProduct?.specs as Record<string, any>) || {}
+
     const specs = { 
+      ...existingSpecs,
       imagen: imageUrl, 
       stockStatus: stock_status, 
       unidad, 
-      tags: [],
       subcategory: subcategory || undefined,
       subitem: subitem || undefined,
       variantLabel: variant_label || undefined,
@@ -354,7 +363,6 @@ export async function updateProduct(
     }
 
     // 4. UPDATE
-    const supabase = createAdminSupabaseClient()
     const { data, error } = await supabase
       .from('products')
       .update({ 
