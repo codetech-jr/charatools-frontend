@@ -69,7 +69,7 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
     
     const intervalId = setInterval(() => {
       emblaApi.scrollNext()
-    }, 12000)
+    }, 16000)
 
     return () => {
       emblaApi.off('select', onSelect)
