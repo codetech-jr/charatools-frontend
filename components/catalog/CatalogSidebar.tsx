@@ -148,91 +148,86 @@ export function FiltersContent({
 
       {/* ── Filtro: Categorías ── */}
       <FilterAccordion title="Categoría">
-        <div className="space-y-1 px-1">
+        <div className="space-y-2 px-1">
           {SIDEBAR_CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.slug
+            const catData = CATEGORIES.find(c => c.id === cat.slug)
+            const hasSubcategories = catData && catData.subcategories && catData.subcategories.length > 0
+
             return (
-              <button
-                key={cat.slug}
-                onClick={() => onUpdateParams({ cat: isActive ? null : cat.slug })}
-                aria-pressed={isActive}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  isActive
-                    ? 'bg-yellow-400 text-black font-bold'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-black'
-                }`}
-              >
-                {cat.label}
-              </button>
+              <div key={cat.slug} className="space-y-1.5">
+                <button
+                  key={cat.slug}
+                  onClick={() => onUpdateParams({ cat: isActive ? null : cat.slug })}
+                  aria-pressed={isActive}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all ${
+                    isActive
+                      ? 'bg-yellow-400 text-black font-bold'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-black font-medium'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+
+                {/* Si la categoría está activa, renderizar sus subcategorías anidadas */}
+                {isActive && hasSubcategories && (
+                  <div className="pl-4 border-l border-gray-200 ml-3.5 py-1 space-y-2">
+                    {catData.subcategories.map((sub) => {
+                      const urlParts = sub.href.split('sub=')
+                      const subSlug = urlParts[1] || ''
+                      const isSubActive = filters.sub === subSlug
+                      const hasSubItems = sub.items && sub.items.length > 0
+
+                      return (
+                        <div key={sub.name} className="space-y-1">
+                          <button
+                            onClick={() => onUpdateParams({ sub: isSubActive ? null : subSlug })}
+                            aria-pressed={isSubActive}
+                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs transition-all flex items-center justify-between ${
+                              isSubActive
+                                ? 'bg-yellow-50 text-yellow-800 font-bold border border-yellow-200/50 shadow-sm'
+                                : 'text-gray-600 hover:bg-gray-50 hover:text-black font-semibold'
+                            }`}
+                          >
+                            <span>{sub.name}</span>
+                          </button>
+
+                          {/* Mostrar sub-ítems de tercer nivel (líneas) */}
+                          {hasSubItems && (
+                            <div className="pl-3 border-l border-gray-200 ml-3 py-0.5 space-y-1">
+                              {sub.items.map((item) => {
+                                const itemParts = item.href.split('sub=')
+                                const itemSubSlug = itemParts[1] || ''
+                                const isItemActive = filters.sub === itemSubSlug
+
+                                return (
+                                  <button
+                                    key={item.name}
+                                    onClick={() => onUpdateParams({ sub: isItemActive ? null : itemSubSlug })}
+                                    aria-pressed={isItemActive}
+                                    className={`w-full text-left px-2 py-1 rounded-md text-xs transition-all flex items-center gap-1.5 ${
+                                      isItemActive
+                                        ? 'text-yellow-600 font-bold bg-yellow-50/50'
+                                        : 'text-gray-500 hover:text-black hover:bg-gray-50'
+                                    }`}
+                                  >
+                                    <span className={`w-1 h-1 rounded-full flex-shrink-0 ${isItemActive ? 'bg-yellow-500' : 'bg-gray-300'}`} />
+                                    <span className="truncate">{item.name}</span>
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
             )
           })}
         </div>
       </FilterAccordion>
-
-      {/* ── Filtro: Subcategorías ── */}
-      {activeCategory && (() => {
-        const activeCatData = CATEGORIES.find(c => c.id === activeCategory)
-        if (!activeCatData || !activeCatData.subcategories) return null
-
-        return (
-          <FilterAccordion title="Subcategoría" defaultOpen={true}>
-            <div className="space-y-2 px-1">
-              {activeCatData.subcategories.map((sub) => {
-                // Obtener slug de la subcategoría desde su href (ej: /catalogo/plomeria?sub=tuberias -> tuberias)
-                const urlParts = sub.href.split('sub=')
-                const subSlug = urlParts[1] || ''
-                const isSubActive = filters.sub === subSlug
-
-                // Verificar si tiene sub-ítems
-                const hasSubItems = sub.items && sub.items.length > 0
-
-                return (
-                  <div key={sub.name} className="space-y-1">
-                    <button
-                      onClick={() => onUpdateParams({ sub: isSubActive ? null : subSlug })}
-                      aria-pressed={isSubActive}
-                      className={`w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between ${
-                        isSubActive
-                          ? 'bg-yellow-400 text-black font-bold'
-                          : 'text-gray-600 hover:bg-gray-100 hover:text-black'
-                      }`}
-                    >
-                      <span>{sub.name}</span>
-                    </button>
-
-                    {/* Mostrar sub-ítems de tercer nivel si existen */}
-                    {hasSubItems && (
-                      <div className="pl-4 border-l border-gray-200 ml-3 py-0.5 space-y-1">
-                        {sub.items.map((item) => {
-                          const itemParts = item.href.split('sub=')
-                          const itemSubSlug = itemParts[1] || ''
-                          const isItemActive = filters.sub === itemSubSlug
-
-                          return (
-                            <button
-                              key={item.name}
-                              onClick={() => onUpdateParams({ sub: isItemActive ? null : itemSubSlug })}
-                              aria-pressed={isItemActive}
-                              className={`w-full text-left px-2 py-1 rounded-md text-xs transition-all flex items-center gap-1.5 ${
-                                isItemActive
-                                  ? 'text-yellow-600 font-bold'
-                                  : 'text-gray-500 hover:text-black hover:bg-gray-50'
-                              }`}
-                            >
-                              <span className={`w-1 h-1 rounded-full flex-shrink-0 ${isItemActive ? 'bg-yellow-500' : 'bg-gray-300'}`} />
-                              <span className="truncate">{item.name}</span>
-                            </button>
-                          )
-                        })}
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </FilterAccordion>
-        )
-      })()}
 
       {/* ── Filtro: Marcas ── */}
       <FilterAccordion title="Marca">

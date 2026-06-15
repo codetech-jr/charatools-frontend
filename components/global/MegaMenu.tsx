@@ -36,7 +36,15 @@ export const CATEGORIES = [
           { name: 'Línea Termofusión (PPR)', href: '/catalogo/plomeria?sub=linea-termofusion-ppr' },
         ]
       },
-      { name: 'Grifería y Válvulas', href: '/catalogo/plomeria?sub=griferia' },
+      {
+        name: 'Grifería y Válvulas',
+        href: '/catalogo/plomeria?sub=griferia',
+        items: [
+          { name: 'Grifería para Lavamanos', href: '/catalogo/plomeria?sub=griferia-lavamanos' },
+          { name: 'Grifería para Fregadores', href: '/catalogo/plomeria?sub=griferia-fregadores' },
+          { name: 'Válvulas y Llaves', href: '/catalogo/plomeria?sub=valvulas-llaves' },
+        ]
+      },
       { name: 'Bombas de Agua', href: '/catalogo/plomeria?sub=bombas' },
       { name: 'Calentadores', href: '/catalogo/plomeria?sub=calentadores' },
       { name: 'Soldadura', href: '/catalogo/plomeria?sub=soldadura' }

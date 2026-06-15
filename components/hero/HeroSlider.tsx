@@ -28,16 +28,16 @@ const SLIDES: SlideData[] = [
   },
   {
     id: 2,
-    title: "La Ferretería más grande y variada de Charallave",
-    subtitle: "El inventario más completo de los Valles del Tuy. Ubícanos bajando por la calle de MRW hasta la siguiente cuadra, detrás de la Panadería D´Juan.",
-    ctaText: "Ver ubicación en Google Maps",
-    ctaLink: "/contacto",
+    title: "La Ferretería más Moderna de Charallave",
+    subtitle: "La combinación perfecta entre innovación, tecnología y un servicio al cliente de primera. Ubícanos bajando por la calle de MRW hasta la siguiente cuadra, detrás de la Panadería D´Juan.",
+    ctaText: "Ver Catálogo Completo",
+    ctaLink: "/catalogo",
     bgImage: "/negocio.webp",
     overlayColor: "bg-neutral-900/40",
   },
   {
     id: 3,
-    title: "Ahorra en Grande este 2026",
+    title: "Ahorra en Grande con Charatools",
     subtitle: "Únete a nuestra membresía y obtén descuentos en grifería, iluminación, electricidad, PVC, herramientas y más. Todo el inventario de Charatools con beneficios exclusivos por ser miembro.",
     ctaText: "Únete al Club VIP",
     ctaLink: "/membresia",
@@ -99,7 +99,7 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
 
               {/* Content */}
               <div className="relative h-full flex items-center px-4 md:px-8 lg:px-16 z-20">
-                <div className="max-w-3xl w-full">
+                <div className="max-w-4xl w-full">
                   <div className="animate-fade-in-up">
                     <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/20">
                       <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
@@ -108,7 +108,7 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
                       </span>
                     </div>
                     
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-zinc-50 leading-[1.1] mb-4 md:mb-6 drop-shadow-2xl text-balance max-w-2xl">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-zinc-50 leading-[1.1] mb-4 md:mb-6 drop-shadow-2xl text-balance max-w-3xl">
                       {slide.title}
                     </h1>
                     
