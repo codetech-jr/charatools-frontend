@@ -442,7 +442,7 @@ export function MobileMegaMenu({ closeMenu }: { closeMenu: () => void }) {
               </button>
 
               {/* Acordeón nivel 1 */}
-              <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isCatExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isCatExpanded ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="px-4 pb-4 pt-1 bg-gray-800 space-y-1">
                   <Link
                     href={cat.href}
@@ -467,7 +467,7 @@ export function MobileMegaMenu({ closeMenu }: { closeMenu: () => void }) {
                               {sub.name}
                               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isSubExpanded ? 'rotate-180 text-yellow-400' : 'text-gray-500'}`} />
                             </button>
-                            <div className={`transition-all duration-200 overflow-hidden ${isSubExpanded ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                            <div className={`transition-all duration-200 overflow-hidden ${isSubExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                               <div className="pl-4 pb-1 space-y-1 border-l-2 border-yellow-400/30 ml-4 mt-1">
                                 {sub.items.map(item => {
                                   if (item.isHeader) {
