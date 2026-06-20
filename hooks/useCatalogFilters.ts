@@ -75,6 +75,44 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
         'linea-agua-fria': ['tuberia-agua-fria', 'conexiones-agua-fria'],
         'linea-galvanizada': ['conexiones-galvanizadas'],
         'linea-termofusion-ppr': ['tuberia-termofusion-ppr', 'conexiones-termofusion-ppr'],
+        'griferia': [
+          'monomandos-estandar',
+          'monomandos-altos',
+          'grifos-individuales',
+          'juegos-twin',
+          'griferia-institucional',
+          'monomandos-profesionales',
+          'monomandos-extensibles',
+          'cuello-cisne-tradicional',
+          'griferias-instalacion-pared',
+          'mezcladoras-grifos-individuales',
+          'llaves-arresto',
+          'valvulas-industriales-pesadas',
+          'valvulas-pvc',
+          'valvulas-retencion-especiales',
+          'llaves-chorro-manguera'
+        ],
+        'griferia-lavamanos': [
+          'monomandos-estandar',
+          'monomandos-altos',
+          'grifos-individuales',
+          'juegos-twin',
+          'griferia-institucional'
+        ],
+        'griferia-fregadores': [
+          'monomandos-profesionales',
+          'monomandos-extensibles',
+          'cuello-cisne-tradicional',
+          'griferias-instalacion-pared',
+          'mezcladoras-grifos-individuales'
+        ],
+        'valvulas-llaves': [
+          'llaves-arresto',
+          'valvulas-industriales-pesadas',
+          'valvulas-pvc',
+          'valvulas-retencion-especiales',
+          'llaves-chorro-manguera'
+        ]
       }
       const unified = SUBITEM_UNIFICATION[filters.sub]
       if (unified) {

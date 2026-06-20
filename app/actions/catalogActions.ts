@@ -81,14 +81,81 @@ function toStockStatus(raw: string | undefined): ValidStatus {
   return 'available'
 }
 
+/** Mapea el slug de categoría de base de datos al slug canónico que espera el frontend */
+function getCanonicalCategorySlug(dbSlug: string, productSlug: string): { slug: string; label: string } {
+  // Hardcoded mappings para las 4 herramientas en general
+  if (dbSlug === 'herramientas-general') {
+    if (['taladro-ingco-550w', 'esmeril-ingco-820w', 'sierra-caladora-dewalt-550w'].includes(productSlug)) {
+      return { slug: 'herramientas-electricas', label: 'Herramientas Eléctricas' }
+    }
+    return { slug: 'herramientas-manuales', label: 'Herramientas Manuales' }
+  }
+
+  // Plomería y todas sus variantes/hijos
+  const plomeriaSlugs = [
+    'plomeria', 'tuberias', 'bombas', 'calentadores', 
+    'griferia-lavamanos', 'griferia-fregadores', 'valvulas-llaves',
+    'tuberia-sanitaria-estandar', 'tuberia-sanitaria-reforzada', 'termofusion-ppr',
+    'tuberia-agua-fria', 'conexiones-sanitarias-estandar', 'conexiones-sanitarias-reforzadas',
+    'conexiones-agua-fria', 'conexiones-galvanizadas',
+    'monomandos-altos', 'monomandos-estandar', 'grifos-individuales', 'juegos-twin', 'griferia-institucional',
+    'monomandos-fregador', 'mezcladoras-fregador', 'grifos-fregador', 'monomandos-profesionales',
+    'monomandos-extensibles', 'cuello-cisne-tradicional', 'griferias-instalacion-pared',
+    'valvulas-bola', 'valvulas-industriales-pesadas', 'mezcladoras-grifos-individuales',
+    'llaves-paso', 'llaves-chorro', 'llaves-arresto', 'llaves-chorro-manguera', 'valvulas-pvc',
+    'valvulas-retencion-especiales'
+  ]
+  if (plomeriaSlugs.includes(dbSlug)) {
+    return { slug: 'plomeria', label: 'Plomería' }
+  }
+
+  // Herramientas Eléctricas
+  if (dbSlug === 'electricas' || dbSlug === 'herramientas-electricas') {
+    return { slug: 'herramientas-electricas', label: 'Herramientas Eléctricas' }
+  }
+  
+  // Herramientas Manuales
+  if (dbSlug === 'manuales' || dbSlug === 'herramientas-manuales') {
+    return { slug: 'herramientas-manuales', label: 'Herramientas Manuales' }
+  }
+
+  // Electricidad y sus hijas
+  const electricidadSlugs = ['electricidad', 'cables', 'tableros', 'tomacorrientes', 'canalizacion']
+  if (electricidadSlugs.includes(dbSlug)) {
+    return { slug: 'electricidad', label: 'Electricidad' }
+  }
+
+  // Iluminación y sus hijas
+  const iluminacionSlugs = ['iluminacion', 'focos-led', 'reflectores', 'industrial', 'emergencia']
+  if (iluminacionSlugs.includes(dbSlug)) {
+    return { slug: 'iluminacion', label: 'Iluminación' }
+  }
+
+  // Impermeabilización y sus hijas
+  const impermeabilizacionSlugs = ['impermeabilizacion', 'mantos', 'pinturas', 'selladores', 'aditivos']
+  if (impermeabilizacionSlugs.includes(dbSlug)) {
+    return { slug: 'impermeabilizacion', label: 'Impermeabilización' }
+  }
+
+  // Seguridad Industrial y sus hijas
+  const seguridadSlugs = ['seguridad-industrial', 'cascos', 'guantes', 'lentes', 'calzado']
+  if (seguridadSlugs.includes(dbSlug)) {
+    return { slug: 'seguridad-industrial', label: 'Seguridad Industrial' }
+  }
+
+  return { slug: dbSlug, label: dbSlug }
+}
+
 /**
  * Convierte una fila de Supabase (con JOIN brands + categories)
  * al tipo canónico CatalogProduct del frontend.
  */
 function toProduct(row: ProductRow): CatalogProduct {
-  const categorySlug  = row.categories?.slug ?? 'general'
-  const categoryLabel = row.categories?.name ?? 'General'
+  const rawCategorySlug  = row.categories?.slug ?? 'general'
+  const rawCategoryLabel = row.categories?.name ?? 'General'
   const brandName     = row.brands?.name ?? 'CharaTools'
+
+  const canonical = getCanonicalCategorySlug(rawCategorySlug, row.slug)
 
   return {
     id:               row.id,
@@ -96,8 +163,8 @@ function toProduct(row: ProductRow): CatalogProduct {
     name:             row.name,
     shortDescription: row.short_desc ?? '',
     description:      row.description ?? undefined,
-    category:         categorySlug,
-    categoryLabel,
+    category:         canonical.slug,
+    categoryLabel:    canonical.label,
     brand:            brandName,
     unit:             specStr(row.specs, 'unidad') ?? 'und',
     image:            specStr(row.specs, 'imagen') ?? '/placeholder-product.webp',
@@ -275,6 +342,44 @@ export async function getProductsByCategory(
       'linea-agua-fria': ['tuberia-agua-fria', 'conexiones-agua-fria'],
       'linea-galvanizada': ['conexiones-galvanizadas'],
       'linea-termofusion-ppr': ['tuberia-termofusion-ppr', 'conexiones-termofusion-ppr'],
+      'griferia': [
+        'monomandos-estandar',
+        'monomandos-altos',
+        'grifos-individuales',
+        'juegos-twin',
+        'griferia-institucional',
+        'monomandos-profesionales',
+        'monomandos-extensibles',
+        'cuello-cisne-tradicional',
+        'griferias-instalacion-pared',
+        'mezcladoras-grifos-individuales',
+        'llaves-arresto',
+        'valvulas-industriales-pesadas',
+        'valvulas-pvc',
+        'valvulas-retencion-especiales',
+        'llaves-chorro-manguera'
+      ],
+      'griferia-lavamanos': [
+        'monomandos-estandar',
+        'monomandos-altos',
+        'grifos-individuales',
+        'juegos-twin',
+        'griferia-institucional'
+      ],
+      'griferia-fregadores': [
+        'monomandos-profesionales',
+        'monomandos-extensibles',
+        'cuello-cisne-tradicional',
+        'griferias-instalacion-pared',
+        'mezcladoras-grifos-individuales'
+      ],
+      'valvulas-llaves': [
+        'llaves-arresto',
+        'valvulas-industriales-pesadas',
+        'valvulas-pvc',
+        'valvulas-retencion-especiales',
+        'llaves-chorro-manguera'
+      ]
     }
 
     // Filtrar por sub-ítem en JSONB

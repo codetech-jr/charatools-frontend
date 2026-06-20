@@ -5,8 +5,18 @@ import Link from 'next/link'
 import { Wrench, Droplets, Lightbulb, Zap, Umbrella, ChevronDown, ChevronRight, LayoutGrid, Shield } from 'lucide-react'
 import { trackSelectCategory } from '@/lib/analytics'
 
+export type SubItem = { name: string; href: string; isHeader?: boolean; isIndented?: boolean }
+export type Subcategory = { name: string; href: string; items?: SubItem[] }
+export interface Category {
+  id: string
+  name: string
+  icon: React.ComponentType<any>
+  href: string
+  subcategories: Subcategory[]
+}
+
 // Taxonomía oficial de 5 categorías con iconos representativos
-export const CATEGORIES = [
+export const CATEGORIES: Category[] = [
   {
     id: 'herramientas-general',
     name: 'Herramientas en General',
@@ -40,9 +50,24 @@ export const CATEGORIES = [
         name: 'Grifería y Válvulas',
         href: '/catalogo/plomeria?sub=griferia',
         items: [
-          { name: 'Grifería para Lavamanos', href: '/catalogo/plomeria?sub=griferia-lavamanos' },
-          { name: 'Grifería para Fregadores', href: '/catalogo/plomeria?sub=griferia-fregadores' },
-          { name: 'Válvulas y Llaves', href: '/catalogo/plomeria?sub=valvulas-llaves' },
+          { name: 'Grifería para Lavamanos', href: '/catalogo/plomeria?sub=griferia-lavamanos', isHeader: true },
+          { name: 'Monomandos Estándar', href: '/catalogo/plomeria?sub=monomandos-estandar', isIndented: true },
+          { name: 'Monomandos Altos', href: '/catalogo/plomeria?sub=monomandos-altos', isIndented: true },
+          { name: 'Grifos Individuales', href: '/catalogo/plomeria?sub=grifos-individuales', isIndented: true },
+          { name: 'Juegos Twin', href: '/catalogo/plomeria?sub=juegos-twin', isIndented: true },
+          { name: 'Grifería Institucional', href: '/catalogo/plomeria?sub=griferia-institucional', isIndented: true },
+          { name: 'Grifería para Fregadores', href: '/catalogo/plomeria?sub=griferia-fregadores', isHeader: true },
+          { name: 'Monomandos Profesionales (Línea Chef / Resorte)', href: '/catalogo/plomeria?sub=monomandos-profesionales', isIndented: true },
+          { name: 'Monomandos Extensibles (Manguera extraíble)', href: '/catalogo/plomeria?sub=monomandos-extensibles', isIndented: true },
+          { name: 'Cuello de Cisne Tradicional (Fijos / Al mesón)', href: '/catalogo/plomeria?sub=cuello-cisne-tradicional', isIndented: true },
+          { name: 'Griferías para Instalación a Pared', href: '/catalogo/plomeria?sub=griferias-instalacion-pared', isIndented: true },
+          { name: 'Mezcladoras Doble Manilla y Grifos Individuales', href: '/catalogo/plomeria?sub=mezcladoras-grifos-individuales', isIndented: true },
+          { name: 'Válvulas y Llaves', href: '/catalogo/plomeria?sub=valvulas-llaves', isHeader: true },
+          { name: 'Llaves de Arresto (Pared)', href: '/catalogo/plomeria?sub=llaves-arresto', isIndented: true },
+          { name: 'Válvulas Industriales y Pesadas (Metal)', href: '/catalogo/plomeria?sub=valvulas-industriales-pesadas', isIndented: true },
+          { name: 'Línea de Válvulas PVC (Plástico)', href: '/catalogo/plomeria?sub=valvulas-pvc', isIndented: true },
+          { name: 'Válvulas de Retención y Especiales (Check)', href: '/catalogo/plomeria?sub=valvulas-retencion-especiales', isIndented: true },
+          { name: 'Llaves de Chorro y Manguera', href: '/catalogo/plomeria?sub=llaves-chorro-manguera', isIndented: true },
         ]
       },
       { name: 'Bombas de Agua', href: '/catalogo/plomeria?sub=bombas' },
@@ -100,13 +125,13 @@ export const CATEGORIES = [
   }
 ]
 
-type SubItem = { name: string; href: string }
-type Subcategory = { name: string; href: string; items?: SubItem[] }
+
 
 export function DesktopMegaMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORIES[0].id)
   const [activeSub, setActiveSub] = useState<Subcategory | null>(null)
+  const [activeSubSub, setActiveSubSub] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleMouseEnter = () => {
@@ -118,6 +143,7 @@ export function DesktopMegaMenu() {
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false)
       setActiveSub(null)
+      setActiveSubSub(null)
     }, 200)
   }
 
@@ -133,6 +159,7 @@ export function DesktopMegaMenu() {
   const handleCategoryHover = (catId: string) => {
     setActiveCategory(catId)
     setActiveSub(null)
+    setActiveSubSub(null)
   }
 
   const activeCatData = CATEGORIES.find(c => c.id === activeCategory) || CATEGORIES[0]
@@ -229,7 +256,15 @@ export function DesktopMegaMenu() {
                 return (
                   <div
                     key={sub.name}
-                    onMouseEnter={() => setActiveSub(sub.items ? sub : null)}
+                    onMouseEnter={() => {
+                      setActiveSub(sub.items ? sub : null)
+                      if (sub.items) {
+                        const firstHeader = sub.items.find(item => item.isHeader)
+                        setActiveSubSub(firstHeader ? firstHeader.name : null)
+                      } else {
+                        setActiveSubSub(null)
+                      }
+                    }}
                     className="relative"
                   >
                     <Link
@@ -252,26 +287,104 @@ export function DesktopMegaMenu() {
             </div>
           </div>
 
-          {/* ── Columna 3: Sub-ítems (solo si la subcategoría activa tiene items) ── */}
+          {/* ── Columna 3 y 4 ── */}
           {hasThirdColumn && (
-            <div className="flex-1 bg-gray-50 overflow-y-auto">
-              <div className="px-4 pt-4 pb-2 border-b border-gray-100">
-                <h4 className="text-xs font-black text-gray-900 uppercase tracking-wider">{activeSub!.name}</h4>
-              </div>
-              <div className="p-3 space-y-1">
-                {activeSub!.items!.map(item => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => { setIsOpen(false); trackSelectCategory(item.name) }}
-                    className="flex items-center gap-2 p-2.5 rounded-lg text-sm text-gray-600 hover:bg-white hover:text-black hover:shadow-sm border border-transparent hover:border-gray-200 transition-all group"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 flex-shrink-0" />
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+            <>
+              {/* Si la subcategoría tiene headers, separamos en Columna 3 (Headers) y Columna 4 (Items) */}
+              {activeSub!.items!.some(item => item.isHeader) ? (
+                <>
+                  {/* Columna 3: Categorías de nivel 3 (Headers) */}
+                  <div className="w-[220px] bg-gray-50 border-r border-gray-100 overflow-y-auto flex-shrink-0">
+                    <div className="px-4 pt-4 pb-2 border-b border-gray-100">
+                      <h4 className="text-xs font-black text-gray-900 uppercase tracking-wider">
+                        {activeSub!.name}
+                      </h4>
+                    </div>
+                    <div className="p-3 space-y-1">
+                      {activeSub!.items!.filter(item => item.isHeader).map(header => {
+                        const isHeaderActive = activeSubSub === header.name
+                        return (
+                          <div
+                            key={header.name}
+                            onMouseEnter={() => setActiveSubSub(header.name)}
+                            className="relative"
+                          >
+                            <Link
+                              href={header.href}
+                              onClick={() => { setIsOpen(false); trackSelectCategory(header.name) }}
+                              className={`flex items-center justify-between p-2.5 rounded-lg text-sm font-bold transition-all group ${
+                                isHeaderActive
+                                  ? 'bg-yellow-50 text-black border border-yellow-200'
+                                  : 'text-gray-600 hover:bg-gray-100 hover:text-black border border-transparent'
+                              }`}
+                            >
+                              <span>{header.name}</span>
+                              <ChevronRight className={`w-4 h-4 transition-colors flex-shrink-0 ${isHeaderActive ? 'text-yellow-500' : 'text-gray-300 group-hover:text-gray-500'}`} />
+                            </Link>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Columna 4: Sub-ítems de nivel 4 */}
+                  <div className="flex-1 bg-white overflow-y-auto">
+                    <div className="px-4 pt-4 pb-2 border-b border-gray-100">
+                      <h4 className="text-xs font-black text-gray-900 uppercase tracking-wider">
+                        {activeSubSub || 'Selecciona subcategoría'}
+                      </h4>
+                    </div>
+                    <div className="p-3 space-y-1">
+                      {activeSubSub &&
+                        activeSub!.items!
+                          .reduce<SubItem[]>((acc, item, index, arr) => {
+                            if (item.isHeader && item.name === activeSubSub) {
+                              for (let i = index + 1; i < arr.length; i++) {
+                                if (arr[i].isHeader) break
+                                if (arr[i].isIndented) {
+                                  acc.push(arr[i])
+                                }
+                              }
+                            }
+                            return acc;
+                          }, [])
+                          .map(item => (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              onClick={() => { setIsOpen(false); trackSelectCategory(item.name) }}
+                              className="flex items-center gap-2 p-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-black hover:shadow-sm border border-transparent hover:border-gray-200 transition-all group"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 flex-shrink-0" />
+                              <span>{item.name}</span>
+                            </Link>
+                          ))
+                      }
+                    </div>
+                  </div>
+                </>
+              ) : (
+                /* Caso sin headers: mostramos lista simple en Columna 3 que ocupa todo el espacio restante */
+                <div className="flex-1 bg-gray-50 overflow-y-auto">
+                  <div className="px-4 pt-4 pb-2 border-b border-gray-100">
+                    <h4 className="text-xs font-black text-gray-900 uppercase tracking-wider">{activeSub!.name}</h4>
+                  </div>
+                  <div className="p-3 space-y-1">
+                    {activeSub!.items!.map(item => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => { setIsOpen(false); trackSelectCategory(item.name) }}
+                        className="flex items-center gap-2 p-2.5 rounded-lg text-sm text-gray-600 hover:bg-white hover:text-black hover:shadow-sm border border-transparent hover:border-gray-200 transition-all group"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 flex-shrink-0" />
+                        <span>{item.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
           {/* ── Panel vacío cuando no hay 3ª columna pero sí categorías sin sub-ítems ── */}
@@ -356,17 +469,35 @@ export function MobileMegaMenu({ closeMenu }: { closeMenu: () => void }) {
                             </button>
                             <div className={`transition-all duration-200 overflow-hidden ${isSubExpanded ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
                               <div className="pl-4 pb-1 space-y-1 border-l-2 border-yellow-400/30 ml-4 mt-1">
-                                {sub.items.map(item => (
-                                  <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    onClick={() => { closeMenu(); trackSelectCategory(item.name) }}
-                                    className="flex items-center gap-2 p-2 rounded-lg text-xs text-gray-500 hover:text-white hover:bg-gray-700 transition-colors"
-                                  >
-                                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60 flex-shrink-0" />
-                                    {item.name}
-                                  </Link>
-                                ))}
+                                {sub.items.map(item => {
+                                  if (item.isHeader) {
+                                    return (
+                                      <Link
+                                        key={item.name}
+                                        href={item.href}
+                                        onClick={() => { closeMenu(); trackSelectCategory(item.name) }}
+                                        className="block pt-3 pb-1 text-xs font-black text-white hover:text-yellow-400 uppercase tracking-wider transition-colors"
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    )
+                                  }
+                                  return (
+                                    <Link
+                                      key={item.name}
+                                      href={item.href}
+                                      onClick={() => { closeMenu(); trackSelectCategory(item.name) }}
+                                      className={`flex items-center gap-2 p-2 rounded-lg text-xs transition-colors ${
+                                        item.isIndented
+                                          ? 'pl-6 text-gray-500 hover:text-white hover:bg-gray-700'
+                                          : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                                      }`}
+                                    >
+                                      <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60 flex-shrink-0" />
+                                      {item.name}
+                                    </Link>
+                                  )
+                                })}
                               </div>
                             </div>
                           </>
