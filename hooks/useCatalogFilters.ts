@@ -18,16 +18,15 @@ import type { CatalogProduct, CatalogFilters, StockStatus } from '@/lib/catalog.
 // Parsers de URL → Tipos
 // ---------------------------------------------------------------------------
 
-function parseFiltersFromParams(params: URLSearchParams): CatalogFilters & { cat?: string; stock?: StockStatus[] } {
+function parseFiltersFromParams(params: URLSearchParams): CatalogFilters & { cat?: string } {
   const potenciaMin = params.get('potMin') ? Number(params.get('potMin')) : undefined
   const potenciaMax = params.get('potMax') ? Number(params.get('potMax')) : undefined
   const q = params.get('q') || undefined
   const cat = params.get('cat') || undefined
   const sub = params.get('sub') || undefined
   const cashea = params.get('cashea') === 'true' ? 'true' : undefined
-  const stock = params.getAll('stock').filter(Boolean) as StockStatus[]
 
-  return { potenciaMin, potenciaMax, q, cat, stock: stock.length > 0 ? stock : undefined, cashea, sub }
+  return { potenciaMin, potenciaMax, q, cat, cashea, sub }
 }
 
 // ---------------------------------------------------------------------------
@@ -111,6 +110,18 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
           'valvulas-pvc',
           'valvulas-retencion-especiales',
           'llaves-chorro-manguera'
+        ],
+        'bombas-perifericas': [
+          'bomba-periferica-1-2hp'
+        ],
+        'bomba-periferica-1-2-hp': [
+          'bomba-periferica-1-2hp'
+        ],
+        'bomba-periferica-3-4-hp': [
+          'bomba-periferica-1-2hp'
+        ],
+        'bomba-periferica-1-hp': [
+          'bomba-periferica-1-2hp'
         ]
       }
       const unified = SUBITEM_UNIFICATION[filters.sub]
@@ -141,10 +152,7 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
       )
     }
 
-    // Filtro por disponibilidad (stock multi-select OR)
-    if (filters.stock && filters.stock.length > 0) {
-      result = result.filter((p) => filters.stock!.includes(p.status))
-    }
+
 
     // Filtro por búsqueda libre (q)
     if (filters.q) {
@@ -234,7 +242,6 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
     if (filters.cat) count++
     if (filters.sub) count++
     if (filters.cashea === 'true') count++
-    if (filters.stock?.length) count += filters.stock.length
     return count
   }, [filters])
 

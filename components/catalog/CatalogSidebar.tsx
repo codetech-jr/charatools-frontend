@@ -27,13 +27,7 @@ import Image from 'next/image'
 import type { CatalogFilters } from '@/lib/catalog.types'
 import { CATEGORIES, SubItem } from '@/components/global/MegaMenu'
 
-// ── Constantes ─────────────────────────────────────────────────────────────
 
-const AVAILABILITY_OPTIONS = [
-  { value: 'available', label: '✓ Disponible' },
-  { value: 'high-demand', label: '🔥 Alta rotación' },
-  { value: 'new-batch', label: '📦 Nuevo lote' },
-] as const
 
 const SIDEBAR_CATEGORIES = [
   { slug: 'herramientas-general', label: 'Herramientas en General' },
@@ -390,35 +384,6 @@ export function FiltersContent({
         </div>
       </FilterAccordion>
 
-
-      {/* ── Filtro: Disponibilidad ── */}
-      <FilterAccordion title="Disponibilidad">
-        <div className="space-y-1 px-1">
-          {AVAILABILITY_OPTIONS.map((opt) => {
-            const currentStock = filters.stock ?? []
-            const isActive = currentStock.includes(opt.value as CatalogFilters['stock'] extends (infer T)[] | undefined ? T : never)
-            return (
-              <button
-                key={opt.value}
-                onClick={() => {
-                  const newStock = isActive
-                    ? currentStock.filter((s) => s !== opt.value)
-                    : [...currentStock, opt.value]
-                  onUpdateParams({ stock: newStock.length > 0 ? newStock : null })
-                }}
-                aria-pressed={isActive}
-                className={`w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  isActive
-                    ? 'bg-gray-900 text-white font-bold'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-black'
-                }`}
-              >
-                {opt.label}
-              </button>
-            )
-          })}
-        </div>
-      </FilterAccordion>
     </div>
   )
 }

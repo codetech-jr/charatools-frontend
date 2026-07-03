@@ -70,7 +70,16 @@ export const CATEGORIES: Category[] = [
           { name: 'Llaves de Chorro y Manguera', href: '/catalogo/plomeria?sub=llaves-chorro-manguera', isIndented: true },
         ]
       },
-      { name: 'Bombas de Agua', href: '/catalogo/plomeria?sub=bombas' },
+      {
+        name: 'Bombas de Agua',
+        href: '/catalogo/plomeria?sub=bombas',
+        items: [
+          { name: 'Bombas de agua periferica', href: '/catalogo/plomeria?sub=bombas-perifericas', isHeader: true },
+          { name: '1/2 Hp', href: '/catalogo/plomeria?sub=bomba-periferica-1-2-hp', isIndented: true },
+          { name: '3/4 Hp', href: '/catalogo/plomeria?sub=bomba-periferica-3-4-hp', isIndented: true },
+          { name: '1 Hp', href: '/catalogo/plomeria?sub=bomba-periferica-1-hp', isIndented: true },
+        ]
+      },
       { name: 'Calentadores', href: '/catalogo/plomeria?sub=calentadores' },
       { name: 'Soldadura', href: '/catalogo/plomeria?sub=soldadura' }
     ]

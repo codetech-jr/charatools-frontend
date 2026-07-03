@@ -379,6 +379,18 @@ export async function getProductsByCategory(
         'valvulas-pvc',
         'valvulas-retencion-especiales',
         'llaves-chorro-manguera'
+      ],
+      'bombas-perifericas': [
+        'bomba-periferica-1-2hp'
+      ],
+      'bomba-periferica-1-2-hp': [
+        'bomba-periferica-1-2hp'
+      ],
+      'bomba-periferica-3-4-hp': [
+        'bomba-periferica-1-2hp'
+      ],
+      'bomba-periferica-1-hp': [
+        'bomba-periferica-1-2hp'
       ]
     }
 
