@@ -19,7 +19,6 @@ import type { CatalogProduct, CatalogFilters, StockStatus } from '@/lib/catalog.
 // ---------------------------------------------------------------------------
 
 function parseFiltersFromParams(params: URLSearchParams): CatalogFilters & { cat?: string; stock?: StockStatus[] } {
-  const marcas = params.getAll('marca').filter(Boolean)
   const potenciaMin = params.get('potMin') ? Number(params.get('potMin')) : undefined
   const potenciaMax = params.get('potMax') ? Number(params.get('potMax')) : undefined
   const q = params.get('q') || undefined
@@ -28,7 +27,7 @@ function parseFiltersFromParams(params: URLSearchParams): CatalogFilters & { cat
   const cashea = params.get('cashea') === 'true' ? 'true' : undefined
   const stock = params.getAll('stock').filter(Boolean) as StockStatus[]
 
-  return { marcas, potenciaMin, potenciaMax, q, cat, stock: stock.length > 0 ? stock : undefined, cashea, sub }
+  return { potenciaMin, potenciaMax, q, cat, stock: stock.length > 0 ? stock : undefined, cashea, sub }
 }
 
 // ---------------------------------------------------------------------------
@@ -126,12 +125,7 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
       }
     }
 
-    // Filtro por marcas (multi-select OR)
-    if (filters.marcas && filters.marcas.length > 0) {
-      result = result.filter((p) =>
-        filters.marcas!.includes(p.brand)
-      )
-    }
+
 
     // Filtro por potencia mínima
     if (filters.potenciaMin !== undefined) {
@@ -226,18 +220,6 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
     [router, pathname, searchParams]
   )
 
-  /** Toggle de una marca en el filtro multi-select */
-  const toggleBrand = useCallback(
-    (brand: string) => {
-      const currentBrands = filters.marcas ?? []
-      const newBrands = currentBrands.includes(brand)
-        ? currentBrands.filter((b) => b !== brand)
-        : [...currentBrands, brand]
-      updateParams({ marca: newBrands })
-    },
-    [filters.marcas, updateParams]
-  )
-
   /** Limpiar todos los filtros */
   const clearFilters = useCallback(() => {
     router.push(pathname, { scroll: false })
@@ -246,7 +228,6 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
   /** Contar filtros activos (para badge visual en botón de filtros) */
   const activeFilterCount = useMemo(() => {
     let count = 0
-    if (filters.marcas?.length) count += filters.marcas.length
     if (filters.potenciaMin !== undefined) count++
     if (filters.potenciaMax !== undefined) count++
     if (filters.q) count++
@@ -260,7 +241,6 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
   return {
     filters,
     filteredProducts,
-    toggleBrand,
     updateParams,
     clearFilters,
     activeFilterCount,

@@ -15,13 +15,11 @@
 import React from 'react'
 import { X, SlidersHorizontal } from 'lucide-react'
 import type { CatalogFilters } from '@/lib/catalog.types'
-import { CATALOG_BRANDS } from '@/lib/catalog.types'
 
 interface FilterBarProps {
   filters: CatalogFilters
   totalResults: number
   activeFilterCount: number
-  onToggleBrand: (brand: string) => void
   onUpdateParams: (updates: Record<string, string | string[] | null>) => void
   onClearFilters: () => void
 }
@@ -38,7 +36,6 @@ export function FilterBar({
   filters,
   totalResults,
   activeFilterCount,
-  onToggleBrand,
   onUpdateParams,
   onClearFilters,
 }: FilterBarProps) {
@@ -106,43 +103,7 @@ export function FilterBar({
           </div>
         </div>
 
-        {/* ── Fila 2: Filtros de Marca (Pill Buttons) ── */}
-        <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-            Marca
-          </p>
-          {/* Scroll horizontal en móvil sin barra visible */}
-          <div
-            role="group"
-            aria-label="Filtrar por marca"
-            className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide"
-          >
-            {CATALOG_BRANDS.map((brand) => {
-              const isActive = filters.marcas?.includes(brand) ?? false
-              return (
-                <button
-                  key={brand}
-                  onClick={() => onToggleBrand(brand)}
-                  aria-pressed={isActive}
-                  aria-label={`${isActive ? 'Quitar filtro' : 'Filtrar por'} ${brand}`}
-                  className={`
-                    flex-shrink-0 inline-flex items-center h-9 px-3 rounded-full
-                    text-xs font-semibold border transition-all duration-150
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-1
-                    active:scale-95
-                    ${isActive
-                      ? 'bg-yellow-400 border-yellow-400 text-black shadow-sm'
-                      : 'bg-white border-gray-300 text-gray-700 hover:border-yellow-400 hover:text-black'
-                    }
-                  `}
-                >
-                  {isActive && <X className="w-3 h-3 mr-1" aria-hidden="true" />}
-                  {brand}
-                </button>
-              )
-            })}
-          </div>
-        </div>
+
 
 
 

@@ -29,7 +29,6 @@ function CatalogPageViewInner({ products }: CatalogPageViewProps) {
   const {
     filters,
     filteredProducts,
-    toggleBrand,
     updateParams,
     clearFilters,
     activeFilterCount,
@@ -44,7 +43,6 @@ function CatalogPageViewInner({ products }: CatalogPageViewProps) {
   const sidebarProps: CatalogSidebarProps = {
     filters,
     activeFilterCount,
-    onToggleBrand: toggleBrand,
     onUpdateParams: updateParams,
     onClearFilters: clearFilters,
     activeCategory,

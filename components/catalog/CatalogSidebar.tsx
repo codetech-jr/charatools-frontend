@@ -25,7 +25,6 @@ import { useState } from 'react'
 import { ChevronDown, X, SlidersHorizontal } from 'lucide-react'
 import Image from 'next/image'
 import type { CatalogFilters } from '@/lib/catalog.types'
-import { CATALOG_BRANDS } from '@/lib/catalog.types'
 import { CATEGORIES, SubItem } from '@/components/global/MegaMenu'
 
 // ── Constantes ─────────────────────────────────────────────────────────────
@@ -50,7 +49,6 @@ const SIDEBAR_CATEGORIES = [
 export interface CatalogSidebarProps {
   filters: CatalogFilters
   activeFilterCount: number
-  onToggleBrand: (brand: string) => void
   onUpdateParams: (updates: Record<string, string | string[] | null>) => void
   onClearFilters: () => void
   /** Categoría activa actual (slug de la URL, o null para 'todos') */
@@ -102,7 +100,6 @@ function FilterAccordion({
 export function FiltersContent({
   filters,
   activeFilterCount,
-  onToggleBrand,
   onUpdateParams,
   onClearFilters,
   activeCategory,
@@ -393,44 +390,6 @@ export function FiltersContent({
         </div>
       </FilterAccordion>
 
-      {/* ── Filtro: Marcas ── */}
-      <FilterAccordion title="Marca">
-        <div className="space-y-1 px-1">
-          {CATALOG_BRANDS.map((brand) => {
-            const isActive = filters.marcas?.includes(brand) ?? false
-            return (
-              <label
-                key={brand}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer text-sm hover:bg-gray-100 transition-colors group"
-              >
-                <span
-                  className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                    isActive
-                      ? 'bg-yellow-400 border-yellow-400'
-                      : 'border-gray-300 group-hover:border-gray-400'
-                  }`}
-                >
-                  {isActive && (
-                    <svg className="w-3 h-3 text-black" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                      <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  )}
-                </span>
-                <input
-                  type="checkbox"
-                  checked={isActive}
-                  onChange={() => onToggleBrand(brand)}
-                  className="sr-only"
-                  aria-label={`Filtrar por marca ${brand}`}
-                />
-                <span className={`${isActive ? 'font-semibold text-black' : 'text-gray-600'}`}>
-                  {brand}
-                </span>
-              </label>
-            )
-          })}
-        </div>
-      </FilterAccordion>
 
       {/* ── Filtro: Disponibilidad ── */}
       <FilterAccordion title="Disponibilidad">

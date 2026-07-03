@@ -28,7 +28,6 @@ export function CatalogView({ products, categoryLabel }: CatalogViewProps) {
   const {
     filters,
     filteredProducts,
-    toggleBrand,
     updateParams,
     clearFilters,
     activeFilterCount,
@@ -42,7 +41,6 @@ export function CatalogView({ products, categoryLabel }: CatalogViewProps) {
           filters={filters}
           totalResults={filteredProducts.length}
           activeFilterCount={activeFilterCount}
-          onToggleBrand={toggleBrand}
           onUpdateParams={updateParams}
           onClearFilters={clearFilters}
         />
