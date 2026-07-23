@@ -70,7 +70,7 @@ export const CATEGORIES: Category[] = [
           { name: 'Llaves de Chorro y Manguera', href: '/catalogo/plomeria?sub=llaves-chorro-manguera', isIndented: true },
         ]
       },
-      { name: 'Bombas de Agua', href: '/catalogo/plomeria?type=bombas-perifericas' },
+      { name: 'Bombas de Agua', href: '/catalogo/plomeria?sub=bombas-perifericas' },
       { name: 'Calentadores', href: '/catalogo/plomeria?sub=calentadores' },
       { name: 'Soldadura', href: '/catalogo/plomeria?sub=soldadura' }
     ]
