@@ -381,16 +381,20 @@ export async function getProductsByCategory(
         'llaves-chorro-manguera'
       ],
       'bombas-perifericas': [
-        'bomba-periferica-1-2hp'
+        'bombas',
+        'bombas-de-agua',
+        'bombas-perifericas',
+        'bomba-periferica-1-2hp',
+        'bomba-periferica-3-4hp',
+        'bomba-periferica-1hp'
       ],
-      'bomba-periferica-1-2-hp': [
-        'bomba-periferica-1-2hp'
-      ],
-      'bomba-periferica-3-4-hp': [
-        'bomba-periferica-1-2hp'
-      ],
-      'bomba-periferica-1-hp': [
-        'bomba-periferica-1-2hp'
+      'bombas': [
+        'bombas',
+        'bombas-de-agua',
+        'bombas-perifericas',
+        'bomba-periferica-1-2hp',
+        'bomba-periferica-3-4hp',
+        'bomba-periferica-1hp'
       ]
     }
 

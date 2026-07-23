@@ -112,22 +112,30 @@ export function useCatalogFilters(allProducts: CatalogProduct[]) {
           'llaves-chorro-manguera'
         ],
         'bombas-perifericas': [
-          'bomba-periferica-1-2hp'
+          'bombas',
+          'bombas-de-agua',
+          'bombas-perifericas',
+          'bomba-periferica-1-2hp',
+          'bomba-periferica-3-4hp',
+          'bomba-periferica-1hp'
         ],
-        'bomba-periferica-1-2-hp': [
-          'bomba-periferica-1-2hp'
-        ],
-        'bomba-periferica-3-4-hp': [
-          'bomba-periferica-1-2hp'
-        ],
-        'bomba-periferica-1-hp': [
-          'bomba-periferica-1-2hp'
+        'bombas': [
+          'bombas',
+          'bombas-de-agua',
+          'bombas-perifericas',
+          'bomba-periferica-1-2hp',
+          'bomba-periferica-3-4hp',
+          'bomba-periferica-1hp'
         ]
       }
       const unified = SUBITEM_UNIFICATION[filters.sub]
       if (unified) {
         result = result.filter(
-          (p) => p.subitem && unified.includes(p.subitem)
+          (p) =>
+            p.subcategory === filters.sub ||
+            p.subitem === filters.sub ||
+            (p.subitem ? unified.includes(p.subitem) : false) ||
+            (p.subcategory ? unified.includes(p.subcategory) : false)
         )
       } else {
         result = result.filter(
