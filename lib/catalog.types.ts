@@ -9,12 +9,16 @@
 // ---------------------------------------------------------------------------
 
 export interface ProductVariant {
+  id?: string
+  sku?: string
   /** Valor de la variante mostrado en el pill: "½\"", "¾\"", "#12", etc. */
   value: string
   /** Etiqueta alternativa de display (opcional — si difiere de value) */
   label?: string
   /** Marcar como agotado para deshabilitar el pill sin ocultarlo */
   outOfStock?: boolean
+  price?: number
+  status?: StockStatus
 }
 
 // ---------------------------------------------------------------------------
@@ -233,8 +237,8 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     price: 55.00,
   },
   {
-    id: 'bomba-periferica-1-2hp',
-    slug: 'bomba-periferica-1-2hp',
+    id: 'bomba-periferica-ingco',
+    slug: 'bomba-periferica-ingco',
     name: 'Bomba de Agua Periférica INGCO',
     shortDescription: 'Bomba centrífuga de alta eficiencia para riego y abastecimiento residencial.',
     description: 'Bomba periférica INGCO de alto rendimiento. Cuerpo en hierro fundido y acero inoxidable, motor de inducción a prueba de salpicaduras. Ideal para pozos, cisternas y sistemas de riego. Incluye condensador y manual de instalación.',
@@ -242,10 +246,10 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     categoryLabel: 'Plomería',
     subcategory: 'bombas',
     subcategoryLabel: 'Bombas de Agua',
-    subitem: 'bomba-periferica-1-2hp',
-    subitemLabel: 'Bombas de Agua Periféricas',
+    subitem: 'bombas-perifericas',
+    subitemLabel: 'Bombas Periféricas',
     brand: 'INGCO',
-    reference: 'SPWP8001',
+    reference: 'SPWP8001-SERIES',
     unit: 'und',
     powerWatts: 370,
     voltageVolts: 120,
@@ -256,10 +260,10 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     price: 35.00,
     variantLabel: 'Potencia',
     variants: [
-      { value: '½ HP' },
-      { value: '¾ HP' },
-      { value: '1 HP' },
-      { value: '1½ HP', outOfStock: true },
+      { id: 'var-1', sku: 'SPWP8001-12', value: '½ HP', price: 35.00, status: 'available' },
+      { id: 'var-2', sku: 'SPWP8001-34', value: '¾ HP', price: 45.00, status: 'available' },
+      { id: 'var-3', sku: 'SPWP8001-1', value: '1 HP', price: 55.00, status: 'out-of-stock', outOfStock: true },
+      { id: 'var-4', sku: 'SPWP8001-15', value: '1½ HP', price: 65.00, outOfStock: true },
     ],
   },
   {
