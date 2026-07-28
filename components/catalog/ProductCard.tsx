@@ -129,9 +129,9 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        {/* Título Principal - Altura fija para 2 líneas para asegurar alineación */}
+        {/* Título Principal */}
         <Link href={`/producto/${product.slug}`} className="block group/title mt-1">
-          <h3 className="text-sm md:text-base font-bold text-gray-900 line-clamp-2 min-h-[2.5rem] md:min-h-[2.8rem] leading-tight group-hover/title:text-yellow-600 transition-colors text-left">
+          <h3 className="text-sm md:text-base font-bold text-gray-900 min-h-[2.5rem] md:min-h-[2.8rem] leading-tight group-hover/title:text-yellow-600 transition-colors text-left">
             {product.name}
           </h3>
         </Link>

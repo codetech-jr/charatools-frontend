@@ -113,7 +113,7 @@ export function ProductRow({ product }: ProductRowProps) {
 
         {/* Nombre */}
         <Link href={`/producto/${product.slug}`}>
-          <h3 className="text-sm font-bold text-gray-900 leading-snug line-clamp-1 group-hover:text-yellow-700 transition-colors">
+          <h3 className="text-sm font-bold text-gray-900 leading-snug group-hover:text-yellow-700 transition-colors">
             {product.name}
           </h3>
         </Link>
