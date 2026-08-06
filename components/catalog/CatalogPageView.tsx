@@ -14,7 +14,7 @@
  * - Mobile: Solo panel de resultados + Drawer flotante de filtros
  */
 
-import React, { Suspense } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import { DesktopCatalogSidebar } from './CatalogSidebar'
 import type { CatalogSidebarProps } from './CatalogSidebar'
 import { CatalogResultsPanel } from './CatalogResultsPanel'
@@ -35,6 +35,14 @@ function CatalogPageViewInner({ products }: CatalogPageViewProps) {
     activeCategory,
   } = useCatalogFilters(products)
 
+  // Estado explícito para forzar visibilidad permanente de la barra lateral en escritorio por defecto
+  const [showSidebar, setShowSidebar] = useState(true)
+
+  // Rehidratación inicial al montar y al cambiar de categoría/navegación desde otras pantallas
+  useEffect(() => {
+    setShowSidebar(true)
+  }, [activeCategory])
+
   // Determinar label de la categoría activa
   const categoryLabel = activeCategory
     ? products.find(p => p.category === activeCategory)?.categoryLabel ?? 'Catálogo'
@@ -46,11 +54,12 @@ function CatalogPageViewInner({ products }: CatalogPageViewProps) {
     onUpdateParams: updateParams,
     onClearFilters: clearFilters,
     activeCategory,
+    showSidebar,
   }
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      {/* ── Sidebar Desktop ── */}
+      {/* ── Sidebar Desktop (Desplegado por defecto permanentemente) ── */}
       <DesktopCatalogSidebar {...sidebarProps} />
 
       {/* ── Panel Central de Resultados ── */}

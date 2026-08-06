@@ -48,6 +48,8 @@ export interface CatalogSidebarProps {
   /** Categoría activa actual (slug de la URL, o null para 'todos') */
   activeCategory: string | null
   hideHeader?: boolean
+  /** Control explícito de visibilidad permanente */
+  showSidebar?: boolean
 }
 
 // ── Componente de Acordeón reutilizable ────────────────────────────────────
@@ -391,9 +393,13 @@ export function FiltersContent({
 // ── Desktop Sidebar ────────────────────────────────────────────────────────
 
 export function DesktopCatalogSidebar(props: CatalogSidebarProps) {
+  const isVisible = props.showSidebar ?? true
+  if (!isVisible) return null
+
   return (
     <aside
-      className="hidden lg:block w-[260px] flex-shrink-0 sticky top-20 self-start max-h-[calc(100vh-80px)] overflow-y-auto bg-white border-r border-gray-200 p-4"
+      className="hidden lg:block w-[260px] flex-shrink-0 sticky top-20 self-start max-h-[calc(100vh-80px)] overflow-y-auto bg-white border-r border-gray-200 p-4 transition-opacity duration-200"
+      data-testid="category-sidebar"
       aria-label="Filtros del catálogo"
     >
       <FiltersContent {...props} />
