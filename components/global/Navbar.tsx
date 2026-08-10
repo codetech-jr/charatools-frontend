@@ -61,16 +61,17 @@ export function Navbar() {
         {/* ── Mega-Menú B2B (Desktop) ── */}
         <DesktopMegaMenu />
 
-        <div className="hidden lg:flex items-center gap-3">
+        {/* ── Link Membresía VIP (Pausado / Ocultado temporalmente) ── */}
+        {/* <div className="hidden md:flex items-center gap-3 flex-shrink-0">
           <Link 
             href="/membresia" 
-            className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors font-medium text-sm"
+            className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors font-medium text-sm whitespace-nowrap"
           >
             <Crown className="w-4 h-4 text-yellow-400" />
             Membresía VIP
           </Link>
           <div className="w-px h-4 bg-gray-700 mx-2" />
-        </div>
+        </div> */}
 
         {/* ── Buscador Masivo (Desktop) ── */}
         <div className="hidden md:flex flex-1 max-w-xl relative flex-col">
@@ -115,7 +116,6 @@ export function Navbar() {
           </button>
           
 
-
           {/* Menú Hamburgesa (Mobile) */}
           <button 
             className="md:hidden p-2 text-gray-400"
@@ -137,7 +137,7 @@ export function Navbar() {
             <TrendingSearches />
           </div>
 
-          <div className="flex flex-col gap-3 mb-5">
+          {/* <div className="flex flex-col gap-3 mb-5">
             <div className="flex gap-3">
               <Link
                 href="/membresia"
@@ -148,7 +148,7 @@ export function Navbar() {
                 Membresía VIP
               </Link>
             </div>
-          </div>
+          </div> */}
           
           <MobileMegaMenu closeMenu={() => setIsMenuOpen(false)} />
         </div>

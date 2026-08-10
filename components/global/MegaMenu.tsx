@@ -169,7 +169,7 @@ export function DesktopMegaMenu() {
 
   return (
     <div
-      className="hidden lg:block relative z-50"
+      className="hidden md:block relative z-50 flex-shrink-0"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -177,7 +177,7 @@ export function DesktopMegaMenu() {
         aria-expanded={isOpen}
         aria-haspopup="menu"
         onKeyDown={handleKeyDown}
-        className="flex items-center gap-2 h-11 px-4 rounded-xl bg-gray-800 text-white font-semibold hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        className="flex items-center gap-2 h-11 px-4 rounded-xl bg-gray-800 text-white font-semibold hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 whitespace-nowrap"
       >
         Nuestro Catálogo <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -185,7 +185,7 @@ export function DesktopMegaMenu() {
       <div
         role="menu"
         className={`absolute top-[calc(100%+8px)] left-0 bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden transition-all duration-200 ease-out ${
-          hasThirdColumn ? 'w-[900px]' : 'w-[650px]'
+          hasThirdColumn ? 'w-[900px] max-w-[calc(100vw-2rem)]' : 'w-[650px] max-w-[calc(100vw-2rem)]'
         } ${
           isOpen
             ? 'opacity-100 visible translate-y-0 pointer-events-auto delay-0'
