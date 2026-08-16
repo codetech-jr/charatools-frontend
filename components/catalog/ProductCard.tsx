@@ -141,9 +141,19 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.shortDescription}
         </p>
 
-
-
-        {/* Contenedor del Botón - Anclado al fondo por el grid */}
+        {/* Variantes disponibles (potencias, medidas, etc.) */}
+        {product.variants && product.variants.length > 0 && (
+          <div className="mt-1 flex items-center gap-1.5">
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-700 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
+              <span className="text-[10px] uppercase font-bold text-amber-800">{product.variantLabel || 'Medidas'}:</span>
+              <span>
+                {product.variants.length > 3
+                  ? `${product.variants[0].value} a ${product.variants[product.variants.length - 1].value} (${product.variants.length} opciones)`
+                  : product.variants.map(v => v.value).join(', ')}
+              </span>
+            </span>
+          </div>
+        )}
         <div className="pt-2 border-t border-gray-50">
           <Button
             onClick={handleAddClick}
