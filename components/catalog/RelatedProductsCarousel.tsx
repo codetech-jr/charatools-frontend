@@ -2,25 +2,59 @@
 
 import React, { useMemo } from 'react'
 import { ProductCard } from '@/components/catalog/ProductCard'
-import { MOCK_CATALOG } from '@/lib/mockCatalog'
+import { MOCK_PRODUCTS } from '@/lib/catalog.types'
 import type { CatalogProduct } from '@/lib/catalog.types'
 
 interface RelatedProductsCarouselProps {
   currentProductId: string
+  currentProductSlug?: string
   category: string
+  subcategory?: string
+  products?: CatalogProduct[]
 }
 
-export function RelatedProductsCarousel({ currentProductId, category }: RelatedProductsCarouselProps) {
-  // Lógica: 4 a 6 productos de la misma categoría, excluyendo el actual
+export function RelatedProductsCarousel({
+  currentProductId,
+  currentProductSlug,
+  category,
+  subcategory,
+  products
+}: RelatedProductsCarouselProps) {
+  // Lógica inteligente: prioriza productos de la misma subcategoría, luego la misma categoría
   const relatedProducts = useMemo(() => {
-    const filtered = MOCK_CATALOG.filter(
-      (p) => p.category === category && p.id !== currentProductId
+    const sourceList = (products && products.length > 0) ? products : MOCK_PRODUCTS
+
+    // 1. Excluir el producto actual (por id o slug)
+    const candidates = sourceList.filter(
+      (p) =>
+        p.id !== currentProductId &&
+        p.slug !== currentProductId &&
+        (currentProductSlug ? p.slug !== currentProductSlug && p.id !== currentProductSlug : true)
     )
+
+    // 2. Productos de la misma categoría principal
+    const sameCategory = candidates.filter((p) => p.category === category)
     
-    // Sort aleatorio y limitamos a 5
-    const shuffled = [...filtered].sort(() => 0.5 - Math.random())
-    return shuffled.slice(0, 5)
-  }, [currentProductId, category])
+    if (sameCategory.length === 0) return []
+
+    // 3. Preferencia máxima a la misma subcategoría
+    const sameSubcategory = subcategory
+      ? sameCategory.filter((p) => p.subcategory === subcategory || p.subitem === subcategory)
+      : []
+
+    const otherInCat = subcategory
+      ? sameCategory.filter((p) => p.subcategory !== subcategory && p.subitem !== subcategory)
+      : sameCategory
+
+    // 4. Ordenar determinísticamente por prioridad comercial y luego alfabéticamente
+    const sortByPriority = (list: CatalogProduct[]) =>
+      [...list].sort((a, b) => (a.priority ?? 999) - (b.priority ?? 999) || a.name.localeCompare(b.name))
+
+    const combined = [...sortByPriority(sameSubcategory), ...sortByPriority(otherInCat)]
+
+    // 5. Retornar hasta 5 productos relacionados relevantes
+    return combined.slice(0, 5)
+  }, [currentProductId, currentProductSlug, category, subcategory, products])
 
   if (relatedProducts.length === 0) return null
 

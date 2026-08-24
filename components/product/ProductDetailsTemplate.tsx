@@ -229,7 +229,9 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
       <div className={isModal ? 'px-6 md:px-8' : ''}>
         <RelatedProductsCarousel
           currentProductId={product.id}
+          currentProductSlug={product.slug}
           category={product.category}
+          subcategory={product.subcategory}
         />
       </div>
 
