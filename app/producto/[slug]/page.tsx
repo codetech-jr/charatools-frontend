@@ -125,6 +125,27 @@ const getProductBySlug = cache(async (slug: string): Promise<CatalogProduct | nu
   return MOCK_PRODUCTS.find((p) => p.slug === slug) ?? null
 })
 
+const getCategoryProducts = cache(async (categorySlug: string): Promise<CatalogProduct[]> => {
+  try {
+    const supabase = createPublicSupabaseClient()
+    const { data, error } = await supabase
+      .from('products')
+      .select(`
+        id, name, slug, sku, short_desc, description, specs, is_casheable,
+        brands   ( name, slug ),
+        categories ( name, slug )
+      `)
+      .limit(60)
+
+    if (!error && data && data.length > 0) {
+      return (data as unknown as SupabaseProductRow[]).map(rowToProduct)
+    }
+  } catch {
+    // fallback
+  }
+  return MOCK_PRODUCTS
+})
+
 // ══════════════════════════════════════════════════════════════════════════════
 // generateStaticParams — SSG por slug
 // ══════════════════════════════════════════════════════════════════════════════
@@ -247,6 +268,8 @@ export default async function ProductoPage({ params }: PageProps) {
 
   if (!product) notFound()
 
+  const relatedProducts = await getCategoryProducts(product.category)
+
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen bg-gray-50">
 
@@ -285,7 +308,7 @@ export default async function ProductoPage({ params }: PageProps) {
       </nav>
 
       {/* Contenido principal */}
-      <ProductDetailsTemplate product={product} />
+      <ProductDetailsTemplate product={product} relatedProducts={relatedProducts} />
 
     </main>
   )

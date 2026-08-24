@@ -18,9 +18,14 @@ import { ProductDetailsTemplate } from '@/components/product/ProductDetailsTempl
 interface ProductDetailModalProps {
   product: CatalogProduct
   isModal?: boolean
+  relatedProducts?: CatalogProduct[]
 }
 
-export function ProductDetailModal({ product, isModal = true }: ProductDetailModalProps) {
+export function ProductDetailModal({
+  product,
+  isModal = true,
+  relatedProducts,
+}: ProductDetailModalProps) {
   const router = useRouter()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -60,7 +65,11 @@ export function ProductDetailModal({ product, isModal = true }: ProductDetailMod
 
       {/* ── Scrollable Content (Plantilla unificada) ── */}
       <div className="flex-1 -mt-14">
-        <ProductDetailsTemplate product={product} isModal={true} />
+        <ProductDetailsTemplate
+          product={product}
+          isModal={true}
+          relatedProducts={relatedProducts}
+        />
       </div>
     </div>
   )

@@ -101,11 +101,57 @@ async function getProductBySlug(slug: string): Promise<CatalogProduct | null> {
   return MOCK_PRODUCTS.find((p) => p.slug === slug) ?? null
 }
 
+async function getCategoryProducts(categorySlug: string): Promise<CatalogProduct[]> {
+  try {
+    const supabase = createPublicSupabaseClient()
+    const { data, error } = await supabase
+      .from('products')
+      .select(`
+        id, name, slug, sku, short_desc, description, specs, is_casheable,
+        brands   ( name, slug ),
+        categories ( name, slug )
+      `)
+      .limit(60)
+
+    if (!error && data && data.length > 0) {
+      return (data as unknown as SupabaseProductRow[]).map((row) => {
+        const specs = row.specs ?? {}
+        const catSlug  = row.categories?.slug ?? 'general'
+        const catLabel = row.categories?.name ?? 'General'
+        return {
+          id:               row.id,
+          name:             row.name,
+          slug:             row.slug,
+          shortDescription: row.short_desc ?? '',
+          description:      row.description ?? undefined,
+          category:         catSlug,
+          categoryLabel:    catLabel,
+          brand:            row.brands?.name ?? 'CharaTools',
+          unit:             typeof specs['unidad'] === 'string' ? specs['unidad'] : 'und',
+          image:            typeof specs['imagen'] === 'string' ? specs['imagen'] : '/placeholder-product.webp',
+          status:           (specs['stockStatus'] as any) ?? 'available',
+          tags:             Array.isArray(specs['tags']) ? specs['tags'] as string[] : [],
+          isCasheaEligible: row.is_casheable ?? false,
+          subcategory:      typeof specs['subcategory'] === 'string' ? specs['subcategory'] : undefined,
+          subitem:          typeof specs['subitem'] === 'string' ? specs['subitem'] : undefined,
+          variantLabel:     typeof specs['variantLabel'] === 'string' ? specs['variantLabel'] : undefined,
+          variants:         Array.isArray(specs['variants']) ? specs['variants'] as CatalogProduct['variants'] : undefined,
+        }
+      })
+    }
+  } catch {
+    // fallback silencioso
+  }
+  return MOCK_PRODUCTS
+}
+
 export default async function InterceptedProductPage({ params }: PageProps) {
   const { slug } = await params
   const product = await getProductBySlug(slug)
   if (!product) notFound()
 
+  const relatedProducts = await getCategoryProducts(product.category)
+
   // isModal=true → renderiza con overlay y backdrop
-  return <ProductDetailModal product={product} isModal={true} />
+  return <ProductDetailModal product={product} isModal={true} relatedProducts={relatedProducts} />
 }

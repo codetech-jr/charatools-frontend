@@ -79,9 +79,14 @@ function SpecTable({ product }: { product: CatalogProduct }) {
 interface ProductDetailsTemplateProps {
   product: CatalogProduct
   isModal?: boolean
+  relatedProducts?: CatalogProduct[]
 }
 
-export function ProductDetailsTemplate({ product, isModal = false }: ProductDetailsTemplateProps) {
+export function ProductDetailsTemplate({
+  product,
+  isModal = false,
+  relatedProducts,
+}: ProductDetailsTemplateProps) {
   const status = STATUS_CONFIG[product.status]
   const StatusIcon = status.icon
   const isOutOfStock = product.status === 'out-of-stock'
@@ -232,6 +237,7 @@ export function ProductDetailsTemplate({ product, isModal = false }: ProductDeta
           currentProductSlug={product.slug}
           category={product.category}
           subcategory={product.subcategory}
+          products={relatedProducts}
         />
       </div>
 

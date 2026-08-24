@@ -1418,7 +1418,7 @@ export const MOCK_PRODUCTS: CatalogProduct[] = [
     subitemLabel: 'Focos y Tubos LED',
     brand: 'Genérico',
     unit: 'und',
-    image: '/iluminacion.webp',
+    image: 'https://xnxvoehkqqkhlzknccnr.supabase.co/storage/v1/object/public/product-images/productos/1786893353268-bombillo-bulbo-jpeg.jpeg',
     status: 'available',
     priority: 1,
     tags: ['LED', 'bombillo', 'bulbo', 'iluminación', 'foco', 'E27'],
