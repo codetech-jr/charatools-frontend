@@ -14,7 +14,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Clock, ArrowUpRight, Facebook, Instagram, Phone } from 'lucide-react'
+import { MapPin, Clock, ArrowUpRight, Facebook, Instagram, Phone, FileText } from 'lucide-react'
 
 const WA_URL =
   'https://api.whatsapp.com/send?phone=584220148405&text=' +
@@ -108,6 +108,10 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span className="text-xs">+58 424-2201484</span>
               </div>
+              <div className="flex items-center md:items-start gap-2">
+                <FileText className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-xs font-semibold text-gray-300 tracking-wide">RIF: J-50773487-0</span>
+              </div>
             </div>
 
             {/* Redes Sociales */}
@@ -194,6 +198,8 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <span>© {new Date().getFullYear()} CharaTools. Todos los derechos reservados.</span>
+            <span className="hidden sm:inline text-gray-700">|</span>
+            <span className="text-gray-400 font-medium tracking-wide">RIF: J-50773487-0</span>
             <span className="hidden sm:inline text-gray-700">|</span>
             <span className="text-gray-600">Charallave, Miranda · Venezuela</span>
           </div>

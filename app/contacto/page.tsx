@@ -10,7 +10,7 @@
  */
 
 import type { Metadata } from 'next'
-import { MapPin, Clock, Phone, ArrowRight } from 'lucide-react'
+import { MapPin, Clock, Phone, ArrowRight, FileText } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Contacto | CharaTools — Un asesor real busca la pieza por ti',
@@ -49,6 +49,12 @@ const CONTACT_INFO = [
     value: '+58 422-0148405',
     sublabel: 'Respuesta en menos de 15 minutos',
     href: WA_URL,
+  },
+  {
+    icon: FileText,
+    label: 'Información Fiscal',
+    value: 'RIF: J-50773487-0',
+    sublabel: 'CHARATOOLS 1010, C.A.',
   },
 ]
 
