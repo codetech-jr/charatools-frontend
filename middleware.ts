@@ -123,7 +123,8 @@ export const config = {
      * - _next/static (archivos estáticos)
      * - _next/image  (optimización de imágenes)
      * - favicon.ico, íconos y archivos de fuentes
+     * - sitemap.xml y robots.txt (rutas de metadatos SEO)
      */
-    '/((?!_next/static|_next/image|favicon|.*\\.(?:png|jpg|jpeg|svg|ico|webp|woff2?)$).*)',
+    '/((?!_next/static|_next/image|favicon|sitemap|robots|.*\\.(?:png|jpg|jpeg|svg|ico|webp|woff2?|xml|txt)$).*)',
   ],
 }
