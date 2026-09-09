@@ -28,7 +28,7 @@ interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://charatools.com.ve'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.charatools.com'
 
 // ── Supabase fetch por slug ────────────────────────────────────────────────
 

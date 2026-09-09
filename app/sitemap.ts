@@ -16,7 +16,7 @@ import { createPublicSupabaseClient } from '@/lib/supabase/server'
  */
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://charatools.com.ve').replace(/\/$/, '')
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.charatools.com').replace(/\/$/, '')
   const currentDate = new Date()
 
   // ── 1. Rutas Estáticas Principales (L0 y L1 Core) ──────────────────────────
