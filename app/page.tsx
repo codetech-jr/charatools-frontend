@@ -1,6 +1,3 @@
-'use client'
-
-import React, { useState } from 'react'
 import { CasheaAlertBar } from '@/components/global/CasheaAlertBar'
 
 import { TrustBar } from '@/components/global/TrustBar'
@@ -18,8 +15,9 @@ import { ContactMapSection } from '@/components/sections/ContactMapSection'
 /*import { SpecificSolutions } from '@/components/sections/SpecificSolutions'*/
 /* import { SeoBomb } from '@/components/seo/SeoBomb' */
 import { CatalogProduct } from '@/lib/catalog.types'
+import { getPublicCatalog } from '@/app/actions/catalogActions'
 
-// Sample products
+// Sample products for fallback
 const SAMPLE_PRODUCTS: CatalogProduct[] = [
   {
     id: '1',
@@ -82,14 +80,26 @@ const SAMPLE_PRODUCTS: CatalogProduct[] = [
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
     status: 'available',
   },
-
 ]
 
-export default function Home() {
-  const handleOpenCatalog = () => {
-    const element = document.getElementById('catalogo')
-    element?.scrollIntoView({ behavior: 'smooth' })
+export const dynamic = 'force-dynamic'
+
+export default async function Home() {
+  const { products: dbProducts } = await getPublicCatalog()
+  
+  // 1. Priorizar productos marcados como alta demanda
+  let bestSellers = dbProducts.filter((p) => p.status === 'high-demand')
+
+  // 2. Si hay menos de 5 en alta demanda, complementar con productos reales de la base de datos
+  if (bestSellers.length < 5 && dbProducts.length > 0) {
+    const remaining = dbProducts
+      .filter((p) => !bestSellers.some((b) => b.id === p.id))
+      .sort((a, b) => (a.priority ?? 999) - (b.priority ?? 999))
+    bestSellers = [...bestSellers, ...remaining]
   }
+
+  // 3. Fallback a muestra estática solo si la base de datos está completamente vacía o inaccesible
+  const displayProducts = (bestSellers.length > 0 ? bestSellers : SAMPLE_PRODUCTS).slice(0, 10)
 
   return (
     <>
@@ -176,7 +186,7 @@ export default function Home() {
 
       <div className="relative min-h-screen bg-white">
 
-        <HeroSlider onOpenCatalog={handleOpenCatalog} />
+        <HeroSlider />
 
         {/* Trust Bar */}
         <TrustBar />
@@ -192,7 +202,7 @@ export default function Home() {
             </h2>
           </header>
 
-          <ProductGrid products={SAMPLE_PRODUCTS} activeFilter={null} />
+          <ProductGrid products={displayProducts} activeFilter={null} />
         </section>
 
         {/* ── NEW: Membresia CTA ── */}
@@ -222,6 +232,7 @@ export default function Home() {
         {/* ── NEW: Pre-Footer Cashea Bar ── */}
         {/* <CasheaAlertBar /> */}
 
-      </div></>
+      </div>
+    </>
   )
 }

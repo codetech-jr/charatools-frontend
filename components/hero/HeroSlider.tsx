@@ -47,10 +47,10 @@ const SLIDES: SlideData[] = [
 ]
 
 interface HeroSliderProps {
-  onOpenCatalog: () => void
+  // onOpenCatalog: () => void
 }
 
-export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
+export function HeroSlider({}: HeroSliderProps = {}) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -121,7 +121,10 @@ export function HeroSlider({ onOpenCatalog }: HeroSliderProps) {
                         size="lg"
                         onClick={() => {
                           if (slide.ctaLink) window.location.href = slide.ctaLink
-                          else onOpenCatalog()
+                          else {
+                            const element = document.getElementById('catalogo')
+                            element?.scrollIntoView({ behavior: 'smooth' })
+                          }
                         }}
                         className="h-12 sm:h-14 px-6 sm:px-8 bg-yellow-400 hover:bg-yellow-500 text-black font-black text-base sm:text-lg rounded-2xl transition-all hover:scale-105 active:scale-95 group shadow-[0_0_20px_rgba(250,204,21,0.3)]"
                       >
