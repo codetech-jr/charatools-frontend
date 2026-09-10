@@ -98,8 +98,8 @@ export default async function Home() {
     bestSellers = [...bestSellers, ...remaining]
   }
 
-  // 3. Fallback a muestra estática solo si la base de datos está completamente vacía o inaccesible
-  const displayProducts = (bestSellers.length > 0 ? bestSellers : SAMPLE_PRODUCTS).slice(0, 10)
+  // 3. Limitar a exactamente 5 productos para mantener una cuadrícula limpia y simétrica de 1 sola fila
+  const displayProducts = (bestSellers.length > 0 ? bestSellers : SAMPLE_PRODUCTS).slice(0, 5)
 
   return (
     <>
